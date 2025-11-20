@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - Enterprise Hardware</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE
+                        'klyr-dark': '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+    
+         /* =================================================================== */
+        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* =================================================================== */
+        @media (min-width: 768px) {
+            .description-alignment-fix {
+                /* Min-height large enough for 2 lines of text-lg */
+                min-height: 3.5rem; 
+            }
+        }
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+            
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+           This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+
+    <main class="fade-in-section">
+        
+<div id="homepage-content">
+              
+    <!-- HERO SECTION: Heading, Subhead, and CTAs --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-10 md:pb-16 text-center">
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4 text-klyr-dark">
+            <span class="text-klyr-red">ALETHRA ENTERPRISE HARDWARE</span>™
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-10">
+            Industrial intelligence built for real-time clarity, compliance, and operational truth.
+        </p>
+
+        <!-- Hero CTA Buttons --><div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <a href="/hardware-pack.pdf" class="w-full sm:w-auto" download>
+                <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
+                    Download Full Hardware Pack (PDF)
+                </button>
+            </a>
+            <a href="/enterprise" class="w-full sm:w-auto">
+                <button class="bg-klyr-dark hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
+                    Request Enterprise Demo
+                </button>
+            </a>
+        </div>
+    </section>
+
+    <!-- SECTION: Why ALETHRA Hardware Exists (Updated spacing and centered H2) --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2 md:pt-8 md:pb-4">
+        <div class="p-8 md:p-12 rounded-xl">
+            <!-- Centered Heading --><h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark mb-4 text-center">WHY <span class="text-klyr-red">ALETHRA</span> HARDWARE EXISTS</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                Modern supply chains move faster than legacy systems can verify.
+                That gap creates confusion — and confusion creates risk.
+                <span class="font-semibold text-klyr-red">ALETHRA</span> closes that gap with a unified hardware suite engineered for clarity at every checkpoint: material integrity, environmental compliance, identity verification, and contamination prevention.
+            </p>
+            <!-- Updated tagline to be smaller, italic, and separated -->
+            <p class="text-xl italic font-semibold text-klyr-dark text-center pt-4 md:pt-6">
+                Built for regulators. Trusted by manufacturers. Deployable anywhere.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECTION: The ALETHRA Hardware Suite (Updated links on icon, title, and 'Learn More') --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
+        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-center mb-12 tracking-tight leading-snug">
+            THE <span class="text-klyr-red">ALETHRA</span> HARDWARE SUITE
+        </h2>
+        
+        <!-- 6-Item Grid (3 columns on desktop) --><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+            
+            <!-- ITEM 1: ALETHRA ENV™ --><div class="flex items-center">
+                <a href="/env" class="flex-shrink-0">
+                    <img src="https://plusbrand.com/wp-content/uploads/2025/11/ENV-scaled.webp" alt="ALETHRA ENV Icon" class="h-16 w-auto mr-4">
+                </a>
+                <div>
+                    <h3 class="text-xl font-extrabold uppercase mb-1">
+                        <a href="/env" class="text-klyr-red hover:text-red-700 transition duration-150">ALETHRA ENV™</a>
+                    </h3>
+                    <p class="text-gray-600 description-alignment-fix">Monitors environmental compliance and material clarity across facilities.</p>
+                    <div class="pt-2 space-y-1">
+                        <a href="/env" class="text-klyr-dark font-medium hover:text-klyr-red flex items-center transition duration-150">
+                            <i class="fas fa-arrow-right mr-2 text-klyr-red"></i> Learn More
+                        </a>
+                        <a href="/env-spec.pdf" class="text-gray-500 text-sm hover:text-klyr-dark flex items-center transition duration-150" download>
+                            <i class="fas fa-file-pdf mr-2"></i> Download Spec Sheet (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ITEM 2: ALETHRA FLOW™ --><div class="flex items-center">
+                <a href="/flow" class="flex-shrink-0">
+                    <img src="https://plusbrand.com/wp-content/uploads/2025/11/FLOW-scaled.webp" alt="ALETHRA FLOW Icon" class="h-16 w-auto mr-4">
+                </a>
+                <div>
+                    <h3 class="text-xl font-extrabold uppercase mb-1">
+                        <a href="/flow" class="text-klyr-red hover:text-red-700 transition duration-150">ALETHRA FLOW™</a>
+                    </h3>
+                    <p class="text-gray-600 description-alignment-fix">Industrial scanning at line speed for production and logistics.</p>
+                    <div class="pt-2 space-y-1">
+                        <a href="/flow" class="text-klyr-dark font-medium hover:text-klyr-red flex items-center transition duration-150">
+                            <i class="fas fa-arrow-right mr-2 text-klyr-red"></i> Learn More
+                        </a>
+                        <a href="/flow-spec.pdf" class="text-gray-500 text-sm hover:text-klyr-dark flex items-center transition duration-150" download>
+                            <i class="fas fa-file-pdf mr-2"></i> Download Spec Sheet (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ITEM 3: ALETHRA NODE™ --><div class="flex items-center">
+                <a href="/node" class="flex-shrink-0">
+                    <img src="https://plusbrand.com/wp-content/uploads/2025/11/NODE.webp" alt="ALETHRA NODE Icon" class="h-16 w-auto mr-4">
+                </a>
+                <div>
+                    <h3 class="text-xl font-extrabold uppercase mb-1">
+                        <a href="/node" class="text-klyr-red hover:text-red-700 transition duration-150">ALETHRA NODE™</a>
+                    </h3>
+                    <p class="text-gray-600 description-alignment-fix">Secure verification and blockchain-backed truth storage at every checkpoint.</p>
+                    <div class="pt-2 space-y-1">
+                        <a href="/node" class="text-klyr-dark font-medium hover:text-klyr-red flex items-center transition duration-150">
+                            <i class="fas fa-arrow-right mr-2 text-klyr-red"></i> Learn More
+                        </a>
+                        <a href="/node-spec.pdf" class="text-gray-500 text-sm hover:text-klyr-dark flex items-center transition duration-150" download>
+                            <i class="fas fa-file-pdf mr-2"></i> Download Spec Sheet (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ITEM 4: ALETHRA SENSE™ --><div class="flex items-center">
+                <a href="/sense" class="flex-shrink-0">
+                    <img src="https://plusbrand.com/wp-content/uploads/2025/11/SNSE-scaled.webp" alt="ALETHRA SENSE Icon" class="h-16 w-auto mr-4">
+                </a>
+                <div>
+                    <h3 class="text-xl font-extrabold uppercase mb-1">
+                        <a href="/sense" class="text-klyr-red hover:text-red-700 transition duration-150">ALETHRA SENSE™</a>
+                    </h3>
+                    <p class="text-gray-600 description-alignment-fix">Detects composition integrity and contamination before release.</p>
+                    <div class="pt-2 space-y-1">
+                        <a href="/sense" class="text-klyr-dark font-medium hover:text-klyr-red flex items-center transition duration-150">
+                            <i class="fas fa-arrow-right mr-2 text-klyr-red"></i> Learn More
+                        </a>
+                        <a href="/sense-spec.pdf" class="text-gray-500 text-sm hover:text-klyr-dark flex items-center transition duration-150" download>
+                            <i class="fas fa-file-pdf mr-2"></i> Download Spec Sheet (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ITEM 5: ALETHRA MOBILE™ --><div class="flex items-center">
+                <a href="/mobil" class="flex-shrink-0">
+                    <img src="https://plusbrand.com/wp-content/uploads/2025/11/MOBIL-scaled.webp" alt="ALETHRA MOBILE Icon" class="h-16 w-auto mr-4">
+                </a>
+                <div>
+                    <h3 class="text-xl font-extrabold uppercase mb-1">
+                        <a href="/mobil" class="text-klyr-red hover:text-red-700 transition duration-150">ALETHRA MOBIL™</a>
+                    </h3>
+                    <p class="text-gray-600 description-alignment-fix">Instant handheld verification for field, hospital, and retail environments.</p>
+                    <div class="pt-2 space-y-1">
+                        <a href="/mobil" class="text-klyr-dark font-medium hover:text-klyr-red flex items-center transition duration-150">
+                            <i class="fas fa-arrow-right mr-2 text-klyr-red"></i> Learn More
+                        </a>
+                        <a href="/mobil-spec.pdf" class="text-gray-500 text-sm hover:text-klyr-dark flex items-center transition duration-150" download>
+                            <i class="fas fa-file-pdf mr-2"></i> Download Spec Sheet (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ITEM 6: ALETHRA SCAN™ (New Item) --><div class="flex items-center">
+                <a href="/scan" class="flex-shrink-0">
+                    <img src="https://plusbrand.com/wp-content/uploads/2025/11/SCAN_1.webp" alt="ALETHRA SCAN Icon" class="h-16 w-auto mr-4">
+                </a>
+                <div>
+                    <h3 class="text-xl font-extrabold uppercase mb-1">
+                        <a href="/scan" class="text-klyr-red hover:text-red-700 transition duration-150">ALETHRA SCAN™</a>
+                    </h3>
+                    <p class="text-gray-600 description-alignment-fix">AI camera system that reads and confirms every product’s visual fingerprint.</p>
+                    <div class="pt-2 space-y-1">
+                        <a href="/scan" class="text-klyr-dark font-medium hover:text-klyr-red flex items-center transition duration-150">
+                            <i class="fas fa-arrow-right mr-2 text-klyr-red"></i> Learn More
+                        </a>
+                        <a href="/scan-spec.pdf" class="text-gray-500 text-sm hover:text-klyr-dark flex items-center transition duration-150" download>
+                            <i class="fas fa-file-pdf mr-2"></i> Download Spec Sheet (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- SECTION: Enterprise Architecture (Updated to FULL CAPS) --><section class="bg-gray-100 py-8 md:py-12">
+        <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-center mb-12 tracking-tight leading-snug">
+                ENTERPRISE ARCHITECTURE
+            </h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                
+                <!-- Features List --><div class="space-y-4 text-lg">
+                    <p class="text-gray-700 leading-relaxed mb-4">A unified, multi-sensor system connecting on-line, off-line, handheld, and facility-wide data into a single truth layer.</p>
+                    <ul class="space-y-3 list-none p-0">
+                        <li class="flex items-center text-klyr-dark font-medium">
+                            <i class="fas fa-check-circle text-klyr-red mr-3 text-xl flex-shrink-0"></i> Real-time line intelligence
+                        </li>
+                        <li class="flex items-center text-klyr-dark font-medium">
+                            <i class="fas fa-check-circle text-klyr-red mr-3 text-xl flex-shrink-0"></i> Immutable audit trails
+                        </li>
+                        <li class="flex items-center text-klyr-dark font-medium">
+                            <i class="fas fa-check-circle text-klyr-red mr-3 text-xl flex-shrink-0"></i> Edge + cloud verification
+                        </li>
+                        <li class="flex items-center text-klyr-dark font-medium">
+                            <i class="fas fa-check-circle text-klyr-red mr-3 text-xl flex-shrink-0"></i> Zero-disruption deployment
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Diagram Placeholder --><div class="bg-white p-8 rounded-xl shadow-xl border border-gray-200 h-64 flex items-center justify-center">
+                    <p class="text-gray-500 italic">
+                        (Insert diagram using the devices + CORE/Gateway.)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Regulatory & IT Confidence by Design (Updated to FULL CAPS) --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-center mb-12 tracking-tight leading-snug">
+            REGULATORY & IT<br> CONFIDENCE BY DESIGN
+        </h2>
+        
+        <div class="max-w-3xl mx-auto p-8 rounded-2xl shadow-xl bg-white">
+            <ul class="space-y-4 list-none p-0 text-gray-700 text-lg">
+                <li class="flex items-start">
+                    <i class="fas fa-lock text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> NIST-aligned security and encryption
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-project-diagram text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> Industrial protocols (Modbus, OPC UA, MQTT)
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-fingerprint text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> Enterprise identity & access control
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-shield-alt text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> Full audit logging and blockchain-anchored data integrity
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-exchange-alt text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> Seamless OT/IT integration
+                </li>
+            </ul>
+            
+            <div class="text-center mt-10">
+                <a href="/regulatory-plan.pdf" class="w-full sm:w-auto" download>
+                    <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider">
+                        Download: Regulatory & Standards Engagement Plan (PDF)
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+             
+    <!-- NEW: Final CTA Section -->
+    <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 text-center">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-klyr-dark mb-8 tracking-tight leading-snug">
+            ALETHRA is ready for your production line,<br> your facility, or your global network.
+        </h2>
+        <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <a href="/enterprise" class="w-full sm:w-auto">
+                <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
+                    Request Enterprise Demo
+                </button>
+            </a>
+            <a href="/join" class="w-full sm:w-auto">
+                <button class="bg-klyr-dark hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
+                    Join the 2025 Pilot Program
+                </button>
+            </a>
+        </div>
+    </section>
+
+
+<!-- ORIGINAL: general-message-box - preserved --><div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
+            </div>
+
+
+<!-- The red banner section that was here has been removed. -->
+        </div>
+        
+</main>
+
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+    
+    
+ <div id="footer-placeholder"></div>
+<script src="/animation.js"></script>
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+<script type="text/javascript">
+     // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+
+</body>
+</html>

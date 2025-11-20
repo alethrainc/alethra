@@ -1,0 +1,209 @@
+<!-- DESKTOP NAV -->
+<div class="max-w-super-wide mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+        <a href="/">
+            <div class="flex-shrink-0 cursor-pointer">
+                <img id="nav-logo-img" class="h-6 w-auto" alt="ALETHRA™ Logo"
+                     onerror="this.outerHTML = '<span class=\'text-xl font-bold text-klyr-red\'>KLYR™</span>';">
+            </div>
+        </a>
+
+        <div class="flex items-center space-x-4">
+
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+
+                <a href="/confusion" class="nav-item">THE PROBLEM</a>
+
+                <div class="relative group">
+                    <a href="/solution" class="nav-item flex items-center">
+                        THE SOLUTION
+                        <i class="fas fa-chevron-down text-xs ml-1 transition-transform group-hover:rotate-180"></i>
+                    </a>
+
+                    <div class="absolute left-0 mt-0 w-60 bg-white rounded-lg shadow-xl py-2 z-60 hidden group-hover:block
+                                transition duration-150 ease-in-out origin-top border border-gray-100">
+
+                        <a href="/technology" class="block px-4 py-2 text-sm text-klyr-dark hover:bg-gray-100 hover:text-klyr-red uppercase">
+                            TECHNOLOGY
+                        </a>
+                        <a href="/enterprise-hardware" class="block px-4 py-2 text-sm text-klyr-dark hover:bg-gray-100 hover:text-klyr-red uppercase">
+                            ECOSYSTEM
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <a href="/impact" class="nav-item flex items-center">
+                        IMPACT
+                        <i class="fas fa-chevron-down text-xs ml-1 transition-transform group-hover:rotate-180"></i>
+                    </a>
+
+                    <div class="absolute left-0 mt-0 w-40 bg-white rounded-lg shadow-xl py-2 z-60 hidden group-hover:block
+                                transition duration-150 ease-in-out origin-top border border-gray-100">
+
+                        <a href="/case" class="block px-4 py-2 text-sm text-klyr-dark hover:bg-gray-100 hover:text-klyr-red uppercase">
+                            CASE STUDIES
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <a href="#" class="nav-item flex items-center">
+                        ABOUT
+                        <i class="fas fa-chevron-down text-xs ml-1 transition-transform group-hover:rotate-180"></i>
+                    </a>
+
+                    <div class="absolute left-0 mt-0 w-80 bg-white rounded-lg shadow-xl py-2 z-60 hidden group-hover:block
+                                transition duration-150 ease-in-out origin-top border border-gray-100">
+
+                        <a href="/regulatory" class="block px-4 py-2 text-sm text-klyr-dark hover:bg-gray-100 hover:text-klyr-red uppercase">
+                            Regulatory & Standards Engagement
+                        </a>
+
+                        <a href="/certified" class="block px-4 py-2 text-sm text-klyr-dark hover:bg-gray-100 hover:text-klyr-red uppercase">
+                            ALETHRACERTIFIED™
+                        </a>
+
+                        <a href="/global" class="block px-4 py-2 text-sm text-klyr-dark hover:bg-gray-100 hover:text-klyr-red uppercase">
+                            GLOBAL INITIATIVE
+                        </a>
+                    </div>
+                </div>
+
+                <a href="/press" class="nav-item">PRESS & MEDIA</a>
+
+                <a href="/join" class="nav-item font-bold">JOIN THE MOVEMENT</a>
+            </nav>
+
+            <i id="global-icon-desktop"
+               class="fas fa-globe text-gray-500 hover:text-klyr-red cursor-pointer transition md:ml-4 hidden md:block"
+               onclick="openModal()"></i>
+
+            <button id="mobile-menu-btn" type="button"
+                    class="md:hidden text-gray-500 hover:text-klyr-red p-2 rounded-md focus:outline-none -mr-2">
+                <i id="menu-icon" class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ███████████████████████████████████████████████████████████████ -->
+<!--                           MOBILE NAV                             -->
+<!-- ███████████████████████████████████████████████████████████████ -->
+
+<div id="mobile-menu-overlay"
+     class="fixed inset-y-0 right-0 w-3/4 h-full bg-white z-[90] mobile-menu-transition hidden opacity-0 translate-x-full">
+
+    <button id="close-mobile-menu-btn"
+            class="absolute top-4 right-4 p-3 text-klyr-dark hover:text-klyr-red transition z-[95]">
+        <i class="fas fa-times text-2xl"></i>
+    </button>
+
+    <nav class="flex flex-col h-full pt-16 pb-8 overflow-y-auto space-y-0">
+
+        <div class="w-full px-4">
+            <a href="/confusion" class="block text-base font-normal py-0.5 text-klyr-dark hover:text-klyr-red"
+               onclick="closeMobileMenu()">
+                THE PROBLEM
+            </a>
+        </div>
+
+        <div class="w-full px-4">
+            <div class="flex justify-between items-center py-0.5">
+                <a href="/solution" class="text-base font-normal text-klyr-dark hover:text-klyr-red"
+                   onclick="closeMobileMenu()">
+                    THE SOLUTION
+                </a>
+                <button id="mobile-solution-toggle"
+                        class="mobile-toggle-btn text-klyr-dark hover:text-klyr-red w-7 h-7 rounded-full flex items-center justify-center mr-1">
+                    <i id="mobile-solution-icon" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                </button>
+            </div>
+
+            <div id="mobile-solution-dropdown"
+                 class="mobile-dropdown-content overflow-hidden max-h-0 opacity-0 pl-4">
+                <div class="flex flex-col space-y-0 py-0.5">
+                    <a href="/technology" class="text-base text-klyr-dark hover:text-klyr-red uppercase py-0.5"
+                       onclick="closeMobileMenu()">Technology</a>
+                    <a href="/enterprise-hardware" class="text-base text-klyr-dark hover:text-klyr-red uppercase py-0.5"
+                       onclick="closeMobileMenu()">Ecosystem</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full px-4">
+            <div class="flex justify-between items-center py-0.5">
+                <a href="/impact" class="text-base font-normal text-klyr-dark hover:text-klyr-red"
+                   onclick="closeMobileMenu()">
+                    IMPACT
+                </a>
+                <button id="mobile-impact-toggle"
+                        class="mobile-toggle-btn text-klyr-dark hover:text-klyr-red w-7 h-7 rounded-full flex items-center justify-center mr-1">
+                    <i id="mobile-impact-icon" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                </button>
+            </div>
+
+            <div id="mobile-impact-dropdown"
+                 class="mobile-dropdown-content overflow-hidden max-h-0 opacity-0 pl-4">
+                <div class="flex flex-col space-y-0 py-0.5">
+                    <a href="/case" class="text-base text-klyr-dark hover:text-klyr-red uppercase py-0.5"
+                       onclick="closeMobileMenu()">CASE STUDIES</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full px-4">
+            <div class="flex justify-between items-center py-0.5">
+                <a href="/join" class="text-base font-normal text-klyr-dark hover:text-klyr-red"
+                   onclick="closeMobileMenu()">
+                    ABOUT
+                </a>
+                <button id="mobile-about-toggle"
+                        class="mobile-toggle-btn text-klyr-dark hover:text-klyr-red w-7 h-7 rounded-full flex items-center justify-center mr-1">
+                    <i id="mobile-about-icon" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                </button>
+            </div>
+
+            <div id="mobile-about-dropdown"
+                 class="mobile-dropdown-content overflow-hidden max-h-0 opacity-0 pl-4">
+                <div class="flex flex-col space-y-0 py-0.5">
+                    <a href="/regulatory"
+                       class="text-base text-klyr-dark hover:text-klyr-red uppercase py-0.5"
+                       onclick="closeMobileMenu()">Regulatory & Standards Engagement</a>
+                    <a href="/certified"
+                       class="text-base text-klyr-dark hover:text-klyr-red uppercase py-0.5"
+                       onclick="closeMobileMenu()">ALETHRACERTIFIED™</a>
+                    <a href="/global"
+                       class="text-base text-klyr-dark hover:text-klyr-red uppercase py-0.5"
+                       onclick="closeMobileMenu()">GLOBAL INITIATIVE</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full px-4">
+            <a href="/press" class="block text-base font-normal py-0.5 text-klyr-dark hover:text-klyr-red"
+               onclick="closeMobileMenu()">
+                PRESS & MEDIA
+            </a>
+        </div>
+
+        <div class="w-full px-4">
+            <a href="/join" class="block text-base font-bold py-0.5 text-klyr-dark hover:text-klyr-red"
+               onclick="closeMobileMenu()">
+                JOIN THE MOVEMENT
+            </a>
+        </div>
+
+        <div class="w-full px-4">
+            <button id="mobile-global-toggle"
+                    class="text-base font-normal py-0.5 text-klyr-dark hover:text-klyr-red flex items-center w-full justify-start"
+                    onclick="closeMobileMenu(); openModal();">
+                <i class="fas fa-globe text-base mr-2"></i>
+                Select Region / Language
+            </button>
+        </div>
+
+    </nav>
+</div>

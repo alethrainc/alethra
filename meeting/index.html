@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - Partnership Meeting Inquiry</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">   
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE
+                        'klyr-dark': '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+      
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+           This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+
+        /* Form Input Styles */
+        .klyr-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.5rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .klyr-input:focus {
+            outline: none;
+            border-color: #E72F3C;
+            box-shadow: 0 0 0 3px rgba(231, 47, 60, 0.2);
+        }
+        /* Custom styling for select to hide default arrow and use custom one */
+        select.custom-select {
+            appearance: none;
+            padding-right: 2.5rem; /* Make space for the icon */
+        }
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+
+    <main class="fade-in-section">
+        
+<div id="homepage-content">
+            
+            
+<!-- HERO SECTION - Padding adjusted for balance -->
+<!-- MODIFICATION: Updated Title to new text -->
+<section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 text-center">
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-2 uppercase">
+                    Strategic <span class="text-klyr-red">CLARITY</span> Sync
+                </h2>
+                
+                <!-- TEXT LINE - Margin removed, font size moved to classes -->
+                <p class="font-bold text-klyr-dark italic mx-auto text-xl md:text-2xl">
+Secure the future with  <span class="text-klyr-red">ALETHRA</span>™                </p>
+            </section>
+
+
+  
+            <!-- DEMO REQUEST FORM SECTION - Background and Padding updated -->
+            <section id="regulatory-form" class="bg-white pt-4 md:pt-8 pb-16 md:pb-24">
+                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <!-- HEADING UPDATED to Partnership Inquiry -->
+                    <h3 class="text-2xl md:text-4xl font-extrabold tracking-tight mb-8 text-klyr-dark text-center uppercase">
+                        PARTNERSHIP MEETING INQUIRY
+                    </h3>
+                    
+                    <!-- Form Container - Apple-like card style -->
+                    <div class="max-w-3xl mx-auto bg-white p-6 sm:p-10 md:p-12 rounded-3xl shadow-xl border border-gray-100">
+                        
+                        <!-- Success Message Container (Initially Hidden) -->
+                        <div id="success-message" class="hidden text-center py-20">
+                            <h3 class="text-3xl font-extrabold text-klyr-dark uppercase">
+                              Thank you for your request
+                            </h3>
+                            <p class="mt-4 text-gray-600 text-lg">
+Our partnerships team will reply shortly to discuss next steps.                            </p>
+                        </div>
+
+                        <!-- Form -->
+                        <form id="regulatory-request-form" action="#" method="POST" class="space-y-6">
+                            
+                            <!-- Wrapper for all form fields, used to hide them on success -->
+                            <div id="form-content" class="space-y-6">
+
+                                <!-- Name Fields (Two Columns on Desktop) -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <input type="text" name="first-name" id="first-name" autocomplete="given-name" required
+                                           placeholder="First Name *"
+                                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+                                    
+                                    <input type="text" name="last-name" id="last-name" autocomplete="family-name" required
+                                           placeholder="Last Name *"
+                                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+                                </div>
+                                
+                                <!-- Official Email -->
+                                <input type="email" name="official-email" id="official-email" autocomplete="email" required
+                                       placeholder="Email *"
+                                       class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+                                
+                                <!-- Company / Organization (UPDATED) -->
+                                <input type="text" name="organization" id="organization" required
+                                       placeholder="Company / Organization *"
+                                       class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+
+                                <!-- Urgency & Partner Type (Two Columns) (UPDATED SECTION) -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <!-- Team Size -> Urgency (New Select) -->
+                                    <div class="relative">
+                                        <select name="urgency" id="urgency" required
+                                                class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 text-gray-400 custom-select">
+                                            <option value="" disabled selected>Urgency *</option>
+                                            <option value="Exploring">Exploring</option>
+                                            <option value="Within 30 days">Within 30 days</option>
+                                            <option value="ASAP">ASAP</option>
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-500">
+                                            <i class="fas fa-chevron-down text-sm"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- INDUSTRY SELECTION -> PARTNER TYPE (MODAL TRIGGER - Repurposed) -->
+                                    <div class="relative">
+                                        <!-- Hidden input to store the actual selected value (ID RENAMED) -->
+                                        <input type="hidden" name="partner-type" id="partner-type-hidden" required value="">
+                                        
+                                        <!-- Button that displays the selection and acts as the modal trigger (FUNCTION RENAMED) -->
+                                        <button type="button" id="partner-type-display-btn" 
+                                                onclick="openPartnerTypeModal()"
+                                                class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 text-gray-400 text-left transition duration-150 hover:bg-gray-50"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            Partner Type *
+                                        </button>
+                                        
+                                        <!-- Custom Arrow Icon -->
+                                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-500">
+                                            <i class="fas fa-chevron-down text-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Role / Department & Region(s) of operation (Two Columns) (UPDATED SECTION) -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                     <!-- Role / Department -->
+                                    <input type="text" name="role" id="role" required
+                                           placeholder="Role / Department *"
+                                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+                                    
+                                    <!-- NEW FIELD: Region(s) of operation -->
+                                    <input type="text" name="region-of-operation" id="region-of-operation" required
+                                           placeholder="Region(s) of operation *"
+                                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+                                </div>
+                                
+                                <!-- New Field: Preferred Meeting Format & Conditional City Input (Two Columns) -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="meeting-format-group">
+                                    <div class="relative">
+                                        <select name="meeting-format" id="meeting-format" required
+                                                onchange="handleMeetingFormatChange(this.value)"
+                                                class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 text-gray-400 custom-select">
+                                            <option value="" disabled selected>Preferred Meeting Format *</option>
+                                            <option value="Video">Video</option>
+                                            <option value="Phone">Phone</option>
+                                            <option value="In-person">In-person</option>
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-500">
+                                            <i class="fas fa-chevron-down text-sm"></i>
+                                        </div>
+                                    </div>
+                                    <!-- Conditional City Input - Hidden by default -->
+                                    <input type="text" name="in-person-city" id="in-person-city" 
+                                           placeholder="Specify City for In-person"
+                                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400 hidden">
+                                </div>
+
+                                <!-- New Field: Preferred Dates/Times (Textarea) -->
+                                <div>
+                                    <label for="preferred-date-time" class="block text-sm font-medium text-klyr-dark mb-1">Preferred Dates/Times</label>
+                                    <textarea name="preferred-date-time" id="preferred-date-time" rows="2"
+                                              class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400"
+                                              placeholder="e.g., 'Any Tuesday or Wednesday afternoon next week', 'Week of July 15th, 10am-1pm EST'"></textarea>
+                                </div>
+                                
+                                <!-- Anything we should prepare? (Long Text) - LABEL CHANGED -->
+                                <div>
+                                    <label for="context" class="block text-sm font-medium text-klyr-dark mb-1">What do you want to explore?</label>
+                                    <textarea name="context" id="context" rows="4"
+                                              class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400"
+                                              placeholder="Briefly describe what do you want to explore."></textarea>
+                                </div>
+
+                                <!-- Consent Checkbox - UNCHANGED -->
+                                <div class="flex items-start pt-2">
+                                    <div class="flex items-center h-5">
+                                        <!-- Checkbox class already uses text-klyr-red -->
+                                        <input id="consent" name="consent" type="checkbox" required
+                                               class="focus:ring-klyr-red h-5 w-5 text-klyr-red border-gray-400 rounded">
+                                    </div>
+                                    <div class="ml-3 text-sm">
+                                        <label for="consent" class="font-medium text-gray-700 cursor-pointer">
+                                            I consent to <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> using this information to respond to my request and understand this is for official regulatory engagement purposes.
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Submit Button - UNCHANGED -->
+                                <div class="pt-4">
+                                    <button type="submit"
+                                            class="w-full bg-klyr-red hover:bg-red-600 active:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-300 transform hover:scale-[1.01] uppercase tracking-wider text-lg">
+                                        Submit Request
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+
+        
+</main>
+
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+  <!-- INDUSTRY MODAL STRUCTURE -> PARTNER TYPE MODAL -->
+<div id="partner-type-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+    <!-- max-w-lg for a better, tighter list experience (ID UPDATED) -->
+    <div id="partner-type-modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-lg p-6 sm:p-8 relative transform scale-95 modal-transition">
+        
+        <!-- FIX 1: HEADER (Title and Close Button inline to prevent overlap) -->
+        <div class="flex justify-between items-center mb-6">
+           
+            <!-- Close button (ID UPDATED & onclick ADDED) -->
+            <h4 class="text-xl font-bold text-klyr-dark">Select Partner Type</h4>
+            <button type="button" id="partner-type-close-modal-btn" 
+                    onclick="closePartnerTypeModal()"
+                    class="text-gray-500 hover:text-klyr-red transition duration-150 p-2 -mr-2 z-10">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Search Bar (ID UPDATED) -->
+        <div class="relative mb-4">
+            <input type="text" id="partner-type-search-input" placeholder="Search Partner Type"
+                   class="w-full rounded-xl border border-gray-300 bg-gray-50 shadow-inner focus:border-klyr-red focus:ring-klyr-red text-base p-4 pl-12 placeholder-gray-500">
+            <!-- Search Icon -->
+            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+        
+        <!-- Industry List Container (ID UPDATED) -->
+        <div id="partner-type-list-container" class="space-y-1 max-h-[60vh] overflow-y-auto pt-4 pb-2">
+            <!-- List items will be dynamically injected here by JS -->
+        </div>
+    </div>
+</div>  
+    
+ <div id="footer-placeholder"></div>
+
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+<!-- New script for Partner Type Selection Modal Logic and Form/Scroll Handling -->
+<script>
+    // ===================================================================
+    // PARTNER TYPE SELECTION MODAL LOGIC (UPDATED IDS AND FUNCTIONS)
+    // ===================================================================
+
+    // Define partner types
+    const PARTNER_TYPES = [
+        "Brand / Manufacturer",
+        "Distributor",
+        "Systems Integrator",
+        "Media",
+        "NGO",
+        "Academic",
+        "Other"
+    ];
+
+    function renderPartnerTypeList(filterText = '') {
+        const container = document.getElementById('partner-type-list-container');
+        container.innerHTML = '';
+        const normalizedFilter = filterText.toLowerCase().trim();
+
+        const filteredPartnerTypes = PARTNER_TYPES.filter(partnerType => {
+            return partnerType.toLowerCase().includes(normalizedFilter);
+        });
+
+        if (filteredPartnerTypes.length === 0) {
+            container.innerHTML = '<p class="text-center text-gray-500 py-8">No partner types found matching your search.</p>';
+            return;
+        }
+
+        filteredPartnerTypes.forEach(partnerTypeName => {
+            const item = document.createElement('div');
+            item.className = 'flex justify-start items-center py-3 px-3 rounded-lg cursor-pointer hover:bg-gray-100 transition duration-100 partner-type-list-item';
+            
+            // Partner Type Name
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'text-klyr-dark text-base font-medium';
+            nameSpan.textContent = partnerTypeName;
+            
+            item.appendChild(nameSpan);
+            
+            // Set the full display name as the value
+            item.addEventListener('click', () => selectPartnerType(partnerTypeName)); 
+            container.appendChild(item);
+        });
+    }
+
+    function selectPartnerType(partnerTypeName) {
+        const hiddenInput = document.getElementById('partner-type-hidden');
+        const displayBtn = document.getElementById('partner-type-display-btn');
+        
+        // 1. Update form value
+        hiddenInput.value = partnerTypeName;
+        
+        // 2. Update display button text and style (from gray placeholder to dark text)
+        displayBtn.textContent = partnerTypeName;
+        displayBtn.classList.remove('text-gray-400');
+        displayBtn.classList.add('text-klyr-dark');
+        
+        closePartnerTypeModal();
+    }
+
+    function openPartnerTypeModal() {
+        const modal = document.getElementById('partner-type-modal');
+        const modalContent = document.getElementById('partner-type-modal-content');
+        
+        // Reset search and re-render list
+        document.getElementById('partner-type-search-input').value = '';
+        renderPartnerTypeList();
+        
+        modal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden'); // Disable background scroll
+        
+        // Focus the search input for immediate typing on desktop
+        document.getElementById('partner-type-search-input').focus();
+        
+        // Trigger transition (must be done after a short delay for CSS to register display change)
+        setTimeout(() => {
+            modal.classList.add('opacity-100');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }, 10);
+    }
+
+    function closePartnerTypeModal() {
+        const modal = document.getElementById('partner-type-modal');
+        const modalContent = document.getElementById('partner-type-modal-content');
+        
+        modal.classList.remove('opacity-100');
+        modalContent.classList.remove('scale-100');
+        modalContent.classList.add('scale-95');
+        document.body.classList.remove('overflow-hidden');
+        
+        // Hide modal completely after transition ends
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
+    
+    // ===================================================================
+    // NEW LOGIC FOR MEETING FORMAT
+    // ===================================================================
+    
+    function handleMeetingFormatChange(value) {
+        const cityInput = document.getElementById('in-person-city');
+        const selectElement = document.getElementById('meeting-format');
+        
+        // 1. Update text color for the select element when a value is picked
+        if (value === "") { 
+            selectElement.classList.add('text-gray-400');
+            selectElement.classList.remove('text-klyr-dark');
+        } else {
+            selectElement.classList.remove('text-gray-400');
+            selectElement.classList.add('text-klyr-dark'); 
+        }
+
+        // 2. Handle City Input visibility and required status
+        if (value === 'In-person') {
+            cityInput.classList.remove('hidden');
+            cityInput.required = true;
+        } else {
+            cityInput.classList.add('hidden');
+            cityInput.required = false;
+            cityInput.value = ''; // Clear the value if hidden
+        }
+    }
+
+
+    // ===================================================================
+    // INITIALIZATION & FORM/SCROLL LOGIC
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const displayBtn = document.getElementById('partner-type-display-btn');
+        const searchInput = document.getElementById('partner-type-search-input');
+        const modal = document.getElementById('partner-type-modal');
+        const hiddenInput = document.getElementById('partner-type-hidden');
+        const meetingFormatSelect = document.getElementById('meeting-format'); // NEW
+
+        // --- 1. Form Submission Logic ---
+        const form = document.getElementById('regulatory-request-form');
+        const formContent = document.getElementById('form-content');
+        const successMessage = document.getElementById('success-message');
+
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Stop default form submission/page reload
+                
+                // Hide form content and show success message
+                formContent.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+                
+                // Scroll back to the top of the form area smoothly
+                document.getElementById('regulatory-form').scrollIntoView({
+                     behavior: 'smooth'
+                });
+            });
+        }
+        
+        // --- 2. Smooth Scroll Handler for CTA (UNCHANGED)---
+        // Selects all anchors with the class 'smooth-scroll' and an href starting with '#'
+        const smoothScrollLinks = document.querySelectorAll('a.smooth-scroll[href^="#"]'); 
+        if (smoothScrollLinks.length > 0) {
+            smoothScrollLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Scrolls to the target element ID specified in the href
+                    const targetId = this.getAttribute('href');
+                    if (targetId && targetId !== '#') {
+                        document.querySelector(targetId).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // --- 3. Modal Initialization ---
+        
+        // Set initial display text based on hidden input value
+        if (hiddenInput.value) {
+            selectPartnerType(hiddenInput.value); // Re-select to set button style/text
+        }
+
+        // Close Modal on Backdrop Click
+        modal.addEventListener('click', (e) => {
+            // Only close if the click target is the modal backdrop itself
+            if (e.target === modal) {
+                closePartnerTypeModal(); // CALLING RENAMED FUNCTION
+            }
+        });
+
+        // Search Filtering (real-time filtering)
+        searchInput.addEventListener('input', (e) => {
+            renderPartnerTypeList(e.target.value);
+        });
+        
+        // Initial render of partner type list on load
+        renderPartnerTypeList();
+
+        // --- 4. Meeting Format Initial Check (NEW) ---
+        if (meetingFormatSelect && meetingFormatSelect.value !== '') {
+            // Apply dark color if a value is pre-selected
+            meetingFormatSelect.classList.remove('text-gray-400');
+            meetingFormatSelect.classList.add('text-klyr-dark'); 
+            handleMeetingFormatChange(meetingFormatSelect.value);
+        }
+    });
+</script>
+<script>
+    // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+</body>
+</html>

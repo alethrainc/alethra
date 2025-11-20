@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - NODE Product</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE
+                        'klyr-dark': '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+    
+        /* =================================================================== */
+        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* =================================================================== */
+        @media (min-width: 768px) {
+            .description-alignment-fix {
+                /* Min-height large enough for 2 lines of text-lg */
+                min-height: 3.5rem; 
+            }
+        }
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+            
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+            This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+
+    <main class="fade-in-section">
+        <div id="env-product-content">
+            
+            <!-- HERO SECTION: NODE Product Page --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-4 md:pb-6 text-center">
+                <!-- Heading --><h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4 text-klyr-dark">
+                    <span class="text-klyr-red">ALETHRA NODE™</span>
+                </h1>
+                <!-- Subhead --><p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-10">
+                    Secure verification and blockchain-anchored truth at every checkpoint.
+                </p>
+
+                <!-- Hero CTA Buttons --><div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <!-- CTA 1: Download Spec Sheet --><a href="/node-spec.pdf" class="w-full sm:w-auto" download>
+                        <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
+                            Download NODE Spec Sheet (PDF)
+                        </button>
+                    </a>
+                    <!-- CTA 2: Request Integration Call --><a href="/contact/integration" class="w-full sm:w-auto">
+                        <button class="bg-klyr-dark hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
+                            Request Integration Call
+                        </button>
+                    </a>
+                </div>
+            </section>
+
+            <!-- SECTION: Verification That Can’t Be Manipulated --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6">
+                <div class="p-8 md:p-12 bg-gray-50 rounded-xl shadow-xl border border-gray-200">
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-klyr-dark mb-6 text-center">
+                        VERIFICATION THAT CAN’T BE <span class="text-klyr-red">MANIPULATED</span>
+                    </h2>
+                    <p class="text-lg text-gray-700 leading-relaxed text-center max-w-4xl mx-auto">
+                        Every scan becomes a <strong>truth event</strong>. Every truth event becomes an <strong>immutable record</strong>. Every record becomes a <strong>defensible audit trail</strong>. That’s <strong>ALETHRA NODE™</strong> — the backbone of line-to-cloud integrity.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECTION: Key Capabilities, Technical Highlights, and Use Cases (2-Column Layout) --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    
+                    <!-- COLUMN 1: Capabilities & Technical Highlights --><div>
+                        <!-- Key Capabilities --><h3 class="text-2xl font-extrabold text-klyr-dark mb-6 border-b-4 border-klyr-red pb-2 inline-block">Key Capabilities</h3>
+                        <ul class="space-y-3 text-lg text-gray-700 list-none p-0">
+                            <li class="flex items-start">
+                                <i class="fas fa-cubes text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> Blockchain-backed verification logging
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-lock text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> Identity, ingredient, and batch truth anchoring
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-fingerprint text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> Checkpoint authentication for materials
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-route text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> Chain-of-custody monitoring
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-exchange-alt text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> API connections for regulators & auditors
+                            </li>
+                        </ul>
+
+                        <!-- Technical Highlights --><h3 class="text-2xl font-extrabold text-klyr-dark mt-10 mb-6 border-b-4 border-klyr-red pb-2 inline-block">Technical Highlights</h3>
+                        <ul class="space-y-3 text-lg text-gray-700 list-none p-0">
+                            <li class="flex items-start">
+                                <i class="fas fa-warehouse text-klyr-dark mr-3 mt-1 text-xl flex-shrink-0"></i> Hardened industrial IoT enclosure
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-key text-klyr-dark mr-3 mt-1 text-xl flex-shrink-0"></i> Secure key storage module
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-project-diagram text-klyr-dark mr-3 mt-1 text-xl flex-shrink-0"></i> Multi-protocol communication stack
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-shield-alt text-klyr-dark mr-3 mt-1 text-xl flex-shrink-0"></i> Tamper-resistant design
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-server text-klyr-dark mr-3 mt-1 text-xl flex-shrink-0"></i> On-device edge verification
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- COLUMN 2: Use Cases & Downloads --><div>
+                        <!-- Use Cases --><h3 class="text-2xl font-extrabold text-klyr-dark mb-6 border-b-4 border-klyr-red pb-2 inline-block">Use Cases</h3>
+                        <ul class="space-y-3 text-lg text-gray-700 list-none p-0">
+                            <li class="flex items-start">
+                                <i class="fas fa-cheese text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> Ingredient verification
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-leaf text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> Agriculture & pesticide compliance
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-globe-americas text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> Cross-border shipments
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-vials text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> Medical sample routing
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-radiation text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> High-risk materials
+                            </li>
+                        </ul>
+
+                        <!-- Downloads --><h3 class="text-2xl font-extrabold text-klyr-dark mt-10 mb-6 border-b-4 border-klyr-red pb-2 inline-block">Downloads</h3>
+                        <a href="/node-spec.pdf" class="flex items-center text-klyr-dark hover:text-klyr-red transition duration-150 text-lg font-medium" download>
+                            <i class="fas fa-file-pdf mr-3 text-2xl text-klyr-red"></i> ALETHRA NODE™ Spec Sheet (PDF)
+                        </a>
+                        
+                    </div>
+                </div>
+            </section>
+
+            <!-- FINAL CTA SECTION --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 text-center bg-white rounded-xl mb-8">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-klyr-dark mb-8 tracking-tight leading-snug">
+                    Lock in trust at every critical step.
+                </h2>
+                <div class="flex justify-center">
+                    <a href="/enterprise" class="w-full sm:w-auto">
+                        <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-10 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
+                            Request Enterprise Demo
+                        </button>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Message Box Placeholder (Keep original) --><div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
+            </div>
+
+        </div>
+    </main>
+
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+    
+    
+<div id="footer-placeholder"></div>
+<script src="/animation.js"></script>
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+<script type="text/javascript">
+     // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    // observer.unobserve(entry.target); // Removed to allow re-trigger if element leaves and re-enters viewport
+                } else {
+                    // Optional: Remove 'is-visible' if element exits viewport
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+
+</body>
+</html>

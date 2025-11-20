@@ -1,0 +1,17 @@
+
+      .fade-in-section {
+    /* Starting state: invisible */
+    opacity: 0;
+    
+    /* Transition only opacity (remove transform) */
+    transition: opacity 0.2s ease-out;
+    
+    /* Uses CSS variable set by JS for staggered loading */
+    transition-delay: var(--delay); 
+}
+
+.fade-in-section.is-visible {
+    /* Final state: fully visible */
+    opacity: 1;
+    /* Remove transform: translateY(0); */
+}

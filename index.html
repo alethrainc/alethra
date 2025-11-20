@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - Home</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">
+    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE
+                        'klyr-dark': '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+   
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+           
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+           This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+
+        /* Form Input Styles */
+        .klyr-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.5rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .klyr-input:focus {
+            outline: none;
+            border-color: #E72F3C;
+            box-shadow: 0 0 0 3px rgba(231, 47, 60, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+    
+
+
+    <main class="fade-in-section">
+        
+<div id="homepage-content">
+            
+<section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    
+<div class="space-y-6" style="--delay: 0.2s;">
+                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug">
+                            <span class="text-klyr-dark">CLARITY STARTS HERE</span>
+                            <br class="hidden sm:block">
+                           
+                        
+                        </h1>
+                         <p class="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
+                   Confusion is an invisible crisis.
+                </p>
+                        <p class="text-gray-600 text-lg">
+                           Every day, mix-ups and mislabeling destroy products, waste billions, and harm lives.
+                        </p>
+                    </div>
+                    
+<div id="content-box" class="content-box-border-style rounded-lg flex h-full overflow-hidden" style="--delay: 0.4s;"> 
+                        
+<img id="content-logo-img" class="content-logo-border w-full h-full object-cover rounded-lg" alt="Kare Image Placeholder" loading="lazy">
+                    </div>
+                </div>
+            </section>
+            
+            
+<section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-0 text-center" style="--delay: 0s;">
+                
+<p class="font-bold text-klyr-dark italic  mx-auto" style="font-size: calc(1.05 * 1.25rem);">
+                    <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> is the world’s first clarity technology — designed to stop confusion before it happens.
+                </p>
+            </section>
+
+
+            
+<section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-12 text-center" style="--delay: 0s;">
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+                    GLOBAL IMPACT STATS
+                </h2>
+                
+            </section>
+
+            
+<section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-24 " style="--delay: 0.2s;">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    
+<div class="rounded-xl crisis-card-style p-6 text-center">
+                        <h3 class="text-sm font-bold text-klyr-dark mb-4">Food & Beverage</h3>
+                        <div class="text-5xl font-extrabold text-klyr-red mb-4">100M+</div>
+                        <p class="text-sm text-gray-600">
+                           units recalled each year. Billions of dollars lost
+                        </p>
+                    </div>
+
+                    
+<div class="rounded-xl crisis-card-style p-6 text-center">
+                        <h3 class="text-sm font-bold text-klyr-dark mb-4">Medicine & Healthcare</h3>
+                        <div class="text-5xl font-extrabold text-klyr-red mb-4">1.5M+</div>
+                        <p class="text-sm text-gray-600">
+                            injuries annually from packaging and dosage errors.
+                        </p>
+                    </div>
+
+                    
+<div class="rounded-xl crisis-card-style p-6 text-center">
+                        <h3 class="text-sm font-bold text-klyr-dark mb-4">Manufacturing & Logistics</h3>
+                       
+                        <div class="text-5xl font-extrabold text-klyr-red mb-4">300B+</div>
+                        <p class="text-sm text-gray-600">
+                            in global waste from mismatched products and line errors.
+                        </p>
+                    </div>
+
+                    
+<div class="rounded-xl crisis-card-style p-6 text-center">
+                        <h3 class="text-sm font-bold text-klyr-dark mb-4">Environment</h3>
+                        <div class="text-5xl font-extrabold text-klyr-red mb-4">CO2</div>
+                        <p class="text-sm text-gray-600">
+                             Every destroyed product adds CO₂ and drains resources.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            
+<section class="bg-klyr-red py-10" style="--delay: 0s;">
+                <div class="max-w-super-wide mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+                    <p class="text-xl sm:text-2xl mb-1">
+                        <strong>Estimated annual global loss:</strong> $500 – $700 billion
+                    </p>
+                    <p class="text-xl sm:text-2xl">
+                        <strong> Lives impacted:</strong> Millions
+                    </p>
+                </div>
+            </section>
+
+            
+<section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32" style="--delay: 0s;">
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+                    JOIN THE CLARITY MOVEMENT
+                </h2>
+                
+<p class="text-xl text-gray-700 mb-8">
+                    Become one of the first to experience <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> in action
+                </p>
+                <a href="/join" id="join-beta-btn" class="inline-block bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider">
+                    JOIN THE BETA
+                </a>
+                
+<div id="message-box" class="mt-8 bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden max-w-sm">
+                    Thank you for your interest! The beta sign-up page is coming soon.
+                </div>
+            </section>
+        </div>
+        
+<section id="beta-signup-page" class="hidden max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            
+<div id="beta-form-container">
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
+                    Join the Global <span class="text-klyr-red">Clarity Movement</span>
+                </h1>
+                <h2 class="text-xl text-gray-600 mb-8">
+                    Help stop the world’s largest silent catastrophe — confusion itself.
+                </h2>
+                
+                <p class="text-lg text-gray-700 mb-6">
+                    
+<span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> is now entering its global beta phase. We’re inviting consumers, brands, and industry leaders to join the mission to teach clarity to the world. Every scan, every test, every idea helps the AI learn and protect more lives. Be among the first to shape a future without confusion.
+                </p>
+
+                
+<form id="beta-registration-form" class="space-y-6 bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-100">
+                    <div>
+                        <label for="full_name" class="block text-sm font-medium text-klyr-dark mb-1">Full Name</label>
+                        <input type="text" id="full_name" name="full_name" required class="klyr-input" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-klyr-dark mb-1">Email</label>
+                        <input type="email" id="email" name="email" required class="klyr-input" placeholder="name@company.com">
+                    </div>
+                    <div>
+                        <label for="country" class="block text-sm font-medium text-klyr-dark mb-1">Country</label>
+                        <select id="country-select" name="country" required class="klyr-input appearance-none">
+                            <option value="" disabled selected>Select your country</option>
+                            
+</select>
+                    </div>
+                    <div>
+                        <label for="interest" class="block text-sm font-medium text-klyr-dark mb-1">Interest Category</label>
+                        <select id="interest" name="interest" required class="klyr-input appearance-none">
+                            <option value="" disabled selected>Choose a category</option>
+                            <option value="consumer">Consumer</option>
+                            <option value="brand">Brand Partner</option>
+                            <option value="investor">Investor or Collaborator</option>
+                        </select>
+                    </div>
+                    
+                    
+<div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 pt-4">
+                        <button type="submit" class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-lg transition duration-300 transform hover:scale-[1.02] uppercase tracking-wider flex-1">
+                            Register Now
+                        </button>
+                        <button type="button" id="share-movement-btn" class="bg-gray-200 hover:bg-gray-300 text-klyr-dark font-semibold py-3 px-6 rounded shadow transition duration-300 transform hover:scale-[1.02] uppercase tracking-wider flex-1">
+                            Share This Movement
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            
+<div id="beta-confirmation-message" class="hidden text-center bg-white p-10 rounded-xl border-4 border-klyr-red shadow-2xl">
+                <i class="fas fas fa-check-circle text-6xl text-klyr-red mb-6 animate-pulse"></i>
+                <h3 class="text-3xl font-extrabold text-klyr-dark mb-4">Registration Complete!</h3>
+                <p class="text-xl text-gray-700 font-medium italic">
+                    “Welcome to the Clarity Generation. Together we’re making history.”
+                </p>
+                <button type="button" id="back-to-home-btn" class="mt-8 bg-klyr-dark hover:bg-gray-700 text-white font-bold py-3 px-6 rounded shadow transition duration-300 uppercase tracking-wider">
+                    Back to Homepage
+                </button>
+            </div>
+        </section>
+        
+</main>
+
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+     <div id="footer-placeholder"></div>
+
+<script src="/nav-logic.js"></script>
+    
+<script src="/inject.js"></script>
+
+<script>
+    // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+
+</body>
+</html>

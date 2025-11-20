@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - Regulatory and Engagement</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">
+    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE (UPDATED TO #1F2937)
+                        'klyr-dark': '#1F2937', 
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+         /* =================================================================== */
+        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* =================================================================== */
+        @media (min-width: 768px) {
+            .description-alignment-fix {
+                /* Min-height large enough for 2 lines of text-lg */
+                min-height: 3.5rem; 
+            }
+        }
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+      
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+           This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+        /* ===================================================================
+        CUSTOM STYLING FOR RED DOT LIST
+        =================================================================== */
+        .red-dot-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .red-dot-list li {
+            position: relative;
+            padding-left: 1.75rem; /* Space for the custom bullet */
+            margin-bottom: 1.5rem; /* Space between list items */
+        }
+        
+        /* Red dot styling (::before) */
+        .red-dot-list li::before {
+            content: '';
+            position: absolute;
+            left: 0.25rem; /* Slight shift to align with text */
+            top: 0.5rem; 
+            width: 12px; /* Slightly bigger dot */
+            height: 12px;
+            background-color: var(--klyr-red); /* Uses CSS variable */
+            border-radius: 50%;
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+<header class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></header>
+    
+<div id="nav-mobil-placeholder"></div>
+ 
+    <main class="fade-in-section">
+        
+<div id="homepage-content">
+             <!-- Section 1: Hero - Global Standard of Clarity --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 md:pt-24 md:pb-16 text-center">
+                <div class="max-w-4xl mx-auto space-y-6">
+                    
+                    <div class="flex flex-col items-center justify-center">
+                        
+                        <!-- Certification Icon (Small) - MOVED ABOVE H1 and changed mt-4 to mb-4 --><img src="https://plusbrand.com/wp-content/uploads/2025/11/ALETHRA_Certified-scaled.webp" 
+                             alt="ALETHRA Certified Icon" 
+                             class="h-24 w-auto mb-4 mx-auto"
+                             onerror="this.outerHTML = '<i class=\'fas fa-certificate text-7xl text-klyr-red mb-4\'></i>';"
+                        >
+
+                        <!-- H1 Text --><h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark inline-block">
+                            BUILDING THE GLOBAL<br> STANDARD OF CLARITY.
+                        </h1>
+                    </div>
+
+                    <!-- Paragraph Text (UPDATED to text-gray-600) --><p style="text-align: justify;" class="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto pt-4">
+                        <span class="font-bold text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> is more than a technology — it’s a movement toward measurable truth. Our systems are designed to meet and advance the world’s highest standards for safety, traceability, and compliance. <br> <br>Through the <span class="font-bold text-klyr-red">ALETHRACERTIFIED</span>™ framework, <span class="font-bold text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> partners with international regulators, agencies, and industry leaders to create a unified clarity standard — protecting consumers, industries, and the planet.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Divider: Red Line --><div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+                <hr class="border-t-4 border-klyr-red w-full">
+            </div>
+
+            <!-- Section 1.5: Clarity Through Standardization + Regulatory Focus (REDUCED PB) --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6 md:pt-16 md:pb-8 text-center">
+                <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight mb-4 text-klyr-dark">
+                    <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> EXISTS TO ELIMINATE CONFUSION
+                    <br class="hidden sm:inline"> THROUGH STANDARDIZATION.
+                </h2>
+                <!-- Paragraph Text (UPDATED to text-gray-600) --><p style="text-align: justify;" class="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
+                    Every industry faces the same problem: fragmented verification and unclear accountability. We work directly with agencies and governing bodies to establish a single, interoperable verification layer — clarity that crosses borders.
+                </p>
+
+                <!-- New Content Block: Regulatory Focus --><div class="mt-16 text-left max-w-4xl mx-auto">
+                    
+                    <!-- Subheading 1 (Left Aligned) - SIZE REDUCED --><h3 class="text-xl md:text-2xl font-extrabold tracking-tight mb-8 text-klyr-dark">
+                        <span class="text-klyr-red">ALETHRA</span>™ REGULATORY <br>
+                        ENGAGEMENT FOCUSES ON
+                    </h3>
+                    
+                    <!-- Centered Image (shadow-lg removed) --><div class="flex justify-center mb-12">
+                        <img src="https://plusbrand.com/wp-content/uploads/2025/11/12-Regulatory-Standards-Engagement_Img_1-scaled.png" 
+                             alt="Diagram illustrating regulatory engagement and standards development" 
+                             class="w-full max-w-5xl h-auto rounded-xl"
+                             onerror="this.src='https://placehold.co/900x400/eeeeee/333333?text=Regulatory+Engagement+Diagram';">
+                    </div>
+                    
+                    <!-- Subheading 2 (Left Aligned) - SIZE REDUCED --><h3 class="text-xl md:text-2xl font-extrabold tracking-tight mb-8 text-klyr-dark">
+                        <span class="text-klyr-red">ALETHRA</span>™ INC. MAINTAINS ACTIVE <br> COLLABORATION AND TECHNICAL ALIGNMENT WITH
+                    </h3>
+                    
+                    <!-- Custom Red Dot List (Paragraphs UPDATED to text-gray-600 on container and where defined) --><ul class="red-dot-list text-gray-600 text-lg md:text-xl">
+                        <li>
+                            <p class="font-extrabold uppercase mb-1 text-klyr-dark">U.S. FDA (FOOD & DRUG ADMINISTRATION)</p>
+                            <p class="text-gray-600">Supporting initiatives in medication safety and labeling clarity.</p>
+                        </li>
+                        <li>
+                            <p class="font-extrabold uppercase mb-1 text-klyr-dark">U.S. DEPARTMENT OF AGRICULTURE (USDA)</p>
+                            <p class="text-gray-600">Enhancing food safety and traceability programs.</p>
+                        </li>
+                        <li>
+                            <p class="font-extrabold uppercase mb-1 text-klyr-dark">EUROPEAN MEDICINES AGENCY (EMA)</p>
+                            <p class="text-gray-600">Working toward harmonized verification standards in healthcare.</p>
+                        </li>
+                        <li>
+                            <p class="font-extrabold uppercase mb-1 text-klyr-dark">WORLD HEALTH ORGANIZATION (WHO)</p>
+                            <p class="text-gray-600">Research cooperation on confusion-related injury and prevention.</p>
+                        </li>
+                        <li>
+                            <p class="font-extrabold uppercase mb-1 text-klyr-dark">ISO & IEC COMMITTEES</p>
+                            <p class="text-gray-600">Participation in the development of next-generation data verification and product identification standards.</p>
+                        </li>
+                        <li>
+                            <p class="font-extrabold uppercase mb-1 text-klyr-dark">PRIVATE & PUBLIC INSTITUTIONS</p>
+                            <p class="text-gray-600">Hospitals, logistics firms, and manufacturers participating in pilot deployments under the <span class="text-klyr-red">ALETHRACERTIFIED</span>™ framework.</p>
+                        </li>
+                    </ul>
+
+                    <!-- Subheading 3: GOVERNANCE AND ETHICS --><h3 class="text-xl md:text-2xl font-extrabold tracking-tight mt-12 mb-4 text-klyr-dark">
+                        GOVERNANCE AND ETHICS
+                    </h3>
+                    <!-- Paragraph Text (UPDATED to text-gray-600) --><p class="text-gray-600 text-lg md:text-xl mb-10">
+                        <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> maintains an independent internal Regulatory & Standards Committee
+                        responsible for oversight of ethics, data governance, and compliance.
+                    </p>
+
+                    <!-- Sub-sub-heading: OUR FRAMEWORK ENSURES --><h4 class="text-xl font-bold tracking-tight mb-4 text-klyr-dark uppercase">
+                        OUR FRAMEWORK ENSURES
+                    </h4>
+                    <!-- Custom Red Dot List for Governance (UPDATED to text-gray-600) --><ul class="red-dot-list text-gray-600 text-lg md:text-xl">
+                        <li>
+                            Full data privacy under <strong>GDPR</strong>, <strong>HIPAA</strong>, and equivalent global standards.
+                        </li>
+                        <li>
+                            Transparent audit trails for every verification event.
+                        </li>
+                        <li>
+                            Zero conflict between commercial performance and consumer protection.
+                        </li>
+                    </ul>
+
+                    <!-- Subheading 4: THE ROAD AHEAD --><h3 class="text-xl md:text-2xl font-extrabold tracking-tight mt-12 mb-4 text-klyr-dark">
+                        THE ROAD AHEAD
+                    </h3>
+                    <!-- Paragraph Text (UPDATED to text-gray-600) --><p class="text-gray-600 text-lg md:text-xl">
+                        <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> is currently expanding partnerships across:
+                    </p>
+
+                    <!-- Centered Image for Road Ahead (no shadow-lg) --><div class="flex justify-center my-12">
+                        <img src="https://plusbrand.com/wp-content/uploads/2025/11/12-Regulatory-Standards-Engagement_Map-scaled.png" 
+                             alt="Global map showing partnership expansion" 
+                             class="w-full max-w-4xl h-auto rounded-xl"
+                             onerror="this.src='https://placehold.co/900x400/eeeeee/333333?text=Global+Partnership+Map';">
+                    </div>
+                    <!-- Centered Bold Statement (text-klyr-dark updated to text-gray-600 for paragraph) --><p class="text-center text-gray-600 text-lg md:text-xl font-bold mb-10">
+                        Each engagement brings the world closer to one shared language of safety — <span class="text-klyr-red">clarity</span>.
+                    </p>
+                    
+                    <!-- New Heading: REGULATION THROUGH INNOVATION (UPDATED FONT SIZE) --><h3 class="text-2xl md:text-4xl font-extrabold tracking-tight mt-12 mb-4 text-klyr-dark">
+                        REGULATION THROUGH INNOVATION
+                    </h3>
+                    <!-- Paragraph Text (UPDATED to text-gray-600) --><p class="text-gray-600 text-lg md:text-xl mb-4">
+                        <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> doesn’t adapt to standards — it advances them. Every verified product and every certified facility builds trust into the world’s infrastructure.
+                    </p>
+
+                </div>
+            </section>
+
+
+            <!-- UPDATED SECTION 2.5: Triple CTA Buttons (REDUCED PT) --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-10 text-center">
+                <div class="flex flex-col lg:flex-row justify-center items-center space-y-4 lg:space-y-0 lg:space-x-6 max-w-4xl mx-auto">
+                    <!-- Button 1: REQUEST REGULATORY PARTNERSHIP --><a href="#" class="w-full lg:w-auto flex-1">
+                        <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full text-sm">
+                            REQUEST REGULATORY <br> PARTNERSHIP
+                        </button>
+                    </a>
+                    <!-- Button 2: DOWNLOAD ENGAGEMENT PLAN --><a href="#" class="w-full lg:w-auto flex-1">
+                        <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full text-sm">
+                            DOWNLOAD ENGAGEMENT <br> PLAN
+                        </button>
+                    </a>
+                    <!-- Button 3: JOIN THE CLARITY MOVEMENT --><a href="#" class="w-full lg:w-auto flex-1">
+                        <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full text-sm">
+                            JOIN THE CLARITY <br> MOVEMENT
+                        </button>
+                    </a>
+                </div>
+            </section>
+             <!-- Add a general message box for global feedback --><div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
+            </div>
+
+
+
+
+             <section class="bg-klyr-red py-10">
+                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+                    <p class="text-xl sm:text-2xl mb-1">
+                       ALETHRA™ is setting the clarity standard — one truth at a time.
+                    </p>
+                
+                </div>
+            </section>
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+                    JOIN THE CLARITY MOVEMENT
+                </h2>
+                
+<p class="text-xl text-gray-700 mb-8">
+                    Become one of the first to experience <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> in action
+                </p>
+                <button id="join-beta-btn" class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider">
+                    JOIN THE BETA
+                </button>
+                
+            </section>
+        </div>
+        
+</main>
+
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+    
+    
+ <div id="footer-placeholder"></div>
+
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+<script>
+    // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+</body>
+</html>

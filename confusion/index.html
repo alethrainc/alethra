@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - Join the Clarity Movement</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE
+                        'klyr-dark': '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+
+           /* =================================================================== */
+        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* =================================================================== */
+        @media (min-width: 768px) {
+            .description-alignment-fix {
+                /* Min-height large enough for 2 lines of text-lg */
+                min-height: 3.5rem; 
+            }
+        }
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+   
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+           This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+
+
+    <main class="fade-in-section">
+        
+<div id="homepage-content">
+             <!-- Section 1: Hero - Confusion Costs Lives -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Left Content -->
+                    <div class="space-y-6">
+                        <!-- H1 Text -->
+                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug">
+                            <span class="text-klyr-dark fade-in-section">THE WORLD’S<br> LARGEST <br> UNSEEN LOSS.</span>
+                        </h1>
+                        <!-- Paragraph Text -->
+                        <p class="text-gray-600 text-lg fade-in-section">
+                            Confusion has no industry boundary. It infiltrates every link of global trade — from factories and hospitals to homes and retail shelves. Each mistake appears small; together, they form an invisible catastrophe.
+                        </p>
+                    </div>
+                    <!-- Right Box (Full-bleed image box) -->
+                    <div id="content-box" class="content-box-border-style rounded-lg flex h-full overflow-hidden fade-in-section"> 
+                        <!-- Content Logo -->
+                        <img id="content-logo-img" class="content-logo-border w-full h-full object-cover rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
+                    </div>
+                </div>
+            </section>
+
+             <!-- Add a general message box for global feedback -->
+            <div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
+            </div>
+
+
+  <!-- Section 2: The Cost of Confusion - Structured Collections -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 md:pb-24">
+                
+                <!-- The grid container that holds the four columns -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 fade-in-section">
+
+                    <!-- Collection 1: Food & Beverage -->
+                    <div class="flex flex-col h-full">
+                        <h3 class="text-2xl font-bold text-klyr-red mb-3 uppercase">Food & Beverage</h3>
+                        <!-- Applied description-alignment-fix -->
+                        <p class="text-gray-600 text-lg mb-3 description-alignment-fix">Labeling and packaging mix-ups cause massive recalls.</p>
+                        <!-- Card now aligns to the top of the remaining space -->
+                        <div class="w-full md:w-4/5 mx-auto">
+                            <div class="rounded-xl crisis-card-style p-6 text-center">
+                                <div class="space-y-2">
+                                    <p class="text-sm font-semibold text-gray-700 uppercase">Annual loss</p>
+                                    <p class="text-6xl font-extrabold text-klyr-red leading-none">$60B+</p>
+                                    <p class="text-sm font-semibold text-gray-700 uppercase leading-snug">Tons of food <br class="md:hidden"/> destroyed</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Collection 2: Pharmaceutical & Medical -->
+                    <div class="flex flex-col h-full fade-in-section">
+                        <h3 class="text-2xl font-bold text-klyr-red mb-3 uppercase">Pharmaceutical & Medical</h3>
+                        <!-- Applied description-alignment-fix -->
+                        <p class="text-gray-600 text-lg mb-3 description-alignment-fix">Medication or dosage confusion - 1.5 million injuries per year (U.S.).</p>
+                        <!-- Card now aligns to the top of the remaining space -->
+                        <div class="w-full md:w-4/5 mx-auto">
+                            <div class="rounded-xl crisis-card-style p-6 text-center">
+                                <div class="space-y-2">
+                                    <p class="text-sm font-semibold text-gray-700 uppercase">Annual global cost</p>
+                                    <p class="text-6xl font-extrabold text-klyr-red leading-none">$42B+</p>
+                                    <!-- Placeholder to align layout with the first card on larger screens -->
+                                    <p class="text-sm font-semibold text-gray-700 uppercase opacity-0 select-none hidden md:block">Placeholder</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Collection 3: Manufacturing & Logistics -->
+                    <div class="flex flex-col h-full">
+                        <h3 class="text-2xl font-bold text-klyr-red mb-3 uppercase">Manufacturing & Logistics</h3>
+                        <!-- Applied description-alignment-fix -->
+                        <p class="text-gray-600 text-lg mb-3 description-alignment-fix">Batch and product swaps, shipping errors, line contamination.</p>
+                        <!-- Card now aligns to the top of the remaining space -->
+                        <div class="w-full md:w-4/5 mx-auto">
+                            <div class="rounded-xl crisis-card-style p-6 text-center">
+                                <div class="space-y-2">
+                                    <p class="text-sm font-semibold text-gray-700 uppercase">Annual waste</p>
+                                    <p class="text-6xl font-extrabold text-klyr-red leading-none">$300B+</p>
+                                    <!-- Placeholder to align layout with the fourth card on larger screens -->
+                                    <p class="text-sm font-semibold text-gray-700 uppercase opacity-0 select-none hidden md:block">Placeholder</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Collection 4: Consumer Safety -->
+                    <div class="flex flex-col h-full">
+                        <h3 class="text-2xl font-bold text-klyr-red mb-3 uppercase">Consumer Safety</h3>
+                        <!-- Applied description-alignment-fix -->
+                        <p class="text-gray-600 text-lg mb-3 description-alignment-fix">Shared or mistaken personal products spread illness and contamination.</p>
+                        <!-- Card now aligns to the top of the remaining space -->
+                        <div class="w-full md:w-4/5 mx-auto">
+                            <div class="rounded-xl crisis-card-style p-6 text-center">
+                                <div class="space-y-2">
+                                    <p class="text-sm font-semibold text-gray-700 uppercase">Human impact Entirely</p>
+                                    <!-- Changed text-5xl to text-4xl -->
+                                    <p class="text-4xl font-extrabold text-klyr-red leading-snug uppercase"> preventable</p>
+                                    <!-- Placeholder to align layout with the third card on larger screens -->
+                                    <p class="text-sm font-semibold text-gray-700 uppercase opacity-0 select-none hidden md:block">Placeholder</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+            <!-- END Section 2 -->
+
+             <section class="bg-klyr-red py-10">
+                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+                    <p class="text-xl sm:text-2xl mb-1">
+                        Confusion isn’t random — it’s systemic.<br>
+ and it’s costing the world more than we can see.
+                    </p>
+                
+                </div>
+            </section>
+        </div>
+        
+</main>
+
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+    
+<div id="footer-placeholder"></div>
+
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+<script type="text/javascript">
+    // ===================================================================
+// LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+// This script monitors elements with the 'fade-in-section' class
+// and applies an 'is-visible' class when they enter the viewport,
+// triggering smooth fade-in and slide-up effects defined in CSS.
+// ===================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const fadeSections = document.querySelectorAll('.fade-in-section');
+
+    // Create the Intersection Observer
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // Check if the element is currently visible in the viewport
+            if (entry.isIntersecting) {
+                // Add the 'is-visible' class to trigger the CSS transition
+                entry.target.classList.add('is-visible');
+                // Stop observing the element once it has faded in
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        // Options for the observer
+        root: null, // Use the viewport as the container
+        rootMargin: '0px', // No extra margin
+        threshold: 0.1 // Trigger when 10% of the item is visible
+    });
+
+    // Loop through all elements and observe them
+    fadeSections.forEach((section, index) => {
+        // Apply a staggered delay based on its order in the array
+        // The delay is only applied if the delay style variable is defined on the element
+        const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+        section.style.setProperty('--delay', `${delay + 0.05}s`); 
+        
+        observer.observe(section);
+    });
+});
+</script>
+</body>
+</html>
