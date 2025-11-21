@@ -402,7 +402,7 @@
                         </div>
 
                         <!-- Form -->
-                        <form id="regulatory-request-form" action="#" method="POST" class="space-y-6">
+                        <form id="main-form" action="#" method="POST" class="space-y-6">
                             
                             <!-- Wrapper for all form fields, used to hide them on success -->
                             <div id="form-content" class="space-y-6">
@@ -571,6 +571,56 @@
 
 <script src="/nav-logic.js"></script>
 <script src="/inject.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("main-form");
+    const formContent = document.getElementById("form-content");
+    const successMessage = document.getElementById("success-message");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Collect all fields
+        const formData = new FormData(form);
+
+        // Convert FormData → JSON (supports checkbox arrays)
+        const data = {};
+        formData.forEach((value, key) => {
+            if (data[key]) {
+                if (!Array.isArray(data[key])) data[key] = [data[key]];
+                data[key].push(value);
+            } else {
+                data[key] = value;
+            }
+        });
+
+        // 1) FAST EMAIL — Edge function
+        try {
+            await fetch("/api/form-submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+        } catch (err) {
+            alert("Connection error. Try again.");
+            return;
+        }
+
+        // 2) CRM SYNC — Background fire-and-forget
+        fetch("/api/form-crm", {
+            method: "POST",
+            keepalive: true,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        // 3) Show success UI
+        formContent.classList.add("hidden");
+        successMessage.classList.remove("hidden");
+    });
+});
+</script>
+
 <!-- New script for Country Selection Modal Logic and Form/Scroll Handling -->
 <script>
     // ===================================================================
