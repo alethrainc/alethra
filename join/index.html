@@ -380,142 +380,139 @@
 
   
             <!-- NEW SECTION: Regulatory Engagement Request Form (APPLE STYLE) (ID ADDED)-->
-            <section id="regulatory-form" class="bg-gray-100 pt-10 pb-16 md:pb-24">
-                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-                    
-                    <!-- MARGIN REDUCED FROM mb-12 TO mb-10 -->
-                    <h3 class="text-2xl md:text-4xl font-extrabold tracking-tight mb-10 text-klyr-dark text-center uppercase">
-                        Beta & Community Join
-                    </h3>
-                    
-                    <!-- Form Container - Apple-like card style -->
-                    <div class="max-w-3xl mx-auto bg-white p-6 sm:p-10 md:p-12 rounded-3xl shadow-xl border border-gray-100">
+            <!-- NEW SECTION: Beta & Community Join (APPLE STYLE) -->
+<section id="regulatory-form" class="bg-gray-100 pt-10 pb-16 md:pb-24">
+    <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <h3 class="text-2xl md:text-4xl font-extrabold tracking-tight mb-10 text-klyr-dark text-center uppercase">
+            Beta & Community Join
+        </h3>
+        
+        <!-- Form Container -->
+        <div class="max-w-3xl mx-auto bg-white p-6 sm:p-10 md:p-12 rounded-3xl shadow-xl border border-gray-100">
+            
+            <!-- Success Message -->
+            <div id="success-message" class="hidden text-center py-20">
+                <h3 class="text-3xl font-extrabold text-klyr-dark uppercase">
+                    Thanks for joining the Clarity Generation
+                </h3>
+                <p class="mt-4 text-gray-600 text-lg">
+                    We’ll keep you updated and invite you to early activities as we roll out.
+                </p>
+            </div>
+
+            <!-- FORM -->
+            <form id="main-form" action="#" method="POST" class="space-y-6">
+                
+                <!-- Wrapper for fields (hidden on success) -->
+                <div id="form-content" class="space-y-6">
+
+                    <!-- Name -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" name="first-name" id="first-name" autocomplete="given-name" required
+                               placeholder="First Name"
+                               class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
                         
-                        <!-- Success Message Container (Initially Hidden) -->
-                        <div id="success-message" class="hidden text-center py-20">
-                            <h3 class="text-3xl font-extrabold text-klyr-dark uppercase">
-                                Thanks for joining the Clarity Generation
-                            </h3>
-                            <p class="mt-4 text-gray-600 text-lg">
-                               We’ll keep you updated and invite you to early activities as we roll out.
-                            </p>
-                        </div>
-
-                        <!-- Form -->
-                        <form id="main-form" action="#" method="POST" class="space-y-6">
-                            
-                            <!-- Wrapper for all form fields, used to hide them on success -->
-                            <div id="form-content" class="space-y-6">
-
-                                <!-- Name Fields (Two Columns on Desktop) -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <input type="text" name="first-name" id="first-name" autocomplete="given-name" required
-                                           placeholder="First Name"
-                                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
-                                    
-                                    <input type="text" name="last-name" id="last-name" autocomplete="family-name" required
-                                           placeholder="Last Name"
-                                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
-                                </div>
-                                
-                                <!-- Official Email -->
-                                <input type="email" name="official-email" id="official-email" autocomplete="email" required
-                                       placeholder="Email"
-                                       class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
-                                
-                                <!-- Agency / Organization -->
-                                <input type="text" name="organization" id="organization" required
-                                       placeholder="Agency / Standards Body / Organization"
-                                       class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
-
-                                <!-- Role / Department & Jurisdiction (Two Columns) -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                     <!-- Role / Department -->
-                                    <input type="text" name="role" id="role" required
-                                           placeholder="Role / Department"
-                                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
-                                    
-                                    <!-- COUNTRY SELECTION (MODAL TRIGGER) -->
-                                    <div class="relative">
-                                        <!-- Hidden input to store the actual selected value (ID UPDATED) -->
-                                        <input type="hidden" name="jurisdiction" id="regulatory-jurisdiction-hidden" required value="">
-                                        
-                                        <!-- Button that displays the selection and acts as the modal trigger (UPDATED onclick CALL) -->
-                                        <button type="button" id="regulatory-jurisdiction-display-btn" 
-                                                onclick="regulatoryOpenModal()"
-                                                class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 text-gray-400 text-left transition duration-150 hover:bg-gray-50"
-                                                aria-haspopup="true" aria-expanded="false">
-                                            Country
-                                        </button>
-                                        
-                                        <!-- Custom Arrow Icon -->
-                                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-500">
-                                            <i class="fas fa-chevron-down text-sm"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- I’m most interested in (Multi-select Checkboxes) - MODIFIED -->
-                                <div>
-                                    <label class="block text-sm font-medium text-klyr-dark mb-3">I’m most interested in</label>
-                                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-base text-gray-700">
-                                        <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <input type="checkbox" name="interest" value="beta_access" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
-                                            <span class="ml-3 font-medium">Beta access</span>
-                                        </label>
-                                        <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <input type="checkbox" name="interest" value="product_updates" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
-                                            <span class="ml-3 font-medium">Product updates</span>
-                                        </label>
-                                        <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <input type="checkbox" name="interest" value="advocacy_education" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
-                                            <span class="ml-3 font-medium">Advocacy & education</span>
-                                        </label>
-                                        <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <input type="checkbox" name="interest" value="clarity_teacher" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
-                                            <span class="ml-3 font-medium">Volunteering as a “Clarity Teacher”</span>
-                                        </label>
-                                        <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <input type="checkbox" name="interest" value="enterprise_pilots" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
-                                            <span class="ml-3 font-medium">Enterprise pilots</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- How did you hear about ALETHRA? (Long Text) - MODIFIED -->
-                                <div>
-                                    <label for="context" class="block text-sm font-medium text-klyr-dark mb-1">How did you hear about ALETHRA?</label>
-                                    <textarea name="context" id="context" rows="4"
-                                              class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400"
-                                              placeholder="Please tell us how you discovered the Clarity Movement."></textarea>
-                                </div>
-
-                                <!-- Consent Checkbox -->
-                                <div class="flex items-start pt-2">
-                                    <div class="flex items-center h-5">
-                                        <!-- Checkbox class already uses text-klyr-red -->
-                                        <input id="consent" name="consent" type="checkbox" required
-                                               class="focus:ring-klyr-red h-5 w-5 text-klyr-red border-gray-400 rounded">
-                                    </div>
-                                    <div class="ml-3 text-sm">
-                                        <label for="consent" class="font-medium text-gray-700 cursor-pointer">
-                                            I consent to <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> using this information to respond to my request and understand this is for official regulatory engagement purposes.
-                                        </label>
-                                    </div>
-                                </div>
-                                
-                                <!-- Submit Button -->
-                                <div class="pt-4">
-                                    <button type="submit"
-                                            class="w-full bg-klyr-red hover:bg-red-600 active:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-300 transform hover:scale-[1.01] uppercase tracking-wider text-lg">
-                                        Submit Request
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        <input type="text" name="last-name" id="last-name" autocomplete="family-name" required
+                               placeholder="Last Name"
+                               class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
                     </div>
+                    
+                    <!-- Email -->
+                    <input type="email" name="official-email" id="official-email" autocomplete="email" required
+                           placeholder="Email"
+                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+                    
+                    <!-- Organization -->
+                    <input type="text" name="organization" id="organization" required
+                           placeholder="Organization / Company"
+                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+
+                    <!-- Role + Country -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" name="role" id="role" required
+                               placeholder="Role or Department"
+                               class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+                        
+                        <div class="relative">
+                            <input type="hidden" name="jurisdiction" id="regulatory-jurisdiction-hidden" required value="">
+                            
+                            <button type="button" id="regulatory-jurisdiction-display-btn" 
+                                    onclick="regulatoryOpenModal()"
+                                    class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 text-gray-400 text-left transition duration-150 hover:bg-gray-50">
+                                Country
+                            </button>
+                            
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-500">
+                                <i class="fas fa-chevron-down text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Interest Areas -->
+                    <div>
+                        <label class="block text-sm font-medium text-klyr-dark mb-3">I’m most interested in</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-base text-gray-700">
+                            <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition cursor-pointer">
+                                <input type="checkbox" name="interest" value="beta_access" class="h-5 w-5 text-klyr-red border-gray-400 rounded">
+                                <span class="ml-3 font-medium">Beta access</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition cursor-pointer">
+                                <input type="checkbox" name="interest" value="product_updates" class="h-5 w-5 text-klyr-red border-gray-400 rounded">
+                                <span class="ml-3 font-medium">Product updates</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition cursor-pointer">
+                                <input type="checkbox" name="interest" value="advocacy_education" class="h-5 w-5 text-klyr-red border-gray-400 rounded">
+                                <span class="ml-3 font-medium">Advocacy & education</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition cursor-pointer">
+                                <input type="checkbox" name="interest" value="clarity_teacher" class="h-5 w-5 text-klyr-red border-gray-400 rounded">
+                                <span class="ml-3 font-medium">Volunteering as a “Clarity Teacher”</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition cursor-pointer">
+                                <input type="checkbox" name="interest" value="enterprise_pilots" class="h-5 w-5 text-klyr-red border-gray-400 rounded">
+                                <span class="ml-3 font-medium">Enterprise pilots</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Discovery -->
+                    <div>
+                        <label for="context" class="block text-sm font-medium text-klyr-dark mb-1">
+                            How did you hear about ALETHRA?
+                        </label>
+                        <textarea name="context" id="context" rows="4"
+                                  class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400"
+                                  placeholder="Tell us how you discovered ALETHRA."></textarea>
+                    </div>
+
+                    <!-- Consent -->
+                    <div class="flex items-start pt-2">
+                        <div class="flex items-center h-5">
+                            <input id="consent" name="consent" type="checkbox" required
+                                   class="focus:ring-klyr-red h-5 w-5 text-klyr-red border-gray-400 rounded">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="consent" class="font-medium text-gray-700 cursor-pointer">
+                                I consent to <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> using this information to contact me about beta access, updates, and community activities.
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit -->
+                    <div class="pt-4">
+                        <button type="submit"
+                                class="w-full bg-klyr-red hover:bg-red-600 active:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-300 transform hover:scale-[1.01] uppercase tracking-wider text-lg">
+                            Join Community
+                        </button>
+                    </div>
+
                 </div>
-            </section>
+            </form>
+        </div>
+    </div>
+</section>
+ 
         </div>
         
 
@@ -571,6 +568,52 @@
 
 <script src="/nav-logic.js"></script>
 <script src="/inject.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("main-form");
+    const formContent = document.getElementById("form-content");
+    const successMessage = document.getElementById("success-message");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const data = {};
+
+        formData.forEach((value, key) => {
+            if (data[key]) {
+                if (!Array.isArray(data[key])) data[key] = [data[key]];
+                data[key].push(value);
+            } else {
+                data[key] = value;
+            }
+        });
+
+        try {
+            await fetch("/api/form-submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+        } catch (err) {
+            alert("Connection error. Try again.");
+            return;
+        }
+
+        fetch("/api/form-crm", {
+            method: "POST",
+            keepalive: true,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        formContent.classList.add("hidden");
+        successMessage.classList.remove("hidden");
+    });
+});
+</script>
+
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("main-form");
