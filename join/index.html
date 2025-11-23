@@ -568,50 +568,7 @@
 
 <script src="/nav-logic.js"></script>
 <script src="/inject.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("main-form");
-    const formContent = document.getElementById("form-content");
-    const successMessage = document.getElementById("success-message");
 
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(form);
-        const data = {};
-
-        formData.forEach((value, key) => {
-            if (data[key]) {
-                if (!Array.isArray(data[key])) data[key] = [data[key]];
-                data[key].push(value);
-            } else {
-                data[key] = value;
-            }
-        });
-
-        try {
-            await fetch("/api/form-submit", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            });
-        } catch (err) {
-            alert("Connection error. Try again.");
-            return;
-        }
-
-        fetch("/api/form-crm", {
-            method: "POST",
-            keepalive: true,
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
-
-        formContent.classList.add("hidden");
-        successMessage.classList.remove("hidden");
-    });
-});
-</script>
 
 
 <script>
