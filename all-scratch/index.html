@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - ALL-SCRATCH!</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE
+                        'klyr-dark': '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+    
+        /* =================================================================== */
+        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* =================================================================== */
+        @media (min-width: 768px) {
+            .description-alignment-fix {
+                /* Min-height large enough for 2 lines of text-lg */
+                min-height: 3.5rem; 
+            }
+        }
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+            
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+            This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+
+    <main class="fade-in-section">
+        
+  <div id="all-scratch-content">
+            
+            <!-- HERO SECTION -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 text-center">
+                <div class="max-w-4xl mx-auto space-y-6">
+                    
+                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug">
+                        <span class="text-klyr-dark"><span class="text-klyr-red">ALL-SCRATCH!</span>™ —<br> THE FIRST PROVEN CONFUSION TECHNOLOGY</span>
+                    </h1>
+                    
+                    <p class="text-gray-600 text-lg">
+                        A patented specialty ink that lets anyone scratch their name or identifying mark directly onto disposable packaging — eliminating “whose is whose” in real time.
+                    </p>
+
+                    <a href="#learn" class="inline-block mt-4">
+                        <button id="learn" class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider">
+                            Learn More
+                        </button>
+                    </a>
+                </div>
+            </section>
+
+            <!-- WHAT ALL-SCRATCH IS -->
+            <section  class="bg-gray-50 py-12">
+                <section  class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl mx-auto text-center space-y-6">
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark tracking-tight leading-snug">
+                            A PATENTED INK THAT ELIMINATES CONFUSION
+                        </h2>
+                        <p class="text-gray-600 text-lg">
+                            <span class="text-klyr-red">All-Scratch!</span>™ is a friction-activated ink engineered for bottles, cups, cans, cartons, and other disposable packaging. With nothing more than a fingernail, key, ring, or coin, users can scratch their name, initials, or symbol directly into the ink layer — creating a permanent, unmistakable identifier.
+                        </p>
+                        <p class="text-xl font-bold text-klyr-red">
+                            It turns every package into a personalized, confusion-proof item.
+                        </p>
+                    </div>
+                </section>
+            </section>
+
+            <!-- HOW IT WORKS -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-center mb-12 tracking-tight leading-snug">
+                    SIMPLE. PERMANENT. IMPOSSIBLE TO CONFUSE.
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Column 1 -->
+                    <div class="bg-white border border-gray-100 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3">SCRATCH TO REVEAL</h3>
+                        <p class="text-gray-600 font-medium">The ink layer activates with friction, exposing a bright permanent mark instantly.</p>
+                    </div>
+
+                    <!-- Column 2 -->
+                    <div class="bg-white border border-gray-100 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3">NO MARKERS OR STICKERS NEEDED</h3>
+                        <p class="text-gray-600 font-medium">It works anytime, anywhere — no tools required. The package itself is the tool.</p>
+                    </div>
+
+                    <!-- Column 3 -->
+                    <div class="bg-white border border-gray-100 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3">BUILT FOR HIGH-VOLUME PACKAGING</h3>
+                        <p class="text-gray-600 font-medium">Compatible with bottles, cups, cartons, sports drinks, meal kits, and more.</p>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <!-- WHY IT MATTERED -->
+            <section class="bg-klyr-red py-12 md:py-16 text-white">
+                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug mb-6">
+                                CONFUSION HAPPENS EVERYWHERE
+                            </h2>
+                            <p class="text-lg opacity-90 mb-6">
+                                Schools, gyms, stadiums, events, and workplaces — people constantly lose track of which drink or package belongs to them. This leads to contamination, accidental consumption, liability, and massive waste.
+                            </p>
+                        </div>
+                        <div class="bg-white text-klyr-dark p-8 rounded-lg shadow-xl">
+                            <p class="text-xl font-bold mb-2 uppercase text-gray-400">The Solution</p>
+                            <h3 class="text-2xl md:text-3xl font-extrabold mb-4">
+                                <span class="text-klyr-red">All-Scratch!</span>™ solved this problem with a single action:
+                            </h3>
+                            <p class="text-2xl md:text-4xl font-extrabold text-klyr-red">
+                                Let people truly mark what’s theirs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MARKET VALIDATION -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark tracking-tight leading-snug mb-4">
+                        PROVEN ACROSS MILLIONS OF UNITS
+                    </h2>
+                    <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                        <span class="text-klyr-red">All-Scratch!</span>™ was deployed across millions of beverage units through Plus Brand Industries and evaluated by major global brands across multiple packaging categories.
+                    </p>
+                </div>
+
+                <!-- Stats Grid (Mimicking original homepage stats) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <div class="bg-gray-100 p-6 rounded-xl text-center">
+                        <p class="text-4xl md:text-5xl font-extrabold text-klyr-red mb-2">200M+</p>
+                        <p class="font-bold text-gray-700 uppercase">Impressions</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-xl text-center">
+                        <p class="text-4xl md:text-5xl font-extrabold text-klyr-red mb-2">120M+</p>
+                        <p class="font-bold text-gray-700 uppercase">Unique Viewers</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-xl text-center">
+                        <p class="text-4xl md:text-5xl font-extrabold text-klyr-red mb-2"><i class="fas fa-check"></i></p>
+                        <p class="font-bold text-gray-700 uppercase">Major Brand Interest</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-xl text-center">
+                        <p class="text-4xl md:text-5xl font-extrabold text-klyr-red mb-2"><i class="fas fa-shield-alt"></i></p>
+                        <p class="font-bold text-gray-700 uppercase">Early Adoption</p>
+                        <p class="text-xs text-gray-500 mt-1">Schools, Gyms, Festivals</p>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <p class="text-xl font-bold italic text-gray-700">This wasn’t a concept. It was reality.</p>
+                </div>
+            </section>
+
+            <!-- GLOBAL IP & TRADEMARKS -->
+            <section class="bg-gray-50 py-12 md:py-16">
+                <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-2 gap-12">
+                        
+                        <!-- IP Column -->
+                        <div>
+                            <h2 class="text-3xl font-extrabold text-klyr-dark mb-6">
+                                PATENTED AND PROTECTED WORLDWIDE
+                            </h2>
+                            <p class="text-gray-600 mb-6">
+                                <span class="text-klyr-red">All-Scratch!</span>™ carries issued patents and filings across multiple countries, including:
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="flex items-center text-klyr-dark font-bold">United States</div>
+                                <div class="flex items-center text-klyr-dark font-bold">Mexico</div>
+                                <div class="flex items-center text-klyr-dark font-bold">India</div>
+                                <div class="flex items-center text-klyr-dark font-bold">European Union</div>
+                            </div>
+                            <p class="text-sm text-gray-500 italic mb-6">And expands through PCT coverage.</p>
+                            
+                            <h3 class="text-lg font-extrabold text-klyr-dark uppercase mb-3">Protected Claims Include:</h3>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start"><span class="text-klyr-red mr-2">•</span> Friction-reveal ink</li>
+                                <li class="flex items-start"><span class="text-klyr-red mr-2">•</span> Activation methods</li>
+                                <li class="flex items-start"><span class="text-klyr-red mr-2">•</span> Packaging applications</li>
+                                <li class="flex items-start"><span class="text-klyr-red mr-2">•</span> Layered printing systems</li>
+                            </ul>
+                        </div>
+
+                        <!-- Trademarks Column -->
+                        <div class="flex flex-col justify-center">
+                            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+                                <h2 class="text-3xl font-extrabold text-klyr-dark mb-6">
+                                    REGISTERED TRADEMARKS
+                                </h2>
+                                <div class="text-4xl md:text-6xl font-extrabold text-klyr-red">
+                                    All-Scratch!<sup class="text-2xl" style="vertical-align: super;">®</sup>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </section>
+
+            <!-- THE TRANSITION TO ALETHRA -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-center">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark tracking-tight leading-snug mb-12">
+                    FROM PHYSICAL CLARITY <br>
+                    <span class="text-klyr-red">→ TO INTELLIGENT CLARITY</span>
+                </h2>
+                
+                <div class="max-w-3xl mx-auto space-y-6 mb-12">
+                    <p class="text-xl text-gray-700">
+                        <span class="text-klyr-red">All-Scratch!</span>™ proved that confusion can be eliminated physically.
+                    </p>
+                    <p class="text-xl text-klyr-dark font-bold">
+                        <span class="text-klyr-red">ALETHRA</span>™ proves it can now be eliminated intelligently — across products, sensors, environments, and supply chains.
+                    </p>
+                    <div class="py-4">
+                        <p class="text-lg text-gray-600"><span class="text-klyr-red">All-Scratch!</span>™ solved identity at the package.</p>
+                        <p class="text-2xl font-extrabold text-klyr-red uppercase mt-2">ALETHRA™ solves identity everywhere.</p>
+                    </div>
+                </div>
+
+                <a href="/impact">
+                    <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-4 px-10 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider text-lg">
+                        Explore ALETHRA™ Clarity Intelligence
+                    </button>
+                </a>
+            </section>
+            
+        </div>
+</main>
+
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+    
+    
+<div id="footer-placeholder"></div>
+<script src="/animation.js"></script>
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+<script type="text/javascript">
+     // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+
+</body>
+</html>

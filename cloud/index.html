@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - CLOUD</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE
+                        'klyr-dark': '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+    
+        /* =================================================================== */
+        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* =================================================================== */
+        @media (min-width: 768px) {
+            .description-alignment-fix {
+                /* Min-height large enough for 2 lines of text-lg */
+                min-height: 3.5rem; 
+            }
+        }
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+            
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+            This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+
+    <main class="">
+     
+        <div id="alethra-content" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-16">
+            
+            <!-- SECTION 1: FROM IMAGE 1.PNG -->
+            <section class="space-y-8">
+                <!-- Header Block -->
+                <div class="space-y-4">
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-klyr-dark leading-tight uppercase">
+                        <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span>: THE TRUST LAYER <br>BENEATH THE AI CLOUD
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-medium text-gray-700">
+                        Real-World Verification for a Synthetic World.
+                    </h2>
+                    <p class="text-lg text-gray-600 leading-relaxed max-w-4xl">
+                        Before AI makes a decision, <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> makes sure the physical data it depends on is actually true. No high-stakes AI decision should be made on unverified physical inputs. <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> exists to make sure it never is.
+                    </p>
+                </div>
+
+                <hr class="border-t-2 border-klyr-red opacity-80 my-8">
+
+                <!-- Hidden Failure Point -->
+                <div class="space-y-6">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-klyr-dark uppercase">
+                        THE HIDDEN FAILURE POINT <br>IN MODERN AI
+                    </h2>
+                    <div class="text-lg text-gray-600 space-y-4 leading-relaxed">
+                        <p>
+                            AI is everywhere. It runs in hospitals, factories, farms, logistics networks, financial systems, and government infrastructure. Cloud platforms now host thousands of models, agents, and autonomous workflows.
+                        </p>
+                        <p>
+                            But they all share one dangerous assumption:<br>
+                            <span class="italic font-bold text-klyr-dark">They trust the physical data they receive without proving it.</span>
+                        </p>
+                        <p>
+                            If a vial is mislabeled, a part is counterfeit, a crop is contaminated, or a sterile pack was compromised in transit, most AI systems have no way to know. They simply accept whatever the label, barcode, log file, or database entry says.
+                        </p>
+                        <p class="font-bold text-klyr-dark">That is the real failure point.</p>
+                        <p>
+                            AI is not just a software problem. It is a physical data problem. When the physical world is wrong, AI quietly amplifies that error at scale.
+                        </p>
+                    </div>
+                </div>
+
+                <hr class="border-t-2 border-klyr-red opacity-80 my-8">
+
+                <!-- Clarity Layer Diagram Section -->
+                <div class="space-y-8">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-klyr-dark uppercase">
+                        <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span>: A NEW REAL-WORLD <br>CLARITY LAYER
+                    </h2>
+
+                    <!-- Diagram Visualization -->
+                    <div class="flex flex-col md:flex-row items-center justify-between py-8 gap-8">
+                        <!-- Globe -->
+                        <div class="flex flex-col items-center">
+                            <i class="fas fa-globe-americas text-6xl text-klyr-red"></i>
+                        </div>
+                        <!-- Arrow -->
+                        <div class="text-4xl text-klyr-red hidden md:block">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="text-4xl text-klyr-red block md:hidden transform rotate-90">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <!-- MyALETHRA -->
+                        <div class="flex flex-col items-center">
+                            <div class="bg-klyr-red text-white p-4 rounded-lg font-bold text-xl flex items-center justify-center h-20 w-32 shadow-lg">
+                                MyALETHRA
+                            </div>
+                        </div>
+                        
+                        <!-- Arrow -->
+                        <div class="text-4xl text-klyr-red hidden md:block">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="text-4xl text-klyr-red block md:hidden transform rotate-90">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+
+                        <!-- ALETHRA Certified -->
+                        <div class="flex flex-col items-center">
+                             <div class="bg-klyr-red text-white p-6 rounded-full font-bold text-center text-sm w-32 h-32 flex items-center justify-center shadow-lg border-4 border-red-400">
+                                ALETHRA<br>CERTIFIED
+                            </div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="text-4xl text-klyr-red hidden md:block">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="text-4xl text-klyr-red block md:hidden transform rotate-90">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+
+                        <!-- AI User -->
+                        <div class="flex flex-col items-center relative">
+                            <i class="fas fa-user text-6xl text-klyr-dark"></i>
+                            <div class="absolute -top-2 -right-4 bg-white border-2 border-klyr-red rounded-full w-8 h-8 flex items-center justify-center font-bold text-xs">AI</div>
+                        </div>
+                    </div>
+
+                    <p class="text-lg text-gray-600">
+                        <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> is not another model, cloud, or agent. It is a clarity layer that sits beneath them.
+                    </p>
+                    <p class="text-lg text-gray-600">
+                        The platform verifies the identity, continuity, and conditions of physical products, materials, and items before their data ever reaches a cloud platform, AI agent, or enterprise system.
+                    </p>
+                    <p class="text-lg text-gray-600">
+                        <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> combines four core components:
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="text-gray-700">
+                            <span class="font-bold text-klyr-red">• ALETHRA SENSE</span><span class="font-bold text-black">™</span><br>
+                            Multi-sensor physical verification hardware that captures material, spectral, thermal, environmental, and contextual signals.
+                        </div>
+                        <div class="text-gray-700">
+                            <span class="font-bold text-klyr-red">• ALETHRA SCAN</span><span class="font-bold text-black">™</span><br>
+                            Micro-surface identity mapping that fingerprints each item using non-replicable surface features for continuity over time.
+                        </div>
+                        <div class="text-gray-700">
+                            <span class="font-bold text-klyr-red">• ALETHRA ENV</span><span class="font-bold text-black">™</span><br>
+                            Environmental integrity intelligence that tracks handling conditions, storage environments, and chain-of-custody anomalies.
+                        </div>
+                        <div class="text-gray-700">
+                            <span class="font-bold text-klyr-red">• ALETHRA CLOUD</span><span class="font-bold text-black">™</span><br>
+                            A global truth ledger that stores unique identities, continuity signatures, verification events, and trust scores for critical physical items.
+                        </div>
+                    </div>
+                    
+                    <p class="font-bold italic text-klyr-dark text-lg mt-4">
+                        Together, these components convert the physical world from “assumed” to “proven.”
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECTION 2: FROM IMAGE 2.JPG -->
+            <section class="space-y-8 pt-8">
+                 <h2 class="text-3xl md:text-4xl font-extrabold text-klyr-dark uppercase leading-tight">
+                    WHY HYPERSCALE AI NEEDS <br>A FOUNDATION LAYER
+                </h2>
+                <div class="text-lg text-gray-600 space-y-4 leading-relaxed">
+                    <p>
+                        Hyperscale cloud platforms are exceptionally good at compute, storage, and orchestration. They are not designed to prove whether a medication is authentic, a component is original, a crop is clean, or a sterile pack was compromised.
+                    </p>
+                    <p>
+                        Agents, copilots, and autonomous decision systems inherit this blind spot. They assume the physical inputs they operate on are correct because the digital records say so. <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> inserts verification at the only place it actually matters: the point where the physical world becomes data.
+                    </p>
+                    <p class="text-xl font-bold italic text-klyr-dark border-l-4 border-klyr-red pl-4 py-2 my-6">
+                        Cloud secures the workload. <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> secures the reality underneath it.
+                    </p>
+                </div>
+
+                <hr class="border-t-2 border-klyr-red opacity-80 my-8">
+
+                <h2 class="text-3xl md:text-4xl font-extrabold text-klyr-dark uppercase mb-8">
+                    HOW <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> FITS INTO <br>THE MODERN AI STACK
+                </h2>
+
+                <!-- 3 Column Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <!-- Col 1 -->
+                    <div>
+                        <h3 class="text-klyr-red font-bold uppercase mb-2 text-sm tracking-wider">CLOUD PLATFORMS</h3>
+                        <p class="text-sm text-gray-700 leading-relaxed">
+                            <span class="text-klyr-red font-bold">ALETHRA</span><span class="text-black font-bold">™</span> is cloud-neutral. It integrates with any major provider to feed verified physical data into ingestion pipelines, data lakes, and AI workloads. It strengthens reliability for models that rely on real-world signals.
+                        </p>
+                    </div>
+                    <!-- Col 2 -->
+                    <div>
+                        <h3 class="text-klyr-red font-bold uppercase mb-2 text-sm tracking-wider">ENTERPRISE AI AND AGENTS</h3>
+                        <p class="text-sm text-gray-700 leading-relaxed">
+                            Agents and AI workflows use <span class="text-klyr-red font-bold">ALETHRA</span><span class="text-black font-bold">™</span> outputs as machine-readable truth signals. Before reordering, routing, or recommending, they can check: “Has this item been verified?” and “Is this lot trustworthy?”
+                        </p>
+                    </div>
+                    <!-- Col 3 -->
+                    <div>
+                        <h3 class="text-klyr-red font-bold uppercase mb-2 text-sm tracking-wider">INDUSTRY SYSTEMS</h3>
+                        <p class="text-sm text-gray-700 leading-relaxed">
+                            <span class="text-klyr-red font-bold">ALETHRA</span><span class="text-black font-bold">™</span> connects into ERP, MES, LIMS, inventory, and quality systems through APIs and event streams. Verification events and trust scores become part of the operational and compliance record.
+                        </p>
+                    </div>
+                </div>
+
+                <p class="text-gray-700 text-sm italic mb-12">
+                    Instead of trusting labels, logs, and barcodes by default, cloud and AI systems receive a higher-order signal: verified physical truth delivered in real time.
+                </p>
+
+                <hr class="border-t-2 border-klyr-red opacity-80 my-8">
+
+                <!-- FLOW DIAGRAM SECTION -->
+                <h2 class="text-3xl md:text-4xl font-extrabold text-klyr-dark uppercase mb-8">
+                    FROM OBJECT TO TRUTH STATE: <br>THE <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> FLOW
+                </h2>
+
+                <div class="relative space-y-12 pl-4 md:pl-0">
+                    <!-- Vertical line for flow -->
+                    <div class="absolute right-8 top-0 bottom-0 w-1 bg-red-100 hidden md:block"></div>
+
+                    <!-- Step 1 -->
+                    <div class="flex flex-col md:flex-row justify-between items-start">
+                        <div class="md:w-3/4 pr-4">
+                            <h3 class="text-lg font-bold text-klyr-dark uppercase mb-1"><span class="text-klyr-red">STEP 1</span> — CAPTURE</h3>
+                            <p class="text-gray-600 text-sm">
+                                ALETHRA SENSE<span class="text-black">™</span> and ALETHRA SCAN<span class="text-black">™</span> observe the item using multi-sensor and micro-surface analysis. The system captures material signatures, surface texture, and environmental context.
+                            </p>
+                        </div>
+                        <div class="md:w-1/4 flex justify-end mt-4 md:mt-0 relative">
+                             <div class="text-klyr-red text-4xl border-2 border-dashed border-klyr-red p-3 rounded bg-white z-10">
+                                <i class="fas fa-expand-arrows-alt"></i>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex flex-col md:flex-row justify-between items-start">
+                        <div class="md:w-3/4 pr-4">
+                            <h3 class="text-lg font-bold text-klyr-dark uppercase mb-1"><span class="text-klyr-red">STEP 2</span> — CONFIRM</h3>
+                            <p class="text-gray-600 text-sm">
+                                Signals are fused and checked against prior verifications where relevant. ALETHRA ENV<span class="text-black">™</span> adds situational intelligence: storage conditions, handling anomalies, and risk indicators.
+                            </p>
+                        </div>
+                        <div class="md:w-1/4 flex justify-end mt-4 md:mt-0 relative">
+                             <div class="text-white bg-klyr-red text-4xl p-3 rounded shadow-lg z-10">
+                                <i class="fas fa-tasks"></i>
+                             </div>
+                        </div>
+                    </div>
+
+                     <!-- Step 3 -->
+                    <div class="flex flex-col md:flex-row justify-between items-start">
+                        <div class="md:w-3/4 pr-4">
+                            <h3 class="text-lg font-bold text-klyr-dark uppercase mb-1"><span class="text-klyr-red">STEP 3</span> — CERTIFY</h3>
+                            <p class="text-gray-600 text-sm">
+                                ALETHRA CLOUD<span class="text-black">™</span> records a new or updated truth state for the item: identity, continuity, integrity, and a trust score derived from sensor evidence and policy rules.
+                            </p>
+                        </div>
+                        <div class="md:w-1/4 flex justify-end mt-4 md:mt-0 relative">
+                             <div class="text-white bg-klyr-red text-4xl p-3 rounded shadow-lg z-10 relative">
+                                <i class="fas fa-file-contract"></i>
+                                <i class="fas fa-check-circle absolute -top-2 -right-2 text-white bg-green-500 rounded-full text-sm p-1"></i>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex flex-col md:flex-row justify-between items-start">
+                        <div class="md:w-3/4 pr-4">
+                            <h3 class="text-lg font-bold text-klyr-dark uppercase mb-1"><span class="text-klyr-red">STEP 4</span> — CONNECT</h3>
+                            <p class="text-gray-600 text-sm">
+                                Cloud platforms, AI agents, and enterprise systems consume this truth state via APIs or event streams. They can enforce rules such as “only act when trust score > threshold” or “flag any continuity break.”
+                            </p>
+                        </div>
+                        <div class="md:w-1/4 flex justify-end mt-4 md:mt-0 relative">
+                             <div class="text-klyr-red text-4xl border-2 border-klyr-red p-3 rounded bg-white z-10 flex flex-col items-center">
+                                <i class="fas fa-network-wired"></i>
+                                <span class="text-xs font-bold mt-1">AI</span>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="flex flex-col md:flex-row justify-between items-start">
+                        <div class="md:w-3/4 pr-4">
+                            <h3 class="text-lg font-bold text-klyr-dark uppercase mb-1"><span class="text-klyr-red">STEP 5</span> — CONTINUOUSLY MONITOR</h3>
+                            <p class="text-gray-600 text-sm">
+                                As items move, are stored, or reused, they can be rescanned. ALETHRA<span class="text-black">™</span> keeps a living record of how their truth state changes over time.
+                            </p>
+                        </div>
+                        <div class="md:w-1/4 flex justify-end mt-4 md:mt-0 relative">
+                             <div class="text-klyr-red text-4xl border-2 border-klyr-red p-3 rounded bg-white z-10">
+                                <i class="fas fa-heartbeat"></i>
+                             </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 3: FROM IMAGE 3.PNG -->
+            <section class="space-y-8 pt-8">
+                 <h2 class="text-3xl md:text-4xl font-extrabold text-klyr-dark uppercase leading-tight mb-12">
+                    WHERE <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> DELIVERS <br>IMMEDIATE IMPACT
+                </h2>
+
+                <div class="space-y-8">
+                    <!-- Item 1 -->
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 w-24 flex justify-center mr-8">
+                            <i class="fas fa-hospital text-6xl text-klyr-red"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 uppercase text-lg mb-1"><span class="text-klyr-red">HEALTHCARE</span> AND MEDICAL</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm pl-1">
+                                <li>Verifies authentic pharmaceuticals, devices, and sterile supplies.</li>
+                                <li>Confirms continuity from manufacturer to point of care.</li>
+                                <li>Supports safer AI-assisted prescribing, dosage, and inventory decisions.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 w-24 flex justify-center mr-8">
+                            <i class="fas fa-leaf text-6xl text-klyr-red"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 uppercase text-lg mb-1"><span class="text-klyr-red">AGRICULTURE</span> AND FOOD SAFETY</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm pl-1">
+                                <li>Links crops and lots to verifiable identities.</li>
+                                <li>Supports pesticide detection and residue verification.</li>
+                                <li>Enables trusted farm-to-table and retailer-to-consumer transparency.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 w-24 flex justify-center mr-8">
+                            <i class="fas fa-industry text-6xl text-klyr-red"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 uppercase text-lg mb-1"><span class="text-klyr-red">MANUFACTURING</span> AND INDUSTRIAL SUPPLY</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm pl-1">
+                                <li>Confirms that serialized parts are original, not substitutes.</li>
+                                <li>Tracks environmental and handling conditions across storage and transit.</li>
+                                <li>Feeds verified data into predictive maintenance and quality systems.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 w-24 flex justify-center mr-8">
+                            <i class="fas fa-store text-6xl text-klyr-red"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 uppercase text-lg mb-1"><span class="text-klyr-red">CONSUMER BRANDS</span> AND RETAIL</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm pl-1">
+                                <li>Protects brands from counterfeit goods and tampering.</li>
+                                <li>Allows marketplaces and retailers to act on trust scores, not just seller claims.</li>
+                                <li>Builds a defensible, verifiable safety and authenticity story.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 w-24 flex justify-center mr-8">
+                            <i class="fas fa-clipboard-check text-6xl text-klyr-red"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 uppercase text-lg mb-1"><span class="text-klyr-red">GOVERNMENT</span> AND CRITICAL INFRASTRUCTURE</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm pl-1">
+                                <li>Strengthens supply chain integrity for high-risk, national, and defense systems.</li>
+                                <li>Supports compliance with emerging AI and data integrity regulations.</li>
+                                <li>Provides clear, auditable evidence in investigations and incident response.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- SECTION 4: FROM IMAGE 4.PNG -->
+             <section class="space-y-8 pt-8">
+                 <h2 class="text-3xl md:text-4xl font-extrabold text-klyr-dark uppercase leading-tight">
+                    BUILT FOR AUDITS, STANDARDS, <br>AND ACCOUNTABILITY
+                </h2>
+                <div class="text-lg text-gray-600 space-y-4 leading-relaxed">
+                    <p>
+                        Regulators, standards bodies, and policymakers are converging on the same expectations for AI and data-intensive systems: traceability, auditability, and demonstrable control over risk.
+                    </p>
+                    <p class="font-bold italic text-klyr-dark">
+                        <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> is built for that world.
+                    </p>
+                    <p>
+                        Every verification event becomes evidence. Every continuity check is logged. Every trust score can be traced back to the sensor data and policy logic that produced it.
+                    </p>
+                    <p>
+                        This gives enterprises and regulators an objective, structured way to answer critical questions:
+                    </p>
+                    <ul class="list-disc list-inside space-y-1 pl-2">
+                        <li>What did you believe to be true about this item at the time of decision?</li>
+                        <li>What verification did you perform, and how?</li>
+                        <li>Where is the record of that evidence?</li>
+                    </ul>
+                    <p class="font-bold italic text-klyr-dark mt-4">
+                        <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> turns those answers from guesswork into a matter of record.
+                    </p>
+                </div>
+
+                <hr class="border-t-2 border-klyr-red opacity-80 my-8">
+
+                 <h2 class="text-3xl md:text-4xl font-extrabold text-klyr-dark uppercase leading-tight">
+                    THE CLARITY LAYER BENEATH THE <br>NEXT DECADE OF AI
+                </h2>
+                <div class="text-lg text-gray-600 space-y-6 leading-relaxed">
+                    <p>
+                        AI will not slow down. Cloud will not shrink. Agents will not retreat. The world is moving toward more autonomy, more automation, and more decisions made by systems that never see the real world directly.
+                    </p>
+                    <p>
+                        <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> is the missing layer that ensures those systems are grounded in physical truth.
+                    </p>
+                    <p>
+                        By anchoring physical reality to digital infrastructure, <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> protects human life, safeguards supply chains, and raises the standard for what “trusted AI” actually means.
+                    </p>
+                    
+                    <div class="pt-4 pb-12">
+                        <p class="text-xl font-bold text-klyr-dark leading-snug">
+                            AI built on assumption is fragile.<br>
+                            AI built on <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> is clear.
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+        
+
+</main>
+
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+    
+    
+<div id="footer-placeholder"></div>
+<script src="/animation.js"></script>
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+<script type="text/javascript">
+     // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+
+</body>
+</html>
