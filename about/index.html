@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - About</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE
+                        'klyr-dark': '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+    
+        /* =================================================================== */
+        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* =================================================================== */
+        @media (min-width: 768px) {
+            .description-alignment-fix {
+                /* Min-height large enough for 2 lines of text-lg */
+                min-height: 3.5rem; 
+            }
+        }
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+            
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+            This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+
+    <main class="fade-in-section">
+    
+        <div id="about-content">
+            
+            <!-- HERO SECTION - Reduced padding significantly -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-20 pb-8 md:pb-12 text-center">
+                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark uppercase mb-6">
+                    About <span class="text-klyr-red">ALETHRA</span>™
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 font-medium max-w-4xl mx-auto leading-relaxed">
+                    Engineering global clarity. Powering safer decisions.<br class="hidden md:block"> Enabling a world that runs on truth.
+                </p>
+            </section>
+
+            <!-- MISSION & ORIGIN GRID - Reduced padding -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 border-t border-gray-100">
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
+                    
+                    <!-- Mission -->
+                    <div class="space-y-4">
+                        <h2 class="text-2xl font-extrabold text-klyr-dark uppercase tracking-wide">OUR MISSION</h2>
+                        <p class="text-lg font-bold text-gray-800">
+                            <span class="text-klyr-red">ALETHRA</span>™ delivers the foundational clarity modern systems require.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            In industries where errors cost lives, money, and public trust, <span class="text-klyr-red">ALETHRA</span>™ provides an intelligent verification layer that removes ambiguity and elevates decision-making to a new standard of precision.
+                        </p>
+                        <p class="text-gray-600 font-medium">
+                            Our mandate is simple: replace confusion with certainty.
+                        </p>
+                    </div>
+
+                    <!-- Origin -->
+                    <div class="space-y-4">
+                        <h2 class="text-2xl font-extrabold text-klyr-dark uppercase tracking-wide">OUR ORIGIN</h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            <span class="text-klyr-red">ALETHRA</span>™ was built on a fundamental insight: the world’s operating systems fail not because technology is insufficient — but because the truth is often invisible.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            After pioneering All-Scratch! Identification technology across major consumer sectors, founder Chad Willis identified a larger imperative: give the world a universal mechanism to read the physical environment with absolute confidence.
+                        </p>
+                        <p class="text-gray-600 italic">
+                            The outcome is <span class="text-klyr-red">ALETHRA</span>™ — the first Clarity Intelligence System built to authenticate the real world at the speed of life.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- WHAT WE DO SECTION - Reduced padding -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-center mb-10 tracking-tight leading-snug">
+                    WHAT WE DO
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    
+                    <!-- Item 1 -->
+                    <div class="bg-gray-100 p-8 rounded-xl shadow-lg flex flex-col h-full items-center text-center">
+                        <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3">Clarity Intelligence</h3>
+                        <p class="text-gray-700 font-medium">
+                            A multi-sensor, micro-surface, and material-signal platform built to detect what the human eye cannot.
+                        </p>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="bg-gray-100 p-8 rounded-xl shadow-lg flex flex-col h-full items-center text-center">
+                        <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3">Real-World Verification</h3>
+                        <p class="text-gray-700 font-medium">
+                            Instant verification of items, materials, and environments — from hospital surgery suites to agricultural fields to global supply chains.
+                        </p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="bg-gray-100 p-8 rounded-xl shadow-lg flex flex-col h-full items-center text-center">
+                        <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3">Human-Centered AI Interface</h3>
+                        <p class="text-gray-700 font-medium">
+                            ALETHA™, our intelligent interface, translates complex environmental data into clear, actionable guidance.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- IMPACT SECTION - Reduced padding -->
+            <section class="bg-klyr-red py-10 md:py-16">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+                    <h2 class="text-3xl md:text-5xl font-extrabold uppercase mb-6">THE IMPACT WE DRIVE</h2>
+                    
+                    <div class="max-w-3xl mx-auto">
+                        <p class="text-white text-opacity-90 text-xl leading-relaxed mb-6">
+                            Confusion is one of the world’s most expensive and dangerous operational failures — responsible for billions in annual losses and hundreds of thousands of preventable deaths.
+                        </p>
+                        <p class="text-white font-bold text-2xl mb-8">
+                            ALETHRA™ is designed to reverse that trajectory by delivering:
+                        </p>
+
+                        <!-- Centered Block, Left-Aligned Text for Readability -->
+                        <div class="inline-block text-left">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="text-white mr-3 mt-1.5 h-2 w-2 bg-white rounded-full flex-shrink-0"></span>
+                                    <span class="text-white text-lg font-medium">Higher clinical accuracy across care environments</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-white mr-3 mt-1.5 h-2 w-2 bg-white rounded-full flex-shrink-0"></span>
+                                    <span class="text-white text-lg font-medium">Stronger food and agriculture integrity</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-white mr-3 mt-1.5 h-2 w-2 bg-white rounded-full flex-shrink-0"></span>
+                                    <span class="text-white text-lg font-medium">Trusted global supply chains</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-white mr-3 mt-1.5 h-2 w-2 bg-white rounded-full flex-shrink-0"></span>
+                                    <span class="text-white text-lg font-medium">Safer air and travel operations</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-white mr-3 mt-1.5 h-2 w-2 bg-white rounded-full flex-shrink-0"></span>
+                                    <span class="text-white text-lg font-medium">Material-level transparency for regulators</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-white mr-3 mt-1.5 h-2 w-2 bg-white rounded-full flex-shrink-0"></span>
+                                    <span class="text-white text-lg font-medium">Dramatic reductions in waste, rework, and loss</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-10 pt-6 border-t border-white border-opacity-30">
+                            <p class="text-white italic font-medium text-lg">
+                                We are not iterating on existing systems. We are establishing a new global baseline for truth.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LEADERSHIP & ADVISORY - Reduced padding -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark tracking-tight leading-snug mb-6">
+                        LEADERSHIP & ADVISORY
+                    </h2>
+                    <p class="text-gray-600 text-lg">
+                        <span class="text-klyr-red font-bold">ALETHRA</span>™ is guided by a select network of domain experts — including medical executives, cloud architects, regulatory leaders, and engineers — each contributing high-level oversight within their field.
+                    </p>
+                    <p class="text-gray-600 mt-4">
+                        This multidisciplinary structure ensures that <span class="text-klyr-red">ALETHRA</span>™ meets enterprise rigor, regulatory expectations, and real-world practicality simultaneously.
+                    </p>
+                </div>
+                
+                <!-- Placeholder for future leadership bios -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 opacity-70">
+                    <div class="bg-gray-100 h-48 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
+                        <span class="text-gray-400 font-semibold">Leadership Bio</span>
+                    </div>
+                    <div class="bg-gray-100 h-48 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
+                        <span class="text-gray-400 font-semibold">Leadership Bio</span>
+                    </div>
+                    <div class="bg-gray-100 h-48 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
+                        <span class="text-gray-400 font-semibold">Leadership Bio</span>
+                    </div>
+                    <div class="bg-gray-100 h-48 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
+                        <span class="text-gray-400 font-semibold">Leadership Bio</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VALUES SECTION - Reduced padding -->
+            <section class="bg-gray-50 py-10 md:py-16">
+                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-center mb-10 tracking-tight leading-snug">
+                        OUR VALUES
+                    </h2>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                        <!-- Value 1 -->
+                        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col items-center text-center group border border-gray-100">
+                            <div class="h-1 w-12 bg-klyr-red mb-5 rounded-full group-hover:w-20 transition-all duration-300"></div>
+                            <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3 tracking-wide group-hover:text-klyr-red transition-colors">Integrity</h3>
+                            <p class="text-gray-600 leading-relaxed">Truth is non-negotiable. We stand for verifying reality without compromise.</p>
+                        </div>
+                        
+                        <!-- Value 2 -->
+                        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col items-center text-center group border border-gray-100">
+                            <div class="h-1 w-12 bg-klyr-red mb-5 rounded-full group-hover:w-20 transition-all duration-300"></div>
+                            <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3 tracking-wide group-hover:text-klyr-red transition-colors">Safety</h3>
+                            <p class="text-gray-600 leading-relaxed">Every interaction must protect human life. Safety is the core of our verification.</p>
+                        </div>
+
+                        <!-- Value 3 -->
+                        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col items-center text-center group border border-gray-100">
+                            <div class="h-1 w-12 bg-klyr-red mb-5 rounded-full group-hover:w-20 transition-all duration-300"></div>
+                            <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3 tracking-wide group-hover:text-klyr-red transition-colors">Precision</h3>
+                            <p class="text-gray-600 leading-relaxed">Accuracy is the standard; assumptions are not. We engineer for exactness.</p>
+                        </div>
+
+                        <!-- Value 4 -->
+                        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col items-center text-center group border border-gray-100">
+                            <div class="h-1 w-12 bg-klyr-red mb-5 rounded-full group-hover:w-20 transition-all duration-300"></div>
+                            <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3 tracking-wide group-hover:text-klyr-red transition-colors">Scalability</h3>
+                            <p class="text-gray-600 leading-relaxed">Global problems require a global-ready architecture. We build for the world.</p>
+                        </div>
+
+                        <!-- Value 5 -->
+                        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col items-center text-center group border border-gray-100">
+                            <div class="h-1 w-12 bg-klyr-red mb-5 rounded-full group-hover:w-20 transition-all duration-300"></div>
+                            <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3 tracking-wide group-hover:text-klyr-red transition-colors">Stewardship</h3>
+                            <p class="text-gray-600 leading-relaxed">Transparency is the foundation of trust. We are stewards of clear data.</p>
+                        </div>
+
+                        <!-- Value 6 -->
+                        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col items-center text-center group border border-gray-100">
+                            <div class="h-1 w-12 bg-klyr-red mb-5 rounded-full group-hover:w-20 transition-all duration-300"></div>
+                            <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3 tracking-wide group-hover:text-klyr-red transition-colors">Humanity</h3>
+                            <p class="text-gray-600 leading-relaxed">Technology exists to serve people, not replace them. We empower human decisions.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GLOBAL RESPONSIBILITY & COMMITMENT - Reduced padding -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 border-b border-gray-100">
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                    
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-klyr-dark uppercase mb-4">GLOBAL RESPONSIBILITY</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            <span class="text-klyr-red">ALETHRA</span>™ is engineered in alignment with leading global regulators and standards bodies, including FDA, EMA, USDA, ISO, GS1, FAA, DOT, and major agriculture and food authorities.
+                        </p>
+                        <p class="text-gray-600 font-medium">
+                            Our platform is built to meet the highest expectations of compliance, traceability, and material-level certainty.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-klyr-dark uppercase mb-4">OUR COMMITMENT</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            We are building the clarity infrastructure for the next century — enabling governments, enterprises, and communities to operate with reliability, accountability, and confidence.
+                        </p>
+                        <p class="text-lg font-bold text-klyr-red italic">
+                            This is <span class="text-klyr-red">ALETHRA</span>™: the new global standard for truth-driven intelligence.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- CTA SECTION - Reduced padding -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 text-center">
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    
+                    <a href="/technology" class="w-full sm:w-auto">
+                        <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
+                            Explore the Technology
+                        </button>
+                    </a>
+                    
+                    <a href="/impact" class="w-full sm:w-auto">
+                        <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
+                            See How ALETHRA™ Works
+                        </button>
+                    </a>
+
+                </div>
+            </section>
+            
+        </div>
+        
+        
+</main>
+
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+    
+    
+<div id="footer-placeholder"></div>
+<script src="/animation.js"></script>
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+<script type="text/javascript">
+     // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+
+</body>
+</html>
