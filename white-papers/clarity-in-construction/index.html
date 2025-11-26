@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - Clarity in Construction</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="./animation.css">
+    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE (UPDATED TO #1F2937)
+                        'klyr-dark': '#1F2937', 
+                        // Added for Apple-like borders/backgrounds
+                        'apple-gray-light': '#f5f5f7', 
+                        'apple-gray-dark': '#d1d1d6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+         /* =================================================================== */
+        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* =================================================================== */
+        @media (min-width: 768px) {
+            .description-alignment-fix {
+                /* Min-height large enough for 2 lines of text-lg */
+                min-height: 3.5rem; 
+            }
+        }
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+            /* Added smooth scroll for anchor links */
+            scroll-behavior: smooth;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+      
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+           This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+        /* ===================================================================
+        CUSTOM STYLING FOR RED DOT LIST
+        =================================================================== */
+        .red-dot-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .red-dot-list li {
+            position: relative;
+            padding-left: 1.75rem; /* Space for the custom bullet */
+            margin-bottom: 1.5rem; /* Space between list items */
+        }
+        
+        /* Red dot styling (::before) */
+        .red-dot-list li::before {
+            content: '';
+            position: absolute;
+            left: 0.25rem; /* Slight shift to align with text */
+            top: 0.5rem; 
+            width: 12px; /* Slightly bigger dot */
+            height: 12px;
+            background-color: var(--klyr-red); /* Uses CSS variable */
+            border-radius: 50%;
+        }
+        
+        /* ===================================================================
+        FEATURE CARD STYLES
+        =================================================================== */
+        /* Style for the three smaller cards under 'Outcomes' */
+        .sustainability-card {
+            @apply bg-white p-8 rounded-3xl shadow-xl border border-gray-100 transition duration-300 hover:shadow-2xl hover:border-klyr-red/50;
+        }
+
+        /* Style for the two larger, premium, 'glass-like' feature panels */
+        .premium-panel {
+            @apply bg-white p-6 sm:p-10 rounded-3xl shadow-2xl border border-gray-100/50 transition duration-300 transform hover:scale-[1.01] hover:shadow-3xl;
+            cursor: default; /* ADDED: Ensures standard cursor instead of text-select I-beam */
+        }
+
+        
+        /* ===================================================================
+        PRINT STYLING FOR PDF
+        =================================================================== */
+        @media print {
+            /* Hide non-content elements */
+            #nav-placeholder, 
+            #footer-placeholder, 
+            #google_translate_element, 
+            .no-print, 
+            #pdf-download-btn,
+            #country-modal,
+            footer,
+            .footer,
+            #footer,
+            [role="contentinfo"],
+            header {
+                display: none !important;
+                visibility: hidden !important;
+                height: 0 !important;
+                width: 0 !important;
+                position: absolute !important;
+                overflow: hidden !important;
+                opacity: 0 !important;
+            }
+
+            /* Ensure background colors and graphics are printed */
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background-color: white !important;
+            }
+
+            /* Reset container widths for full page print */
+            .max-w-site {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            /* Ensure text colors are maintained */
+            .text-klyr-red {
+                color: #E72F3C !important;
+            }
+            .text-klyr-dark {
+                color: #1F2937 !important;
+            }
+
+            /* Force page breaks if necessary */
+            h1, h2 {
+                page-break-after: avoid;
+            }
+            img {
+                page-break-inside: avoid;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+    
+
+ 
+    <main class="fade-in-section">
+        
+  <div id="construction-content" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-12">
+            
+            <!-- SECTION: HEADER & EXECUTIVE SUMMARY (File 1) -->
+            <section class="space-y-8 text-center md:text-left">
+                <h1 class="text-3xl md:text-5xl font-extrabold text-klyr-dark leading-tight uppercase text-center mb-12">
+                    <span class="text-klyr-red">CLARITY IN CONSTRUCTION:</span><br>
+                    QUANTIFYING GLOBAL LOSS,<br>
+                    ELIMINATING CONFUSION, AND<br>
+                    REBUILDING TRUST WITH <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span>
+                </h1>
+
+                <hr class="border-t-2 border-klyr-red opacity-80 my-8">
+
+                <h2 class="text-2xl md:text-3xl font-extrabold text-klyr-red uppercase mb-4">EXECUTIVE SUMMARY</h2>
+                
+                <div class="text-lg text-gray-700 space-y-6 leading-relaxed">
+                    <p>
+                        Construction is a trillion-dollar engine that quietly leaks staggering amounts of capital due to one systemic flaw: confusion.
+                    </p>
+                    <p>
+                        Not abstract confusion — practical, daily, operational chaos driven by incomplete data, mislabeled materials, human error, communication lapses, misidentification, and the industry’s chronic lack of real-time verification.
+                    </p>
+                    <p class="font-bold">The numbers are not subtle. They are catastrophic.</p>
+                    <p>
+                        Global construction teams lost US$1.85 trillion in 2020 alone due to bad data — inaccurate, inconsistent, untimely, or simply incorrect information that leads to mistakes, rework, safety failures, and litigation exposure.
+                    </p>
+                    <p>
+                        In the U.S., operational inefficiency, rework, miscommunication, and fragmented information flows account for over US$177 billion annually in losses.
+                    </p>
+                    <p>
+                        Nearly half of rework — up to 48% — can be attributed directly to communication failures and fragmented project information.
+                    </p>
+                    <p>
+                        Rework itself consumes 5%–10% of project cost on average, and in many cases spirals well above 20%, especially on complex builds or poorly coordinated trades.
+                    </p>
+                    <p>
+                        The industry has adopted digital tools, project management portals, drones, and RFID systems, but these are only surface-level improvements. None verifies reality, None authenticates the truth of what is actually happening on-site.
+                    </p>
+                    <p class="font-bold">That is why <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> exists.</p>
+                </div>
+            </section>
+
+            <hr class="border-t-2 border-klyr-red opacity-80 my-8">
+
+            <!-- SECTION 1 & 2: CONTEXT & LOSS (File 2) -->
+            <section class="space-y-12">
+                
+                <!-- Intro Blurb -->
+                <div class="italic text-lg font-medium text-gray-800 border-l-4 border-klyr-red pl-6 py-2">
+                    This paper quantifies the damage, exposes the root causes, and positions <span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> as the world’s first unified clarity intelligence system designed to eliminate confusion at the source — before it becomes cost, risk, injury, or litigation.
+                </div>
+
+                <!-- 1. Industry Context -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-klyr-dark uppercase mb-4"><span class="text-klyr-red">1. THE INDUSTRY</span> CONTEXT</h2>
+                        <div class="text-gray-700 space-y-4">
+                            <p>Construction is one of the most complex ecosystems in the global economy.<br>Multiple contractors. Multiple trades. Multiple suppliers.</p>
+                            <p>Thousands of daily decisions. Thousands of materials. Millions of data points per major project.</p>
+                            <p class="font-bold">Every moving piece is a potential failure point.</p>
+                            <p>Despite the scale, the industry’s digital infrastructure remains fractured. Project managers navigate a patchwork of tools that none of them actually verify the physical world. They centralize documentation — but they do not authenticate truth.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-gray-700 space-y-4 pt-0 md:pt-12">
+                            <p class="font-bold">This is how confusion becomes normalized.</p>
+                            <p>Bad or outdated data is entered into a system → miscommunication spreads → teams make incorrect assumptions → the mistakes get built into the structure → the cost gets baked into the budget → the owner pays for the fallout → the contractor assumes the risk.</p>
+                            <p class="font-bold">This cycle is so typical that it has become invisible.</p>
+                            <p><span class="text-klyr-red">ALETHRA</span><span class="text-black">™</span> breaks that cycle by putting intelligence at the job-site level — where truth must be verified, not assumed.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-t border-gray-300 my-8">
+
+                <!-- 2. Quantifying The Loss -->
+                <div>
+                    <h2 class="text-2xl font-extrabold text-klyr-dark uppercase mb-8"><span class="text-klyr-red">2. QUANTIFYING</span> THE LOSS</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-gray-700">
+                        <!-- Left Column -->
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">2.1 Global Impact:</h3>
+                                <p class="font-bold mb-2">US $1.85 Trillion Lost to Bad Data</p>
+                                <p class="text-sm mb-4">According to the Autodesk/FMI study, the construction sector lost US$1.85 trillion in 2020 solely due to incorrect, incomplete, inconsistent, or untimely data.</p>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1">
+                                    <li>Insufficient data isn’t a spreadsheet problem.</li>
+                                    <li>It’s misidentified materials.</li>
+                                    <li>It has mislabeled components.</li>
+                                    <li>It’s poor communication on safety.</li>
+                                    <li>It’s unverified assumptions.</li>
+                                    <li>It’s confusion with a price tag.</li>
+                                </ul>
+                                <p class="text-sm mt-4">Within that $1.85 trillion, <strong>14% of avoidable rework</strong> is directly attributable to bad data — translating to <strong>~US $88.7 billion</strong> in lost global revenue in 2020 due to data-driven rework alone.</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">2.2 U.S. Impact: US$177+ Billion Annual Loss</h3>
+                                <p class="text-sm">In the United States, inefficiencies — including rework, waiting time, data hunting, miscommunication, and confusion — cost the industry over US $177 billion every year.</p>
+                                <p class="font-bold mt-2">This is not a niche inefficiency.<br>This is a structural failure.</p>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">2.3 Rework: The Multi-Billion Dollar Drain</h3>
+                                <p class="text-sm mb-2">Construction rework typically consumes:</p>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1">
+                                    <li><strong>5%–10% of the total project cost</strong> on well-managed sites</li>
+                                    <li><strong>10%–20% or more</strong> on complex or poorly coordinated projects</li>
+                                    <li>Extreme cases exceeding <strong>30%</strong></li>
+                                </ul>
+                                <p class="text-sm mt-4 mb-2">Using a $100 million project as a baseline:</p>
+                                <ul class="list-none text-sm space-y-1 font-bold">
+                                    <li>• 5% rework = $5 million lost</li>
+                                    <li>• 10% rework = $10 million lost</li>
+                                    <li>• 20% rework = $20 million lost</li>
+                                </ul>
+                                <p class="text-sm mt-4">And half of that rework traces back to one issue: communication and information breakdowns.</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">2.4 Miscommunication: Nearly 50% of All Rework</h3>
+                                <p class="text-sm">Studies show that up to 48% of construction rework stems from poor communication or inaccurate project information.</p>
+                                <p class="font-bold mt-2">That’s billions of dollars in lost revenue because teams lacked clarity.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <hr class="border-t-2 border-klyr-red opacity-80 my-8">
+
+            <!-- SECTION 3 & 4: ROOT CAUSES & STAKEHOLDERS (File 3) -->
+            <section class="space-y-12">
+                
+                <!-- 3. Root Causes -->
+                <div>
+                    <h2 class="text-2xl font-extrabold text-klyr-dark uppercase mb-2"><span class="text-klyr-red">3. ROOT CAUSES OF</span> CONFUSION <br>& WASTE</h2>
+                    <p class="text-gray-700 mb-8">Construction’s confusion crisis stems from four core failure zones:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-gray-700">
+                        <!-- Left Column -->
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">3.1 Bad or Incomplete Data</h3>
+                                <p class="text-sm mb-2">Insufficient data is not a technical glitch — it is operational misalignment.</p>
+                                <p class="text-sm mb-2">This includes:</p>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1">
+                                    <li>Outdated plans</li>
+                                    <li>Mislabeled materials</li>
+                                    <li>Incorrect specifications</li>
+                                    <li>Unverified deliveries</li>
+                                    <li>Inconsistent safety protocols</li>
+                                    <li>Undocumented changes</li>
+                                    <li>Missing records</li>
+                                </ul>
+                                <p class="font-bold mt-2 text-sm">When the data is wrong, everything downstream is wrong.</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">3.2 Materials Misidentification & Fraud</h3>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1">
+                                    <li>Material substitution is a quiet epidemic in construction.</li>
+                                    <li>Cheaper materials get swapped for higher-margin ones.</li>
+                                    <li>Suppliers send incorrect grades.</li>
+                                    <li>Labels get misprinted.</li>
+                                    <li>The wrong items get installed.</li>
+                                </ul>
+                                <p class="font-bold mt-2 text-sm">The industry has no real-time verification layer.</p>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">3.3 Communication Breakdowns</h3>
+                                <p class="text-sm mb-2">Construction sites are tangled communication webs:</p>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1">
+                                    <li>Trades talking over each other</li>
+                                    <li>Supervisors relying on verbal updates</li>
+                                    <li>Workers missing briefings</li>
+                                    <li>Inspectors showing up late</li>
+                                    <li>Suppliers misjudging timelines</li>
+                                </ul>
+                                <p class="text-sm mt-2">One missed message becomes a week of rework.</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">3.4 Lack of Real-Time Verification</h3>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1">
+                                    <li>The industry relies on “trust-based workflows.”</li>
+                                    <li>Trust the shipment is correct.</li>
+                                    <li>Trust the panel is fire-rated.</li>
+                                    <li>Trust the worker is certified.</li>
+                                    <li>Trust the installation meets code.</li>
+                                </ul>
+                                <p class="font-bold mt-4 text-sm">This trust-based culture is what creates trillion-dollar waste.</p>
+                                <p class="text-klyr-red mt-2 text-sm"><span class="font-bold">ALETHRA</span>™ replaces trust with verification.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-t border-gray-300 my-8">
+
+                <!-- 4. Impact on Key Stakeholders -->
+                 <div>
+                    <h2 class="text-2xl font-extrabold text-klyr-red uppercase mb-8">4. IMPACT ON KEY <span class="text-klyr-dark">STAKEHOLDERS</span></h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-gray-700">
+                        <!-- Left Column -->
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">4.1 Contractors & General Contractors</h3>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1">
+                                    <li>Margin erosion from rework</li>
+                                    <li>Reputation risk from project delays</li>
+                                    <li>Litigation exposure from material mistakes</li>
+                                    <li>Difficulty with workforce safety compliance</li>
+                                    <li>Loss of competitive advantage</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">4.2 Owners & Developers</h3>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1">
+                                    <li>Higher construction cost</li>
+                                    <li>ROI delays</li>
+                                    <li>Financing overruns</li>
+                                    <li>Compromised quality and value</li>
+                                    <li>Operational safety and liability risks</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">4.3 Insurers</h3>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1">
+                                    <li>Rising workers’ comp claims</li>
+                                    <li>Injury fraud</li>
+                                    <li>Safety violations</li>
+                                    <li>Disputes requiring adjudication</li>
+                                    <li>Lack of verifiable evidence</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">4.4 Regulators</h3>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1">
+                                    <li>Safety non-compliance</li>
+                                    <li>Material code violations</li>
+                                    <li>Inconsistent site oversight</li>
+                                    <li>Difficulty enforcing standards without audit trails</li>
+                                </ul>
+                                <p class="font-bold mt-4 text-sm">Every stakeholder pays for confusion.<br><span class="text-klyr-red">ALETHRA</span>™ eliminates it.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <hr class="border-t-2 border-klyr-red opacity-80 my-8">
+
+            <!-- SECTION 5 & 6: SOLUTION & ROI (File 4) -->
+            <section class="space-y-12">
+                <!-- 5. Alethra Solution -->
+                 <div>
+                    <h2 class="text-2xl font-extrabold text-klyr-dark uppercase mb-4">
+                        <span class="text-klyr-red">5. ALETHRA</span><span class="text-black">™</span> : THE CLARITY <br>INTELLIGENCE LAYER <br>CONSTRUCTION NEVER HAD
+                    </h2>
+                    
+                    <div class="text-gray-700 mb-8 space-y-2">
+                        <p>Construction has project-management tools. It has documentation portals. It has drones. It has RFID.</p>
+                        <p>But it does not have a unified, multi-sensor, real-time truth engine.</p>
+                        <p class="text-klyr-red mt-2"><span class="font-bold">ALETHRA</span>™ is the first platform to provide:</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-gray-700">
+                        <!-- Left Column -->
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">5.1 Material Authentication</h3>
+                                <p class="text-sm">Grade, rating, identity, and spec verified on arrival — not after installation.</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">5.2 Substitution Fraud Prevention</h3>
+                                <p class="text-sm">Stops cheap or incorrect materials from entering the build.</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">5.3 Real-Time Worker Safety Verification</h3>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1">
+                                    <li>PPE tracking</li>
+                                    <li>Zone-hazard warnings</li>
+                                    <li>Unsafe behavior detection</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-6">
+                            <div>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1 mb-4">
+                                    <li>Environmental risk alerts</li>
+                                    <li>Audit trails for every incident or claim</li>
+                                </ul>
+                                <h3 class="font-bold text-klyr-red mb-1">5.4 Injury Fraud Prevention</h3>
+                                <p class="text-sm"><span class="text-klyr-red font-bold">ALETHRA</span>™ captures the real sequence of events, eliminating staged or false injury claims — a multibillion-dollar problem by itself.</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-klyr-red mb-1">5.5 Installation Verification</h3>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1">
+                                    <li>Correct part</li>
+                                    <li>Correct location</li>
+                                    <li>Correct process</li>
+                                    <li>Correct certification</li>
+                                    <li>Logs every install, every step, every timestamp</li>
+                                </ul>
+                            </div>
+                             <div>
+                                <h3 class="font-bold text-klyr-red mb-1">5.6 Unified Audit Trail</h3>
+                                <p class="text-sm mb-2">Regulators get:</p>
+                                <ul class="list-disc list-outside ml-4 text-sm space-y-1">
+                                    <li>Timestamps</li>
+                                    <li>Material IDs</li>
+                                    <li>Safety compliance logs</li>
+                                    <li>Worker certifications</li>
+                                    <li>Installation records</li>
+                                    <li>Environmental conditions</li>
+                                </ul>
+                                <p class="font-bold mt-4 text-sm">Built truth, not assumed truth.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-t border-gray-300 my-8">
+
+                 <!-- 6. Financial ROI -->
+                 <div>
+                    <h2 class="text-2xl font-extrabold text-klyr-dark uppercase mb-6"><span class="text-klyr-red">6. FINANCIAL ROI</span> & SAVINGS MODEL</h2>
+                    <div class="text-gray-700 space-y-4">
+                        <p class="font-bold">Assume a $100 million project with 8% rework = $8 million wasted.</p>
+                        <p>If <span class="text-klyr-red font-bold">ALETHRA</span>™ cuts rework by half — which its prevention-focused design is built to do — that’s <strong>$4 million saved on a single project.</strong></p>
+                        <p>Scale that across:</p>
+                        <ul class="list-disc list-outside ml-4 space-y-1">
+                            <li>Dozens of projects</li>
+                            <li>Multi-year cycles</li>
+                            <li>Multi-state portfolios</li>
+                        </ul>
+                        <p>You’re recovering tens of millions annually.</p>
+                        <p>At the industry level, if <span class="text-klyr-red font-bold">ALETHRA</span>™ eliminated even <strong>5% of global rework</strong>, it would reclaim over <strong>US $40–50 billion</strong> every year.</p>
+                        <p class="font-bold mt-4">The financial logic is overwhelming.</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="border-t-2 border-klyr-red opacity-80 my-8">
+
+            <!-- SECTION 7 & 8: ROADMAP & RISK (File 5) -->
+             <section class="space-y-12">
+                 <!-- 7. Roadmap -->
+                 <div>
+                    <h2 class="text-2xl font-extrabold text-klyr-dark uppercase mb-6"><span class="text-klyr-red">7. IMPLEMENTATION</span> ROADMAP</h2>
+                    <div class="space-y-6 text-gray-700">
+                        <div>
+                            <h3 class="font-bold text-klyr-red">Phase 1: Pilot Projects</h3>
+                            <p class="text-sm">Select 1–3 high-impact sites to validate:</p>
+                            <ul class="list-disc list-outside ml-4 text-sm">
+                                <li>Material authentication</li>
+                                <li>Safety monitoring</li>
+                                <li>Installation verification</li>
+                                <li>Fraud prevention</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-klyr-red">Phase 2: Full-Site Deployment</h3>
+                            <p class="text-sm">Deploy mobile, fixed gateways, and on-site clarity modules across all active projects.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-klyr-red">Phase 3: Enterprise Rollout</h3>
+                            <p class="text-sm">Standardize <span class="text-klyr-red font-bold">ALETHRA</span>™ across all divisions and contractors.</p>
+                            <p class="text-sm">Integrate with:</p>
+                            <ul class="list-disc list-outside ml-4 text-sm">
+                                <li>Procore</li>
+                                <li>Autodesk</li>
+                                <li>ERP systems</li>
+                                <li>Inspection workflows</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-klyr-red">Phase 4: Regulatory Integration</h3>
+                            <p class="text-sm">Adopt <span class="text-klyr-red font-bold">ALETHRA</span>™ audit trails into:</p>
+                            <ul class="list-disc list-outside ml-4 text-sm">
+                                <li>Permitting</li>
+                                <li>Inspections</li>
+                                <li>Certifications</li>
+                                <li>End-of-job documentation</li>
+                            </ul>
+                        </div>
+                        <p class="font-bold mt-2">This becomes the new standard for clarity-driven construction.</p>
+                    </div>
+                 </div>
+
+                 <hr class="border-t border-gray-300 my-8">
+
+                 <!-- 8. Risk Management -->
+                 <div>
+                    <h2 class="text-2xl font-extrabold text-klyr-dark uppercase mb-6"><span class="text-klyr-red">8. RISK MANAGEMENT</span> & MITIGATION</h2>
+                    <div class="space-y-6 text-gray-700">
+                        <div>
+                            <h3 class="font-bold">Adoption Resistance</h3>
+                            <p class="text-sm">Mitigation: executive alignment, phased rollout, simplicity-first UX.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Data Concerns</h3>
+                            <p class="text-sm">Mitigation: encrypted, zero-trust architecture with tightly controlled audit trails.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Workflow Disruption</h3>
+                            <p class="text-sm">Mitigation: mobile-first scanning, minimal training requirement, modular deployment.</p>
+                        </div>
+                        <p class="font-bold text-klyr-dark mt-4"><span class="text-klyr-red">ALETHRA</span>™ was engineered to integrate, not interrupt.</p>
+                    </div>
+                 </div>
+             </section>
+
+             <hr class="border-t-2 border-klyr-red opacity-80 my-8">
+
+             <!-- SECTION 9: CONCLUSION (File 6) -->
+             <section class="space-y-8">
+                 <h2 class="text-2xl font-extrabold text-klyr-dark uppercase mb-6"><span class="text-klyr-red">9. CONCLUSION</span> & CALL TO ACTION</h2>
+                 
+                 <div class="text-gray-700 space-y-6 text-lg">
+                     <p>Construction is bleeding billions because it operates without a clarity engine.</p>
+                     <ul class="list-disc list-outside ml-4 space-y-1">
+                        <li>Bad data.</li>
+                        <li>Material confusion.</li>
+                        <li>Safety blind spots.</li>
+                        <li>Miscommunication.</li>
+                        <li>Rework.</li>
+                        <li>Fraud.</li>
+                        <li>Litigation.</li>
+                     </ul>
+                     <p>These are not isolated problems — they are symptoms of a missing infrastructure layer.<br>
+                     <span class="text-klyr-red font-bold">ALETHRA</span>™ is that layer.</p>
+                     
+                     <p>This is the moment for construction leaders, owners, GCs, insurers, and regulators to adopt a system that eliminates confusion instead of reacting to it.</p>
+                     
+                     <p><span class="text-klyr-red font-bold">ALETHRA</span>™ turns job sites into environments defined by:</p>
+                     <ul class="list-disc list-outside ml-4 space-y-1">
+                        <li>Accuracy</li>
+                        <li>Verification</li>
+                        <li>Compliance</li>
+                        <li>Safety</li>
+                        <li>Accountability</li>
+                        <li>And truth</li>
+                     </ul>
+                 </div>
+
+                 <div class="text-center pt-12 pb-8">
+                     <h3 class="text-2xl md:text-4xl font-extrabold text-klyr-dark">
+                         This is how you rebuild the industry — with <span class="text-klyr-red">clarity</span>.
+                     </h3>
+                 </div>
+             </section>
+
+             <!-- PDF DOWNLOAD BUTTON -->
+             <div class="flex justify-center pb-8 no-print">
+                <button id="pdf-download-btn" onclick="window.print()" class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider flex items-center gap-2">
+                    <i class="fas fa-file-pdf"></i> Download PDF Version
+                </button>
+             </div>
+
+        </div>
+        
+        
+</main>
+
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+<!-- REMOVED: Old unused country modal (id="country-modal") -->
+    
+    
+<!-- REMOVED: Regulatory Country Modal (id="regulatory-country-modal") -->
+    
+ <div id="footer-placeholder"></div>
+
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+
+
+<!-- Cleaned up script block, retaining only the universal fade-in logic -->
+<script>
+    // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // All form/modal-related JS has been removed as the associated elements were removed.
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+</body>
+</html>
