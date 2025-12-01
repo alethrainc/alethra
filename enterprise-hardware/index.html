@@ -180,15 +180,42 @@
         
 <div id="homepage-content">
               
-    <!-- HERO SECTION: Heading, Subhead, and CTAs --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-10 md:pb-16 text-center">
-        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4 text-klyr-dark">
-            <span class="text-klyr-red">ALETHRA ENTERPRISE</span>™
-        </h1>
-        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-10">
-            Industrial intelligence built for real-time clarity, compliance, and operational truth.
-        </p>
+    <!-- HERO SECTION: Heading, Subhead, and CTAs + Image Grid -->
+    <!-- 
+         EXCEPTION RULE (Header Top):
+         Top: 6rem (desktop) / 4rem (mobile) -> pt-16 md:pt-24
+         Bottom: 0 (to allow next section to provide gap) -> pb-0 md:pb-0
+    -->
+    <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-0 md:pb-0 text-left">
+        
+        <!-- Grid Container: 2 Columns -->
+        <!-- UPDATED: gap-8 on mobile, gap-12 on desktop -->
+        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+            
+            <!-- Left Column: Content -->
+            <div class="space-y-6">
+                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4 text-klyr-dark">
+                    <span class="text-klyr-red">ALETHRA ENTERPRISE </span>™
+                </h1>
+                <!-- UPDATED: mb-6 on mobile, mb-10 on desktop -->
+                <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mb-6 md:mb-10">
+                    Industrial intelligence built for real-time clarity, compliance, and operational truth.
+                </p>
 
-        <!-- Hero CTA Buttons --><div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <!-- MOVED CTA BUTTONS OUT OF HERE -->
+            </div>
+
+            <!-- Right Column: Image -->
+            <div id="" class="content-box-border-style rounded-lg flex overflow-hidden"> 
+                <!-- MODIFIED: Changed to h-auto and object-contain to respect aspect ratio without cropping -->
+                <img id="" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
+            </div>
+
+        </div>
+
+        <!-- Hero CTA Buttons - MOVED BELOW GRID -->
+        <!-- UPDATED: mt-8 on mobile, mt-10 on desktop -->
+        <div class="mt-8 md:mt-10 flex flex-col sm:flex-row justify-start items-start space-y-4 sm:space-y-0 sm:space-x-6">
             <a href="/downloads/ALETHRA_Equipment.pdf" target="_blank" class="w-full sm:w-auto" >
                 <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
                     Download Full Hardware Pack (PDF)
@@ -202,29 +229,51 @@
         </div>
     </section>
 
-    <!-- SECTION: Why ALETHRA Hardware Exists (Updated spacing and centered H2) --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2 md:pt-8 md:pb-4">
-        <div class="p-8 md:p-12 rounded-xl">
-            <!-- Centered Heading --><h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark mb-4 text-center">WHY <span class="text-klyr-red">ALETHRA</span> HARDWARE EXISTS</h2>
-            <p class="text-lg text-gray-700 leading-relaxed mb-8">
+    <!-- SECTION: Why ALETHRA Hardware Exists -->
+    <!-- 
+         STANDARD RULE:
+         Top: 3rem (desktop) / 2rem (mobile) -> pt-8 md:pt-12
+         Bottom: 0 -> pb-0 md:pb-0
+         (Note: Inner div padding removed to consolidate control here)
+    -->
+    <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-0 md:pt-12 md:pb-0">
+        <div class="rounded-xl">
+            <!-- Left Aligned Heading -->
+            <!-- UPDATED: Increased margin-bottom to md:mb-10 to balance the section -->
+            <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark mb-6 md:mb-10 text-left">WHY <span class="text-klyr-red">ALETHRA™</span> HARDWARE EXISTS</h2>
+            <!-- UPDATED: mb-6 on mobile, mb-8 on desktop -->
+            <p class="text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
                 Modern supply chains move faster than legacy systems can verify.
                 That gap creates confusion — and confusion creates risk.
-                <span class="font-semibold text-klyr-red">ALETHRA</span> closes that gap with a unified hardware suite engineered for clarity at every checkpoint: material integrity, environmental compliance, identity verification, and contamination prevention.
+                <span class="font-semibold text-klyr-red">ALETHRA™</span> closes that gap with a unified hardware suite engineered for clarity at every checkpoint: material integrity, environmental compliance, identity verification, and contamination prevention.
             </p>
             <!-- Updated tagline to be smaller, italic, and separated -->
-            <p class="text-xl italic font-semibold text-klyr-dark text-center pt-4 md:pt-6">
+            <p class="text-xl italic font-semibold text-klyr-dark text-left pt-2 md:pt-4">
                 Built for regulators. Trusted by manufacturers. Deployable anywhere.
             </p>
         </div>
     </section>
 
-    <!-- SECTION: The ALETHRA Hardware Suite (Updated links on icon, title, and 'Learn More') --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
-        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-center mb-12 tracking-tight leading-snug">
-            THE <span class="text-klyr-red">ALETHRA</span> HARDWARE SUITE
+    <!-- SECTION: The ALETHRA Hardware Suite -->
+    <!-- 
+         STANDARD RULE:
+         Top: 3rem (desktop) / 2rem (mobile) -> pt-8 md:pt-12
+         Bottom: 3rem (desktop) / 2rem (mobile) -> pb-8 md:pb-12
+         (Bottom padding preserved here to provide whitespace before the gray background of the next section)
+    -->
+    <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-8 md:pt-12 md:pb-12">
+        <!-- Left Aligned Heading -->
+        <!-- UPDATED: mb-8 on mobile, mb-12 on desktop -->
+        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-left mb-8 md:mb-12 tracking-tight leading-snug">
+            THE <span class="text-klyr-red">ALETHRA™</span> HARDWARE SUITE
         </h2>
         
-        <!-- 6-Item Grid (3 columns on desktop) --><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+        <!-- 6-Item Grid (3 columns on desktop) -->
+        <!-- UPDATED: gap-y-8 on mobile, gap-y-12 on desktop -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8 md:gap-y-12">
             
-            <!-- ITEM 1: ALETHRA ENV™ --><div class="flex items-center">
+            <!-- ITEM 1: ALETHRA ENV™ -->
+            <div class="flex items-center">
                 <a href="/env" class="flex-shrink-0">
                     <img src="https://plusbrand.com/wp-content/uploads/2025/11/ENV-scaled.webp" alt="ALETHRA ENV Icon" class="h-16 w-auto mr-4">
                 </a>
@@ -244,7 +293,8 @@
                 </div>
             </div>
 
-            <!-- ITEM 2: ALETHRA FLOW™ --><div class="flex items-center">
+            <!-- ITEM 2: ALETHRA FLOW™ -->
+            <div class="flex items-center">
                 <a href="/flow" class="flex-shrink-0">
                     <img src="https://plusbrand.com/wp-content/uploads/2025/11/FLOW-scaled.webp" alt="ALETHRA FLOW Icon" class="h-16 w-auto mr-4">
                 </a>
@@ -264,7 +314,8 @@
                 </div>
             </div>
 
-            <!-- ITEM 3: ALETHRA NODE™ --><div class="flex items-center">
+            <!-- ITEM 3: ALETHRA NODE™ -->
+            <div class="flex items-center">
                 <a href="/node" class="flex-shrink-0">
                     <img src="https://plusbrand.com/wp-content/uploads/2025/11/NODE.webp" alt="ALETHRA NODE Icon" class="h-16 w-auto mr-4">
                 </a>
@@ -284,7 +335,8 @@
                 </div>
             </div>
 
-            <!-- ITEM 4: ALETHRA SENSE™ --><div class="flex items-center">
+            <!-- ITEM 4: ALETHRA SENSE™ -->
+            <div class="flex items-center">
                 <a href="/sense" class="flex-shrink-0">
                     <img src="https://plusbrand.com/wp-content/uploads/2025/11/SNSE-scaled.webp" alt="ALETHRA SENSE Icon" class="h-16 w-auto mr-4">
                 </a>
@@ -304,7 +356,8 @@
                 </div>
             </div>
 
-            <!-- ITEM 5: ALETHRA MOBILE™ --><div class="flex items-center">
+            <!-- ITEM 5: ALETHRA MOBILE™ -->
+            <div class="flex items-center">
                 <a href="/mobil" class="flex-shrink-0">
                     <img src="https://plusbrand.com/wp-content/uploads/2025/11/MOBIL-scaled.webp" alt="ALETHRA MOBILE Icon" class="h-16 w-auto mr-4">
                 </a>
@@ -324,7 +377,8 @@
                 </div>
             </div>
 
-            <!-- ITEM 6: ALETHRA SCAN™ (New Item) --><div class="flex items-center">
+            <!-- ITEM 6: ALETHRA SCAN™ (New Item) -->
+            <div class="flex items-center">
                 <a href="/scan" class="flex-shrink-0">
                     <img src="https://plusbrand.com/wp-content/uploads/2025/11/SCAN_1.webp" alt="ALETHRA SCAN Icon" class="h-16 w-auto mr-4">
                 </a>
@@ -347,14 +401,24 @@
         </div>
     </section>
 
-    <!-- SECTION: Enterprise Architecture (Updated to FULL CAPS) --><section class="bg-gray-100 py-8 md:py-12">
+    <!-- SECTION: Enterprise Architecture -->
+    <!-- 
+         STANDARD RULE:
+         py-8 (mobile) / py-12 (desktop).
+         (This section has a background color, so internal padding matches standard rule).
+    -->
+    <section class="bg-gray-100 py-8 md:py-12">
         <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-center mb-12 tracking-tight leading-snug">
+            <!-- Left Aligned Heading -->
+            <!-- UPDATED: mb-8 on mobile, mb-12 on desktop -->
+            <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-left mb-8 md:mb-12 tracking-tight leading-snug">
                 ENTERPRISE ARCHITECTURE
             </h2>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- UPDATED: gap-8 on mobile, gap-12 on desktop -->
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 
-                <!-- Features List --><div class="space-y-4 text-lg">
+                <!-- Features List -->
+                <div class="space-y-4 text-lg">
                     <p class="text-gray-700 leading-relaxed mb-4">A unified, multi-sensor system connecting on-line, off-line, handheld, and facility-wide data into a single truth layer.</p>
                     <ul class="space-y-3 list-none p-0">
                         <li class="flex items-center text-klyr-dark font-medium">
@@ -372,19 +436,30 @@
                     </ul>
                 </div>
                 
-                <!-- Diagram Placeholder --><div class="bg-white p-8 rounded-xl shadow-xl border border-gray-200 h-64 flex items-center justify-center">
+                <!-- Diagram Placeholder -->
+                <div class="bg-white p-8 rounded-xl shadow-xl border border-gray-200 h-64 flex items-center justify-center">
                    <img src="/images/ALETHRA_Enterprise_Architecture_Image.webp">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION: Regulatory & IT Confidence by Design (Updated to FULL CAPS) --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
-        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-center mb-12 tracking-tight leading-snug">
+    <!-- SECTION: Regulatory & IT Confidence by Design -->
+    <!-- 
+         STANDARD RULE:
+         Top: 3rem (desktop) / 2rem (mobile) -> pt-8 md:pt-12
+         Bottom: 0 -> pb-0 md:pb-0
+         (Preparing for the final Exception rule section)
+    -->
+    <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-0 md:pt-12 md:pb-0">
+        <!-- Left Aligned Heading -->
+        <!-- UPDATED: mb-8 on mobile, mb-12 on desktop -->
+        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-left mb-8 md:mb-12 tracking-tight leading-snug">
             REGULATORY & IT<br> CONFIDENCE BY DESIGN
         </h2>
         
-        <div class="max-w-3xl mx-auto p-8 rounded-2xl shadow-xl bg-white">
+        <!-- UPDATED: Increased card padding on desktop (md:p-12) to correct visual balance -->
+        <div class="max-w-3xl ml-0 p-8 md:p-12 rounded-2xl shadow-xl bg-white">
             <ul class="space-y-4 list-none p-0 text-gray-700 text-lg">
                 <li class="flex items-start">
                     <i class="fas fa-lock text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> NIST-aligned security and encryption
@@ -403,7 +478,9 @@
                 </li>
             </ul>
             
-            <div class="text-center mt-10">
+            <!-- Left Aligned Button -->
+            <!-- UPDATED: mt-8 on mobile, mt-12 on desktop to align with increased padding -->
+            <div class="text-left mt-8 md:mt-12">
                 <a href="/downloads/ALETHRA_Regulatory_Standards_Engagement_Plan.pdf" target="_blank" class="w-full sm:w-auto" >
                     <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider">
                         Download: Regulatory & Standards Engagement Plan (PDF)
@@ -413,12 +490,18 @@
         </div>
     </section>
              
-    <!-- NEW: Final CTA Section -->
-    <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 text-center">
+    <!-- NEW: Final CTA Section (High Impact) -->
+    <!-- 
+         EXCEPTION RULE:
+         Top: 6rem (desktop) / 4rem (mobile) -> pt-16 md:pt-24
+         Bottom: 6rem (desktop) / 4rem (mobile) -> pb-16 md:pb-24
+    -->
+    <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16 md:pt-24 md:pb-24 text-left">
         <h2 class="text-2xl md:text-3xl font-extrabold text-klyr-dark mb-8 tracking-tight leading-snug">
-            ALETHRA is ready for your production line,<br> your facility, or your global network.
+            ALETHRA™ is ready for your production line,<br> your facility, or your global network.
         </h2>
-        <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+        <!-- Left Aligned Buttons -->
+        <div class="flex flex-col sm:flex-row justify-start items-start space-y-4 sm:space-y-0 sm:space-x-6">
             <a href="/enterprise" class="w-full sm:w-auto">
                 <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
                     Request Enterprise Demo
@@ -433,14 +516,14 @@
     </section>
 
 
-<!-- ORIGINAL: general-message-box - preserved --><div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+<!-- ORIGINAL: general-message-box - preserved -->
+<div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
                 <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
             </div>
 
 
 <!-- The red banner section that was here has been removed. -->
         </div>
-        
 </main>
 
     

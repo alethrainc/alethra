@@ -183,82 +183,104 @@
 
 
     <main class="fade-in-section">
-        
-<div id="homepage-content">
+ <div id="homepage-content">
              <!-- Section 1: Hero - Corporate Statement -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-                <!-- Content is wider (max-w-3xl) to accommodate the three cards, text is centered by default -->
-                <div class="max-w-3xl mx-auto text-center space-y-8">
+            <!-- Rule 1: Desktop pt-24/pb-12, Mobile pt-16/pb-8 -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12">
+                
+                <!-- Grid Container: 2 Columns -->
+                <!-- Rule 2: gap-8 (2rem) mobile, gap-12 desktop. mb-8 (2rem) mobile, mb-12 desktop -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start mb-0 md:mb-0 ">
                     
-                    <!-- H1: Initiative Header with forced line break -->
-                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark">
-                        A GLOBAL INITIATIVE BY<br> <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> Inc.
-                    </h1>
-                    
-                    <!-- Corporate Statement Subheader -->
-                    <p class="text-xl text-gray-700 font-medium -mt-2">
-                        Clarity for Humanity — Corporate Statement
-                    </p>
-
-                    
-                    <!-- Wrapper for Paragraph and Email: Max width and forced left alignment -->
-                    <div class="max-w-2xl mx-auto pt-4 space-y-2 text-left">
-                        <!-- Main Paragraph: Reduced top padding (pt-4 -> pt-2) -->
-                        <p class="text-gray-600 text-lg">
-                             <span class="text-klyr-red">ALETHRA</span>™ is developed by <span class="text-klyr-red">ALETHRA</span>™ Inc., the innovator behind clarity technology for consumer safety and sustainable manufacturing. This initiative unites science, technology, and compassion to eliminate confusion-based loss worldwide.
+                    <!-- Left Column: Content -->
+                    <div class="space-y-6 text-left">
+                        
+                        <!-- H1: Initiative Header with forced line break -->
+                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark">
+                            A GLOBAL <br>INITIATIVE BY<br> <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> Inc.
+                        </h1>
+                        
+                        <!-- Corporate Statement Subheader -->
+                        <p class="text-xl text-gray-700 font-medium -mt-2">
+                            Clarity for Humanity — Corporate Statement
                         </p>
+                        
+                        <!-- Wrapper for Paragraph and Email -->
+                        <div class="max-w-3xl pt-4 space-y-2">
+                            <!-- Main Paragraph -->
+                            <p class="text-gray-600 text-lg">
+                                 <span class="text-klyr-red">ALETHRA</span>™ is developed by <span class="text-klyr-red">ALETHRA</span>™ Inc., the innovator behind clarity technology for consumer safety and sustainable manufacturing. This initiative unites science, technology, and compassion to eliminate confusion-based loss worldwide.
+                            </p>
 
-                        <!-- Email Action Link: Reduced top padding (pt-4 -> pt-2), left-aligned (inherited), bold, dark text -->
-                        <div class="pt-2 pb-6">
-                            <a href="mailto:press@myalethra.com" class="inline-flex items-center text-xl text-klyr-dark hover:text-red-700 font-bold transition duration-150">
-                                <i class="fas fa-envelope text-2xl mr-3"></i>
-                                press@myalethra.com
-                            </a>
+                            <!-- Email Action Link -->
+                            <div class="pt-2 md:pb-6 pb-0">
+                                <a href="mailto:press@myalethra.com" class="inline-flex items-center text-xl text-klyr-dark hover:text-red-700 font-bold transition duration-150">
+                                    <i class="fas fa-envelope text-2xl mr-3"></i>
+                                    press@myalethra.com
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Three Cards/Documents -->
-                    <div class="pt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-                        
-                        <!-- Card 1: White Paper (UPDATED LINK) -->
-                        <a href="/white-papers" class="block p-6 bg-gray-100 rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-200 transition duration-300 transform hover:-translate-y-0.5">
+                    <!-- Right Column: Image -->
+                    <div id="" class="content-box-border-style rounded-lg flex overflow-hidden"> 
+                        <!-- MODIFIED: Changed to h-auto and object-contain to respect aspect ratio without cropping -->
+                        <img id="" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
+                    </div>
+                
+                </div>
+
+                <!-- Three Cards/Documents -> VERTICAL DIVIDER GRID -->
+                <!-- Rule 5: gap-y-8 added. Mobile padding/borders stripped. Desktop padding/borders restored. -->
+                <div class="pt-6 grid grid-cols-1 md:grid-cols-3 gap-y-8">
+                    
+                    <!-- Item 1: White Paper -->
+                    <div class="p-0 border-none md:border-solid md:pr-6 md:pb-0 md:border-r-2 md:border-black flex flex-col justify-start h-full text-left">
+                        <a href="/white-papers" class="block hover:opacity-80 transition duration-300">
                             <p class="text-lg font-bold text-klyr-dark mb-1"><span class="text-klyr-red">ALETHRA</span>™ White Paper Series</p>
                             <p class="text-sm text-klyr-red font-semibold">(PDF)</p>
                         </a>
+                    </div>
 
-                        <!-- Card 2: Media Kit -->
-                        <a href="/media-kit" class="block p-6 bg-gray-100 rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-200 transition duration-300 transform hover:-translate-y-0.5">
+                    <!-- Item 2: Media Kit -->
+                    <!-- Stripped mobile pt/pl/pb/borders. Restored md:pl-8, md:pr-6 -->
+                    <div class="p-0 border-none md:border-solid md:pl-8 md:pr-6 md:pb-0 md:border-r-2 md:border-black flex flex-col justify-start h-full md:pt-0 text-left">
+                        <a href="/media-kit" class="block hover:opacity-80 transition duration-300">
                             <p class="text-lg font-bold text-klyr-dark mb-1">Corporate Media Kit</p>
                             <p class="text-sm text-klyr-red font-semibold">(logo & brand assets)</p>
                         </a>
+                    </div>
 
-                        <!-- Card 3: Patent Filings (Static info) -->
-                        <div class="p-6 bg-gray-100 rounded-xl shadow-lg flex flex-col justify-center">
+                    <!-- Item 3: Patent Filings -->
+                    <!-- Stripped mobile pt/pl. Restored md:pl-8 -->
+                    <div class="p-0 md:pl-8 md:pt-0 flex flex-col justify-start h-full text-left">
+                        <div class="block">
                             <p class="text-lg font-bold text-klyr-dark mb-1">Patent Filings</p>
                             <p class="text-sm text-gray-500 font-medium">(PCT and USPTO pending)</p>
                         </div>
                     </div>
-                    
-                    <!-- Two New Red Buttons (UPDATED LINKS) -->
-                    <div class="mt-10 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                        <a href="/interview" class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-[1.02] uppercase tracking-wider text-base">
-                            REQUEST INTERVIEW
-                        </a>
-                        <a href="/meeting" class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-[1.02] uppercase tracking-wider text-base">
-                            PARTNERSHIP MEETING
-                        </a>
-                    </div>
-                    
                 </div>
+                
+                <!-- Two New Red Buttons (UPDATED LINKS) - LEFT ALIGNED -->
+                <!-- Rule 2: mt-8 (2rem) mobile, mt-12 (3rem) desktop -->
+                <div class="mt-8 md:mt-12 flex flex-col sm:flex-row justify-start space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="/interview" class="w-full sm:w-auto">
+                         <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-[1.02] uppercase tracking-wider text-base w-full sm:w-auto">
+                            REQUEST INTERVIEW
+                        </button>
+                    </a>
+                    <a href="/meeting" class="w-full sm:w-auto">
+                         <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-[1.02] uppercase tracking-wider text-base w-full sm:w-auto">
+                            PARTNERSHIP MEETING
+                        </button>
+                    </a>
+                </div>
+                
             </section>
 
-             <!-- Add a general message box for global feedback -->
-            <div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
-            </div>
+          
             
         </div>
-        
 </main>
 
     

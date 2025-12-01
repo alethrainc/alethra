@@ -224,90 +224,115 @@
  
     <main class="fade-in-section">
         
-<div id="homepage-content">
-             <!-- Section 1: Hero - Global Standard of Clarity --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-6 md:pt-24 md:pb-8 text-center">
-                <div class="max-w-4xl mx-auto space-y-6">
+  <div id="homepage-content">
+             <!-- Section 1: Hero - Global Standard of Clarity -->
+             <!-- Rule 1: Desktop pt-24 pb-12, Mobile pt-16 pb-8 -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 md:pt-24 md:pb-12 text-left">
+                <!-- Grid gap-8 (2rem) mobile, gap-12 desktop -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
                     
-                    <div class="flex flex-col items-center justify-center">
-                        
-                       
-                        <!-- H1 Text --><h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark inline-block uppercase">
+                    <!-- Left Content -->
+                    <div class="space-y-6">
+                        <!-- H1 Text -->
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark inline-block uppercase text-left">
                             <strong class="text-klyr-red">ALETHRA</strong>™ White Paper Series
                         </h1>
+
+                        <!-- Paragraph Text -->
+                        <p class="text-gray-600 text-lg md:text-xl max-w-xl pt-4 text-left">
+                          Deep dives into the Global Clarity Intelligence System and the Confusion Elimination Framework
+                        </p>
                     </div>
 
-                    <!-- Paragraph Text (UPDATED to text-gray-600) --><p style="text-align: justify;" class="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto pt-4">
-                      Deep dives into the Global Clarity Intelligence System and the Confusion Elimination Framework
-                    </p>
+                    <!-- Right Content (Image) -->
+                    <div id="" class="content-box-border-style rounded-lg flex overflow-hidden"> 
+                        <!-- MODIFIED: Changed to h-auto and object-contain to respect aspect ratio without cropping -->
+                        <img id="" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
+                    </div>
+
                 </div>
             </section>
             
             <!-- NEW SECTION: White Paper Downloads Grid -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-12" id="white-papers-section">
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-klyr-dark mb-10 text-center uppercase tracking-wide">
+            <!-- Rule 3: Zero-Padding Correction applied. Prev section has pb-12. Set pt-0 here. -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-12" id="white-papers-section">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-klyr-dark mb-10 text-left uppercase tracking-wide">
                     Featured White Papers
                 </h2>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Vertical Divider Grid (3 Columns) -->
+                <!-- Rule 2: gap-12 on mobile -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-y-0">
                     
-                    <!-- White Paper Card 1: Global Clarity Intelligence System -->
-                    <a href="/downloads/ALETHRA_White_Paper_1_Cloud.pdf" target="_blank" class="block">
-                        <div class="premium-panel flex flex-col h-full p-6 sm:p-8 hover:shadow-klyr-red/30 hover:shadow-xl transition duration-300">
-                            <!-- Removed: <i class="fas fa-chart-line text-4xl text-klyr-red mb-4"></i> -->
-                            <h3 class="text-xl font-bold text-klyr-dark mb-2"><strong class="text-klyr-red">ALETHRA</strong>™ THE TRUST LAYER BENEATH THE AI CLOUD</h3>
-                            <p class="text-gray-600 text-base mb-4 flex-grow">Artificial intelligence has accelerated into every major sector, from healthcare to agriculture to supply chain and government systems. Cloud platforms now fight to become the dominant AI operating layer, absorbing billions in investment and onboarding thousands of AI startups.</p>
-                            <span class="text-sm font-semibold text-klyr-red mt-auto flex items-center">
-                                <i class="fas fa-file-pdf mr-2"></i> Download PDF
+                    <!-- White Paper Card 1: CLARITY IN CONSTRUCTION -->
+                    <div class="pl-0 pr-6 border-b border-gray-200 md:border-b-0 md:border-r-2 md:border-black h-full flex flex-col">
+                        <a href="/white-papers/clarity-in-construction" class="block group h-full flex flex-col">
+                            <h3 class="text-xl font-bold text-klyr-dark mb-4 group-hover:text-klyr-red transition duration-200 uppercase">
+                                CLARITY IN CONSTRUCTION: QUANTIFYING GLOBAL LOSS, ELIMINATING CONFUSION, AND REBUILDING TRUST WITH <strong class="text-klyr-red group-hover:text-klyr-red">ALETHRA</strong>™
+                            </h3>
+                            <p class="text-gray-600 text-base mb-6 flex-grow">
+                                Construction is a trillion-dollar engine that quietly leaks staggering amounts of capital due to one systemic flaw: confusion. Not abstract confusion — practical, daily, operational chaos driven by incomplete data, mislabeled materials, human error, communication lapses, misidentification, and the industry’s chronic lack of real-time verification.
+                            </p>
+                            <span class="text-sm font-semibold text-klyr-red mt-auto flex items-center group-hover:underline">
+                                <i class="fas fa-file-pdf mr-2"></i> Read White Paper
                             </span>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                     
-                    <!-- White Paper Card 2: Confusion Elimination Framework -->
-                    <a href="#" target="_blank" class="block">
-                        <div class="premium-panel flex flex-col h-full p-6 sm:p-8 hover:shadow-klyr-red/30 hover:shadow-xl transition duration-300">
-                            <!-- Removed: <i class="fas fa-brain text-4xl text-klyr-red mb-4"></i> -->
-                            <h3 class="text-xl font-bold text-klyr-dark mb-2">Confusion Elimination Framework — A Regulatory-Ready Approach (v1.0)</h3>
-                            <p class="text-gray-600 text-base mb-4 flex-grow">Analyzing the machine learning models driving the Global Clarity Intelligence System and their real-world impact.</p>
-                            <span class="text-sm font-semibold text-klyr-red mt-auto flex items-center">
-                                <i class="fas fa-file-pdf mr-2"></i> Download PDF
+                    <!-- White Paper Card 2: THE DEATH OF TRUST BY PROXY -->
+                    <div class="pl-0 md:pl-8 pr-6 border-b border-gray-200 md:border-b-0 md:border-r-2 md:border-black h-full flex flex-col">
+                        <a href="/white-papers/the-death-of-trust-by-proxy" class="block group h-full flex flex-col">
+                            <h3 class="text-xl font-bold text-klyr-dark mb-4 group-hover:text-klyr-red transition duration-200 uppercase">
+                                THE DEATH OF TRUST BY PROXY
+                            </h3>
+                            <p class="text-gray-600 text-base mb-6 flex-grow">
+                                For decades, the world has relied on trust by proxy — the idea that third-party labels, certifications, barcodes, QR codes, and compliance stamps accurately reflect what a product truly is.
+                            </p>
+                            <span class="text-sm font-semibold text-klyr-red mt-auto flex items-center group-hover:underline">
+                                <i class="fas fa-file-pdf mr-2"></i> Read White Paper
                             </span>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
 
-                    <!-- White Paper Card 3: Case Signals & Human-in-the-Loop -->
-                    <a href="#" target="_blank" class="block">
-                        <div class="premium-panel flex flex-col h-full p-6 sm:p-8 hover:shadow-klyr-red/30 hover:shadow-xl transition duration-300">
-                            <!-- Removed: <i class="fas fa-shield-alt text-4xl text-klyr-red mb-4"></i> -->
-                            <h3 class="text-xl font-bold text-klyr-dark mb-2">Case Signals & Human-in-the-Loop Proofing (v1.0)</h3>
-                            <p class="text-gray-600 text-base mb-4 flex-grow">A philosophical and technical review of ALETHRA's proprietary ethical guardrails for automated decision systems.</p>
-                            <span class="text-sm font-semibold text-klyr-red mt-auto flex items-center">
-                                <i class="fas fa-file-pdf mr-2"></i> Download PDF
+                    <!-- White Paper Card 3: THE GLOBAL COST OF CONFUSION -->
+                    <div class="pl-0 md:pl-8 h-full flex flex-col">
+                        <a href="/white-papers/the-global-cost-of-confusion" class="block group h-full flex flex-col">
+                            <h3 class="text-xl font-bold text-klyr-dark mb-4 group-hover:text-klyr-red transition duration-200 uppercase">
+                                THE GLOBAL COST OF CONFUSION
+                            </h3>
+                            <p class="text-gray-600 text-base mb-6 flex-grow">
+                                The world has quietly normalized a catastrophic flaw: we assume the physical information entering our digital systems is correct. It isn’t. And the cost is staggering.
+                            </p>
+                            <span class="text-sm font-semibold text-klyr-red mt-auto flex items-center group-hover:underline">
+                                <i class="fas fa-file-pdf mr-2"></i> Read White Paper
                             </span>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </section>
             
             <!-- Removed the "Official Media Kit Assets" section entirely as requested. -->
             
 
-            <!-- UPDATED SECTION 2.5: Single CTA Button --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10 text-center">
-                <div class="max-w-xs mx-auto">
-                    <!-- Button 1: JOIN TO GET NEW PAPERS FIRST --><a href="/join" class="w-full block">
+            <!-- UPDATED SECTION 2.5: Single CTA Button (Left Aligned) -->
+            <!-- Rule 1: High Impact CTA. -->
+            <!-- Rule 1 Gap Limit: Previous section has pb-12. Reduced top padding to pt-8/pt-12 to keep max visual gap ~6rem. -->
+            <!-- User Request: Bottom padding 3rem desktop (pb-12), 2rem mobile (pb-8). -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-0 pb-8 md:pb-12 text-left">
+                <div class="max-w-xs mr-auto">
+                    <!-- Button 1: JOIN TO GET NEW PAPERS FIRST -->
+                    <a href="/join" class="w-full block">
                         <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full text-sm">
                             JOIN TO GET NEW PAPERS FIRST
                         </button>
                     </a>
                 </div>
             </section>
-             <!-- Add a general message box for global feedback --><div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
-            </div>
-
-
-
-
            
+
+
+
+            
             <!-- REMOVED: Regulatory Engagement Request Form -->
         </div>
         

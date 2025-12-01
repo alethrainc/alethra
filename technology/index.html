@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALETHRA - Join the Clarity Movement</title>
+    <title>ALETHRA - Technology</title>
     
 <script src="https://cdn.tailwindcss.com"></script>
     
@@ -185,13 +185,18 @@
         
 <div id="homepage-content">
              <!-- Section 1: Hero - Confusion Costs Lives -->
-            <section class="fade-in-section max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
+             <!-- 
+                EXCEPTION RULE (Header Top): 
+                Top: 6rem (desktop) / 4rem (mobile) -> pt-16 md:pt-24
+                Bottom: 0 (to allow next section to provide gap)
+             -->
+            <section class="fade-in-section max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-0 md:pt-24 md:pb-0">
+                <div class="grid md:grid-cols-2 gap-8 items-start">
                     <!-- Left Content -->
                     <div class="space-y-6">
                         <!-- H1 Text -->
                         <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug">
-                            <span class="text-klyr-dark">TECHNOLOGY<br>THAT SEES <br> THE TRUTH.</span>
+                            <span class="text-klyr-dark">TECHNOLOGY<br>THAT SEES <br> THE TRUTH</span>
                         </h1>
                         <!-- Paragraph Text -->
                         <p class="text-gray-600 text-lg">
@@ -207,7 +212,12 @@
             </section>
 
             <!-- Section 2: KLYR Technology Platform Image (NEW SECTION) -->
-            <section class="fade-in-section max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 text-center">
+            <!-- 
+                STANDARD RULE:
+                Max desktop: 3rem (pt-12). Max mobile: 2rem (pt-8).
+                Bottom: 0 (to allow next section to provide gap).
+            -->
+            <section class="fade-in-section max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-0 md:pt-12 md:pb-0 text-center">
                 <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 text-klyr-dark">
                     KEY SYSTEM
                 </h2>
@@ -222,7 +232,14 @@
             </section>
             
             <!-- NEW SECTION 2.5: Dual CTA Buttons -->
-            <section class="fade-in-section max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
+            <!-- 
+                STANDARD RULE (Modified for Spacing):
+                Top: Standard (pt-8/pt-12).
+                Bottom: Added padding to create part of the gap to the banner.
+                Mobile Gap Math: pb-4 (1rem) + MsgBox pt-4 (1rem) = 2rem Gap.
+                Desktop Gap Math: pb-8 (2rem) + MsgBox pt-4 (1rem) = 3rem Gap.
+            -->
+            <section class="fade-in-section max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4 md:pt-12 md:pb-12 text-center">
                 <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
                     <!-- Button 1: Request Demo (KLYR Red) -->
                     <a href="/enterprise" class="w-full sm:w-auto">
@@ -239,17 +256,20 @@
                 </div>
             </section>
              <!-- Add a general message box for global feedback -->
-            <div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
-            </div>
+             <!-- NOTE: This container adds pt-4 (1rem) of space even when empty -->
+           
 
 
-
-
-             <section class="bg-klyr-red py-10">
+            <!-- Red Banner -->
+            <!-- 
+                STANDARD RULE:
+                Desktop: py-12 (3rem). Mobile: py-8 (2rem).
+                Restored to standard padding so text inside is not cramped.
+            -->
+             <section class="bg-klyr-red py-8 md:py-12">
                 <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
                     <p class="text-xl sm:text-2xl mb-1">
-                       Clarity isn’t a feature — it’s the foundation for a safer world.
+                        Clarity isn’t a feature — it’s the foundation for a safer world.
                     </p>
                 
                 </div>

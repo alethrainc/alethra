@@ -177,23 +177,49 @@
 <div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
 
     <main class="fade-in-section">
-        <div id="env-product-content">
-            
-            <!-- HERO SECTION: MOBILE Product Page --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-4 md:pb-6 text-center">
-                <!-- Heading --><h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4 text-klyr-dark">
-                    <span class="text-klyr-red">ALETHRA MOBIL™</span>
-                </h1>
-                <!-- Subhead --><p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-10">
-                    Instant handheld verification for field, hospital, and retail teams.
-                </p>
+         <div id="env-product-content">
+           <!-- HERO SECTION: MOBILE Product Page -->
+            <!-- Rule 1: Desktop pt-24 pb-12, Mobile pt-16 pb-8 -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 text-left">
+                <!-- GRID CONTAINER START -->
+                <!-- Rule 1 & 2: Gap-8 on mobile (2rem), Gap-12 on desktop. mb-8 for 2rem spacing. -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start mb-8 md:mb-12">
 
-                <!-- Hero CTA Buttons --><div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-                    <!-- CTA 1: Download Spec Sheet --><a href="/downloads/ALETHRA_MOBIL.pdf" target="_blank"  class="w-full sm:w-auto">
+                    <!-- LEFT COLUMN: Content -->
+                    <div>
+                        <!-- Heading -->
+                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4 text-klyr-dark">
+                            <span class="text-klyr-red">ALETHRA MOBIL™</span>
+                        </h1>
+                        <!-- Subhead -->
+                        <!-- ALIGNMENT: Removed mx-auto -->
+                        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl">
+                            Instant handheld verification for field, hospital, and retail teams.
+                        </p>
+                    </div>
+
+                    <!-- RIGHT COLUMN: Image -->
+                    <div>
+                        <div id="hero-image" class="content-box-border-style rounded-lg flex overflow-hidden"> 
+                            <!-- MODIFIED: Changed to h-auto and object-contain to respect aspect ratio without cropping -->
+                            <img id="" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-auto object-contain rounded-lg" onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
+                        </div>
+                    </div>
+
+                </div>
+                <!-- GRID CONTAINER END -->
+
+                <!-- Hero CTA Buttons -->
+                <!-- ALIGNMENT: Changed justify-center to justify-start, items-center to items-start -->
+                <div class="flex flex-col sm:flex-row justify-start items-start space-y-4 sm:space-y-0 sm:space-x-6">
+                    <!-- CTA 1: Download Spec Sheet -->
+                    <a href="/downloads/ALETHRA_MOBIL.pdf" target="_blank"  class="w-full sm:w-auto">
                         <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
                             Download MOBIL Spec Sheet (PDF)
                         </button>
                     </a>
-                    <!-- CTA 2: Request Integration Call --><a href="/enterprise" class="w-full sm:w-auto">
+                    <!-- CTA 2: Request Integration Call -->
+                    <a href="/enterprise" class="w-full sm:w-auto">
                         <button class="bg-klyr-dark hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
                             Request Integration Call
                         </button>
@@ -201,22 +227,34 @@
                 </div>
             </section>
 
-            <!-- SECTION: Clarity in the Palm of Your Hand --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6">
+
+            <!-- SECTION: Clarity in the Palm of Your Hand -->
+            <!-- Rule 3: Cumulative Spacing + Zero-Padding Correction. -->
+            <!-- Section padding 0 to avoid double spacing with internal cards. -->
+            <!-- Added mb-8 md:mb-12 to enforce gap to NEXT section. -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-0 mb-8 md:mb-12">
                 <div class="p-8 md:p-12 bg-gray-50 rounded-xl shadow-xl border border-gray-200">
-                    <h2 class="text-2xl md:text-4xl font-extrabold text-klyr-dark mb-6 text-center">
+                    <!-- ALIGNMENT: Changed text-center to text-left -->
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-klyr-dark mb-6 text-left">
                         CLARITY IN THE PALM OF <span class="text-klyr-red">YOUR HAND</span>
                     </h2>
-                    <p class="text-lg text-gray-700 leading-relaxed text-center max-w-4xl mx-auto">
+                    <!-- ALIGNMENT: Changed text-center to text-left, removed mx-auto -->
+                    <p class="text-lg text-gray-700 leading-relaxed text-left max-w-4xl">
                         When operators need answers now — not later — <strong>ALETHRA MOBIL™</strong> delivers immediate material verification, identity checks, and contamination alerts. Field-ready. Hospital-ready. Retail-ready. And built for environments where <strong>mobility is mission-critical</strong>.
                     </p>
                 </div>
             </section>
 
-            <!-- SECTION: Key Capabilities, Technical Highlights, and Use Cases (2-Column Layout) --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- SECTION: Key Capabilities, Technical Highlights, and Use Cases (2-Column Layout) -->
+            <!-- Rule 3: Top padding 0. Rule 2: Bottom padding 2rem (mobile) / 3rem (desktop). -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+                <!-- GRID: Added items-start. Rule 2 Gap: gap-8 mobile, gap-12 desktop. -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
                     
-                    <!-- COLUMN 1: Capabilities & Technical Highlights --><div>
-                        <!-- Key Capabilities --><h3 class="text-2xl font-extrabold text-klyr-dark mb-6 border-b-4 border-klyr-red pb-2 inline-block">Key Capabilities</h3>
+                    <!-- COLUMN 1: Capabilities & Technical Highlights -->
+                    <div>
+                        <!-- Key Capabilities -->
+                        <h3 class="text-2xl font-extrabold text-klyr-dark mb-6 border-b-4 border-klyr-red pb-2 inline-block">Key Capabilities</h3>
                         <ul class="space-y-3 text-lg text-gray-700 list-none p-0">
                             <li class="flex items-start">
                                 <i class="fas fa-hand-holding-medical text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> On-demand material verification
@@ -235,7 +273,9 @@
                             </li>
                         </ul>
 
-                        <!-- Technical Highlights --><h3 class="text-2xl font-extrabold text-klyr-dark mt-10 mb-6 border-b-4 border-klyr-red pb-2 inline-block">Technical Highlights</h3>
+                        <!-- Technical Highlights -->
+                        <!-- Rule 2: mt-8 (2rem) mobile, mt-10 desktop -->
+                        <h3 class="text-2xl font-extrabold text-klyr-dark mt-8 md:mt-10 mb-6 border-b-4 border-klyr-red pb-2 inline-block">Technical Highlights</h3>
                         <ul class="space-y-3 text-lg text-gray-700 list-none p-0">
                             <li class="flex items-start">
                                 <i class="fas fa-mobile-alt text-klyr-dark mr-3 mt-1 text-xl flex-shrink-0"></i> Ruggedized industrial handheld
@@ -255,8 +295,10 @@
                         </ul>
                     </div>
 
-                    <!-- COLUMN 2: Use Cases & Downloads --><div>
-                        <!-- Use Cases --><h3 class="text-2xl font-extrabold text-klyr-dark mb-6 border-b-4 border-klyr-red pb-2 inline-block">Use Cases</h3>
+                    <!-- COLUMN 2: Use Cases & Downloads -->
+                    <div>
+                        <!-- Use Cases -->
+                        <h3 class="text-2xl font-extrabold text-klyr-dark mb-6 border-b-4 border-klyr-red pb-2 inline-block">Use Cases</h3>
                         <ul class="space-y-3 text-lg text-gray-700 list-none p-0">
                             <li class="flex items-start">
                                 <i class="fas fa-vials text-klyr-red mr-3 mt-1 text-xl flex-shrink-0"></i> Medical sample routing
@@ -275,7 +317,9 @@
                             </li>
                         </ul>
 
-                        <!-- Downloads --><h3 class="text-2xl font-extrabold text-klyr-dark mt-10 mb-6 border-b-4 border-klyr-red pb-2 inline-block">Downloads</h3>
+                        <!-- Downloads -->
+                        <!-- Rule 2: mt-8 (2rem) mobile, mt-10 desktop -->
+                        <h3 class="text-2xl font-extrabold text-klyr-dark mt-8 md:mt-10 mb-6 border-b-4 border-klyr-red pb-2 inline-block">Downloads</h3>
                         <a href="/downloads/ALETHRA_MOBIL.pdf" target="_blank"  class="flex items-center text-klyr-dark hover:text-klyr-red transition duration-150 text-lg font-medium">
                             <i class="fas fa-file-pdf mr-3 text-2xl text-klyr-red"></i> ALETHRA MOBILE™ Spec Sheet (PDF)
                         </a>
@@ -284,11 +328,16 @@
                 </div>
             </section>
 
-            <!-- FINAL CTA SECTION --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 text-center bg-white rounded-xl mb-8">
+            <!-- FINAL CTA SECTION -->
+            <!-- Rule 1: High Impact CTA. -->
+            <!-- Reduced top padding to pt-8/pt-12 to satisfy Total Gap Limit (max 6rem) because prev section has pb-12. -->
+            <!-- ALIGNMENT: Changed text-center to text-left -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-16 md:pb-24 text-left bg-white rounded-xl mb-8">
                 <h2 class="text-2xl md:text-3xl font-extrabold text-klyr-dark mb-8 tracking-tight leading-snug">
                     Mobile clarity for the world that doesn’t stand still.
                 </h2>
-                <div class="flex justify-center">
+                <!-- ALIGNMENT: Changed justify-center to justify-start -->
+                <div class="flex justify-start">
                     <a href="/enterprise" class="w-full sm:w-auto">
                         <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-10 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
                             Request Enterprise Demo
@@ -297,9 +346,7 @@
                 </div>
             </section>
 
-            <!-- Message Box Placeholder (Keep original) --><div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
-            </div>
+       
 
         </div>
     </main>

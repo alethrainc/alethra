@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALETHRA - Join the Clarity Movement</title>
+    <title>ALETHRA - The Problem</title>
     
 <script src="https://cdn.tailwindcss.com"></script>
     
@@ -180,15 +180,15 @@
 
     <main class="fade-in-section">
         
-<div id="homepage-content">
+    <div id="homepage-content">
              <!-- Section 1: Hero - Confusion Costs Lives -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-0 md:pt-24 md:pb-12">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
                     <!-- Left Content -->
-                    <div class="space-y-6">
+                    <div class="space-y-5">
                         <!-- H1 Text -->
                         <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug">
-                            <span class="text-klyr-dark fade-in-section">THE WORLD’S<br> LARGEST <br> UNSEEN LOSS.</span>
+                            <span class="text-klyr-dark fade-in-section">THE WORLD’S<br> LARGEST <br> UNSEEN LOSS</span>
                         </h1>
                         <!-- Paragraph Text -->
                         <p class="text-gray-600 text-lg fade-in-section">
@@ -203,86 +203,88 @@
                 </div>
             </section>
 
-             <!-- Add a general message box for global feedback -->
-            <div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
-            </div>
+     
+           
 
-
-  <!-- Section 2: The Cost of Confusion - Structured Collections -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 md:pb-24">
+          <!-- Section 2: Industry Impact - Vertical Divider Grid -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-8 md:pb-12 md:pt-0">
                 
-                <!-- The grid container that holds the four columns -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 fade-in-section">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-black uppercase mb-8 text-left fade-in-section">
+                    INDUSTRY IMPACT
+                </h2>
 
-                    <!-- Collection 1: Food & Beverage -->
-                    <div class="flex flex-col h-full">
-                        <h3 class="text-2xl font-bold text-klyr-red mb-3 uppercase">Food & Beverage</h3>
-                        <!-- Applied description-alignment-fix -->
-                        <p class="text-gray-600 text-lg mb-3 description-alignment-fix">Labeling and packaging mix-ups cause massive recalls.</p>
-                        <!-- Card now aligns to the top of the remaining space -->
-                        <div class="w-full md:w-4/5 mx-auto">
-                            <div class="rounded-xl crisis-card-style p-6 text-center">
-                                <div class="space-y-2">
-                                    <p class="text-sm font-semibold text-gray-700 uppercase">Annual loss</p>
-                                    <p class="text-6xl font-extrabold text-klyr-red leading-none">$60B+</p>
-                                    <p class="text-sm font-semibold text-gray-700 uppercase leading-snug">Tons of food <br class="md:hidden"/> destroyed</p>
-                                </div>
+                <!-- STYLE: VERTICAL DIVIDER GRID (2 Top, 2 Bottom) -->
+                <!-- FIX: Added gap-y-12 for proper mobile spacing without manual margins -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-8 md:gap-y-16 fade-in-section">
+
+                    <!-- Item 1: Food & Beverage (Top Left) -->
+                    <div class="flex flex-col h-full pl-0 pr-6 border-gray-200 md:border-r-2 md:border-black">
+                        <h3 class="text-xl font-bold text-black mb-2">Food & Beverage</h3>
+                        <!-- Reverted description-alignment-fix -->
+                        <p class="text-gray-600 text-base mb-6">Labeling and packaging mix-ups cause massive recalls.</p>
+                        
+                        <!-- Red Line - Increased width to w-24 -->
+                        <div class="w-24 h-1 bg-klyr-red mb-6"></div>
+
+                        <div class="mt-auto">
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold text-black uppercase tracking-wider">ANNUAL LOSS</p>
+                                <p class="text-5xl font-extrabold text-klyr-red leading-tight mb-1">$60B+</p>
+                                <p class="text-xs font-bold text-black uppercase tracking-wider">TONS OF FOOD DESTROY</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Collection 2: Pharmaceutical & Medical -->
-                    <div class="flex flex-col h-full fade-in-section">
-                        <h3 class="text-2xl font-bold text-klyr-red mb-3 uppercase">Pharmaceutical & Medical</h3>
-                        <!-- Applied description-alignment-fix -->
-                        <p class="text-gray-600 text-lg mb-3 description-alignment-fix">Medication or dosage confusion - 1.5 million injuries per year (U.S.).</p>
-                        <!-- Card now aligns to the top of the remaining space -->
-                        <div class="w-full md:w-4/5 mx-auto">
-                            <div class="rounded-xl crisis-card-style p-6 text-center">
-                                <div class="space-y-2">
-                                    <p class="text-sm font-semibold text-gray-700 uppercase">Annual global cost</p>
-                                    <p class="text-6xl font-extrabold text-klyr-red leading-none">$42B+</p>
-                                    <!-- Placeholder to align layout with the first card on larger screens -->
-                                    <p class="text-sm font-semibold text-gray-700 uppercase opacity-0 select-none hidden md:block">Placeholder</p>
-                                </div>
+                    <!-- Item 2: Pharmaceutical & Medical (Top Right) -->
+                    <!-- Removed manual mt-8, relying on grid gap -->
+                    <div class="flex flex-col h-full pl-0 md:pl-10 pr-6">
+                        <h3 class="text-xl font-bold text-black mb-2">Pharmaceutical & Medical</h3>
+                        <!-- Reverted description-alignment-fix -->
+                        <p class="text-gray-600 text-base mb-6">Medication or dosage confusion - 1.5 million injuries per year (U.S.).</p>
+                        
+                        <!-- Red Line - Increased width to w-24 -->
+                        <div class="w-24 h-1 bg-klyr-red mb-6"></div>
+
+                        <div class="mt-auto">
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold text-black uppercase tracking-wider">ANNUAL GLOBAL COST</p>
+                                <p class="text-5xl font-extrabold text-klyr-red leading-tight">$42B+</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Collection 3: Manufacturing & Logistics -->
-                    <div class="flex flex-col h-full">
-                        <h3 class="text-2xl font-bold text-klyr-red mb-3 uppercase">Manufacturing & Logistics</h3>
-                        <!-- Applied description-alignment-fix -->
-                        <p class="text-gray-600 text-lg mb-3 description-alignment-fix">Batch and product swaps, shipping errors, line contamination.</p>
-                        <!-- Card now aligns to the top of the remaining space -->
-                        <div class="w-full md:w-4/5 mx-auto">
-                            <div class="rounded-xl crisis-card-style p-6 text-center">
-                                <div class="space-y-2">
-                                    <p class="text-sm font-semibold text-gray-700 uppercase">Annual waste</p>
-                                    <p class="text-6xl font-extrabold text-klyr-red leading-none">$300B+</p>
-                                    <!-- Placeholder to align layout with the fourth card on larger screens -->
-                                    <p class="text-sm font-semibold text-gray-700 uppercase opacity-0 select-none hidden md:block">Placeholder</p>
-                                </div>
+                    <!-- Item 3: Manufacturing & Logistics (Bottom Left) -->
+                    <!-- Removed manual mt-12, relying on grid gap -->
+                    <div class="flex flex-col h-full pl-0 pr-6 border-gray-200 md:border-r-2 md:border-black">
+                        <h3 class="text-xl font-bold text-black mb-2">Manufacturing & Logistics</h3>
+                        <!-- Reverted description-alignment-fix -->
+                        <p class="text-gray-600 text-base mb-6">Batch and product swaps, shipping errors, line contamination.</p>
+                        
+                        <!-- Red Line - Increased width to w-24 -->
+                        <div class="w-24 h-1 bg-klyr-red mb-6"></div>
+
+                        <div class="mt-auto">
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold text-black uppercase tracking-wider">ANNUAL WASTE</p>
+                                <p class="text-5xl font-extrabold text-klyr-red leading-tight">$300B+</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Collection 4: Consumer Safety -->
-                    <div class="flex flex-col h-full">
-                        <h3 class="text-2xl font-bold text-klyr-red mb-3 uppercase">Consumer Safety</h3>
-                        <!-- Applied description-alignment-fix -->
-                        <p class="text-gray-600 text-lg mb-3 description-alignment-fix">Shared or mistaken personal products spread illness and contamination.</p>
-                        <!-- Card now aligns to the top of the remaining space -->
-                        <div class="w-full md:w-4/5 mx-auto">
-                            <div class="rounded-xl crisis-card-style p-6 text-center">
-                                <div class="space-y-2">
-                                    <p class="text-sm font-semibold text-gray-700 uppercase">Human impact Entirely</p>
-                                    <!-- Changed text-5xl to text-4xl -->
-                                    <p class="text-4xl font-extrabold text-klyr-red leading-snug uppercase"> preventable</p>
-                                    <!-- Placeholder to align layout with the third card on larger screens -->
-                                    <p class="text-sm font-semibold text-gray-700 uppercase opacity-0 select-none hidden md:block">Placeholder</p>
-                                </div>
+                    <!-- Item 4: Consumer Safety (Bottom Right) -->
+                    <!-- Removed manual mt-12, relying on grid gap -->
+                    <div class="flex flex-col h-full pl-0 md:pl-10 pr-6">
+                        <h3 class="text-xl font-bold text-black mb-2">Consumer Safety</h3>
+                        <!-- Reverted description-alignment-fix -->
+                        <p class="text-gray-600 text-base mb-6">Shared or mistaken personal products spread illness and contamination.</p>
+                        
+                        <!-- Red Line - Increased width to w-24 -->
+                        <div class="w-24 h-1 bg-klyr-red mb-6"></div>
+
+                        <div class="mt-auto">
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold text-black uppercase tracking-wider">HUMAN IMPACT IMMEASURABLE</p>
+                                <p class="text-3xl font-extrabold text-klyr-red leading-tight uppercase">ENTIRELY PREVENTABLE</p>
                             </div>
                         </div>
                     </div>
@@ -290,18 +292,41 @@
                 </div>
             </section>
             <!-- END Section 2 -->
+            <!-- END Section 2 -->
 
              <section class="bg-klyr-red py-10">
-                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-left text-white">
                     <p class="text-xl sm:text-2xl mb-1">
-                        Confusion isn’t random — it’s systemic.<br>
- and it’s costing the world more than we can see.
+                        Estimated annual global<br>
+                        Loss: $500 – $700 billion.<br>
+                        Lives impacted: Millions
                     </p>
                 
                 </div>
             </section>
+
+            
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-left">
+                    JOIN THE CLARITY MOVEMENT
+                </h2>
+                
+                <div class="text-left">
+                    <p class="text-xl text-gray-700 mb-8">
+                        Become one of the first to experience <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> in action
+                    </p>
+                    <a href="/join" id="join-beta-btn" class="inline-block bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider">
+                        JOIN THE BETA
+                    </a>
+                    
+                    <div id="message-box" class="mt-8 bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden max-w-sm">
+                        Thank you for your interest! The beta sign-up page is coming soon.
+                    </div>
+                </div>
+            </section>
         </div>
         
+     
 </main>
 
     

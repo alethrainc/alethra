@@ -223,83 +223,115 @@
     <main class="fade-in-section">
         
 <div id="homepage-content">
-             <!-- Section 1: Hero - Global Standard of Clarity --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-6 md:pt-24 md:pb-8 text-center">
-                <div class="max-w-4xl mx-auto space-y-6">
+             <!-- Section 1: Hero - Global Standard of Clarity -->
+             <!-- Rule 1 Applied: pt-16 (4rem) and pb-8/pb-12 -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 text-left">
+                
+                <!-- Grid Container: 2 Columns -->
+                <!-- Rule 1 Mobile Element Spacing Applied: gap-8 (2rem) on mobile, md:gap-12 on desktop -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
                     
-                    <div class="flex flex-col items-center justify-center">
-                        
-                       
-                        <!-- H1 Text --><h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark inline-block uppercase">
-                            Intelligence with<br> <span class="font-bold text-klyr-red">measurable</span> impact
-                        </h1>
+                    <!-- Left Column: Content -->
+                    <div class="max-w-4xl space-y-6">
+                        <div class="flex flex-col items-start justify-center">
+                            <!-- H1 Text -->
+                            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark inline-block uppercase text-left">
+                                Intelligence with<br> <span class="font-bold text-klyr-red">measurable</span> impact
+                            </h1>
+                        </div>
+
+                        <!-- Paragraph Text -->
+                        <p class="text-gray-600 text-lg md:text-xl max-w-3xl pt-2 md:pt-4 text-left">
+                            <span class="font-bold text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> is designed to reduce waste, eliminate counterfeit risk, and optimize resources across product lifecycles.
+                        </p>
                     </div>
 
-                    <!-- Paragraph Text (UPDATED to text-gray-600) --><p style="text-align: justify;" class="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto pt-4">
-                        <span class="font-bold text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> is designed to reduce waste, eliminate counterfeit risk, and optimize resources across product lifecycles.
-                    </p>
+                    <!-- Right Column: Image -->
+                    <div id="content-box" class="content-box-border-style rounded-lg flex overflow-hidden"> 
+                        <!-- MODIFIED: Changed to h-auto and object-contain to respect aspect ratio without cropping -->
+                        <img id="" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
+                    </div>
+
                 </div>
             </section>
             
 
-            <!-- NEW SECTION: Sustainability Focus - Minimalistic Apple Style --><section class="bg-white py-6 md:py-12">
+            <!-- NEW SECTION: Sustainability Focus -->
+            <!-- Rule 2 Applied: py-8 (Mobile) md:py-12 (Desktop) -->
+            <!-- UPDATED: Set pt-0 to ensure exact 2rem/3rem gap from Hero (which has pb-8/pb-12) -->
+            <section class="bg-white pb-8 md:pb-12 pt-0">
                 <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="max-w-5xl mx-auto space-y-16">
+                    <!-- Rule 2 Inner Spacing Applied: space-y-8 (2rem mobile) md:space-y-16 -->
+                    <!-- This 'space-y-8' creates the 2rem gap between the first grid and the second grid -->
+                    <div class="max-w-5xl mx-0 space-y-8 md:space-y-16">
                         
-                        <!-- FEATURE 1: OUTCOMES WE TARGET (Using existing 3-card grid) -->
+                        <!-- FEATURE 1: OUTCOMES WE TARGET -->
                         <div>
-                            <!-- Outcomes Heading (Increased size) -->
-                            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-12 text-klyr-dark text-center uppercase">
+                            <!-- Outcomes Heading: Updated mobile mb-4 to mb-8 (2rem) -->
+                            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-8 md:mb-12 text-klyr-dark text-left uppercase">
                                 Outcomes We Target
                             </h2>
                             
-                            <!-- Outcomes Grid (Three Cards) -->
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                <!-- Card 1: Waste Reduction (Paragraph justified) -->
-                                <div class="sustainability-card text-center">
-                                    <h3 class="text-xl font-bold text-klyr-dark mb-2 mt-4">Waste Reduction</h3>
-                                    <p class="text-gray-600 text-base text-justify">
+                            <!-- Outcomes Grid -->
+                            <!-- UPDATED MOBILE: Added gap-y-8 (2rem) and removed vertical padding on items -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-y-8 md:gap-y-0">
+                                
+                                <!-- Card 1: Waste Reduction -->
+                                <!-- Mobile: p-0, border-none, mt-0 on h3. Desktop: p-6, border-r-2 -->
+                                <!-- FIX: Added md:border-solid to restore desktop borders overriding border-none -->
+                                <div class="p-0 text-left border-none md:border-solid md:p-6 md:pl-0 md:border-b-0 md:border-r-2 md:border-black">
+                                    <h3 class="text-xl font-bold text-klyr-dark mb-2 mt-0 md:mt-4">Waste Reduction</h3>
+                                    <p class="text-gray-600 text-base">
                                         Eliminating counterfeit materials and ensuring first-pass quality dramatically reduces product and packaging waste.
                                     </p>
                                 </div>
                                 
-                                <!-- Card 2: Energy Efficiency (Paragraph justified) -->
-                                <div class="sustainability-card text-center">
-                                    <h3 class="text-xl font-bold text-klyr-dark mb-2 mt-4">Energy Efficiency</h3>
-                                    <p class="text-gray-600 text-base text-justify">
+                                <!-- Card 2: Energy Efficiency -->
+                                <!-- Mobile: p-0, border-none. Desktop: p-6, border-r-2 -->
+                                <!-- FIX: Added md:border-solid to restore desktop borders overriding border-none -->
+                                <div class="p-0 text-left border-none md:border-solid md:p-6 md:pl-8 md:border-b-0 md:border-r-2 md:border-black">
+                                    <h3 class="text-xl font-bold text-klyr-dark mb-2 mt-0 md:mt-4">Energy Efficiency</h3>
+                                    <p class="text-gray-600 text-base">
                                         Optimized logistics and fewer reprocessing steps minimize transport mileage and overall energy consumption.
                                     </p>
                                 </div>
                                 
-                                <!-- Card 3: Material Traceability (Paragraph justified) -->
-                                <div class="sustainability-card text-center">
-                                    <h3 class="text-xl font-bold text-klyr-dark mb-2 mt-4">Material Traceability</h3>
-                                    <p class="text-gray-600 text-base text-justify">
+                                <!-- Card 3: Material Traceability -->
+                                <!-- Mobile: p-0. Desktop: p-6 -->
+                                <div class="p-0 text-left md:p-6 md:pl-8">
+                                    <h3 class="text-xl font-bold text-klyr-dark mb-2 mt-0 md:mt-4">Material Traceability</h3>
+                                    <p class="text-gray-600 text-base">
                                         Provides immutable proof of origin for every component. This capability directly supports the global circular economy.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- FEATURES 2 & 3: Aquaponic Model and Transparent Reporting (Flex centering removed) -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- FEATURES 2 & 3: Aquaponic Model and Transparent Reporting -->
+                        <!-- Vertical Divider Grid (2 Columns) -->
+                        <!-- UPDATED MOBILE: Added gap-y-8 (2rem) -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-8 md:gap-y-0">
 
-                            <!-- FEATURE 2: Aquaponic Model & Circularity Tie-ins (items-center removed, MIN-HEIGHT added) -->
-                            <div class="premium-panel flex flex-col">
-                                <h3 class="text-xl md:text-2xl font-extrabold tracking-tight mb-4 text-klyr-dark uppercase mt-2 text-center min-h-20 flex items-center justify-center">
+                            <!-- FEATURE 2 -->
+                            <!-- Mobile: p-0, border-none. Desktop: p-6, border-r-2 -->
+                            <!-- FIX: Added md:border-solid to restore desktop borders overriding border-none -->
+                            <div class="p-0 text-left border-none md:border-solid md:p-6 md:pl-0 md:border-b-0 md:border-r-2 md:border-black flex flex-col justify-center">
+                                <h3 class="text-xl md:text-2xl font-extrabold tracking-tight mb-4 text-klyr-dark uppercase mt-0 md:mt-2">
                                     Aquaponic Model &<br> Circularity Tie-ins
                                 </h3>
-                                <p class="text-gray-600 text-lg text-justify">
-                                    <span class="text-klyr-red">ALETHRACERTIFIED</span><span class="text-klyr-dark">™</span> uses a closed-loop resource model. Every data and physical output is an input for future, digitally verifiable circular supply chains.
+                                <p class="text-gray-600 text-lg">
+                                    <span class="text-klyr-red">ALETHRA CERTIFIED</span><span class="text-klyr-dark">™</span> uses a closed-loop resource model. Every data and physical output is an input for future, digitally verifiable circular supply chains.
                                 </p>
                             </div>
                             
-                            <!-- FEATURE 3: Transparent Reporting (items-center removed, MIN-HEIGHT added) -->
-                            <div class="premium-panel flex flex-col">
-                                <h3 class="text-xl md:text-2xl font-extrabold tracking-tight mb-4 text-klyr-dark uppercase mt-2 text-center min-h-20 flex items-center justify-center">
+                            <!-- FEATURE 3 -->
+                            <!-- Mobile: p-0. Desktop: p-6 -->
+                            <div class="p-0 text-left md:p-6 md:pl-8 flex flex-col justify-center">
+                                <h3 class="text-xl md:text-2xl font-extrabold tracking-tight mb-4 text-klyr-dark uppercase mt-0 md:mt-2">
                                     Transparent Reporting
                                 </h3>
-                                <p class="text-gray-600 text-lg text-justify">
-                                    We publish verifiable environmental and ethical metrics using real-time, audit-proof data streams. Stakeholders get an honest view of our collective **sustainability impact**.
+                                <p class="text-gray-600 text-lg">
+                                    We publish verifiable environmental and ethical metrics using real-time, audit-proof data streams. Stakeholders get an honest view of our collective <strong>sustainability impact</strong>.
                                 </p>
                             </div>
 
@@ -309,31 +341,29 @@
             </section>
 
 
-            <!-- UPDATED SECTION 2.5: Dual CTA Buttons --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10 text-center">
-                <div class="flex flex-col lg:flex-row justify-center items-center space-y-4 lg:space-y-0 lg:space-x-6 max-w-4xl mx-auto">
-                    <!-- Button 1: DOWNLOAD OUR SUSTAINABILITY BRIEF --><a href="/downloads/ALETHRA_Sustainability_Planetary_Stewardship_Brief.pdf" target="_blank" class="w-full lg:w-auto flex-1">
+            <!-- UPDATED SECTION 2.5: Dual CTA Buttons -->
+            <!-- Rule 1 CTA Section Applied: py-16 (Mobile) and py-24 (Desktop) -->
+            <!-- UPDATED REQUEST: 2rem (py-8) mobile, 3rem (py-12) desktop -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-0 md:pb-12 md:pt-0 text-left">
+                <div class="flex flex-col lg:flex-row justify-start items-center space-y-4 lg:space-y-0 lg:space-x-6 max-w-4xl">
+                    <!-- Button 1: DOWNLOAD OUR SUSTAINABILITY BRIEF -->
+                    <a href="/downloads/ALETHRA_Sustainability_Planetary_Stewardship_Brief.pdf" target="_blank" class="w-full lg:w-auto">
                         <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full text-sm">
-                            DOWNLOAD OUR <br> SUSTAINABILITY BRIEF
+                            DOWNLOAD OUR SUSTAINABILITY BRIEF
                         </button>
                     </a>
-                    <!-- Button 2: JOIN THE MOVEMENT --><a href="/join" class="w-full lg:w-auto flex-1">
+                    <!-- Button 2: JOIN THE MOVEMENT -->
+                    <a href="/join" class="w-full lg:w-auto">
                         <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full text-sm">
-                            JOIN THE <br> MOVEMENT
+                            JOIN THE MOVEMENT
                         </button>
                     </a>
                 </div>
             </section>
-             <!-- Add a general message box for global feedback --><div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
-            </div>
+            
+          
 
-
-
-
-           
-            <!-- REMOVED: Regulatory Engagement Request Form -->
         </div>
-        
 </main>
 <!-- REMOVED: Old unused country modal (id="country-modal") -->
     

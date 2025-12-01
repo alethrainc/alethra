@@ -181,34 +181,54 @@
   <div id="all-scratch-content">
             
             <!-- HERO SECTION -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 text-center">
-                <div class="max-w-4xl mx-auto space-y-6">
+            <!-- 
+                EXCEPTION RULE (Header Top): pt-16 md:pt-24
+                STANDARD RULE (Bottom): pb-8 md:pb-12 (to create gap before next section)
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 text-left">
+                <!-- Grid Container: 2 Columns -->
+                <!-- UPDATED: gap-8 on mobile, gap-12 on desktop -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
                     
-                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug">
-                        <span class="text-klyr-dark"><span class="text-klyr-red">ALL-SCRATCH!</span>™ —<br> THE FIRST PROVEN CONFUSION TECHNOLOGY</span>
-                    </h1>
-                    
-                    <p class="text-gray-600 text-lg">
-                        A patented specialty ink that lets anyone scratch their name or identifying mark directly onto disposable packaging — eliminating “whose is whose” in real time.
-                    </p>
+                    <!-- Left Column: Content -->
+                    <div class="space-y-6">
+                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug">
+                            <span class="text-klyr-dark"><span class="text-klyr-red">ALL-SCRATCH!</span><sup class="text-klyr-dark">®</sup><br> THE FIRST PROVEN CONFUSION TECHNOLOGY</span>
+                        </h1>
+                        
+                        <p class="text-gray-600 text-lg">
+                            A patented specialty ink that lets anyone scratch their name or identifying mark directly onto disposable packaging — eliminating “whose is whose” in real time.
+                        </p>
 
-                    <a href="#learn" class="inline-block mt-4">
-                        <button id="learn" class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider">
-                            Learn More
-                        </button>
-                    </a>
+                        <!-- UPDATED: mt-8 on mobile, mt-10 on desktop -->
+                        <a href="#learn" class="inline-block mt-8 md:mt-10">
+                            <button id="learn" class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider">
+                                Learn More
+                            </button>
+                        </a>
+                    </div>
+
+                    <!-- Right Column: Image -->
+                    <div id="" class="content-box-border-style rounded-lg flex overflow-hidden"> 
+                        <img src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
+                    </div>
+
                 </div>
             </section>
 
             <!-- WHAT ALL-SCRATCH IS -->
-            <section  class="bg-gray-50 py-12">
-                <section  class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="max-w-3xl mx-auto text-center space-y-6">
+            <!-- 
+                STANDARD RULE: py-8 (mobile) / py-12 (desktop)
+                Background section internal padding
+            -->
+            <section class="bg-gray-50 py-8 md:py-12">
+                <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl text-left space-y-6">
                         <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark tracking-tight leading-snug">
                             A PATENTED INK THAT ELIMINATES CONFUSION
                         </h2>
                         <p class="text-gray-600 text-lg">
-                            <span class="text-klyr-red">All-Scratch!</span>™ is a friction-activated ink engineered for bottles, cups, cans, cartons, and other disposable packaging. With nothing more than a fingernail, key, ring, or coin, users can scratch their name, initials, or symbol directly into the ink layer — creating a permanent, unmistakable identifier.
+                            <span class="text-klyr-red">All-Scratch!</span><sup class="text-klyr-dark">®</sup> is a friction-activated ink engineered for bottles, cups, cans, cartons, and other disposable packaging. With nothing more than a fingernail, key, ring, or coin, users can scratch their name, initials, or symbol directly into the ink layer — creating a permanent, unmistakable identifier.
                         </p>
                         <p class="text-xl font-bold text-klyr-red">
                             It turns every package into a personalized, confusion-proof item.
@@ -218,27 +238,36 @@
             </section>
 
             <!-- HOW IT WORKS -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-                <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-center mb-12 tracking-tight leading-snug">
-                    SIMPLE. PERMANENT. IMPOSSIBLE TO CONFUSE.
+            <!-- 
+                STANDARD RULE: 
+                Top: pt-8 md:pt-12
+                Bottom: pb-8 md:pb-12 (before red banner)
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-2 md:pt-12 md:pb-12">
+                <!-- UPDATED: mb-8 on mobile, mb-12 on desktop -->
+                <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-left mb-2 md:mb-12 tracking-tight leading-snug">
+                    SIMPLE. IMPOSSIBLE TO CONFUSE.
                 </h2>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Vertical Divider Grid (3 Columns) -->
+                <div class="grid grid-cols-1 md:grid-cols-3">
                     
                     <!-- Column 1 -->
-                    <div class="bg-white border border-gray-100 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="p-6 pl-0 border-b border-gray-200 md:border-b-0 md:border-r-2 md:border-black">
                         <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3">SCRATCH TO REVEAL</h3>
                         <p class="text-gray-600 font-medium">The ink layer activates with friction, exposing a bright permanent mark instantly.</p>
                     </div>
 
                     <!-- Column 2 -->
-                    <div class="bg-white border border-gray-100 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <!-- UPDATED: Added pl-0 for mobile flush alignment -->
+                    <div class="p-6 pl-0 md:pl-8 border-b border-gray-200 md:border-b-0 md:border-r-2 md:border-black">
                         <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3">NO MARKERS OR STICKERS NEEDED</h3>
                         <p class="text-gray-600 font-medium">It works anytime, anywhere — no tools required. The package itself is the tool.</p>
                     </div>
 
                     <!-- Column 3 -->
-                    <div class="bg-white border border-gray-100 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <!-- UPDATED: Added pl-0 for mobile flush alignment -->
+                    <div class="p-6 pl-0 md:pl-8">
                         <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-3">BUILT FOR HIGH-VOLUME PACKAGING</h3>
                         <p class="text-gray-600 font-medium">Compatible with bottles, cups, cartons, sports drinks, meal kits, and more.</p>
                     </div>
@@ -247,21 +276,27 @@
             </section>
 
             <!-- WHY IT MATTERED -->
-            <section class="bg-klyr-red py-12 md:py-16 text-white">
+            <!-- 
+                STANDARD RULE: py-8 (mobile) / py-12 (desktop)
+                Background section internal padding
+            -->
+            <section class="bg-klyr-red py-8 md:py-12 text-white">
                 <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- UPDATED: gap-8 on mobile, gap-12 on desktop -->
+                    <div class="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
                         <div>
-                            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug mb-6">
+                            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug mb-6 text-left">
                                 CONFUSION HAPPENS EVERYWHERE
                             </h2>
-                            <p class="text-lg opacity-90 mb-6">
+                            <p class="text-lg opacity-90 mb-6 text-left">
                                 Schools, gyms, stadiums, events, and workplaces — people constantly lose track of which drink or package belongs to them. This leads to contamination, accidental consumption, liability, and massive waste.
                             </p>
                         </div>
-                        <div class="bg-white text-klyr-dark p-8 rounded-lg shadow-xl">
+                        <!-- UPDATED: p-8 on mobile, p-12 on desktop -->
+                        <div class="bg-white text-klyr-dark p-8 md:p-12 rounded-lg shadow-xl text-left">
                             <p class="text-xl font-bold mb-2 uppercase text-gray-400">The Solution</p>
                             <h3 class="text-2xl md:text-3xl font-extrabold mb-4">
-                                <span class="text-klyr-red">All-Scratch!</span>™ solved this problem with a single action:
+                                <span class="text-klyr-red">All-Scratch!</span><sup class="text-klyr-dark">®</sup> solved this problem with a single action:
                             </h3>
                             <p class="text-2xl md:text-4xl font-extrabold text-klyr-red">
                                 Let people truly mark what’s theirs.
@@ -272,55 +307,75 @@
             </section>
 
             <!-- MARKET VALIDATION -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-                <div class="text-center mb-12">
+            <!-- 
+                STANDARD RULE: 
+                Top: pt-8 md:pt-12
+                Bottom: pb-8 md:pb-12 (before gray section)
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-8 md:pt-12 md:pb-12">
+                <!-- UPDATED: mb-8 on mobile, mb-12 on desktop -->
+                <div class="text-left mb-8 md:mb-12">
                     <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark tracking-tight leading-snug mb-4">
                         PROVEN ACROSS MILLIONS OF UNITS
                     </h2>
-                    <p class="text-gray-600 text-lg max-w-3xl mx-auto">
-                        <span class="text-klyr-red">All-Scratch!</span>™ was deployed across millions of beverage units through Plus Brand Industries and evaluated by major global brands across multiple packaging categories.
+                    <p class="text-gray-600 text-lg max-w-3xl">
+                        <span class="text-klyr-red">All-Scratch!</span><sup class="text-klyr-dark">®</sup> was deployed across millions of beverage units through Plus Brand Industries and evaluated by major global brands across multiple packaging categories.
                     </p>
                 </div>
 
-                <!-- Stats Grid (Mimicking original homepage stats) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                    <div class="bg-gray-100 p-6 rounded-xl text-center">
+                <!-- Stats Grid - Vertical Divider Style (4 Columns) -->
+                <!-- UPDATED: mb-8 on mobile, mb-12 on desktop -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-8 md:mb-12">
+                    <!-- Item 1 -->
+                    <!-- UPDATED: pl-0 is already present -->
+                    <div class="p-6 pl-0 border-b border-gray-200 lg:border-b-0 lg:border-r-2 lg:border-black text-left">
                         <p class="text-4xl md:text-5xl font-extrabold text-klyr-red mb-2">200M+</p>
                         <p class="font-bold text-gray-700 uppercase">Impressions</p>
                     </div>
-                    <div class="bg-gray-100 p-6 rounded-xl text-center">
+                    <!-- Item 2 -->
+                    <!-- UPDATED: Added pl-0 for mobile flush alignment -->
+                    <div class="p-6 pl-0 lg:pl-8 border-b border-gray-200 lg:border-b-0 lg:border-r-2 lg:border-black text-left">
                         <p class="text-4xl md:text-5xl font-extrabold text-klyr-red mb-2">120M+</p>
                         <p class="font-bold text-gray-700 uppercase">Unique Viewers</p>
                     </div>
-                    <div class="bg-gray-100 p-6 rounded-xl text-center">
+                    <!-- Item 3 -->
+                    <!-- UPDATED: Added pl-0 for mobile flush alignment -->
+                    <div class="p-6 pl-0 lg:pl-8 border-b border-gray-200 lg:border-b-0 lg:border-r-2 lg:border-black text-left">
                         <p class="text-4xl md:text-5xl font-extrabold text-klyr-red mb-2"><i class="fas fa-check"></i></p>
                         <p class="font-bold text-gray-700 uppercase">Major Brand Interest</p>
                     </div>
-                    <div class="bg-gray-100 p-6 rounded-xl text-center">
+                    <!-- Item 4 -->
+                    <!-- UPDATED: Added pl-0 for mobile flush alignment -->
+                    <div class="p-6 pl-0 lg:pl-8 text-left">
                         <p class="text-4xl md:text-5xl font-extrabold text-klyr-red mb-2"><i class="fas fa-shield-alt"></i></p>
                         <p class="font-bold text-gray-700 uppercase">Early Adoption</p>
                         <p class="text-xs text-gray-500 mt-1">Schools, Gyms, Festivals</p>
                     </div>
                 </div>
 
-                <div class="text-center">
+                <div class="text-left">
                     <p class="text-xl font-bold italic text-gray-700">This wasn’t a concept. It was reality.</p>
                 </div>
             </section>
 
             <!-- GLOBAL IP & TRADEMARKS -->
-            <section class="bg-gray-50 py-12 md:py-16">
+            <!-- 
+                STANDARD RULE: py-8 (mobile) / py-12 (desktop)
+            -->
+            <section class="bg-gray-50 py-8 md:py-12">
                 <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid md:grid-cols-2 gap-12">
+                    <!-- UPDATED: gap-8 on mobile, gap-12 on desktop -->
+                    <div class="grid md:grid-cols-2 gap-8 md:gap-12">
                         
                         <!-- IP Column -->
-                        <div>
+                        <div class="text-left">
                             <h2 class="text-3xl font-extrabold text-klyr-dark mb-6">
                                 PATENTED AND PROTECTED WORLDWIDE
                             </h2>
                             <p class="text-gray-600 mb-6">
-                                <span class="text-klyr-red">All-Scratch!</span>™ carries issued patents and filings across multiple countries, including:
+                                <span class="text-klyr-red">All-Scratch!</span><sup class="text-klyr-dark">®</sup> carries issued patents and filings across multiple countries, including:
                             </p>
+
                             <div class="grid grid-cols-2 gap-4 mb-6">
                                 <div class="flex items-center text-klyr-dark font-bold">United States</div>
                                 <div class="flex items-center text-klyr-dark font-bold">Mexico</div>
@@ -339,13 +394,14 @@
                         </div>
 
                         <!-- Trademarks Column -->
-                        <div class="flex flex-col justify-center">
-                            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+                        <div class="flex flex-col justify-center text-left">
+                            <!-- UPDATED: p-8 on mobile, p-12 on desktop -->
+                            <div class="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-gray-200">
                                 <h2 class="text-3xl font-extrabold text-klyr-dark mb-6">
                                     REGISTERED TRADEMARKS
                                 </h2>
                                 <div class="text-4xl md:text-6xl font-extrabold text-klyr-red">
-                                    All-Scratch!<sup class="text-2xl" style="vertical-align: super;">®</sup>
+                                    All-Scratch!<sup class="text-2xl text-klyr-dark" style="vertical-align: super;">®</sup>
                                 </div>
                             </div>
                         </div>
@@ -355,22 +411,29 @@
             </section>
 
             <!-- THE TRANSITION TO ALETHRA -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-center">
-                <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark tracking-tight leading-snug mb-12">
+            <!-- 
+                EXCEPTION RULE (High Impact CTA):
+                Top: pt-16 md:pt-24
+                Bottom: pb-16 md:pb-24
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16 md:pt-24 md:pb-24 text-left">
+                <!-- UPDATED: mb-8 on mobile, mb-12 on desktop -->
+                <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark tracking-tight leading-snug mb-8 md:mb-12">
                     FROM PHYSICAL CLARITY <br>
                     <span class="text-klyr-red">→ TO INTELLIGENT CLARITY</span>
                 </h2>
                 
-                <div class="max-w-3xl mx-auto space-y-6 mb-12">
+                <!-- UPDATED: mb-8 on mobile, mb-12 on desktop -->
+                <div class="max-w-3xl space-y-6 mb-8 md:mb-12">
                     <p class="text-xl text-gray-700">
-                        <span class="text-klyr-red">All-Scratch!</span>™ proved that confusion can be eliminated physically.
+                        <span class="text-klyr-red">All-Scratch!</span><sup class="text-klyr-dark">®</sup> proved that confusion can be eliminated physically.
                     </p>
                     <p class="text-xl text-klyr-dark font-bold">
-                        <span class="text-klyr-red">ALETHRA</span>™ proves it can now be eliminated intelligently — across products, sensors, environments, and supply chains.
+                        <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> proves it can now be eliminated intelligently — across products, sensors, environments, and supply chains.
                     </p>
-                    <div class="py-4">
-                        <p class="text-lg text-gray-600"><span class="text-klyr-red">All-Scratch!</span>™ solved identity at the package.</p>
-                        <p class="text-2xl font-extrabold text-klyr-red uppercase mt-2">ALETHRA™ solves identity everywhere.</p>
+                    <div class="">
+                        <p class="text-lg text-gray-600"><span class="text-klyr-red">All-Scratch!</span><sup class="text-klyr-dark">®</sup> solved identity at the package.</p>
+                        <p class="text-2xl font-extrabold text-klyr-red uppercase mt-2">ALETHRA<span class="text-klyr-dark">™</span> solves identity everywhere.</p>
                     </div>
                 </div>
 

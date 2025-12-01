@@ -177,71 +177,102 @@
 <div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
 
     <main class="">
+  
+    <!-- [IMAGE 1] HERO SECTION -->
+    <!-- 
+        EXCEPTION RULE (Header Top): pt-16 md:pt-24
+        STANDARD RULE (Bottom): pb-8 md:pb-12
+    -->
+    <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 text-left">
         
-     <!-- 1. HERO SECTION --><section class="max-w-full mx-auto pt-24 md:pt-32 pb-16 md:pb-24 bg-white relative overflow-hidden">
-        <div class="relative max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <!-- Grid Container: 2 Columns (Headline + Image) -->
+        <!-- UPDATED: gap-8 on mobile, gap-12 on desktop -->
+        <!-- UPDATED: mb-8 on mobile, mb-12 on desktop -->
+        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start mb-8 md:mb-12">
             
-            <!-- ALETHA™ Avatar Centered (Increased size) --><div class="mb-6">
-                <img src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" alt="ALETHA™ Avatar" class="mx-auto w-96 md:w-1/2 h-auto mb-4 transform hover:scale-105 transition duration-300">
+            <!-- Left Column: Content -->
+            <div class="space-y-6">
+                <!-- Headline -->
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-none text-klyr-dark mb-4 uppercase text-left">
+                    <span class="text-klyr-red">ALETHA</span>™ YOUR<br> DIRECT LINE TO<br> REAL-WORLD TRUTH
+                </h1>
+
+                <!-- Subline -->
+                <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mb-6 text-left font-medium">
+                    The intelligent, regulator - ready interface that brings the entire <span class="text-klyr-red">ALETHRA</span>™ ecosystem to life.
+                </p>
             </div>
 
-            <!-- Headline --><h1 class="text-3xl md:text-5xl font-extrabold tracking-tighter leading-snug text-klyr-dark mb-4 uppercase">
-                <span class="text-klyr-red">ALETHA</span>™ — YOUR DIRECT<br> LINE TO REAL-WORLD TRUTH
-            </h1>
+            <!-- Right Column: Image -->
+            <div id="content-box" class="content-box-border-style rounded-lg flex overflow-hidden"> 
+                <img id="" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
+            </div>
 
-            <!-- Subline --><p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-8">
-                The intelligent, regulator-ready interface that brings the entire <span class="text-klyr-red">ALETHRA</span>™ ecosystem to life.
+        </div>
+
+        <!-- Content Moved Below Grid to Prevent Squeezing -->
+        <div class="max-w-4xl">
+            <!-- Paragraph -->
+            <!-- UPDATED: mb-6 on mobile, mb-8 on desktop -->
+            <p class="text-lg text-gray-500 max-w-4xl mb-6 md:mb-12 text-left leading-relaxed">
+                <span class="text-klyr-red">ALETHA</span>™ is not a chatbot. Not an assistant. She is the operational intelligence layer that connects physical-world verification, cloud truth states, and executive decision-making - in real time.
             </p>
 
-            <!-- Positioning Statement --><p class="text-lg text-gray-700 max-w-4xl mx-auto mb-10 italic">
-                <span class="text-klyr-red">ALETHA</span>™ is not a chatbot. Not an assistant. She is the operational intelligence layer that connects physical-world verification, cloud truth states, and executive decision-making — in real time.
-            </p>
-
-            <!-- CTA Buttons --><div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
                 <a href="#role-purpose" class="w-full sm:w-auto">
-                    <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
-                        Meet ALETHA™
+                    <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto text-sm">
+                        MEET ALETHA™
                     </button>
                 </a>
                 <a href="#intelligence-model" class="w-full sm:w-auto">
-                    <button class="bg-white border-2 border-klyr-dark hover:bg-gray-100 text-klyr-dark font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 w-full sm:w-auto">
-                        How Clarity Intelligence Works
+                    <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto text-sm">
+                        HOW CLARITY INTELLIGENCE WORKS
                     </button>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- 2. SECTION — ROLE & PURPOSE --><section id="role-purpose" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark mb-12 tracking-tight leading-snug text-center">
-            The Human-Facing Mind of the <span class="text-klyr-red">Clarity Layer</span>
+    <!-- [IMAGE 1] SECTION — THE HUMAN-FACING MIND -->
+    <!-- 
+        STANDARD RULE: py-8 (mobile) / py-12 (desktop)
+    -->
+    <section id="role-purpose" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12 md:pt-0">
+        <!-- UPDATED: mb-8 on mobile, mb-12 on desktop -->
+        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark mb-8 md:mb-12 tracking-tight uppercase leading-snug text-left">
+            THE HUMAN-FACING MIND<br> OF THE CLARITY LAYER
         </h2>
-        <div class="grid md:grid-cols-2 gap-12 items-start">
-            <!-- Left: Short, strong paragraph --><div>
-                <p class="text-gray-700 text-xl leading-relaxed">
-                    <span class="text-klyr-red">ALETHA</span>™ is the real-time interpreter of the <span class="text-klyr-red">ALETHRA</span>™ truth infrastructure. She surfaces verified identities, contamination alerts, environmental integrity insights, continuity violations, and compliance signals — all through an interface executives can trust. She’s built for high-stakes environments where assumptions cost lives, money, and credibility.
+        <!-- UPDATED: gap-8 on mobile, gap-12 on desktop -->
+        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+            <!-- Left: Paragraph -->
+            <div>
+                <p class="text-gray-700 text-lg leading-relaxed text-left">
+                    <span class="text-klyr-red">ALETHA</span>™ is the real-time interpreter of the <span class="text-klyr-red">ALETHRA</span>™ truth infrastructure.<br><br>
+                    She surfaces verified identities, contamination alerts, environmental integrity insights, continuity violations, and compliance signals - all through an interface executives can trust. She’s built for high-stakes environments where assumptions cost lives, money, and credibility.
                 </p>
             </div>
-            <!-- Right: Clean capability list --><div class="space-y-4">
-                <ul class="text-klyr-dark text-lg space-y-3 font-medium">
+            <!-- Right: Bullet Points -->
+            <div class="space-y-4 text-left">
+                <ul class="text-klyr-dark text-lg space-y-4 font-medium">
                     <li class="flex items-start">
-                        <i class="fas fa-check-circle text-klyr-red mt-1 mr-3 flex-shrink-0"></i>
+                        <span class="text-2xl mr-3">•</span>
                         <span>Authenticity insights, validated by physical markers.</span>
                     </li>
                     <li class="flex items-start">
-                        <i class="fas fa-check-circle text-klyr-red mt-1 mr-3 flex-shrink-0"></i>
+                        <span class="text-2xl mr-3">•</span>
                         <span>Continuity verification across complex supply chains.</span>
                     </li>
                     <li class="flex items-start">
-                        <i class="fas fa-check-circle text-klyr-red mt-1 mr-3 flex-shrink-0"></i>
+                        <span class="text-2xl mr-3">•</span>
                         <span>Environmental integrity alerts for compliance and sustainability.</span>
                     </li>
                     <li class="flex items-start">
-                        <i class="fas fa-check-circle text-klyr-red mt-1 mr-3 flex-shrink-0"></i>
+                        <span class="text-2xl mr-3">•</span>
                         <span>Chain-of-custody intelligence with cryptographic security.</span>
                     </li>
                     <li class="flex items-start">
-                        <i class="fas fa-check-circle text-klyr-red mt-1 mr-3 flex-shrink-0"></i>
+                        <span class="text-2xl mr-3">•</span>
                         <span>Compliance-ready outputs for global regulatory bodies.</span>
                     </li>
                 </ul>
@@ -249,113 +280,143 @@
         </div>
     </section>
 
-    <!-- 3. SECTION — WHY ALETHA™ EXISTS --><section class="max-w-full mx-auto py-16 md:py-24 bg-gray-50 border-t border-b border-gray-100">
+    <!-- [IMAGE 1] SECTION — AI BECAME FAST (RED BANNER) -->
+    <!-- 
+        STANDARD RULE: py-8 (mobile) / py-12 (desktop)
+    -->
+    <section class="max-w-full mx-auto py-8 md:py-12 bg-klyr-red text-white">
         <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-left">
-            <!-- Content --><div class="max-w-3xl mx-auto">
-                <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark tracking-tight leading-snug mb-6">
-                    AI Became Fast. The World Became Complex. <span class="text-klyr-red">Truth Didn’t Keep Up.</span>
+            <!-- Content -->
+            <div class="max-w-4xl">
+                <!-- UPDATED: mb-6 on mobile, mb-8 on desktop -->
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight mb-6 md:mb-8 uppercase">
+                    AI BECAME FAST.<br>
+                    THE WORLD BECAME COMPLEX.<br>
+                    TRUTH DIDN'T KEEP UP.
                 </h2>
-                <p class="text-lg text-gray-700">
-                    Cloud platforms are flooded with agents, automations, and decision engines — but they all share one fatal weakness: they assume physical inputs are accurate. <span class="text-klyr-red">ALETHA</span>™ exists to eliminate that assumption. She ensures every physical input entering the cloud has been authenticated, validated, and bound to a persistent identity. She turns uncertainty into certainty. Noise into signal. Assumption into proof.
+                <p class="text-lg text-white opacity-90 leading-relaxed">
+                    Cloud platforms are flooded with agents, automations, and decision engines - but they all share one fatal weakness: they assume physical inputs are accurate. ALETHA™ exists to eliminate that assumption. She ensures every physical input entering the cloud has been authenticated, validated, and bound to a persistent identity. She turns uncertainty into certainty. Noise into signal. Assumption into proof.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- 4. SECTION — INTELLIGENCE MODEL --><section id="intelligence-model" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-center mb-16 tracking-tight leading-snug">
-            The Cognitive Architecture Behind <span class="text-klyr-red">ALETHA</span>™
+    <!-- [IMAGE 2] SECTION — COGNITIVE ARCHITECTURE -->
+    <!-- 
+        STANDARD RULE: 
+        Top: pt-8 md:pt-12
+        Bottom: pb-8 md:pb-12
+    -->
+    <section id="intelligence-model" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-8 md:pt-12 md:pb-12">
+        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-left mb-2 tracking-tight uppercase leading-snug">
+            THE COGNITIVE ARCHITECTURE
+        </h2>
+        <!-- UPDATED: mb-8 on mobile, mb-12 on desktop -->
+        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-left mb-8 md:mb-12 tracking-tight uppercase leading-snug">
+            BEHIND <span class="text-klyr-red">ALETHA</span>™
         </h2>
         
-        <!-- Four-card grid --><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- 4 Column Grid -->
+        <!-- UPDATED: gap-8 on mobile -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             
-            <!-- Card 1: ALETHRA SCAN™ --><div class="p-6 bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                <div class="w-10 h-1 bg-klyr-red mb-4"></div>
-                <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-4"><span class="text-klyr-red">ALETHRA</span> SCAN™</h3>
-                <ul class="text-sm text-gray-600 space-y-2 mb-4 list-disc pl-5">
+            <!-- ALETHRA SCAN -->
+            <div class="text-left border-l-2 border-black pl-4">
+                <h3 class="text-lg font-bold text-klyr-red uppercase mb-4">ALETHRA SCAN™</h3>
+                <ul class="text-sm text-gray-700 space-y-3 mb-6 list-disc pl-4">
                     <li>Micro-surface identity recognition.</li>
                     <li>Physical-object fingerprinting.</li>
                     <li>Multi-level authenticity mapping.</li>
                 </ul>
-                <p class="text-base font-semibold text-klyr-red">Value: Ensures every object or product has a verified identity.</p>
+                <p class="text-sm text-gray-800"><strong>Value:</strong> Ensures every object or product has a verified identity.</p>
             </div>
 
-            <!-- Card 2: ALETHRA SENSE™ --><div class="p-6 bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                <div class="w-10 h-1 bg-klyr-red mb-4"></div>
-                <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-4"><span class="text-klyr-red">ALETHRA</span> SENSE™</h3>
-                <ul class="text-sm text-gray-600 space-y-2 mb-4 list-disc pl-5">
+            <!-- ALETHRA SENSE -->
+            <div class="text-left border-l-2 border-black pl-4">
+                <h3 class="text-lg font-bold text-klyr-red uppercase mb-4">ALETHRA SENSE™</h3>
+                <ul class="text-sm text-gray-700 space-y-3 mb-6 list-disc pl-4">
                     <li>Multi-sensor data fusion.</li>
                     <li>Material-level verification.</li>
                     <li>Real-time signal confirmation.</li>
                 </ul>
-                <p class="text-base font-semibold text-klyr-red">Value: Detects what’s real — and what’s not.</p>
+                <p class="text-sm text-gray-800"><strong>Value:</strong> Detects what’s real — and what’s not.</p>
             </div>
 
-            <!-- Card 3: ALETHRA ENV™ --><div class="p-6 bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                <div class="w-10 h-1 bg-klyr-red mb-4"></div>
-                <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-4"><span class="text-klyr-red">ALETHRA</span> ENV™</h3>
-                <ul class="text-sm text-gray-600 space-y-2 mb-4 list-disc pl-5">
+            <!-- ALETHRA ENV -->
+            <div class="text-left border-l-2 border-black pl-4">
+                <h3 class="text-lg font-bold text-klyr-red uppercase mb-4">ALETHRA ENV™</h3>
+                <ul class="text-sm text-gray-700 space-y-3 mb-6 list-disc pl-4">
                     <li>Environmental deviation mapping.</li>
                     <li>Integrity scoring.</li>
                     <li>Proximity-based anomaly detection.</li>
                 </ul>
-                <p class="base font-semibold text-klyr-red">Value: Flags conditions that compromise safety, quality, or compliance.</p>
+                <p class="text-sm text-gray-800"><strong>Value:</strong> Flags conditions that compromise safety, quality, or compliance.</p>
             </div>
 
-            <!-- Card 4: ALETHRA CLOUD™ --><div class="p-6 bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                <div class="w-10 h-1 bg-klyr-red mb-4"></div>
-                <h3 class="text-xl font-extrabold text-klyr-dark uppercase mb-4"><span class="text-klyr-red">ALETHRA</span> CLOUD™</h3>
-                <ul class="text-sm text-gray-600 space-y-2 mb-4 list-disc pl-5">
+            <!-- ALETHRA CLOUD -->
+            <div class="text-left border-l-2 border-black pl-4">
+                <h3 class="text-lg font-bold text-klyr-red uppercase mb-4">ALETHRA CLOUD™</h3>
+                <ul class="text-sm text-gray-700 space-y-3 mb-6 list-disc pl-4">
                     <li>Truth ledger.</li>
                     <li>Continuity engine.</li>
                     <li>Immutable identity governance.</li>
                 </ul>
-                <p class="base font-semibold text-klyr-red">Value: Anchors physical truth inside enterprise AI ecosystems.</p>
+                <p class="text-sm text-gray-800"><strong>Value:</strong> Anchors physical truth inside enterprise AI ecosystems.</p>
             </div>
         </div>
 
-        <!-- Footer Line (Full Width) --><p class="text-xl italic font-bold text-gray-700 text-center mt-16">
+        <!-- Centered Italic Text -> Now Left Aligned -->
+        <!-- UPDATED: mt-8 on mobile, mt-16 on desktop -->
+        <p class="text-xl italic font-bold text-gray-800 text-left mt-8 md:mt-16 max-w-4xl">
             <span class="text-klyr-red">ALETHA</span>™ transforms high-density physical verification data into intelligent, executive-grade guidance.
         </p>
     </section>
 
-    <!-- 5. SECTION — HOW ALETHA™ OPERATES --><section class="max-w-full mx-auto py-16 md:py-24 bg-white">
+    <!-- [IMAGE 2] SECTION — SINGLE INTERFACE -->
+    <!-- 
+        STANDARD RULE: pb-8 md:pb-12
+    -->
+    <section class="max-w-full mx-auto pb-8 md:pb-0 bg-white">
         <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-center mb-12 tracking-tight leading-snug">
-                A Single Interface. A Global Intelligence System.
+            <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-left mb-2 tracking-tight uppercase leading-snug">
+                A SINGLE INTERFACE.
             </h2>
-            <!-- Three horizontal white tiles with dark text and red separators --><div class="grid grid-cols-1 md:grid-cols-3 divide-y-2 md:divide-y-0 md:divide-x-2 divide-klyr-red border-y-2 border-klyr-red">
+            <!-- UPDATED: mb-8 on mobile, mb-12 on desktop -->
+            <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-left mb-8 md:mb-12 tracking-tight uppercase leading-snug">
+                A GLOBAL INTELLIGENCE SYSTEM.
+            </h2>
+            
+            <!-- 3 Column Grid -->
+            <!-- UPDATED: gap-8 on mobile, gap-12 on desktop -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                 
-                <!-- Tile 1: Insight Mode --><div class="p-8 text-klyr-dark text-center">
-                    <h3 class="text-2xl font-extrabold uppercase mb-4 relative pb-2">
-                        Insight Mode <span class="text-sm font-normal block">(Executive Intelligence)</span>
-                        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-klyr-red rounded-full"></span>
-                    </h3>
-                    <ul class="text-base text-gray-700 space-y-2 list-none">
+                <!-- Insight Mode -->
+                <div class="text-left border-l-2 border-black pl-4">
+                    <h3 class="text-xl font-extrabold text-klyr-dark mb-1">Insight Mode</h3>
+                    <p class="text-gray-600 mb-4">(Executive Intelligence)</p>
+                    <ul class="text-base text-gray-700 space-y-4 list-disc pl-5">
                         <li>Instant clarity for high-stakes decisions.</li>
                         <li>Verified truth states.</li>
                         <li>Leadership-ready intelligence summaries.</li>
                     </ul>
                 </div>
 
-                <!-- Tile 2: Operational Mode --><div class="p-8 text-klyr-dark text-center">
-                    <h3 class="text-2xl font-extrabold uppercase mb-4 relative pb-2">
-                        Operational Mode <span class="text-sm font-normal block">(Real-Time Monitoring)</span>
-                        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-klyr-red rounded-full"></span>
-                    </h3>
-                    <ul class="text-base text-gray-700 space-y-2 list-none">
-                        <li>Live feeds from SENSE, SCAN, and ENV.</li>
+                <!-- Operational Mode -->
+                <div class="text-left border-l-2 border-black pl-4">
+                    <h3 class="text-xl font-extrabold text-klyr-dark mb-1">Operational Mode</h3>
+                    <p class="text-gray-600 mb-4">(Real-Time Monitoring)</p>
+                    <ul class="text-base text-gray-700 space-y-4 list-disc pl-5">
+                        <li>Live feeds from <span class="text-klyr-red">SENSE</span>™, <span class="text-klyr-red">SCAN</span>™, and <span class="text-klyr-red">ENV</span>™.</li>
                         <li>Second-by-second continuity checks.</li>
                         <li>Automated deviation detection.</li>
                     </ul>
                 </div>
 
-                <!-- Tile 3: Governance Mode --><div class="p-8 text-klyr-dark text-center">
-                    <h3 class="text-2xl font-extrabold uppercase mb-4 relative pb-2">
-                        Governance Mode <span class="text-sm font-normal block">(Compliance & Audit)</span>
-                        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-klyr-red rounded-full"></span>
-                    </h3>
-                    <ul class="text-base text-gray-700 space-y-2 list-none">
+                <!-- Governance Mode -->
+                <div class="text-left border-l-2 border-black pl-4">
+                    <h3 class="text-xl font-extrabold text-klyr-dark mb-1">Governance Mode</h3>
+                    <p class="text-gray-600 mb-4">(Compliance & Audit)</p>
+                    <ul class="text-base text-gray-700 space-y-4 list-disc pl-5">
                         <li>Regulator-ready logs.</li>
                         <li>Immutable event signatures.</li>
                         <li>Cross-border verification integrity.</li>
@@ -366,139 +427,218 @@
         </div>
     </section>
 
-    <!-- 6. SECTION — ENTERPRISE & CLOUD INTEGRATION --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark mb-12 tracking-tight leading-snug text-center">
-            Designed for Hyperscale. <span class="text-klyr-red">Engineered for Zero Failure.</span>
+    <!-- [IMAGE 3] SECTION — HYPERSCALE & LOGOS -->
+    <!-- 
+        STANDARD RULE: py-8 md:py-12
+    -->
+    <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:py-12">
+        <!-- Headings Stacked -->
+        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark mb-2 tracking-tight uppercase leading-snug text-left">
+            DESIGNED FOR HYPERSCALE.
         </h2>
-        <div class="grid md:grid-cols-3 gap-12 items-center">
-            <!-- Left Text Block --><div class="md:col-span-2">
-                <p class="text-gray-700 text-xl leading-relaxed">
-                    <span class="text-klyr-red">ALETHA</span>™ integrates natively with Oracle Cloud, AWS, Microsoft Azure, Google Cloud, and enterprise agent frameworks. She consumes <span class="text-klyr-red">ALETHRA</span>™ truth states and exposes them through APIs, dashboards, and intelligent workflows — powering verified decisions at cloud scale.
-                </p>
-                <p class="text-lg text-gray-500 mt-4 italic font-semibold">
-                    Architect Note: This is the section Ben will zero in on. It speaks his language immediately.
-                </p>
+        <!-- UPDATED: mb-6 on mobile, mb-8 on desktop -->
+        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark mb-6 md:mb-8 tracking-tight uppercase leading-snug text-left">
+            ENGINEERED FOR ZERO FAILURE.
+        </h2>
+
+        <!-- Paragraph Full Width -->
+        <!-- UPDATED: mb-8 on mobile, mb-12 on desktop -->
+        <p class="text-gray-700 text-lg leading-relaxed text-left max-w-5xl mb-8 md:mb-12">
+            <span class="text-klyr-red">ALETHA</span>™ integrates natively with Oracle Cloud, AWS, Microsoft Azure, Google Cloud, and enterprise agent frameworks. She consumes <span class="text-klyr-red">ALETHRA</span>™ truth states and exposes them through APIs, dashboards, and intelligent workflows — powering verified decisions at cloud scale.
+        </p>
+
+        <!-- Logos Layout - Centered Stacked Grid (3 on top, 2 on bottom) -->
+        <!-- UPDATED: mt-8 on mobile, mt-16 on desktop -->
+       <div class="space-y-8 md:space-y-12 opacity-80 max-w-5xl mx-auto mt-8 md:mt-16 flex flex-col items-start md:items-center">
+                
+                <!-- Row 1: Oracle, AWS, Azure -->
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-8 md:gap-0 px-4">
+                    <!-- Oracle -->
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-database text-4xl text-gray-500"></i>
+                        <span class="text-3xl font-extrabold text-gray-700">Oracle</span>
+                    </div>
+                    <!-- AWS -->
+                    <div class="flex items-center space-x-3">
+                        <i class="fab fa-aws text-4xl text-gray-500"></i>
+                        <span class="text-3xl font-extrabold text-gray-700">AWS</span>
+                    </div>
+                    <!-- Azure -->
+                    <div class="flex items-center space-x-3">
+                        <i class="fab fa-microsoft text-4xl text-gray-500"></i>
+                        <span class="text-3xl font-extrabold text-gray-700">Azure</span>
+                    </div>
+                </div>
+
+                <!-- Row 2: Google, Enterprise Agents -->
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-center gap-8 md:gap-32 w-full px-4 md:px-0">
+                    <!-- Google Cloud -->
+                    <div class="flex items-center space-x-3">
+                        <i class="fab fa-google text-4xl text-gray-500"></i>
+                        <span class="text-3xl font-extrabold text-gray-700">Google Cloud</span>
+                    </div>
+                    <!-- Enterprise Agent Systems -->
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-share-alt text-4xl text-gray-500"></i>
+                        <span class="text-3xl font-extrabold text-gray-700">Enterprise Agent Systems</span>
+                    </div>
+                </div>
+
             </div>
-            <!-- Right Monochrome Logo List (Responsive Grid) --><div class="grid grid-cols-3 gap-y-6 gap-x-4 md:block md:space-y-4 max-w-sm mx-auto md:max-w-none md:mx-0">
-                <div class="flex items-center space-x-4">
-                    <i class="fas fa-database text-3xl text-gray-400"></i>
-                    <span class="text-gray-700 font-semibold">Oracle</span>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <i class="fab fa-aws text-3xl text-gray-400"></i>
-                    <span class="text-gray-700 font-semibold">AWS</span>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <i class="fab fa-microsoft text-3xl text-gray-400"></i>
-                    <span class="text-gray-700 font-semibold">Azure</span>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <i class="fab fa-google text-3xl text-gray-400"></i>
-                    <span class="text-gray-700 font-semibold">Google Cloud</span>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <i class="fas fa-project-diagram text-3xl text-gray-400"></i>
-                    <span class="text-gray-700 font-semibold">Enterprise Agent Systems</span>
-                </div>
-            </div>
-        </div>
     </section>
 
-    <!-- 7. SECTION — PERSONALITY & DESIGN --><section class="max-w-full mx-auto py-16 md:py-24 bg-gray-50">
-        <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
-            <!-- Left: Portrait of ALETHA™ avatar placeholder (Cara avatar) --><div class="text-center">
-                <div class="mx-auto w-48 h-48 bg-gray-200 rounded-full flex items-center justify-center border-4 border-klyr-red shadow-2xl">
-                    <i class="fas fa-user-tie text-7xl text-klyr-dark"></i>
-                </div>
-                <p class="mt-4 text-gray-600 italic"><span class="text-klyr-red">ALETHA</span>™ Interface Schema (v4.1)</p>
-            </div>
-
-            <!-- Right: Tone description + design philosophy --><div>
-                <h2 class="text-3xl font-extrabold text-klyr-dark mb-6">
-                    Fortune-100 Calm. High-Tech Precision. <span class="text-klyr-red">Human Warmth.</span>
-                </h2>
-                <ul class="text-lg text-gray-700 space-y-3 font-medium">
+    <!-- [IMAGE 3] SECTION — PERSONALITY -->
+    <!-- 
+        STANDARD RULE: py-8 md:py-12
+    -->
+    <section class="max-w-full mx-auto pt-0 pb-8 md:py-12 bg-white">
+        <!-- UPDATED: gap-8 on mobile, gap-12 on desktop -->
+        <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            
+            <!-- Left: Text -->
+            <div class="text-left">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark mb-2 uppercase">FORTUNE-100 CALM.</h2>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark mb-2 uppercase">HIGH-TECH PRECISION.</h2>
+                <!-- UPDATED: mb-6 on mobile, mb-8 on desktop -->
+                <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark mb-6 md:mb-8 uppercase">HUMAN WARMTH.</h2>
+                
+                <ul class="text-lg text-gray-700 space-y-4">
                     <li class="flex items-start">
-                        <i class="fas fa-angle-right text-klyr-red mt-1 mr-3 flex-shrink-0"></i>
+                        <span class="mr-2">•</span>
                         <span><span class="text-klyr-red">ALETHA</span>™ embodies high certainty, zero hesitation, and no wasted language.</span>
                     </li>
                     <li class="flex items-start">
-                        <i class="fas fa-angle-right text-klyr-red mt-1 mr-3 flex-shrink-0"></i>
+                        <span class="mr-2">•</span>
                         <span>Communicates with executive-grade composure and surgical analytical clarity.</span>
                     </li>
                     <li class="flex items-start">
-                        <i class="fas fa-angle-right text-klyr-red mt-1 mr-3 flex-shrink-0"></i>
+                        <span class="mr-2">•</span>
                         <span>Balanced with a friendly human edge; she is engineered to help humans.</span>
                     </li>
                     <li class="flex items-start">
-                        <i class="fas fa-angle-right text-klyr-red mt-1 mr-3 flex-shrink-0"></i>
+                        <span class="mr-2">•</span>
                         <span>Visual identity is trustworthy, elevated, and future-forward — no cartoon elements, no whimsy.</span>
                     </li>
                 </ul>
             </div>
-        </div>
-    </section>
 
-    <!-- 8. SECTION — WHAT SETS ALETHA™ APART --><section class="max-w-full mx-auto py-20 md:py-28 bg-black">
-        <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <!-- Headline (Font size increased to match hero headline) --><h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter leading-tight mb-4 ">
-                The First AI Interface<br> Built on <span class="text-klyr-red">Verified Physical Truth</span>
-            </h2>
-            <!-- Subtext (Kept white as background is dark) --><div class="text-xl md:text-2xl font-light max-w-4xl mx-auto space-y-3">
-                <p>Other AI interfaces guess. ALETHA™ knows.</p>
-                <p>She operates on multi-sensor verified data — not probability. She bridges the physical world and cloud ecosystems without gaps, turning every scanned object into a persistent identity with lifetime integrity. This is the human interface for the world’s first clarity intelligence system.</p>
+            <!-- Right: Circle Placeholder -->
+            <div class="flex flex-col items-center justify-center">
+                <div class="w-64 h-64 bg-gray-200 rounded-full mb-4"></div>
+                <p class="text-gray-500 text-sm"><span class="text-klyr-red">ALETHA</span>™ Interface Schema (v4.1)</p>
             </div>
         </div>
     </section>
 
-    <!-- 9. SECTION — FUTURE EVOLUTION --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-center mb-16 tracking-tight leading-snug">
-            The Global Clarity Operator
+    <!-- [IMAGE 3] SECTION — FIRST AI INTERFACE (RED BANNER) -->
+    <!-- 
+        STANDARD RULE: py-8 md:py-12
+    -->
+    <section class="max-w-full mx-auto py-8 md:py-12 bg-klyr-red text-white">
+        <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-left">
+            <!-- UPDATED: mb-4 on mobile (kept small for tightness) -->
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4 uppercase">
+                THE FIRST AI INTERFACE BUILT ON<br> VERIFIED PHYSICAL TRUTH
+            </h2>
+            
+            <p class="text-xl font-medium mb-6">
+                Other AI interfaces guess. <strong>ALETHA™</strong> knows.
+            </p>
+
+            <p class="text-lg text-white opacity-90 leading-relaxed max-w-5xl">
+                She operates on multi-sensor verified data - not probability. She bridges the physical world and cloud ecosystems without gaps, turning every scanned object into a persistent identity with lifetime integrity. This is the human interface for the world's first clarity intelligence system.
+            </p>
+        </div>
+    </section>
+
+    <!-- [IMAGE 4] SECTION — GLOBAL CLARITY OPERATOR -->
+    <!-- 
+        STANDARD RULE: py-8 md:py-12
+    -->
+    <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <h2 class="text-3xl md:text-5xl font-extrabold text-klyr-dark text-left mb-8 md:mb-16 tracking-tight uppercase leading-snug">
+            THE GLOBAL CLARITY OPERATOR
         </h2>
         
-        <!-- Vertical 3-step roadmap --><div class="relative max-w-3xl mx-auto">
-            <!-- Vertical Line (Centered) --><div class="absolute left-1/2 w-0.5 h-full bg-gray-300 transform -translate-x-1/2"></div>
+        <div class="relative max-w-5xl mx-auto">
             
-            <!-- Step 1: Regulatory Liaison --><div class="mb-12 flex flex-col md:flex-row items-center md:items-start w-full relative">
-                <!-- Dot (Centered) --><div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-klyr-red flex items-center justify-center text-white font-bold text-lg shadow-xl top-0.5 z-10">1</div>
-                <!-- Content Card (Left on Desktop, Centered on Mobile) --><div class="md:w-5/12 bg-white p-6 rounded-lg shadow-lg border border-gray-100 mt-12 md:mt-0 text-center md:text-right">
-                    <h3 class="text-xl font-bold text-klyr-dark mb-2">Regulatory Liaison</h3>
-                    <p class="text-gray-600 text-sm">Automated, real-time interface for cross-border regulatory alignment, simplifying audits and approvals.</p>
+            <!-- Central Line (Desktop Only) -->
+            <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-gray-200 transform -translate-x-1/2 hidden md:block"></div>
+            <!-- Left Line (Mobile Only) -->
+            <div class="absolute left-6 top-0 bottom-0 w-1 bg-gray-200 md:hidden"></div>
+            
+            <!-- Step 1 -->
+            <div class="relative flex flex-col md:flex-row items-start md:items-center mb-12">
+                <!-- Marker (Positioned: Left on Mobile, Center on Desktop) -->
+                <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-klyr-red text-white flex items-center justify-center font-bold text-xl border-4 border-white shadow-md z-10">
+                    1
                 </div>
-                <!-- Spacer (For Desktop layout) --><div class="hidden md:block w-2/12 h-1"></div>
+                
+                <!-- Content Container -->
+                <div class="w-full flex flex-col md:flex-row">
+                    <!-- Text (Left on Desktop) -->
+                    <div class="pl-16 md:pl-0 md:pr-16 md:w-1/2 md:text-right">
+                        <h3 class="text-xl md:text-2xl font-bold text-klyr-dark">Regulatory Liaison</h3>
+                        <p class="text-gray-600 text-base mt-2">Automated, real-time interface for cross-border regulatory alignment, simplifying audits and approvals.</p>
+                    </div>
+                    <div class="md:w-1/2"></div>
+                </div>
             </div>
 
-            <!-- Step 2: Autonomous Clarity Governor --><div class="mb-12 flex flex-col md:flex-row-reverse items-center md:items-start w-full relative">
-                <!-- Dot (Centered) --><div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-klyr-red flex items-center justify-center text-white font-bold text-lg shadow-xl top-0.5 z-10">2</div>
-                <!-- Content Card (Right on Desktop, Centered on Mobile) --><div class="md:w-5/12 bg-white p-6 rounded-lg shadow-lg border border-gray-100 mt-12 md:mt-0 text-center md:text-left">
-                    <h3 class="text-xl font-bold text-klyr-dark mb-2">Autonomous Clarity Governor</h3>
-                    <p class="text-gray-600 text-sm">AI-driven governance layer ensuring accuracy across enterprise AI systems and autonomously optimizing clarity protocols.</p>
+            <!-- Step 2 -->
+            <div class="relative flex flex-col md:flex-row items-start md:items-center mb-12">
+                <!-- Marker -->
+                <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-klyr-red text-white flex items-center justify-center font-bold text-xl border-4 border-white shadow-md z-10">
+                    2
                 </div>
-                <!-- Spacer (For Desktop layout) --><div class="hidden md:block w-2/12 h-1"></div>
+                
+                <!-- Content Container -->
+                <div class="w-full flex flex-col md:flex-row">
+                    <div class="md:w-1/2"></div>
+                    <!-- Text (Right on Desktop) -->
+                    <div class="pl-16 md:pl-16 md:w-1/2 md:text-left">
+                        <h3 class="text-xl md:text-2xl font-bold text-klyr-dark">Autonomous Clarity Governor</h3>
+                        <p class="text-gray-600 text-base mt-2">AI-driven governance layer ensuring accuracy across enterprise AI systems and autonomously optimizing clarity protocols.</p>
+                    </div>
+                </div>
             </div>
 
-            <!-- Step 3: Global Clarity Operator --><div class="mb-0 flex flex-col md:flex-row items-center md:items-start w-full relative">
-                <!-- Dot (Centered) --><div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-klyr-red flex items-center justify-center text-white font-bold text-lg shadow-xl top-0.5 z-10">3</div>
-                <!-- Content Card (Left on Desktop, Centered on Mobile) --><div class="md:w-5/12 bg-white p-6 rounded-lg shadow-lg border border-gray-100 mt-12 md:mt-0 text-center md:text-right">
-                    <h3 class="text-xl font-bold text-klyr-dark mb-2">Global Clarity Operator</h3>
-                    <p class="text-gray-600 text-sm">A worldwide safety and authenticity grid for healthcare, agriculture, manufacturing, and national infrastructure.</p>
+            <!-- Step 3 -->
+            <div class="relative flex flex-col md:flex-row items-start md:items-center">
+                <!-- Marker -->
+                <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-klyr-red text-white flex items-center justify-center font-bold text-xl border-4 border-white shadow-md z-10">
+                    3
                 </div>
-                <!-- Spacer (For Desktop layout) --><div class="hidden md:block w-2/12 h-1"></div>
+                
+                <!-- Content Container -->
+                <div class="w-full flex flex-col md:flex-row">
+                    <!-- Text (Left on Desktop) -->
+                    <div class="pl-16 md:pl-0 md:pr-16 md:w-1/2 md:text-right">
+                        <h3 class="text-xl md:text-2xl font-bold text-klyr-dark">Global Clarity Operator</h3>
+                        <p class="text-gray-600 text-base mt-2">A worldwide safety and authenticity grid for healthcare, agriculture, manufacturing, and national infrastructure.</p>
+                    </div>
+                    <div class="md:w-1/2"></div>
+                </div>
             </div>
 
         </div>
     </section>
     
-    <!-- 10. PAGE FOOTER (Brand Closeout) --><section class="max-w-full mx-auto py-12 bg-klyr-red">
+    <!-- [IMAGE 4] PAGE FOOTER (Brand Closeout) -->
+    <!-- 
+        STANDARD RULE: py-8 md:py-12
+    -->
+    <section class="max-w-full mx-auto py-8 md:py-12 bg-klyr-red">
         <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <p class="text-xl font-bold mb-2 tracking-wide">
-                <span class="text-white">ALETHA</span>™ — The Voice of Verified Reality.
+            <p class="text-2xl md:text-3xl font-bold mb-2 tracking-wide italic">
+                ALETHA ™ - The Voice of Verified Reality.
             </p>
-            <p class="text-sm text-white">
-                Powered by <span class="text-white">ALETHRA</span>™ — The Clarity Layer Beneath the AI Cloud.
+            <p class="text-lg text-white italic">
+                Powered by ALETHRA ™ - The Clarity Layer Beneath the AI Cloud.
             </p>
         </div>
     </section>
+
 
 </main>
 

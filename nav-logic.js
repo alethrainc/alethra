@@ -296,33 +296,38 @@
                 closeDropdown(impactToggle, impactDropdown, impactIcon);
                 closeDropdown(aboutToggle, aboutDropdown, aboutIcon);
             }
+// Helper function to toggle max-height and rotation for dropdowns
+function toggleDropdown(toggleBtnEl, dropdownEl, iconEl) {
+    // UPDATED: Check for the new larger class
+    const isOpen = dropdownEl.classList.contains('max-h-[1000px]'); 
 
-            // Helper function to toggle max-height and rotation for dropdowns
-            function toggleDropdown(toggleBtnEl, dropdownEl, iconEl) {
-                const isOpen = dropdownEl.classList.contains('max-h-40'); // Max height used for transition
+    if (isOpen) {
+        closeDropdown(toggleBtnEl, dropdownEl, iconEl);
+    } else {
+        // Close other dropdowns for accordion effect
+        if (dropdownEl !== solutionDropdown) closeDropdown(solutionToggle, solutionDropdown, solutionIcon);
+        if (dropdownEl !== impactDropdown) closeDropdown(impactToggle, impactDropdown, impactIcon);
+        if (dropdownEl !== aboutDropdown) closeDropdown(aboutToggle, aboutDropdown, aboutIcon);
+        
+        // Open current dropdown
+        dropdownEl.classList.remove('max-h-0', 'opacity-0');
+        
+        // UPDATED: Use max-h-[1000px] to ensure all content fits
+        dropdownEl.classList.add('max-h-[1000px]', 'opacity-100'); 
+        
+        iconEl.classList.add('rotate-180');
+        toggleBtnEl.classList.add('bg-gray-100'); 
+    }
+}
 
-                if (isOpen) {
-                    closeDropdown(toggleBtnEl, dropdownEl, iconEl);
-                } else {
-                    // Close other dropdowns for accordion effect
-                    if (dropdownEl !== solutionDropdown) closeDropdown(solutionToggle, solutionDropdown, solutionIcon);
-                    if (dropdownEl !== impactDropdown) closeDropdown(impactToggle, impactDropdown, impactIcon);
-                    if (dropdownEl !== aboutDropdown) closeDropdown(aboutToggle, aboutDropdown, aboutIcon);
-                    
-                    // Open current dropdown
-                    dropdownEl.classList.remove('max-h-0', 'opacity-0');
-                    dropdownEl.classList.add('max-h-40', 'opacity-100'); // max-h-40 is arbitrary but large enough
-                    iconEl.classList.add('rotate-180');
-                    toggleBtnEl.classList.add('bg-gray-100'); // <--- NEW: Add gray background for active state
-                }
-            }
-            
-            function closeDropdown(toggleBtnEl, dropdownEl, iconEl) {
-                 dropdownEl.classList.remove('max-h-40', 'opacity-100');
-                 dropdownEl.classList.add('max-h-0', 'opacity-0');
-                 iconEl.classList.remove('rotate-180');
-                 toggleBtnEl.classList.remove('bg-gray-100'); // <--- NEW: Remove gray background
-            }
+function closeDropdown(toggleBtnEl, dropdownEl, iconEl) {
+     // UPDATED: Remove the new larger class
+     dropdownEl.classList.remove('max-h-[1000px]', 'opacity-100');
+     
+     dropdownEl.classList.add('max-h-0', 'opacity-0');
+     iconEl.classList.remove('rotate-180');
+     toggleBtnEl.classList.remove('bg-gray-100'); 
+}
 
             // Event Listeners - now referencing the functions attached to the window object
             if (mobileMenuBtn) { mobileMenuBtn.addEventListener('click', window.openMobileMenu); }

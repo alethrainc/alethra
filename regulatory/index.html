@@ -234,100 +234,149 @@
 
  
     <main class="fade-in-section">
-        
-<div id="homepage-content">
-             <!-- Section 1: Hero - Global Standard of Clarity --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 md:pt-24 md:pb-16 text-center">
-                <div class="max-w-4xl mx-auto space-y-6">
+   <div id="homepage-content">
+             <!-- Section 1: Hero - Global Standard of Clarity -->
+            <!-- Rule 1: Desktop pt-24/pb-12, Mobile pt-16/pb-8 -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 text-left">
+                
+                <!-- Grid Container: 2 Columns -->
+                <!-- Rule 1: Mobile Gap 2rem (gap-8) -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
                     
-                    <div class="flex flex-col items-center justify-center">
+                    <!-- Left Column: Content -->
+                    <div class="space-y-6">
                         
-                        <!-- Certification Icon (Small) - MOVED ABOVE H1 and changed mt-4 to mb-4 --><img src="https://plusbrand.com/wp-content/uploads/2025/11/ALETHRA_Certified-scaled.webp" 
-                             alt="ALETHRA Certified Icon" 
-                             class="h-24 w-auto mb-4 mx-auto"
-                             onerror="this.outerHTML = '<i class=\'fas fa-certificate text-7xl text-klyr-red mb-4\'></i>';"
-                        >
-
-                        <!-- H1 Text --><h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark inline-block">
-                            BUILDING THE GLOBAL<br> STANDARD OF CLARITY.
+                        <!-- H1 Text -->
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark inline-block text-left">
+                            BUILDING THE GLOBAL<br> STANDARD OF CLARITY
                         </h1>
+
+                        <!-- Paragraph Text -->
+                        <p class="text-gray-600 text-lg md:text-xl max-w-3xl pt-4 text-left">
+                            <span class="font-bold text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> is more than a technology — it’s a movement toward measurable truth. Our systems are designed to meet and advance the world’s highest standards for safety, traceability, and compliance. <br> <br>Through the <span class="font-bold text-klyr-red">ALETHRACERTIFIED</span>™ framework, <span class="font-bold text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> partners with international regulators, agencies, and industry leaders to create a unified clarity standard — protecting consumers, industries, and the planet.
+                        </p>
                     </div>
 
-                    <!-- Paragraph Text (UPDATED to text-gray-600) --><p style="text-align: justify;" class="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto pt-4">
-                        <span class="font-bold text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> is more than a technology — it’s a movement toward measurable truth. Our systems are designed to meet and advance the world’s highest standards for safety, traceability, and compliance. <br> <br>Through the <span class="font-bold text-klyr-red">ALETHRACERTIFIED</span>™ framework, <span class="font-bold text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> partners with international regulators, agencies, and industry leaders to create a unified clarity standard — protecting consumers, industries, and the planet.
-                    </p>
+                    <!-- Right Column: Image & Icon -->
+                    <div class="flex flex-col items-center">
+                        <div id="" class="content-box-border-style rounded-lg flex overflow-hidden mb-8 w-full"> 
+                            <!-- MODIFIED: Changed to h-auto and object-contain to respect aspect ratio without cropping -->
+                            <img id="" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™ REGULATORY</span>';">
+                        </div>
+                        
+                        <!-- Certification Icon (Larger, below image) -->
+                        <img src="https://plusbrand.com/wp-content/uploads/2025/11/ALETHRA_Certified-scaled.webp" 
+                             alt="ALETHRA Certified Icon" 
+                             class="h-32 w-auto"
+                             onerror="this.outerHTML = '<i class=\'fas fa-certificate text-7xl text-klyr-red\'></i>';"
+                        >
+                    </div>
+
                 </div>
             </section>
             
-            <!-- Divider: Red Line --><div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Divider: Red Line -->
+            <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
                 <hr class="border-t-4 border-klyr-red w-full">
             </div>
 
-            <!-- Section 1.5: Clarity Through Standardization + Regulatory Focus (REDUCED PB) --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6 md:pt-16 md:pb-8 text-center">
-                <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight mb-4 text-klyr-dark">
+            <!-- Section 1.5: Clarity Through Standardization + Regulatory Focus -->
+            <!-- Rule 2: Desktop py-12, Mobile py-8 (Standard Section) -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 text-left">
+                <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight mb-4 text-klyr-dark text-left">
                     <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> EXISTS TO ELIMINATE CONFUSION
                     <br class="hidden sm:inline"> THROUGH STANDARDIZATION.
                 </h2>
-                <!-- Paragraph Text (UPDATED to text-gray-600) --><p style="text-align: justify;" class="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
+                <!-- Paragraph Text -->
+                <p class="text-gray-600 text-lg md:text-xl max-w-3xl text-left">
                     Every industry faces the same problem: fragmented verification and unclear accountability. We work directly with agencies and governing bodies to establish a single, interoperable verification layer — clarity that crosses borders.
                 </p>
 
-                <!-- New Content Block: Regulatory Focus --><div class="mt-16 text-left max-w-4xl mx-auto">
+                <!-- New Content Block: Regulatory Focus -->
+                <!-- Rule 2 Check: Margin top max 2rem mobile -->
+                <div class="mt-8 md:mt-12 text-left max-w-4xl">
                     
-                    <!-- Subheading 1 (Left Aligned) - SIZE REDUCED --><h3 class="text-xl md:text-2xl font-extrabold tracking-tight mb-8 text-klyr-dark">
+                    <!-- Subheading 1 -->
+                    <h3 class="text-xl md:text-2xl font-extrabold tracking-tight mb-8 text-klyr-dark text-left">
                         <span class="text-klyr-red">ALETHRA</span>™ REGULATORY <br>
                         ENGAGEMENT FOCUSES ON
                     </h3>
                     
-                    <!-- Centered Image (shadow-lg removed) --><div class="flex justify-center mb-12">
+                    <!-- Centered Image -->
+                    <div class="flex justify-start mb-8 md:mb-12">
                         <img src="https://plusbrand.com/wp-content/uploads/2025/11/12-Regulatory-Standards-Engagement_Img_1-scaled.png" 
                              alt="Diagram illustrating regulatory engagement and standards development" 
                              class="w-full max-w-5xl h-auto rounded-xl"
                              onerror="this.src='https://placehold.co/900x400/eeeeee/333333?text=Regulatory+Engagement+Diagram';">
                     </div>
                     
-                    <!-- Subheading 2 (Left Aligned) - SIZE REDUCED --><h3 class="text-xl md:text-2xl font-extrabold tracking-tight mb-8 text-klyr-dark">
+                    <!-- Subheading 2 -->
+                    <!-- Rule 2 Check: Margins restricted on mobile -->
+                    <h3 class="text-xl md:text-2xl font-extrabold tracking-tight mb-8 md:mb-12 text-klyr-dark text-left">
                         <span class="text-klyr-red">ALETHRA</span>™ INC. MAINTAINS ACTIVE <br> COLLABORATION AND TECHNICAL ALIGNMENT WITH
                     </h3>
                     
-                    <!-- Custom Red Dot List (Paragraphs UPDATED to text-gray-600 on container and where defined) --><ul class="red-dot-list text-gray-600 text-lg md:text-xl">
-                        <li>
-                            <p class="font-extrabold uppercase mb-1 text-klyr-dark">U.S. FDA (FOOD & DRUG ADMINISTRATION)</p>
-                            <p class="text-gray-600">Supporting initiatives in medication safety and labeling clarity.</p>
-                        </li>
-                        <li>
-                            <p class="font-extrabold uppercase mb-1 text-klyr-dark">U.S. DEPARTMENT OF AGRICULTURE (USDA)</p>
-                            <p class="text-gray-600">Enhancing food safety and traceability programs.</p>
-                        </li>
-                        <li>
-                            <p class="font-extrabold uppercase mb-1 text-klyr-dark">EUROPEAN MEDICINES AGENCY (EMA)</p>
-                            <p class="text-gray-600">Working toward harmonized verification standards in healthcare.</p>
-                        </li>
-                        <li>
-                            <p class="font-extrabold uppercase mb-1 text-klyr-dark">WORLD HEALTH ORGANIZATION (WHO)</p>
-                            <p class="text-gray-600">Research cooperation on confusion-related injury and prevention.</p>
-                        </li>
-                        <li>
-                            <p class="font-extrabold uppercase mb-1 text-klyr-dark">ISO & IEC COMMITTEES</p>
-                            <p class="text-gray-600">Participation in the development of next-generation data verification and product identification standards.</p>
-                        </li>
-                        <li>
-                            <p class="font-extrabold uppercase mb-1 text-klyr-dark">PRIVATE & PUBLIC INSTITUTIONS</p>
-                            <p class="text-gray-600">Hospitals, logistics firms, and manufacturers participating in pilot deployments under the <span class="text-klyr-red">ALETHRACERTIFIED</span>™ framework.</p>
-                        </li>
-                    </ul>
+                    <!-- VERTICAL DIVIDER GRID TRANSFORMATION FOR LIST -->
+                    <!-- Rule 5 (Strip & Gap): Mobile gap-y-8, Items p-0 border-none -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 md:gap-y-12">
+                        
+                        <!-- Item 1 -->
+                        <!-- Mobile: p-0, border-none. Desktop: restore padding/border -->
+                        <div class="p-0 border-none md:pr-6 md:border-solid md:border-b-0 md:border-r-2 md:border-black">
+                            <p class="font-extrabold uppercase mb-2 text-klyr-dark">U.S. FDA (FOOD & DRUG ADMINISTRATION)</p>
+                            <p class="text-gray-600 text-base">Supporting initiatives in medication safety and labeling clarity.</p>
+                        </div>
 
-                    <!-- Subheading 3: GOVERNANCE AND ETHICS --><h3 class="text-xl md:text-2xl font-extrabold tracking-tight mt-12 mb-4 text-klyr-dark">
+                        <!-- Item 2 -->
+                        <div class="p-0 border-none md:pl-8 md:pr-6 md:border-solid md:border-b-0 lg:border-r-2 lg:border-black">
+                            <p class="font-extrabold uppercase mb-2 text-klyr-dark">U.S. DEPARTMENT OF AGRICULTURE (USDA)</p>
+                            <p class="text-gray-600 text-base">Enhancing food safety and traceability programs.</p>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="p-0 border-none lg:pl-8 md:pr-6 md:border-solid md:border-b-0 md:border-r-2 lg:border-r-0 md:border-black">
+                            <p class="font-extrabold uppercase mb-2 text-klyr-dark">EUROPEAN MEDICINES AGENCY (EMA)</p>
+                            <p class="text-gray-600 text-base">Working toward harmonized verification standards in healthcare.</p>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="p-0 border-none lg:pl-0 md:pr-6 md:border-solid md:border-b-0 lg:border-r-2 md:border-black">
+                            <p class="font-extrabold uppercase mb-2 text-klyr-dark">WORLD HEALTH ORGANIZATION (WHO)</p>
+                            <p class="text-gray-600 text-base">Research cooperation on confusion-related injury and prevention.</p>
+                        </div>
+
+                        <!-- Item 5 -->
+                        <div class="p-0 border-none md:pl-8 md:pr-6 md:border-solid md:border-b-0 md:border-r-2 md:border-black">
+                            <p class="font-extrabold uppercase mb-2 text-klyr-dark">ISO & IEC COMMITTEES</p>
+                            <p class="text-gray-600 text-base">Participation in the development of next-generation data verification and product identification standards.</p>
+                        </div>
+
+                        <!-- Item 6 -->
+                        <div class="p-0 border-none lg:pl-8">
+                            <p class="font-extrabold uppercase mb-2 text-klyr-dark">PRIVATE & PUBLIC INSTITUTIONS</p>
+                            <p class="text-gray-600 text-base">Hospitals, logistics firms, and manufacturers participating in pilot deployments under the <span class="text-klyr-red">ALETHRACERTIFIED</span>™ framework.</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Subheading 3: GOVERNANCE AND ETHICS -->
+                    <!-- Rule 2 Check: Margin top max 2rem mobile -->
+                    <h3 class="text-xl md:text-2xl font-extrabold tracking-tight mt-8 md:mt-12 mb-4 text-klyr-dark text-left">
                         GOVERNANCE AND ETHICS
                     </h3>
-                    <!-- Paragraph Text (UPDATED to text-gray-600) --><p class="text-gray-600 text-lg md:text-xl mb-10">
+                    <!-- Paragraph Text -->
+                    <!-- Rule 2 Check: Margin bottom max 2rem mobile -->
+                    <p class="text-gray-600 text-lg md:text-xl mb-8 md:mb-10 text-left">
                         <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> maintains an independent internal Regulatory & Standards Committee
                         responsible for oversight of ethics, data governance, and compliance.
                     </p>
 
-                    <!-- Sub-sub-heading: OUR FRAMEWORK ENSURES --><h4 class="text-xl font-bold tracking-tight mb-4 text-klyr-dark uppercase">
+                    <!-- Sub-sub-heading: OUR FRAMEWORK ENSURES -->
+                    <h4 class="text-xl font-bold tracking-tight mb-4 text-klyr-dark uppercase text-left">
                         OUR FRAMEWORK ENSURES
                     </h4>
-                    <!-- Custom Red Dot List for Governance (UPDATED to text-gray-600) --><ul class="red-dot-list text-gray-600 text-lg md:text-xl">
+                    <!-- Custom Red Dot List -->
+                    <ul class="red-dot-list text-gray-600 text-lg md:text-xl text-left">
                         <li>
                             Full data privacy under <strong>GDPR</strong>, <strong>HIPAA</strong>, and equivalent global standards.
                         </li>
@@ -339,27 +388,34 @@
                         </li>
                     </ul>
 
-                    <!-- Subheading 4: THE ROAD AHEAD --><h3 class="text-xl md:text-2xl font-extrabold tracking-tight mt-12 mb-4 text-klyr-dark">
+                    <!-- Subheading 4: THE ROAD AHEAD -->
+                    <!-- Rule 2 Check: Margin top max 2rem mobile -->
+                    <h3 class="text-xl md:text-2xl font-extrabold tracking-tight mt-8 md:mt-12 mb-4 text-klyr-dark text-left">
                         THE ROAD AHEAD
                     </h3>
-                    <!-- Paragraph Text (UPDATED to text-gray-600) --><p class="text-gray-600 text-lg md:text-xl">
+                    <!-- Paragraph Text -->
+                    <p class="text-gray-600 text-lg md:text-xl text-left">
                         <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> is currently expanding partnerships across:
                     </p>
 
-                    <!-- Centered Image for Road Ahead (no shadow-lg) --><div class="flex justify-center my-12">
+                    <!-- Image for Road Ahead -->
+                    <div class="flex justify-start my-8 md:my-12">
                         <img src="https://plusbrand.com/wp-content/uploads/2025/11/12-Regulatory-Standards-Engagement_Map-scaled.png" 
                              alt="Global map showing partnership expansion" 
                              class="w-full max-w-4xl h-auto rounded-xl"
                              onerror="this.src='https://placehold.co/900x400/eeeeee/333333?text=Global+Partnership+Map';">
                     </div>
-                    <!-- Centered Bold Statement (text-klyr-dark updated to text-gray-600 for paragraph) --><p class="text-center text-gray-600 text-lg md:text-xl font-bold mb-10">
+                    <!-- Bold Statement -->
+                    <p class="text-left text-gray-600 text-lg md:text-xl font-bold mb-8 md:mb-10">
                         Each engagement brings the world closer to one shared language of safety — <span class="text-klyr-red">clarity</span>.
                     </p>
                     
-                    <!-- New Heading: REGULATION THROUGH INNOVATION (UPDATED FONT SIZE) --><h3 class="text-2xl md:text-4xl font-extrabold tracking-tight mt-12 mb-4 text-klyr-dark">
+                    <!-- New Heading: REGULATION THROUGH INNOVATION -->
+                    <h3 class="text-2xl md:text-4xl font-extrabold tracking-tight mt-8 md:mt-12 mb-4 text-klyr-dark text-left">
                         REGULATION THROUGH INNOVATION
                     </h3>
-                    <!-- Paragraph Text (UPDATED to text-gray-600) --><p class="text-gray-600 text-lg md:text-xl mb-4">
+                    <!-- Paragraph Text -->
+                    <p class="text-gray-600 text-lg md:text-xl mb-0 md:mb-4 text-left">
                         <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> doesn’t adapt to standards — it advances them. Every verified product and every certified facility builds trust into the world’s infrastructure.
                     </p>
 
@@ -367,54 +423,55 @@
             </section>
 
 
-            <!-- UPDATED SECTION 2.5: Triple CTA Buttons (REDUCED PT) --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-10 text-center">
-                <div class="flex flex-col lg:flex-row justify-center items-center space-y-4 lg:space-y-0 lg:space-x-6 max-w-4xl mx-auto">
-                    <!-- Button 1: REQUEST REGULATORY PARTNERSHIP (smooth-scroll class added) --><a href="#regulatory-form" class="w-full lg:w-auto flex-1 smooth-scroll">
+            <!-- UPDATED SECTION 2.5: Triple CTA Buttons (Left Aligned) -->
+            <!-- Rule 2: Desktop py-12, Mobile py-8 (Standard Section) -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12 md:pt-0 text-left">
+                <div class="flex flex-col lg:flex-row justify-start items-center space-y-4 lg:space-y-0 lg:space-x-6 max-w-4xl">
+                    <!-- Button 1: REQUEST REGULATORY PARTNERSHIP -->
+                    <a href="#regulatory-form" class="w-full lg:w-auto smooth-scroll">
                         <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full text-sm">
                             REQUEST REGULATORY <br> PARTNERSHIP
                         </button>
                     </a>
-                    <!-- Button 2: DOWNLOAD ENGAGEMENT PLAN --><a href="/downloads/ALETHRA_Regulatory_Standards_Engagement_Plan.pdf" target="_blank"  class="w-full lg:w-auto flex-1">
+                    <!-- Button 2: DOWNLOAD ENGAGEMENT PLAN -->
+                    <a href="/downloads/ALETHRA_Regulatory_Standards_Engagement_Plan.pdf" target="_blank"  class="w-full lg:w-auto">
                         <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full text-sm">
                             DOWNLOAD ENGAGEMENT <br> PLAN
                         </button>
                     </a>
-                    <!-- Button 3: JOIN THE CLARITY MOVEMENT (LINK UPDATED) --><a href="/join" class="w-full lg:w-auto flex-1">
+                    <!-- Button 3: JOIN THE CLARITY MOVEMENT -->
+                    <a href="/join" class="w-full lg:w-auto">
                         <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full text-sm">
                             JOIN THE CLARITY <br> MOVEMENT
                         </button>
                     </a>
                 </div>
             </section>
-             <!-- Add a general message box for global feedback --><div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
-            </div>
+            
+      
 
-
-
-
-             <section class="bg-klyr-red py-10">
-                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+             <!-- Rule 2: Desktop py-12, Mobile py-8 (Standard Section) -->
+             <section class="bg-klyr-red py-8 md:py-12">
+                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-left text-white">
                     <p class="text-xl sm:text-2xl mb-1">
                        ALETHRA™ is setting the clarity standard — one truth at a time.
                     </p>
-                
                 </div>
             </section>
             
-            <!-- NEW SECTION: Regulatory Engagement Request Form (APPLE STYLE) (ID ADDED)-->
-            <section id="regulatory-form" class="bg-apple-gray-light pt-10 pb-16 md:pb-24">
+            <!-- NEW SECTION: Regulatory Engagement Request Form (Left Aligned Heading, Form Full Width in container) -->
+            <!-- Rule 2: Desktop py-12, Mobile py-8 (Standard Section / Form) -->
+            <section id="regulatory-form" class="bg-apple-gray-light py-8 md:py-12">
                 <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
                     
-                    <!-- MARGIN REDUCED FROM mb-12 TO mb-10 -->
-                    <h3 class="text-2xl md:text-4xl font-extrabold tracking-tight mb-10 text-klyr-dark text-center uppercase">
+                    <h3 class="text-2xl md:text-4xl font-extrabold tracking-tight mb-8 md:mb-12 text-klyr-dark text-center uppercase">
                         Regulatory Engagement Request
                     </h3>
                     
-                    <!-- Form Container - Apple-like card style -->
+                    <!-- Form Container -->
                     <div class="max-w-3xl mx-auto bg-white p-6 sm:p-10 md:p-12 rounded-3xl shadow-xl border border-gray-100">
                         
-                        <!-- Success Message Container (Initially Hidden) -->
+                        <!-- Success Message Container -->
                         <div id="success-message" class="hidden text-center py-20">
                             <h3 class="text-3xl font-extrabold text-klyr-dark">
                                 YOUR REQUEST HAS BEEN SENT
@@ -427,15 +484,14 @@
                         <!-- Form -->
                         <form id="regulatory-request-form" action="#" method="POST" class="space-y-6">
                             
-                            <!-- Wrapper for all form fields, used to hide them on success -->
                             <div id="form-content" class="space-y-6">
 
-                                <!-- Name Fields (Two Columns on Desktop) -->
+                                <!-- Name Fields -->
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <input type="text" name="first-name" id="first-name" autocomplete="given-name" required
                                            placeholder="First Name"
                                            class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
-                                    
+                                     
                                     <input type="text" name="last-name" id="last-name" autocomplete="family-name" required
                                            placeholder="Last Name"
                                            class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
@@ -451,19 +507,19 @@
                                        placeholder="Agency / Standards Body / Organization"
                                        class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
 
-                                <!-- Role / Department & Jurisdiction (Two Columns) -->
+                                <!-- Role / Department & Jurisdiction -->
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                      <!-- Role / Department -->
                                     <input type="text" name="role" id="role" required
                                            placeholder="Role / Department"
                                            class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
-                                    
+                                     
                                     <!-- COUNTRY SELECTION (MODAL TRIGGER) -->
                                     <div class="relative">
-                                        <!-- Hidden input to store the actual selected value (ID UPDATED) -->
+                                        <!-- Hidden input to store the actual selected value -->
                                         <input type="hidden" name="jurisdiction" id="regulatory-jurisdiction-hidden" required value="">
                                         
-                                        <!-- Button that displays the selection and acts as the modal trigger (UPDATED onclick CALL) -->
+                                        <!-- Button that displays the selection and acts as the modal trigger -->
                                         <button type="button" id="regulatory-jurisdiction-display-btn" 
                                                 onclick="regulatoryOpenModal()"
                                                 class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 text-gray-400 text-left transition duration-150 hover:bg-gray-50"
@@ -478,46 +534,40 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Topic(s) of interest (Multi-select Checkboxes) -->
+                                <!-- Topic(s) of interest -->
                                 <div>
-                                    <label class="block text-sm font-medium text-klyr-dark mb-3">Topic(s) of interest (select all that apply)</label>
+                                    <label class="block text-sm font-medium text-klyr-dark mb-3 text-left">Topic(s) of interest (select all that apply)</label>
                                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-base text-gray-700">
                                         <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <!-- Checkbox class already uses text-klyr-red -->
                                             <input type="checkbox" name="topic" value="certification" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
                                             <span class="ml-3 font-medium">Certification pathways</span>
                                         </label>
                                         <label class="flex items-center p-3  rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <!-- Checkbox class already uses text-klyr-red -->
                                             <input type="checkbox" name="topic" value="data_standards" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
                                             <span class="ml-3 font-medium">Data standards</span>
                                         </label>
                                         <label class="flex items-center p-3  rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <!-- Checkbox class already uses text-klyr-red -->
                                             <input type="checkbox" name="topic" value="audit_reporting" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
                                             <span class="ml-3 font-medium">Audit & reporting</span>
                                         </label>
                                         <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <!-- Checkbox class already uses text-klyr-red -->
                                             <input type="checkbox" name="topic" value="pilots_sandboxes" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
                                             <span class="ml-3 font-medium">Pilots & sandboxes</span>
                                         </label>
                                         <label class="flex items-center p-3  rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <!-- Checkbox class already uses text-klyr-red -->
                                             <input type="checkbox" name="topic" value="training_education" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
                                             <span class="ml-3 font-medium">Training & education</span>
                                         </label>
                                          <label class="flex items-center p-3  rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <!-- Checkbox class already uses text-klyr-red -->
                                             <input type="checkbox" name="topic" value="safety_security" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
                                             <span class="ml-3 font-medium">Safety, Security & <br>Risk Mitigation</span>
                                         </label>
                                     </div>
                                 </div>
 
-                                <!-- Additional Context (Long Text) -->
+                                <!-- Additional Context -->
                                 <div>
-                                    <label for="context" class="block text-sm font-medium text-klyr-dark mb-1">Additional context</label>
+                                    <label for="context" class="block text-sm font-medium text-klyr-dark mb-1 text-left">Additional context</label>
                                     <textarea name="context" id="context" rows="4"
                                               class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400"
                                               placeholder="Describe your primary area of regulatory focus and how ALETHRA™ can support your mandate."></textarea>
@@ -526,11 +576,10 @@
                                 <!-- Consent Checkbox -->
                                 <div class="flex items-start pt-2">
                                     <div class="flex items-center h-5">
-                                        <!-- Checkbox class already uses text-klyr-red -->
                                         <input id="consent" name="consent" type="checkbox" required
                                                class="focus:ring-klyr-red h-5 w-5 text-klyr-red border-gray-400 rounded">
                                     </div>
-                                    <div class="ml-3 text-sm">
+                                    <div class="ml-3 text-sm text-left">
                                         <label for="consent" class="font-medium text-gray-700 cursor-pointer">
                                             I consent to <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> using this information to respond to my request and understand this is for official regulatory engagement purposes.
                                         </label>

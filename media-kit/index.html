@@ -224,56 +224,86 @@
  
     <main class="fade-in-section">
         
-<div id="homepage-content">
-             <!-- Section 1: Hero - Global Standard of Clarity --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-6 md:pt-24 md:pb-8 text-center">
-                <div class="max-w-4xl mx-auto space-y-6">
+  <div id="homepage-content">
+             <!-- Section 1: Hero - Media Kit -->
+             <!-- Rule 1: Desktop pt-24 pb-12, Mobile pt-16 pb-8 -->
+             <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 text-left">
+                
+                <!-- Grid Container: 2 Columns -->
+                <!-- Rule 1 & 2: gap-8 (mobile) gap-12 (desktop) -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
                     
-                    <div class="flex flex-col items-center justify-center">
-                        
-                       
-                        <!-- H1 Text --><h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark inline-block uppercase">
+                    <!-- Left Column: Content -->
+                    <div class="space-y-6">
+                         <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark inline-block uppercase text-left">
                            Corporate Media Kit
                         </h1>
+                        <p class="text-gray-600 text-lg md:text-xl max-w-3xl pt-4 text-left">
+                            Logos, brand guidelines, Aletha avatar, product visuals. For press and partners.
+                        </p>
                     </div>
 
-                    <!-- Paragraph Text (UPDATED to text-gray-600) --><p style="text-align: justify;" class="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto pt-4">
-                       Logos, brand guidelines, Aletha avatar, product visuals. For press and partners.
-                    </p>
+                    <!-- Right Column: Image -->
+                    <div id="content-box" class="content-box-border-style rounded-lg flex overflow-hidden"> 
+                        <!-- MODIFIED: Changed to h-auto and object-contain to respect aspect ratio without cropping -->
+                        <img id="" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
+                    </div>
+
                 </div>
             </section>
             
-            <!-- NEW SECTION: Media Kit Assets Grid (Apple-like Cards) -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-12">
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-klyr-dark mb-10 text-center uppercase tracking-wide">
+            <!-- NEW SECTION: Media Kit Assets Grid -->
+            <!-- Rule 3 Zero Padding: Prev section has pb-12. Set pt-0 here to avoid double gap. -->
+            <!-- Rule 2 Standard: Bottom padding pb-8 (mobile) pb-12 (desktop). -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-klyr-dark mb-10 text-left uppercase tracking-wide">
                     Available Assets
                 </h2>
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Vertical Divider Grid (4 Columns) -->
+                <!-- Rule 5 Strip & Gap: Mobile gap-y-8. Desktop md:gap-y-0. -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 md:gap-y-0">
                     
                     <!-- Card 1: Logo Pack -->
-                    <div class="premium-panel flex flex-col items-center text-center p-6 transition duration-300 transform hover:shadow-klyr-red/30 hover:shadow-xl">
-                        <i class="fas fa-file-image text-4xl text-klyr-red mb-4"></i>
+                    <!-- Rule 5: Removed border-b on mobile (border-none). Restored borders on desktop. -->
+                    <div class="pl-0 pr-6 border-none lg:border-b-0 sm:border-r-2 sm:border-black h-full flex flex-col text-left">
+                        <div class="flex items-center justify-start mb-4">
+                            <i class="fas fa-file-image text-4xl text-klyr-red"></i>
+                        </div>
                         <h3 class="text-lg font-bold text-klyr-dark mb-1">ALETHRA™ Logo Pack</h3>
                         <p class="text-gray-500 text-sm">PNG/SVG formats</p>
                     </div>
 
                     <!-- Card 2: Brand Guidelines -->
-                    <div class="premium-panel flex flex-col items-center text-center p-6 transition duration-300 transform hover:shadow-klyr-red/30 hover:shadow-xl">
-                        <i class="fas fa-book-open text-4xl text-klyr-red mb-4"></i>
+                    <!-- Rule 5: Removed border-b on mobile. Restored borders on desktop. -->
+                    <!-- Rule 4: Stair Step - pl-0 on mobile, sm:pl-8 on desktop. -->
+                    <div class="pl-0 sm:pl-8 pr-6 border-none lg:border-b-0 lg:border-r-2 lg:border-black h-full flex flex-col text-left">
+                        <div class="flex items-center justify-start mb-4">
+                            <i class="fas fa-book-open text-4xl text-klyr-red"></i>
+                        </div>
                         <h3 class="text-lg font-bold text-klyr-dark mb-1">Brand Guidelines</h3>
                         <p class="text-gray-500 text-sm">Comprehensive PDF</p>
                     </div>
 
                     <!-- Card 3: Aletha Avatar Renders -->
-                    <div class="premium-panel flex flex-col items-center text-center p-6 transition duration-300 transform hover:shadow-klyr-red/30 hover:shadow-xl">
-                        <i class="fas fa-user-circle text-4xl text-klyr-red mb-4"></i>
+                    <!-- Rule 5: Removed border-b on mobile. Restored borders on desktop. -->
+                    <!-- Rule 4: Stair Step - pl-0 on mobile, lg:pl-8 on desktop. -->
+                    <!-- Removed explicit mobile top padding (pt-12) as gap-y-8 handles spacing now. -->
+                    <div class="pl-0 lg:pl-8 pr-6 border-none lg:border-b-0 sm:border-r-2 sm:border-black h-full flex flex-col text-left sm:pt-0">
+                        <div class="flex items-center justify-start mb-4">
+                            <i class="fas fa-user-circle text-4xl text-klyr-red"></i>
+                        </div>
                         <h3 class="text-lg font-bold text-klyr-dark mb-1">Aletha Avatar Renders</h3>
                         <p class="text-gray-500 text-sm">High-resolution PNG</p>
                     </div>
 
                     <!-- Card 4: Product & UI Shots -->
-                    <div class="premium-panel flex flex-col items-center text-center p-6 transition duration-300 transform hover:shadow-klyr-red/30 hover:shadow-xl">
-                        <i class="fas fa-tablet-alt text-4xl text-klyr-red mb-4"></i>
+                    <!-- Rule 4: Stair Step - pl-0 on mobile, sm:pl-8 on desktop. -->
+                    <!-- Removed explicit mobile top padding. -->
+                    <div class="pl-0 sm:pl-8 h-full flex flex-col text-left sm:pt-0">
+                        <div class="flex items-center justify-start mb-4">
+                            <i class="fas fa-tablet-alt text-4xl text-klyr-red"></i>
+                        </div>
                         <h3 class="text-lg font-bold text-klyr-dark mb-1">Product & UI Shots</h3>
                         <p class="text-gray-500 text-sm">Usage-ready PNGs</p>
                     </div>
@@ -281,24 +311,20 @@
             </section>
             
 
-            <!-- UPDATED SECTION 2.5: Single CTA Button --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10 text-center">
-                <div class="max-w-xs mx-auto">
-                    <!-- Button 1: DOWNLOAD MEDIA KIT (Updated Text) --><a href="#" class="w-full block">
+            <!-- UPDATED SECTION 2.5: Single CTA Button (Left Aligned) -->
+            <!-- Rule 1 High Impact. -->
+            <!-- Rule 1 Gap Limit: Previous section has pb-12. Reduced top padding to pt-8/pt-12 to keep max visual gap 6rem. -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12 text-left">
+                <div class="max-w-xs mr-auto">
+                    <!-- Button 1: DOWNLOAD MEDIA KIT -->
+                    <a href="#" class="w-full block">
                         <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full text-sm">
                             DOWNLOAD MEDIA KIT
                         </button>
                     </a>
                 </div>
             </section>
-             <!-- Add a general message box for global feedback --><div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
-            </div>
-
-
-
-
-           
-            <!-- REMOVED: Regulatory Engagement Request Form -->
+          
         </div>
         
 </main>

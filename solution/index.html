@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALETHRA - Join the Clarity Movement</title>
+    <title>ALETHRA - Solution</title>
     
 <script src="https://cdn.tailwindcss.com"></script>
     
@@ -183,105 +183,135 @@
 
 
     <main class="fade-in-section">
-        
-<div id="homepage-content">
-            
-
-             <!-- Section 1: Hero - Clarity Technology Heading + Image/Content Grid --><!-- MODIFIED: Reduced bottom padding from py-24 to pb-12 on desktop --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 md:pt-24 md:pb-12 fade-in-section">
+    <!-- Section 1: Hero - Clarity Technology Heading + Image/Content Grid -->
+            <!-- 
+                 PADDING RULE: 
+                 Top: Max (6rem/4rem) -> pt-16 / md:pt-24
+                 Bottom: 0 (to allow next section to control gap) -> pb-0 / md:pb-0
+            -->
+             <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-0 md:pt-24 md:pb-0 fade-in-section">
                 
-                <!-- PRIMARY HEADING (Size adjusted, now left-aligned) --><h1 class="text-left text-3xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark mb-12">
-                    THE WORLD'S FIRST <br> CLARITY TECHNOLOGY
-                </h1>
-
-                <!-- Reversed Grid (Content Left, Image Right) --><div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Reversed Grid (Content Left, Image Right) -->
+                <!-- MODIFIED: Changed items-center to items-start to align image with heading top -->
+                <div class="grid md:grid-cols-2 gap-8 items-start">
                     
-                    <!-- Column 1 (Content - Now Left) --><div class="space-y-6">
+                    <!-- Column 1 (Content - Now Left - INCLUDES HEADING) -->
+                    <div class="space-y-6">
                         
-                        <!-- UPDATED Content Paragraphs --><p class="text-gray-600 text-lg">
+                        <!-- PRIMARY HEADING (Moved inside left column) -->
+                        <h1 class="text-left text-3xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark mb-4">
+                            THE WORLD'S <br>FIRST  CLARITY<br> TECHNOLOGY
+                        </h1>
+
+                        <!-- UPDATED Content Paragraphs -->
+                        <p class="text-gray-600 text-lg">
                            <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> identifies each product by its visual fingerprint — the microscopic patterns of color, texture, and geometry that make it unique.
- Our AI recognizes these signatures instantly, verifying authenticity and correctness before confusion can occur.
-
-
+                           Our AI recognizes these signatures instantly, verifying authenticity and correctness before confusion can occur.
                         </p>
                         <p class="text-gray-600 text-lg">
-                         Each scan strengthens a global network of clarity that protects consumers, brands, and supply chains.
+                          Each scan strengthens a global network of clarity that protects consumers, brands, and supply chains.
+                        </p>
                     </div>
 
-                    <!-- Column 2 (Image - Now Right) --><div id="content-box" class="content-box-border-style rounded-lg flex h-full overflow-hidden"> 
-                        <img id="content-logo-img" class="content-logo-border w-full h-full object-cover rounded-lg" alt="Kare Image Placeholder" onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>KLYR™</span>';">
+                    <!-- Column 2 (Image - Now Right) -->
+                    <!-- MODIFIED: Removed h-full to allow container to shrink to image height -->
+                    <div id="" class="content-box-border-style rounded-lg flex overflow-hidden"> 
+                        <!-- MODIFIED: Changed to h-auto and object-contain to respect aspect ratio without cropping -->
+                        <img id="" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
                     </div>
                 </div>
             </section>
 
-            <!-- Section 2: Centered Subheading (Replaces KEY SYSTEMS image section) --><!-- MODIFIED: Reduced bottom padding for tight fit (pb-4/pb-6) --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-4 md:pt-6 md:pb-6 text-center">
+            <!-- Section 2: Centered Subheading (Replaces KEY SYSTEMS image section) -->
+            <!-- 
+                 PADDING RULE: Max 3rem/2rem gap.
+                 Gap from above: 0 (Hero bottom) + 2rem/3rem (This top) = 2rem/3rem. OK.
+                 Gap to below: 0 (This bottom) + 2rem/3rem (Next top) = 2rem/3rem. OK.
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-0 md:pt-12 md:pb-0 text-center">
                 <h2 class="fade-in-section text-xl md:text-3xl font-bold tracking-tight text-klyr-dark">
                     EVERY PRODUCT, PACKAGE AND ITEM IS VERIFIED INSTANTLY
                 </h2>
             </section>
             
-            <!-- NEW Section: Clarity Pillars (Images) --><!-- MODIFIED: Increased bottom padding for space to red banner --><section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12 md:pt-6 md:pb-20">
-                <div class="fade-in-section grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Pillar 1: Visual Fingerprinting --><div class="text-center">
-                        <img src="https://plusbrand.com/wp-content/uploads/2025/10/3-solution_finger_print.png" alt="Visual Fingerprinting Icon" class="mx-auto w-32 h-32 object-contain mb-4">
+            <!-- NEW Section: Clarity Pillars (Images) -->
+            <!-- 
+                 PADDING RULE: Max 3rem/2rem gap from above.
+                 Top: 2rem/3rem (pt-8 / md:pt-12). OK.
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-2 md:pt-12 md:pb-12">
+                <!-- GRID UPDATE: Removed gap-8, switched to 1-to-4 col layout to support continuous grid lines -->
+                <div class="fade-in-section grid grid-cols-1 lg:grid-cols-4">
+                    <!-- Pillar 1: Visual Fingerprinting -->
+                    <div class="text-center p-6 border-b-2 border-black lg:border-b-0 lg:border-r-2">
+                        <img src="/images/3 solution_finger_print_1.webp" alt="Visual Fingerprinting Icon" class="mx-auto w-32 h-32 object-contain mb-4">
                         <p class="font-semibold text-klyr-dark text-lg">VISUAL FINGERPRINTING</p>
                         <p class="text-sm text-gray-600 mt-1 hidden sm:block">Unique microscopic patterns define identity.</p>
                     </div>
-                    <!-- Pillar 2: AI Verification --><div class="text-center">
-                        <img src="/images/3solution_ai_verification.webp" class="mx-auto w-32 h-32 object-contain mb-4">
+                    <!-- Pillar 2: AI Verification -->
+                    <div class="text-center p-6 border-b-2 border-black lg:border-b-0 lg:border-r-2">
+                        <img src="/images/3 solution_ai_verification_1.webp" class="mx-auto w-32 h-32 object-contain mb-4">
                         <p class="font-semibold text-klyr-dark text-lg">INSTANT AI VERIFICATION</p>
                         <p class="text-sm text-gray-600 mt-1 hidden sm:block">AI recognizes and verifies signatures instantly.</p>
                     </div>
-                    <!-- Pillar 3: Secure Registry (Blockchain) --><div class="text-center">
-                        <img src="https://plusbrand.com/wp-content/uploads/2025/10/3-solution_blockchain.png" alt="Blockchain Registry Icon" class="mx-auto w-32 h-32 object-contain mb-4">
+                    <!-- Pillar 3: Secure Registry (Blockchain) -->
+                    <div class="text-center p-6 border-b-2 border-black lg:border-b-0 lg:border-r-2">
+                        <img src="/images/3 solution_blockchain_1.webp" alt="Blockchain Registry Icon" class="mx-auto w-32 h-32 object-contain mb-4">
                         <p class="font-semibold text-klyr-dark text-lg">SECURE REGISTRY</p>
                         <p class="text-sm text-gray-600 mt-1 hidden sm:block">Immutable record of authenticity and origin.</p>
                     </div>
-                    <!-- Pillar 4: Seamless Integration --><div class="text-center">
-                        <img src="https://plusbrand.com/wp-content/uploads/2025/10/3-solution_integration.png" alt="Ecosystem Integration Icon" class="mx-auto w-32 h-32 object-contain mb-4">
+                    <!-- Pillar 4: Seamless Integration -->
+                    <div class="text-center p-6">
+                        <img src="/images/3 solution_integration_1.webp" alt="Ecosystem Integration Icon" class="mx-auto w-32 h-32 object-contain mb-4">
                         <p class="font-semibold text-klyr-dark text-lg">SEAMLESS INTEGRATION</p>
                         <p class="text-sm text-gray-600 mt-1 hidden sm:block">Easy adoption across all supply chain phases.</p>
                     </div>
                 </div>
             </section>
             
-
-
-            
-
-
-            
-<section class="bg-klyr-red py-10">
-                <div class="max-w-super-wide mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <!-- Section 4: Red Banner -->
+            <section class="bg-klyr-red py-8 md:py-12">
+                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-left text-white">
                     <p class="text-xl sm:text-2xl mb-1">
-                       Confusion isn’t random — it’s systemic.<br>
-ALETHRA™ repairs the system with clarity.
+                        Confusion isn’t random — it’s systemic.<br>
+                        ALETHRA™ repairs the system with clarity.
                     </p>
-                    
                 </div>
             </section>
 
-            
-<section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+            <!-- Section 5: Join Movement -->
+            <!-- 
+                 PADDING RULE: Join Movement allows Max (6rem/4rem).
+                 Mobile: Top 4rem (pt-16), Bottom 4rem (pb-16)
+                 Desktop: Top 6rem (pt-24), Bottom 6rem (pb-24)
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16 md:pt-24 md:pb-24">
                 <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
                     JOIN THE CLARITY MOVEMENT
                 </h2>
                 
-<p class="text-xl text-gray-700 mb-8">
+                <p class="text-xl text-gray-700 mb-8">
                     Become one of the first to experience <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> in action
                 </p>
                 <a href="/join" id="join-beta-btn" class="inline-block bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider">
                     JOIN THE BETA
                 </a>
                 
-<div id="message-box" class="mt-8 bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden max-w-sm">
+                <div id="message-box" class="mt-8 bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden max-w-sm">
                     Thank you for your interest! The beta sign-up page is coming soon.
                 </div>
             </section>
         </div>
         
-<section id="beta-signup-page" class="hidden max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <!-- Beta Signup (Hidden) -->
+        <!-- 
+             PADDING RULE: Must be Max 3rem/2rem (NOT Join Movement, NOT Hero Head).
+             Mobile: 2rem (py-8)
+             Desktop: 3rem (py-12)
+        -->
+        <section id="beta-signup-page" class="hidden max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
             
-<div id="beta-form-container">
+            <div id="beta-form-container">
                 <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
                     Join the Global <span class="text-klyr-red">Clarity Movement</span>
                 </h1>
@@ -291,11 +321,11 @@ ALETHRA™ repairs the system with clarity.
                 
                 <p class="text-lg text-gray-700 mb-6">
                     
-<span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> is now entering its global beta phase. We’re inviting consumers, brands, and industry leaders to join the mission to teach clarity to the world. Every scan, every test, every idea helps the AI learn and protect more lives. Be among the first to shape a future without confusion.
+                    <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> is now entering its global beta phase. We’re inviting consumers, brands, and industry leaders to join the mission to teach clarity to the world. Every scan, every test, every idea helps the AI learn and protect more lives. Be among the first to shape a future without confusion.
                 </p>
 
                 
-<form id="beta-registration-form" class="space-y-6 bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-100">
+                <form id="beta-registration-form" class="space-y-6 bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-100">
                     <div>
                         <label for="full_name" class="block text-sm font-medium text-klyr-dark mb-1">Full Name</label>
                         <input type="text" id="full_name" name="full_name" required class="klyr-input" placeholder="John Doe">
@@ -309,7 +339,7 @@ ALETHRA™ repairs the system with clarity.
                         <select id="country-select" name="country" required class="klyr-input appearance-none">
                             <option value="" disabled selected>Select your country</option>
                             
-</select>
+                        </select>
                     </div>
                     <div>
                         <label for="interest" class="block text-sm font-medium text-klyr-dark mb-1">Interest Category</label>
@@ -322,7 +352,7 @@ ALETHRA™ repairs the system with clarity.
                     </div>
                     
                     
-<div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 pt-4">
+                    <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 pt-4">
                         <button type="submit" class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-lg transition duration-300 transform hover:scale-[1.02] uppercase tracking-wider flex-1">
                             Register Now
                         </button>
@@ -334,7 +364,7 @@ ALETHRA™ repairs the system with clarity.
             </div>
 
             
-<div id="beta-confirmation-message" class="hidden text-center bg-white p-10 rounded-xl border-4 border-klyr-red shadow-2xl">
+            <div id="beta-confirmation-message" class="hidden text-center bg-white p-10 rounded-xl border-4 border-klyr-red shadow-2xl">
                 <i class="fas fas fa-check-circle text-6xl text-klyr-red mb-6 animate-pulse"></i>
                 <h3 class="text-3xl font-extrabold text-klyr-dark mb-4">Registration Complete!</h3>
                 <p class="text-xl text-gray-700 font-medium italic">
@@ -345,7 +375,6 @@ ALETHRA™ repairs the system with clarity.
                 </button>
             </div>
         </section>
-        
 </main>
 
     

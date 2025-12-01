@@ -177,26 +177,40 @@
 <div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
 
     <main class="fade-in-section">
-   <div id="about-content">
+  <div id="about-content">
             
             <!-- HERO SECTION -->
-            <!-- Left aligned as per screenshot 1 -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-12 md:pb-16 text-left">
-                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-none text-black uppercase mb-6">
-                    ABOUT <span class="text-klyr-red">ALETHRA</span>™
-                </h1>
-                <p class="text-xl md:text-2xl text-black font-normal max-w-4xl leading-snug">
-                    Engineering global clarity.<br>
-                    Powering safer decisions.<br>
-                    Enabling a world that runs on truth.
-                </p>
+            <!-- Rule 1: Desktop pt-24/pb-12, Mobile pt-16/pb-8 -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 text-left">
+                <!-- Rule 1: Mobile Gap 2rem (gap-8) -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+                    
+                    <!-- Left Column: Content -->
+                    <div class="space-y-6">
+                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-none text-black uppercase mb-6">
+                            ABOUT <span class="text-klyr-red">ALETHRA</span>™
+                        </h1>
+                        <p class="text-xl md:text-2xl text-black font-normal max-w-4xl leading-snug">
+                            Engineering global clarity.<br>
+                            Powering safer decisions.<br>
+                            Enabling a world that runs on truth.
+                        </p>
+                    </div>
+
+                    <!-- Right Column: Image -->
+                    <div id="content-box" class="content-box-border-style rounded-lg flex overflow-hidden"> 
+                        <img id="" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
+                    </div>
+
+                </div>
             </section>
 
             <!-- MISSION & ORIGIN (Gray Background) -->
-            <!-- Layout matches screenshot 1: Gray bg, 2 cols, Red/Black mixed headings -->
-            <section class="bg-gray-50 py-16 md:py-20 border-t border-gray-100">
+            <!-- Rule 2: Desktop py-12, Mobile py-8 -->
+            <section class="bg-gray-50 py-8 md:py-12 border-t border-gray-100">
                 <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
+                    <!-- Rule 2: Max gap 2rem mobile -->
+                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
                         
                         <!-- Mission -->
                         <div class="space-y-6">
@@ -236,8 +250,8 @@
             </section>
 
             <!-- WHAT WE DO SECTION -->
-            <!-- Matches screenshot 1: Left aligned, Vertical dividers, Mixed color headings -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <!-- Rule 2: Desktop py-12, Mobile py-8 -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
                 <h2 class="text-4xl md:text-5xl font-extrabold text-black text-left mb-6 uppercase">
                     WHAT WE DO?
                 </h2>
@@ -245,10 +259,12 @@
                     We enable enterprises, regulators, and frontline operators to verify identity, authenticity, quality, contamination, and safety with unmatched accuracy.
                 </p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3">
+                <!-- Rule 5 (Strip & Gap): Added gap-y-8 to parent, removed padding/borders from children on mobile -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-y-8">
                     
                     <!-- Item 1 -->
-                    <div class="md:pr-8 md:border-r-2 md:border-black h-full pb-8 md:pb-0">
+                    <!-- Removed mobile pb-8. Kept desktop padding/borders -->
+                    <div class="md:pr-8 md:border-r-2 md:border-black h-full md:pb-0">
                         <h3 class="text-xl font-extrabold uppercase mb-4 leading-tight">
                             <span class="text-klyr-red">CLARITY</span><br>
                             <span class="text-black">INTELLIGENCE</span>
@@ -259,7 +275,8 @@
                     </div>
 
                     <!-- Item 2 -->
-                    <div class="md:px-8 md:border-r-2 md:border-black h-full py-8 md:py-0 border-t-2 border-gray-100 md:border-t-0">
+                    <!-- Removed mobile py-8 & border-t-2. Kept desktop padding/borders -->
+                    <div class="md:px-8 md:border-r-2 md:border-black h-full md:py-0 md:border-t-0">
                         <h3 class="text-xl font-extrabold uppercase mb-4 leading-tight">
                             <span class="text-klyr-red">REAL-WORLD</span><br>
                             <span class="text-black">VERIFICATION</span>
@@ -270,13 +287,14 @@
                     </div>
 
                     <!-- Item 3 -->
-                    <div class="md:pl-8 h-full pt-8 md:pt-0 border-t-2 border-gray-100 md:border-t-0">
+                    <!-- Removed mobile pt-8 & border-t-2. Kept desktop padding/borders -->
+                    <div class="md:pl-8 h-full md:pt-0 md:border-t-0">
                         <h3 class="text-xl font-extrabold uppercase mb-4 leading-tight">
                             <span class="text-klyr-red">HUMAN-CENTERED</span> <span class="text-black">AI</span><br>
                             <span class="text-black">INTERFACE</span>
                         </h3>
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            <span class="text-klyr-red">ALETHA</span>™, our intelligent interface, translates complex environmental data into clear, actionable guidance.
+                            <span class="text-klyr-red">ALETHRA</span>™, our intelligent interface, translates complex environmental data into clear, actionable guidance.
                         </p>
                     </div>
 
@@ -284,8 +302,8 @@
             </section>
 
             <!-- IMPACT SECTION -->
-            <!-- Matches screenshot 1 bottom: Red BG, Left aligned, Bullets -->
-            <section class="bg-klyr-red py-16 md:py-20">
+            <!-- Rule 2: Desktop py-12, Mobile py-8 -->
+            <section class="bg-klyr-red py-8 md:py-12">
                 <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-left text-white">
                     <h2 class="text-4xl md:text-5xl font-extrabold uppercase mb-8">THE IMPACT WE DRIVE</h2>
                     
@@ -333,9 +351,9 @@
                 </div>
             </section>
 
-            <!-- LEADERSHIP & ADVISORY -->
-            <!-- Matches screenshot 2 top: White BG, Circles -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <!-- LEADERSHIP & ADVISORY (UPDATED: BIO OVERLAY) -->
+            <!-- Rule 2: Desktop py-12, Mobile py-8 -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
                 <div class="mb-12">
                     <h2 class="text-4xl md:text-5xl font-extrabold text-black text-left uppercase mb-6">
                         LEADERSHIP & ADVISORY
@@ -348,27 +366,171 @@
                     </p>
                 </div>
                 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    <!-- Circle 1 -->
-                    <div class="aspect-square rounded-full bg-gray-200"></div>
-                    <!-- Circle 2 -->
-                    <div class="aspect-square rounded-full bg-gray-200"></div>
-                    <!-- Circle 3 -->
-                    <div class="aspect-square rounded-full bg-gray-200"></div>
-                    <!-- Circle 4 -->
-                    <div class="aspect-square rounded-full bg-gray-200"></div>
+                <!-- Rule 2: Max gap 2rem mobile (gap-y-8) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8 md:gap-y-12">
+                    
+                    <!-- 1 -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative w-full flex flex-col items-center">
+                            <!-- Visible Content -->
+                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md">
+                                <!-- No Icon -->
+                            </div>
+                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
+                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
+                            <p class="text-gray-600 text-sm mb-4">Strategic oversight and development of core infrastructure technologies.</p>
+                            
+                            <!-- Hidden Bio Overlay -->
+                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
+                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
+                            </div>
+                        </div>
+                        <!-- Button remains visible below -->
+                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
+                            <span>Read Bio</span>
+                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative w-full flex flex-col items-center">
+                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
+                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
+                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
+                            <p class="text-gray-600 text-sm mb-4">Leading global partnerships and strategic market expansion initiatives.</p>
+                            
+                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
+                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
+                            </div>
+                        </div>
+                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
+                            <span>Read Bio</span>
+                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative w-full flex flex-col items-center">
+                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
+                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
+                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
+                            <p class="text-gray-600 text-sm mb-4">Directing operational excellence and cross-functional team alignment.</p>
+                            
+                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
+                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
+                            </div>
+                        </div>
+                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
+                            <span>Read Bio</span>
+                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative w-full flex flex-col items-center">
+                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
+                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
+                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
+                            <p class="text-gray-600 text-sm mb-4">Driving innovation strategy and future technology roadmap.</p>
+                            
+                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
+                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
+                            </div>
+                        </div>
+                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
+                            <span>Read Bio</span>
+                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative w-full flex flex-col items-center">
+                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
+                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
+                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
+                            <p class="text-gray-600 text-sm mb-4">Overseeing clinical validation protocols and hospital integration.</p>
+                            
+                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
+                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
+                            </div>
+                        </div>
+                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
+                            <span>Read Bio</span>
+                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative w-full flex flex-col items-center">
+                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
+                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
+                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
+                            <p class="text-gray-600 text-sm mb-4">Leading multi-spectral sensor fusion and micro-surface analysis.</p>
+                            
+                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
+                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
+                            </div>
+                        </div>
+                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
+                            <span>Read Bio</span>
+                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- 7 -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative w-full flex flex-col items-center">
+                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
+                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
+                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
+                            <p class="text-gray-600 text-sm mb-4">Architecting the global truth ledger and secure enterprise integrations.</p>
+                            
+                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
+                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
+                            </div>
+                        </div>
+                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
+                            <span>Read Bio</span>
+                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- 8 -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative w-full flex flex-col items-center">
+                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
+                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
+                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
+                            <p class="text-gray-600 text-sm mb-4">Managing alignment with global compliance standards bodies.</p>
+                            
+                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
+                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
+                            </div>
+                        </div>
+                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
+                            <span>Read Bio</span>
+                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
+                        </button>
+                    </div>
+
                 </div>
             </section>
 
             <!-- VALUES SECTION -->
-            <!-- Matches screenshot 2 middle: Light Gray BG, Grid with Vertical Lines -->
-            <section class="bg-gray-50 py-16 md:py-24">
+            <!-- Rule 2: Desktop py-12, Mobile py-8 -->
+            <section class="bg-gray-50 py-8 md:py-12">
                 <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 class="text-4xl md:text-5xl font-extrabold text-black text-left uppercase mb-12">
                         OUR VALUES
                     </h2>
                     
-                    <div class="grid md:grid-cols-3 gap-y-12">
+                    <!-- Rule 5 (Strip & Gap) & Rule 2: Max gap 2rem mobile -->
+                    <div class="grid md:grid-cols-3 gap-y-8 md:gap-y-12">
                         <!-- Value 1 -->
                         <div class="md:pr-8 md:border-r-2 md:border-black">
                             <h3 class="text-xl font-bold text-black uppercase mb-4">INTEGRITY</h3>
@@ -409,9 +571,10 @@
             </section>
 
             <!-- GLOBAL RESPONSIBILITY & COMMITMENT -->
-            <!-- Matches screenshot 2 bottom: Red Headings -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-                <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
+            <!-- Rule 2: Desktop py-12, Mobile py-8 -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                <!-- Rule 2: Max gap 2rem mobile -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
                     
                     <div>
                         <h2 class="text-2xl font-bold text-klyr-red uppercase mb-4">GLOBAL RESPONSIBILITY</h2>
@@ -437,8 +600,8 @@
             </section>
 
             <!-- CTA SECTION -->
-            <!-- Matches screenshot 2 buttons -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-8 text-left">
+            <!-- Rule Update: Desktop py-12 (3rem), Mobile py-8 (2rem) -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12 md:pt-0 text-left">
                 <div class="flex flex-col sm:flex-row gap-4">
                     
                     <a href="/technology">
@@ -457,6 +620,7 @@
             </section>
             
         </div>
+        
         
 </main>
 
@@ -515,6 +679,31 @@
             observer.observe(section);
         });
     });
+    
+     // ===================================================================
+    // BIO TOGGLE LOGIC (MODIFIED FOR OVERLAY)
+    // ===================================================================
+    function toggleBio(button) {
+        // Look up to the group, then find the .profile-bio within that group
+        const card = button.closest('.group');
+        const bioContent = card.querySelector('.profile-bio');
+        const icon = button.querySelector('i');
+        const span = button.querySelector('span');
+        
+        if (bioContent.classList.contains('hidden')) {
+            // Open
+            bioContent.classList.remove('hidden');
+            // Animate Icon Rotate
+            icon.style.transform = 'rotate(180deg)';
+            span.textContent = 'Close Bio';
+        } else {
+            // Close
+            bioContent.classList.add('hidden');
+            // Animate Icon Reset
+            icon.style.transform = 'rotate(0deg)';
+            span.textContent = 'Read Bio';
+        }
+    }
 </script>
 
 </body>
