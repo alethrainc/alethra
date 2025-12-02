@@ -676,6 +676,7 @@
 <script src="/animation.js"></script>
 <script src="/nav-logic.js"></script>
 <script src="/inject.js"></script>
+<script src="/symbol-formatter.js"></script>
 <script type="text/javascript">
      // ===================================================================
     // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
@@ -711,44 +712,7 @@
             observer.observe(section);
         });
     });
-      // ===================================================================
-        // AUTOMATIC SYMBOL FORMATTER (TM and R)
-        // ===================================================================
-        const walker = document.createTreeWalker(
-            document.body,
-            NodeFilter.SHOW_TEXT,
-            null,
-            false
-        );
-
-        const nodes = [];
-        while(walker.nextNode()) nodes.push(walker.currentNode);
-
-        nodes.forEach(node => {
-            // Skip if parent is script or style
-            if (node.parentElement && ['SCRIPT', 'STYLE'].includes(node.parentElement.tagName)) return;
-            
-            if (node.nodeValue && (node.nodeValue.includes('™') || node.nodeValue.includes('®'))) {
-                const fragment = document.createDocumentFragment();
-                const parts = node.nodeValue.split(/([™®])/);
-                
-                parts.forEach(part => {
-                    if (part === '™' || part === '®') {
-                        const span = document.createElement('span');
-                        // Apply Tailwind classes for black and non-bold (normal weight)
-                        span.className = 'text-black font-normal'; 
-                        span.style.color = 'black'; 
-                        span.style.fontWeight = 'normal'; 
-                        span.textContent = part;
-                        fragment.appendChild(span);
-                    } else {
-                        fragment.appendChild(document.createTextNode(part));
-                    }
-                });
-                
-                node.parentNode.replaceChild(fragment, node);
-            }
-        });
+     
 
 </script>
 

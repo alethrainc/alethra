@@ -217,7 +217,7 @@
 
             <!-- SECTION 1: WHY MOBILE MATTERS (Vertical Divider Grid) -->
             <!-- RULE 2 APPLIED: Standard Section -> py-8 (Mobile 2rem) / py-12 (Desktop 3rem) -->
-            <section class="bg-gray-50 py-8 md:py-12">
+            <section class="bg-gray-50 pt-8 pb-2 md:py-12">
                 <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-left max-w-3xl mr-auto mb-10">
                         <h2 class="text-3xl font-extrabold text-klyr-dark mb-4 text-left">WHY MOBILE MATTERS</h2>
@@ -256,11 +256,11 @@
             <!-- SECTION 2: HOW IT WORKS (Left Aligned) -->
             <!-- RULE 2 APPLIED: Standard Section -> py-8 (Mobile 2rem) / py-12 (Desktop 3rem) -->
             <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-                <h2 class="text-3xl font-extrabold text-klyr-dark mb-12 text-left">HOW IT WORKS</h2>
+                <h2 class="text-3xl font-extrabold text-klyr-dark mb-8 md:mb-12 text-left">HOW IT WORKS</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
                     <!-- Left: Description -->
                     <div class="space-y-6 text-left">
-                        <h3 class="text-2xl font-bold text-klyr-red">INTELLIGENCE AT THE EDGE</h3>
+                        <h3 class="text-2xl font-bold ">INTELLIGENCE AT THE EDGE</h3>
                         <p class="text-gray-600 text-lg">
                             We combine the device's native camera pipeline with our lightweight AI inference engine. It processes visual data locally, ensuring speed and privacy, before syncing certified events to the cloud.
                         </p>
@@ -338,33 +338,33 @@
             <!-- SECTION 4: CAPABILITIES (Vertical Divider Grid) -->
             <!-- RULE 2 APPLIED: Standard Section -> py-8 (Mobile 2rem) / py-12 (Desktop 3rem) -->
             <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-                <h2 class="text-3xl font-extrabold text-klyr-dark mb-12 text-left">CAPABILITIES</h2>
+                <h2 class="text-3xl font-extrabold text-klyr-dark mb-8 md:mb-12 text-left">CAPABILITIES</h2>
                 
                 <!-- 2x2 Vertical Divider Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-8 md:gap-y-12">
                     
                     <!-- Feature 1 -->
                     <div class="pl-0 pr-6 border-b border-gray-200 md:border-b-0 md:border-r-2 md:border-black text-left">
-                        <h3 class="text-xl font-bold text-klyr-red uppercase mb-2">1. Real-Time Verification</h3>
+                        <h3 class="text-xl font-bold  uppercase mb-2">1. Real-Time Verification</h3>
                         <p class="text-gray-600">Authenticity, damage, mismatch, and contamination indicators detected instantly on-screen.</p>
                     </div>
 
                     <!-- Feature 2 -->
                     <div class="pl-0 md:pl-8 border-b border-gray-200 md:border-b-0 text-left">
-                        <h3 class="text-xl font-bold text-klyr-red uppercase mb-2">2. Multi-Sensor Fusion</h3>
+                        <h3 class="text-xl font-bold  uppercase mb-2">2. Multi-Sensor Fusion</h3>
                         <p class="text-gray-600">RGB, depth, LiDAR, and NIR (where available) combined for robust physical analysis.</p>
                     </div>
 
                     <!-- Feature 3 -->
                     <div class="pl-0 pr-6 border-b border-gray-200 md:border-b-0 md:border-r-2 md:border-black text-left pt-6 md:pt-0 border-t-0 md:border-t-0"> 
                          <!-- Note: In standard grid flow, item 3 is below item 1. We are just using gap-y-12 for vertical spacing now, so borders are simpler. -->
-                        <h3 class="text-xl font-bold text-klyr-red uppercase mb-2">3. Offline-Compatible</h3>
+                        <h3 class="text-xl font-bold  uppercase mb-2">3. Offline-Compatible</h3>
                         <p class="text-gray-600">Capture now in remote areas, sync to ALETHRA™ Ledger later when connectivity returns.</p>
                     </div>
 
                     <!-- Feature 4 -->
                     <div class="pl-0 md:pl-8 text-left pt-6 md:pt-0">
-                        <h3 class="text-xl font-bold text-klyr-red uppercase mb-2">4. Enterprise-Integrated</h3>
+                        <h3 class="text-xl font-bold  uppercase mb-2">4. Enterprise-Integrated</h3>
                         <p class="text-gray-600">Seamlessly connects with ERP, WMS, LIMS, and regulatory portals.</p>
                     </div>
                 </div>
@@ -557,6 +557,7 @@
 <script src="/animation.js"></script>
 <script src="/nav-logic.js"></script>
 <script src="/inject.js"></script>
+<script src="/symbol-formatter.js"></script>
 <script type="text/javascript">
      // ===================================================================
     // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
