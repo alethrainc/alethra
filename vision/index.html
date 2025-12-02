@@ -217,7 +217,7 @@
 
             <!-- SECTION 1: WHY MOBILE MATTERS (Vertical Divider Grid) -->
             <!-- RULE 2 APPLIED: Standard Section -> py-8 (Mobile 2rem) / py-12 (Desktop 3rem) -->
-            <section class="bg-gray-50 pt-8 pb-2 md:py-12">
+             <section class="bg-gray-50 pt-8 pb-2 md:py-12">
                 <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-left max-w-3xl mr-auto mb-10">
                         <h2 class="text-3xl font-extrabold text-klyr-dark mb-4 text-left">WHY MOBILE MATTERS</h2>
@@ -231,28 +231,27 @@
                         
                         <!-- Item 1 -->
                         <div class="p-6 pl-0 text-left border-b border-gray-200 md:border-b-0 md:border-r-2 md:border-black">
-                            <i class="fas fa-globe text-4xl text-klyr-red mb-4"></i>
+                            <img src="/images/VISION_Global_Scale.png" class="h-12 mb-4 object-contain" alt="Global Scale">
                             <h3 class="font-bold text-klyr-dark uppercase">Global scale instantly</h3>
                         </div>
 
                         <!-- Item 2 -->
                         <!-- FIX: Added pl-0 to ensure mobile alignment matches Item 1 -->
                         <div class="p-6 pl-0 md:pl-8 text-left border-b border-gray-200 md:border-b-0 md:border-r-2 md:border-black">
-                            <i class="fas fa-shipping-fast text-4xl text-klyr-red mb-4"></i>
+                            <img src="/images/VISION_Zero_Manufacture.png" class="h-12 mb-4 object-contain" alt="Zero Manufacturing">
                             <h3 class="font-bold text-klyr-dark uppercase">Zero manufacturing lead-time</h3>
                         </div>
 
                         <!-- Item 3 -->
                         <!-- FIX: Added pl-0 to ensure mobile alignment matches Item 1 -->
                         <div class="p-6 pl-0 md:pl-8 text-left">
-                            <i class="fas fa-file-contract text-4xl text-klyr-red mb-4"></i>
+                            <img src="/images/VISION_Regulator.png" class="h-12 mb-4 object-contain" alt="Regulator Ready">
                             <h3 class="font-bold text-klyr-dark uppercase">Regulator-ready proof from any device</h3>
                         </div>
                         
                     </div>
                 </div>
             </section>
-
             <!-- SECTION 2: HOW IT WORKS (Left Aligned) -->
             <!-- RULE 2 APPLIED: Standard Section -> py-8 (Mobile 2rem) / py-12 (Desktop 3rem) -->
             <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
@@ -269,13 +268,17 @@
                     <!-- Right: Flow Diagram (Already aligned nicely with flex) -->
                     <div class="space-y-4">
                         <div class="flex items-center bg-gray-50 p-4 rounded-lg border-l-4 border-klyr-dark">
-                            <div class="flex-shrink-0 w-12 text-center"><i class="fas fa-camera text-2xl text-gray-600"></i></div>
+                            <div class="flex-shrink-0 w-12 text-center">
+                                <img src="/images/VISION_Device_Camera.png" class="h-8 w-auto mx-auto object-contain" alt="Camera">
+                            </div>
                             <div class="ml-4 font-bold text-gray-700 text-left">Device camera captures product/label/environment</div>
                         </div>
                         <div class="flex justify-center text-klyr-red"><i class="fas fa-arrow-down"></i></div>
                         
                         <div class="flex items-center bg-klyr-red text-white p-4 rounded-lg shadow-md">
-                            <div class="flex-shrink-0 w-12 text-center"><i class="fas fa-brain text-2xl"></i></div>
+                            <div class="flex-shrink-0 w-12 text-center">
+                                <img src="/images/VISION_Alethra_Clarity_White.png" class="h-8 w-auto mx-auto object-contain" alt="AI">
+                            </div>
                             <div class="ml-4 font-bold text-left">ALETHRA AI Clarity™ analyzes in real time</div>
                         </div>
                         <div class="flex justify-center text-klyr-red"><i class="fas fa-arrow-down"></i></div>
@@ -287,13 +290,17 @@
                         <div class="flex justify-center text-klyr-red"><i class="fas fa-arrow-down"></i></div>
 
                         <div class="flex items-center bg-gray-50 p-4 rounded-lg border-l-4 border-klyr-dark">
-                            <div class="flex-shrink-0 w-12 text-center"><i class="fas fa-link text-2xl text-gray-600"></i></div>
+                            <div class="flex-shrink-0 w-12 text-center">
+                                <img src="/images/VISION_Event_Anchore.png" class="h-8 w-auto mx-auto object-contain" alt="Event Anchored">
+                            </div>
                             <div class="ml-4 font-bold text-gray-700 text-left">Event anchored to the ALETHRA™ Ledger</div>
                         </div>
                         <div class="flex justify-center text-klyr-red"><i class="fas fa-arrow-down"></i></div>
 
                         <div class="flex items-center bg-gray-50 p-4 rounded-lg border-l-4 border-gray-300">
-                            <div class="flex-shrink-0 w-12 text-center"><i class="fas fa-network-wired text-2xl text-gray-600"></i></div>
+                            <div class="flex-shrink-0 w-12 text-center">
+                                <img src="/images/VISION_Results_Sync.png" class="h-8 w-auto mx-auto object-contain" alt="Sync">
+                            </div>
                             <div class="ml-4 font-bold text-gray-700 text-left">Results sync to enterprise systems</div>
                         </div>
                     </div>
@@ -306,7 +313,8 @@
                 <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-left">
                     <h2 class="text-3xl font-extrabold mb-10 text-left">SUPPORTED DEVICES</h2>
                     
-                    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10 text-left">
+                    <!-- Updated Grid: Was md:grid-cols-5, now grid-cols-2 md:grid-cols-3 lg:grid-cols-6 to accommodate 6th item elegantly -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-10 text-left">
                         <div class="flex flex-col items-start">
                             <i class="fab fa-apple text-5xl mb-3 text-white opacity-90"></i>
                             <span class="text-sm font-bold uppercase tracking-wider">Apple iPhones</span>
@@ -316,7 +324,7 @@
                             <span class="text-sm font-bold uppercase tracking-wider">Android Phones</span>
                         </div>
                         <div class="flex flex-col items-start">
-                            <i class="fas fa-cogs text-5xl mb-3 text-white opacity-90"></i>
+                            <img src="/images/VISION_Industrial_Cams_White.png" class="h-12 mb-3 object-contain opacity-90" alt="Industrial Cams">
                             <span class="text-sm font-bold uppercase tracking-wider">Industrial Cams</span>
                         </div>
                         <div class="flex flex-col items-start">
@@ -326,6 +334,11 @@
                         <div class="flex flex-col items-start">
                             <i class="fas fa-wifi text-5xl mb-3 text-white opacity-90"></i>
                             <span class="text-sm font-bold uppercase tracking-wider">IoT Endpoints</span>
+                        </div>
+                        <!-- NEW ITEM ADDED -->
+                        <div class="flex flex-col items-start">
+                             <img src="/images/VISION_VR_White.webp" class="h-8 mt-3 mb-4 opacity-90 object-contain" alt="AR/VR">
+                            <span class="text-sm font-bold uppercase tracking-wider">WEARABLE / AR DEVICES</span>
                         </div>
                     </div>
 
@@ -424,7 +437,7 @@
                         <!-- Item 1: Agriculture -->
                         <div class="pl-0 pr-6 border-b border-gray-200 md:border-b-0 md:border-r-2 md:border-black text-left">
                             <div class="h-20 mb-4 flex items-center justify-start">
-                                <i class="fas fa-tractor text-5xl text-klyr-red opacity-80"></i>
+                                <img src="/images/VISION_Agriculture.png" class="h-16 w-auto object-contain" alt="Agriculture">
                             </div>
                             <h3 class="text-xl font-bold text-klyr-dark mb-2">Agriculture</h3>
                             <p class="text-gray-600 text-sm">Row scanning, pesticide anomalies, crop health monitoring.</p>
@@ -433,7 +446,7 @@
                         <!-- Item 2: Pharma -->
                         <div class="pl-0 md:pl-8 pr-6 border-b border-gray-200 md:border-b-0 lg:border-r-2 lg:border-black text-left">
                             <div class="h-20 mb-4 flex items-center justify-start">
-                                <i class="fas fa-pills text-5xl text-klyr-red opacity-80"></i>
+                                <img src="/images/VISION_Pharma.png" class="h-16 w-auto object-contain" alt="Pharma">
                             </div>
                             <h3 class="text-xl font-bold text-klyr-dark mb-2">Pharma</h3>
                             <p class="text-gray-600 text-sm">Medication verification, anti-counterfeit checks.</p>
@@ -442,7 +455,7 @@
                         <!-- Item 3: Hospitals -->
                         <div class="pl-0 md:pl-0 lg:pl-8 pr-6 border-b border-gray-200 md:border-b-0 md:border-r-2 lg:border-r-0 md:border-black text-left">
                             <div class="h-20 mb-4 flex items-center justify-start">
-                                <i class="fas fa-hospital-user text-5xl text-klyr-red opacity-80"></i>
+                                <img src="/images/VISION_Hospital.png" class="h-16 w-auto object-contain" alt="Hospitals">
                             </div>
                             <h3 class="text-xl font-bold text-klyr-dark mb-2">Hospitals</h3>
                             <p class="text-gray-600 text-sm">OR tray verification & IV bag safety checks.</p>
@@ -451,7 +464,7 @@
                         <!-- Item 4: Logistics -->
                         <div class="pl-0 lg:pl-0 pr-6 border-b border-gray-200 md:border-b-0 lg:border-r-2 lg:border-black text-left pt-6 lg:pt-0">
                             <div class="h-20 mb-4 flex items-center justify-start">
-                                <i class="fas fa-box-open text-5xl text-klyr-red opacity-80"></i>
+                                <img src="/images/VISION_Logistic.png" class="h-16 w-auto object-contain" alt="Logistics">
                             </div>
                             <h3 class="text-xl font-bold text-klyr-dark mb-2">Logistics</h3>
                             <p class="text-gray-600 text-sm">Package identity, damage detection, and validation.</p>
@@ -460,13 +473,13 @@
                         <!-- Item 5: Airports -->
                         <div class="pl-0 md:pl-8 pr-6 border-b border-gray-200 md:border-b-0 md:border-r-2 md:border-black text-left pt-6 lg:pt-0">
                             <div class="h-20 mb-4 flex items-center justify-start">
-                                <i class="fas fa-plane text-5xl text-klyr-red opacity-80"></i>
+                                <img src="/images/VISION_Airplane.png" class="h-16 w-auto object-contain" alt="Airports">
                             </div>
                             <h3 class="text-xl font-bold text-klyr-dark mb-2">Airports</h3>
                             <p class="text-gray-600 text-sm">Baggage handling and cargo validation security.</p>
                         </div>
 
-                         <!-- Item 6: Food Safety -->
+                          <!-- Item 6: Food Safety -->
                         <div class="pl-0 md:pl-0 lg:pl-8 text-left pt-6 lg:pt-0">
                             <div class="h-20 mb-4 flex items-center justify-start">
                                 <i class="fas fa-utensils text-5xl text-klyr-red opacity-80"></i>
@@ -479,41 +492,37 @@
                 </div>
             </section>
 
-            <!-- SECTION 8: WHY THIS CHANGES EVERYTHING (Left Aligned) -->
-            <!-- RULE 3 APPLIED (Cumulative Spacing): Previous section ended with py-12. This is also white background. 
-                 To prevent double spacing (3rem + 3rem = 6rem), we set Top Padding to 0 here. 
-                 Structure: pb-8 md:pb-12 pt-0 -->
+          <!-- SECTION 8: WHY THIS CHANGES EVERYTHING (Left Aligned) -->
+            <!-- RULE 3 APPLIED: Previous section ended with py-12. This is also white background. 
+                 To prevent double spacing (3rem + 3rem = 6rem), we set Top Padding to 0 here. -->
             <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pb-8 md:pb-12 pt-0">
-                <div class="bg-white border-2 border-klyr-red rounded-2xl shadow-xl overflow-hidden">
-                    <div class="bg-klyr-red text-white p-8 text-left">
-                        <h2 class="text-3xl font-extrabold mb-4">WHY THIS CHANGES EVERYTHING</h2>
-                        <p class="text-xl italic font-medium opacity-90">
-                            “This is how ALETHRA™ scales to 1 billion clarity endpoints without building a single device.”
-                        </p>
+                <div class="text-left mb-8">
+                    <h2 class="text-3xl font-extrabold mb-4 text-klyr-dark">WHY THIS CHANGES EVERYTHING</h2>
+                    <p class="text-xl italic font-medium text-gray-800">
+                        “This is how ALETHRA™ scales to 1 billion clarity endpoints without building a single device.”
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="flex items-center space-x-3 justify-start">
+                        <i class="fas fa-check-circle text-klyr-red text-xl"></i>
+                        <span class="font-bold text-gray-700">No CAPEX required</span>
                     </div>
-                    <div class="p-8 md:p-12 bg-gray-50">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="flex items-center space-x-3 justify-start">
-                                <i class="fas fa-check-circle text-klyr-red text-xl"></i>
-                                <span class="font-bold text-gray-700">No CAPEX required</span>
-                            </div>
-                            <div class="flex items-center space-x-3 justify-start">
-                                <i class="fas fa-check-circle text-klyr-red text-xl"></i>
-                                <span class="font-bold text-gray-700">Global ecosystem compatibility</span>
-                            </div>
-                            <div class="flex items-center space-x-3 justify-start">
-                                <i class="fas fa-check-circle text-klyr-red text-xl"></i>
-                                <span class="font-bold text-gray-700">Smartphone-first Clarity strategy</span>
-                            </div>
-                            <div class="flex items-center space-x-3 justify-start">
-                                <i class="fas fa-check-circle text-klyr-red text-xl"></i>
-                                <span class="font-bold text-gray-700">Regulatory alignment</span>
-                            </div>
-                            <div class="flex items-center space-x-3 justify-start">
-                                <i class="fas fa-check-circle text-klyr-red text-xl"></i>
-                                <span class="font-bold text-gray-700">Instant go-to-market for partners</span>
-                            </div>
-                        </div>
+                    <div class="flex items-center space-x-3 justify-start">
+                        <i class="fas fa-check-circle text-klyr-red text-xl"></i>
+                        <span class="font-bold text-gray-700">Global ecosystem compatibility</span>
+                    </div>
+                    <div class="flex items-center space-x-3 justify-start">
+                        <i class="fas fa-check-circle text-klyr-red text-xl"></i>
+                        <span class="font-bold text-gray-700">Smartphone-first Clarity strategy</span>
+                    </div>
+                    <div class="flex items-center space-x-3 justify-start">
+                        <i class="fas fa-check-circle text-klyr-red text-xl"></i>
+                        <span class="font-bold text-gray-700">Regulatory alignment</span>
+                    </div>
+                    <div class="flex items-center space-x-3 justify-start">
+                        <i class="fas fa-check-circle text-klyr-red text-xl"></i>
+                        <span class="font-bold text-gray-700">Instant go-to-market for partners</span>
                     </div>
                 </div>
             </section>
