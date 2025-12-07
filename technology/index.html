@@ -183,99 +183,371 @@
 
     <main class="fade-in-section">
         
-<div id="homepage-content">
-             <!-- Section 1: Hero - Confusion Costs Lives -->
-             <!-- 
-                EXCEPTION RULE (Header Top): 
-                Top: 6rem (desktop) / 4rem (mobile) -> pt-16 md:pt-24
-                Bottom: 0 (to allow next section to provide gap)
-             -->
-            <section class="fade-in-section max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-0 md:pt-24 md:pb-0">
-                <div class="grid md:grid-cols-2 gap-8 items-start">
-                    <!-- Left Content -->
-                    <div class="space-y-6">
-                        <!-- H1 Text -->
-                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug">
-                            <span class="text-klyr-dark">TECHNOLOGY<br>THAT SEES <br> THE TRUTH</span>
-                        </h1>
-                        <!-- Paragraph Text -->
-                        <p class="text-gray-600 text-lg">
-                          <span class="text-klyr-red">ALETHRA</span>™ fuses computer vision, artificial intelligence, and blockchain to turn any camera into a verification tool. It doesn’t just detect, it understands, learns, and protects.
+ 
+        <!-- =================================================================
+             SECTION 1 (FILE 1): HERO & INTELLIGENCE SYSTEM
+             Rule: Hero padding top: desktop 6rem (pt-24), mobile 4rem (pt-16)
+             Rule: Hero padding bottom: REDUCED to pb-4 (mobile) / pb-6 (desktop)
+             to Ensure combined space with next section is max 2rem/3rem.
+        ================================================================= -->
+        <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-4 md:pb-6 text-left">
+            
+            <!-- TOP BLOCK: Intelligence Behind Clarity -->
+            <!-- MODIFIED: Changed items-center to items-start to align image with header top -->
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start mb-8 md:mb-12">
+                <div class="space-y-6">
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-klyr-dark uppercase leading-tight tracking-tight">
+                        The Intelligence<br>
+                        Behind The<br>
+                        Clarity Standard
+                    </h1>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        <span class="text-klyr-red font-bold">ALETHRA™</span> unifies multi-sensor inputs, micro-surface analysis, spectral data, and environmental context into one real-time verification architecture.
+                    </p>
+                </div>
+                
+                <!-- Image Section -->
+                <div class="relative">
+                    <!-- Placeholder using the woman image from previous context or a similar layout -->
+                    <img src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" alt="Alethra AI Specialist" class="max-w-full h-auto object-contain rounded-lg" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'h-64 flex items-center justify-center text-gray-400\'><i class=\'fas fa-user-circle text-6xl\'></i></div>'">
+                </div>
+            </div>
+
+            <!-- Button moved below the hero section grid -->
+            <div class="mb-8 md:mb-12">
+                <a href="/enterprise-hardware" class="inline-block bg-klyr-red text-white font-bold py-3 px-6 rounded hover:bg-red-700 transition duration-300 uppercase text-sm tracking-wider whitespace-nowrap">
+                    Explore The Architecture
+                </a>
+            </div>
+
+            <!-- BOTTOM BLOCK: Single System -->
+            <!-- Spacing between content blocks: desktop 3rem (mt-12), mobile 2rem (mt-8) -->
+            <div class="mt-8 md:mt-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-klyr-dark uppercase mb-6 leading-tight">
+                    A Single System That Sees What Others Miss
+                </h2>
+                <p class="text-lg text-gray-700 mb-6 leading-relaxed max-w-4xl">
+                    Confusion is created when systems rely on assumptions, labels, and trust. <span class="text-klyr-red">ALETHRA™</span> eliminates that vulnerability by reading the truth directly from the physical world - instantly and autonomously.
+                </p>
+                <p class="text-lg text-gray-700 mb-4">
+                    Our technology stack fuses four core modules into a unified clarity engine:
+                </p>
+                
+                <ul class="custom-list red-bullet-list space-y-2 mb-6 text-lg text-gray-700">
+                    <li><strong class="text-klyr-red">ALETHRA SENSE™</strong> - Spectral and contamination detection</li>
+                    <li><strong class="text-klyr-red">ALETHRA ENV™</strong> - Environmental and protocol intelligence</li>
+                    <li><strong class="text-klyr-red">ALETHRA CLOUD™</strong> - Global clarity processing and verification</li>
+                </ul>
+
+                <p class="text-lg text-gray-700 mb-6">
+                    Each module is powerful on its own.
+                </p>
+                
+                <p class="text-lg font-bold text-klyr-dark mb-8">
+                    Together, they create the world’s first Clarity Intelligence System.
+                </p>
+
+                <a href="/enterprise-hardware" class="inline-block bg-klyr-red text-white font-bold py-3 px-6 rounded hover:bg-red-700 transition duration-300 uppercase text-sm tracking-wider">
+                    See How Alethra™ Works
+                </a>
+            </div>
+        </div>
+
+        <!-- SPACER LOGIC: 
+             Vertical white space between sections max 3rem desktop, 2rem mobile combined.
+             Previous section ended with pb-8/pb-12. 
+             We will start next sections with pt-0 and control spacing via margin or padding to hit the exact target.
+             
+             Actually, easiest way to adhere to "combined space" is to split it.
+             Standard spacer div: h-8 (mobile 2rem) / h-12 (desktop 3rem) IF previous padding was 0.
+             But previous padding was Hero padding. 
+             
+             Let's start the Feature Sections. 
+             We will reset padding here to be lighter to represent the flow in the screenshots.
+             We will use py-4 md:py-6 for these internal sections so the sum (bottom of A + top of B) = 2rem / 3rem.
+        -->
+
+        <!-- =================================================================
+             SECTION 2 (FILE 2): SCAN & SENSE
+             Combined Padding calculation: py-4 (1rem) + py-4 (1rem) = 2rem mobile.
+             py-6 (1.5rem) + py-6 (1.5rem) = 3rem desktop.
+        ================================================================= -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6 text-left">
+            <div class="grid gap-8 md:gap-12">
+                
+                <!-- SCAN MODULE -->
+                <div>
+                    <div class="mb-4">
+                        <h2 class="text-3xl md:text-4xl font-extrabold uppercase leading-tight">
+                            <span class="text-klyr-red">ALETHRA SCAN™</span><br>
+                            <span class="text-klyr-dark">Micro-Surface Fingerprinting</span>
+                        </h2>
+                    </div>
+                    
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Every object carries a unique physical signature - a pattern of micro-variations impossible to replicate. <span class="text-klyr-red">ALETHRA SCAN™</span> captures and analyzes these signatures using advanced micro-surface imaging and feature extraction.
+                    </p>
+
+                    <!-- Icon / Visual representation -->
+                    <div class="mb-6">
+                        <img src="https://plusbrand.com/wp-content/uploads/2025/11/SCAN_1.webp" class="h-20 w-auto object-contain" alt="ALETHRA SCAN Device">
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="font-bold text-klyr-dark mb-2"><span class="text-klyr-red">ALETHRA SCAN™</span> enables:</h3>
+                        <ul class="custom-list space-y-1 text-gray-700">
+                            <li>Real-time material identity verification</li>
+                            <li>Counterfeit detection</li>
+                            <li>Authenticity checks</li>
+                            <li>Component verification in manufacturing</li>
+                            <li>Construction material matching</li>
+                            <li>Secure, unforgeable product tracking</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-klyr-dark uppercase mb-1">TECHNICAL FUNCTION:</h3>
+                        <p class="text-gray-700">
+                            <span class="text-klyr-red">ALETHRA SCAN™</span> extracts micro-ridges, valleys, and surface markers, generating a stable, high-dimensional “fingerprint” that is matched instantly through <span class="text-klyr-red">ALETHRA CLOUD™</span>.
                         </p>
                     </div>
-                    <!-- Right Box (Full-bleed image box) -->
-                    <div id="content-box" class="content-box-border-style rounded-lg flex h-full overflow-hidden"> 
-                        <!-- Content Logo -->
-                        <img id="content-logo-img" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-full object-cover rounded-lg" a onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
+                </div>
+
+                <!-- SENSE MODULE -->
+                <!-- Internal spacing applied via grid gap above (gap-8/gap-12 matches constraints) -->
+                <div class="pt-0 md:pt-0 border-t border-gray-100">
+                    <div class="mb-4">
+                        <h2 class="text-3xl md:text-4xl font-extrabold uppercase leading-tight">
+                            <span class="text-klyr-red">ALETHRA SENSE™</span> - Spectral &<br>
+                            <span class="text-klyr-dark">Contamination Detection</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        <span class="text-klyr-red">ALETHRA SENSE™</span> reads the chemical truth of substances using spectral analysis, IR absorption patterns, and composition mapping. It identifies contamination, residues, adulterants, and anomalies invisible to the human eye.
+                    </p>
+
+                    <!-- Icon -->
+                    <div class="mb-6">
+                         <img src="https://plusbrand.com/wp-content/uploads/2025/11/SNSE-scaled.webp" class="h-20 w-auto object-contain" alt="ALETHRA SENSE Device">
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="font-bold text-klyr-dark mb-2"><span class="text-klyr-red">ALETHRA SENSE™</span> enables:</h3>
+                        <ul class="custom-list space-y-1 text-gray-700">
+                            <li>Food and beverage purity verification</li>
+                            <li>Pharmaceutical ingredient matching</li>
+                            <li>Pesticide residue detection</li>
+                            <li>Allergen and toxin identification</li>
+                            <li>Freshness and composition scoring</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-klyr-dark uppercase mb-1">TECHNICAL FUNCTION:</h3>
+                        <p class="text-gray-700">
+                            Using spectral signatures and intelligent signal processing, <span class="text-klyr-red">ALETHRA SENSE™</span> can distinguish clean, pure materials from contaminated or compromised ones - instantly and with high confidence.
+                        </p>
                     </div>
                 </div>
-            </section>
 
-            <!-- Section 2: KLYR Technology Platform Image (NEW SECTION) -->
-            <!-- 
-                STANDARD RULE:
-                Max desktop: 3rem (pt-12). Max mobile: 2rem (pt-8).
-                Bottom: 0 (to allow next section to provide gap).
-            -->
-            <section class="fade-in-section max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-0 md:pt-12 md:pb-0 text-center">
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 text-klyr-dark">
-                    KEY SYSTEM
-                </h2>
-                <div class="flex justify-center">
-                    <!-- Image source is set by the dynamic-klyr-image script below -->
-                    <img id="dynamic-klyr-image" 
-                         src="/images/ALETHRA4THETECHNOLOGY.webp" 
-                         alt="Visual representation of the KLYR Technology Platform" 
-                         class="w-full max-w-4xl h-auto rounded-xl"
-                         onerror="this.src='https://plusbrand.com/wp-content/uploads/2025/10/ALETHRA_4_THE-TECHNOLOGY-scaled.png';">
-                </div>
-            </section>
-            
-            <!-- NEW SECTION 2.5: Dual CTA Buttons -->
-            <!-- 
-                STANDARD RULE (Modified for Spacing):
-                Top: Standard (pt-8/pt-12).
-                Bottom: Added padding to create part of the gap to the banner.
-                Mobile Gap Math: pb-4 (1rem) + MsgBox pt-4 (1rem) = 2rem Gap.
-                Desktop Gap Math: pb-8 (2rem) + MsgBox pt-4 (1rem) = 3rem Gap.
-            -->
-            <section class="fade-in-section max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4 md:pt-12 md:pb-12 text-center">
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-                    <!-- Button 1: Request Demo (KLYR Red) -->
-                    <a href="/enterprise" class="w-full sm:w-auto">
-                        <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
-                            Request Enterprise Demo
-                        </button>
-                    </a>
-                    <!-- Button 2: Partner (KLYR Red) -->
-                    <a href="/partner" class="w-full sm:w-auto">
-                        <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
-                            Partner with ALETHRA™
-                        </button>
-                    </a>
-                </div>
-            </section>
-             <!-- Add a general message box for global feedback -->
-             <!-- NOTE: This container adds pt-4 (1rem) of space even when empty -->
-           
+            </div>
+        </section>
 
-
-            <!-- Red Banner -->
-            <!-- 
-                STANDARD RULE:
-                Desktop: py-12 (3rem). Mobile: py-8 (2rem).
-                Restored to standard padding so text inside is not cramped.
-            -->
-             <section class="bg-klyr-red py-8 md:py-12">
-                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-                    <p class="text-xl sm:text-2xl mb-1">
-                        Clarity isn’t a feature — it’s the foundation for a safer world.
-                    </p>
+        <!-- =================================================================
+             SECTION 3 (FILE 3): ENV & CLOUD
+             Using same py-4 md:py-6 spacing strategy
+        ================================================================= -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6 text-left">
+            <div class="grid gap-8 md:gap-12">
                 
+                <!-- ENV MODULE -->
+                <div>
+                    <div class="mb-4">
+                        <h2 class="text-3xl md:text-4xl font-extrabold uppercase leading-tight">
+                            <span class="text-klyr-red">ALETHRA ENV™</span> - Environmental & Protocol<br>
+                            <span class="text-klyr-dark">Intelligence</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        <span class="text-klyr-red">ALETHRA ENV™</span> analyzes environmental conditions and operational behaviors to detect risks, protocol failures, and safety deviations in real time.
+                    </p>
+
+                    <!-- Icon -->
+                    <div class="mb-6">
+                        <img src="https://plusbrand.com/wp-content/uploads/2025/11/ENV-scaled.webp" class="h-20 w-auto object-contain" alt="ALETHRA ENV Device">
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="font-bold text-klyr-dark mb-2"><span class="text-klyr-red">ALETHRA ENV™</span> monitors:</h3>
+                        <ul class="custom-list space-y-1 text-gray-700">
+                            <li>Temperature</li>
+                            <li>Humidity</li>
+                            <li>Air quality</li>
+                            <li>Movement patterns</li>
+                            <li>Workflow deviations</li>
+                            <li>Safety protocol adherence</li>
+                            <li>Risk events and anomalies</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-klyr-dark uppercase mb-1">TECHNICAL FUNCTION:</h3>
+                        <p class="text-gray-700">
+                            <span class="text-klyr-red">ALETHRA ENV™</span> turns cameras, sensors, and devices into environmental intelligence systems that understand context, detect danger, and prevent failures before they escalate.
+                        </p>
+                    </div>
                 </div>
-            </section>
-        </div>
-        
+
+                <!-- CLOUD MODULE -->
+                <div class="pt-4 md:pt-6 border-t border-gray-100">
+                    <div class="mb-4">
+                        <h2 class="text-3xl md:text-4xl font-extrabold uppercase leading-tight">
+                            <span class="text-klyr-red">ALETHRA CLOUD™</span><br>
+                            <span class="text-klyr-dark">The Global Verification Engine</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        All <span class="text-klyr-red">ALETHRA SCAN™</span>, <span class="text-klyr-red">ALETHRA SENSE™</span>, and <span class="text-klyr-red">ALETHRA ENV™</span> data flows into the <span class="text-klyr-red">ALETHRA CLOUD™</span> - a real-time decision engine that interprets signals, matches fingerprints, and validates truth-data at a global scale.
+                    </p>
+
+                    <!-- Icon -->
+                    <div class="mb-6">
+                        <img src="https://plusbrand.com/wp-content/uploads/2025/11/Could-scaled.webp" class="h-20 w-auto object-contain" alt="ALETHRA CLOUD Icon">
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="font-bold text-klyr-dark mb-2">The <span class="text-klyr-red">ALETHRA CLOUD™</span> enables:</h3>
+                        <ul class="custom-list space-y-1 text-gray-700">
+                            <li>Instant identity verification</li>
+                            <li>Contamination alerts</li>
+                            <li>Real-time environmental risk detection</li>
+                            <li>Multi-sensor fusion</li>
+                            <li>Enterprise dashboards</li>
+                            <li>Cross-location intelligence</li>
+                            <li>Global pattern recognition</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-klyr-dark">
+                            This is the foundation of the <span class="text-klyr-red">ALETHRA™</span> Clarity Standard.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECTION 4 (FILE 4): ALETHA & COMPLIANCE
+        ================================================================= -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6 text-left">
+            <div class="grid gap-8 md:gap-12">
+                
+                <!-- ALETHA MODULE -->
+                <div>
+                    <div class="mb-4">
+                        <h2 class="text-3xl md:text-4xl font-extrabold uppercase leading-tight">
+                            <span class="text-klyr-red">ALETHA™</span><br>
+                            <span class="text-klyr-dark">The Face of The Clarity Protocol</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        <span class="text-klyr-red">ALETHA™</span> is the interactive intelligence layer that communicates ALETHRA’s insights to humans in real time. She interprets multi-sensor signals, explains risks, and guides operators, patients, and consumers through clear, actionable communication.
+                    </p>
+
+                    <div class="mb-6">
+                        <h3 class="font-bold text-klyr-dark mb-2"><span class="text-klyr-red">ALETHA™</span> provides:</h3>
+                        <ul class="custom-list space-y-1 text-gray-700">
+                            <li>Real-time explanations</li>
+                            <li>Safety warnings</li>
+                            <li>Protocol guidance</li>
+                            <li>Industry-specific clarity</li>
+                            <li>Plain-language risk translation</li>
+                            <li>System-wide intelligence access</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <p class="text-gray-700">
+                            <span class="text-klyr-red">ALETHA™</span> makes <span class="text-klyr-red">ALETHRA™</span> understandable to everyone - from hospital staff to farm operators to manufacturing teams.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- COMPLIANCE MODULE -->
+                <div class="pt-0 md:pt-0 border-t border-gray-100">
+                    <div class="mb-4">
+                        <h2 class="text-3xl md:text-4xl font-extrabold uppercase leading-tight text-klyr-dark">
+                            Built For Global Compliance<br>
+                            Engineered For Safety
+                        </h2>
+                    </div>
+
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        <span class="text-klyr-red">ALETHRA™</span> is a regulatory-first architecture designed to align with global standards from day one. Every module includes audit layers, privacy controls, and encrypted data pathways.
+                    </p>
+
+                    <div class="mb-6">
+                        <h3 class="font-bold text-klyr-dark mb-2">Security features include:</h3>
+                        <ul class="custom-list space-y-1 text-gray-700">
+                            <li>Encrypted sensor-to-cloud communication</li>
+                            <li>Anti-tamper fingerprint verification</li>
+                            <li>Privacy-preserving computation</li>
+                            <li>Regulatory logging</li>
+                            <li>Enterprise access controls</li>
+                            <li>Full transparency with audit trails</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-klyr-dark">
+                            This is infrastructure-grade clarity.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECTION 5 (FILE 5): DEPLOYMENT
+             Final section, adheres to bottom padding of screen 1 (pb-8 mobile, pb-12 desktop)
+        ================================================================= -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6 pb-8 md:pb-12 text-left">
+            <div>
+                <div class="mb-4">
+                    <h2 class="text-3xl md:text-4xl font-extrabold uppercase leading-tight text-klyr-dark">
+                        Seamless Deployment<br>
+                        Maximum Clarity
+                    </h2>
+                </div>
+
+                <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                    <span class="text-klyr-red">ALETHRA™</span> integrates with existing cameras, sensors, consumer devices, and enterprise hardware with minimal friction. Modular installation enables organizations to start small and scale effortlessly.
+                </p>
+
+                <div class="mb-8">
+                    <h3 class="font-bold text-klyr-dark mb-2">Capabilities include:</h3>
+                    <ul class="custom-list space-y-1 text-gray-700">
+                        <li>API and SDK access</li>
+                        <li>Mobile and device compatibility</li>
+                        <li>Enterprise dashboards</li>
+                        <li>Workflow triggers and alerts</li>
+                        <li>Cross-site intelligence</li>
+                        <li>Real-time monitoring</li>
+                    </ul>
+                </div>
+
+                <a href="/enterprise" class="inline-block bg-klyr-red text-white font-bold py-3 px-8 rounded hover:bg-red-700 transition duration-300 uppercase text-sm tracking-wider">
+                    Request Enterprise Access
+                </a>
+            </div>
+        </section>
 </main>
 
     
