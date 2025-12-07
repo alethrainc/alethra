@@ -1,0 +1,7 @@
+change the <main> content to whats in the screenshots, extract the exact copy and design for each , the order is in the file names 1 to 5, extricly respect the vertical padding design rule:
+hero padding top on desktop 6rem 
+hero padding top on mobile 4rem
+hero padding bottom destop 3rem
+hero padding bottom mobile 2rem
+Padding between  content on desktop 3rem and on mobile 2rem
+make sure to check all inner margins and paddings, verticalwhite space between sections can't be more than 3rem desktop and 2rem mobile conbined, vertical should take in count both sections to create the right spacing. Remember the left alinged design system for headings and texts

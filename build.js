@@ -93,20 +93,22 @@ function injectContent(template, postHtml, post, allPosts) {
 }
 
 // ---------------------------------------------------------------------
-// SMART REBUILD LOGIC
+// SMART REBUILD LOGIC — now includes template change detection
 // ---------------------------------------------------------------------
 function needsRebuild(post, mdPath, outputPath) {
-  if (!fs.existsSync(outputPath)) return true; // no file = build needed
+  if (!fs.existsSync(outputPath)) return true;
   if (!fs.existsSync(mdPath)) return true;
 
   const mdTime = fs.statSync(mdPath).mtimeMs;
   const outTime = fs.statSync(outputPath).mtimeMs;
   const jsonTime = fs.statSync(postsPath).mtimeMs;
+  const templateTime = fs.statSync(templatePath).mtimeMs;
 
-  // Rebuild if:
-  // - md is newer
-  // - posts.json is newer
-  return mdTime > outTime || jsonTime > outTime;
+  return (
+    mdTime > outTime ||
+    jsonTime > outTime ||
+    templateTime > outTime
+  );
 }
 
 // ---------------------------------------------------------------------

@@ -58,6 +58,88 @@
         .nav-item:hover {
             color: #E72F3C;
         }
+          /* Spacing Utilities based on Rules */
+        .hero-spacing {
+            padding-top: 4rem; /* Mobile 4rem */
+            padding-bottom: 2rem; /* Mobile 2rem */
+        }
+        @media (min-width: 768px) {
+            .hero-spacing {
+                padding-top: 6rem; /* Desktop 6rem */
+                padding-bottom: 3rem; /* Desktop 3rem */
+            }
+        }
+
+        /* Standard Section Spacing for sections 2-5 */
+        /* Since rule is "combined white space max 3rem desktop", we utilize the padding-bottom of the previous section
+           and set padding-top to 0 for the next to achieve exactly 3rem gap. */
+        .section-spacing {
+            padding-top: 0;
+            padding-bottom: 2rem; /* Mobile 2rem */
+        }
+        @media (min-width: 768px) {
+            .section-spacing {
+                padding-bottom: 3rem; /* Desktop 3rem */
+            }
+        }
+
+        /* Inner Content Spacing */
+        .content-gap {
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .content-gap {
+                margin-bottom: 3rem;
+            }
+        }
+        
+        /* Typography Standards */
+        .heading-xl {
+            font-size: 2.25rem;
+            line-height: 1.1;
+            font-weight: 800; /* Extra Bold */
+            text-transform: uppercase;
+            color: #1F2937;
+        }
+        @media (min-width: 768px) {
+            .heading-xl { font-size: 3rem; }
+        }
+
+        .heading-lg {
+            font-size: 1.875rem;
+            line-height: 1.2;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #1F2937;
+        }
+
+        .text-body {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #374151;
+        }
+        @media (min-width: 768px) {
+            .text-body { font-size: 1.125rem; }
+        }
+        
+        /* List Styles */
+        ul.custom-bullets {
+            list-style: none;
+            padding-left: 0;
+        }
+        ul.custom-bullets li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        ul.custom-bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #1F2937; /* Dark bullet */
+            font-weight: bold;
+        }
+
         /* -------------------------------------------------- */
 
         /* Ensures Inter font loads smoothly */
@@ -177,451 +259,299 @@
 <div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
 
     <main class="">
-  <div id="about-content">
+   <div id="">
             
-            <!-- HERO SECTION -->
-            <!-- Rule 1: Desktop pt-24/pb-12, Mobile pt-16/pb-8 -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 text-left">
-                <!-- Rule 1: Mobile Gap 2rem (gap-8) -->
-                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+            <!-- 
+                SECTION 1: HERO / ABOUT & MISSION (From 1.png) 
+                Rules: Top Padding 6rem(D)/4rem(M), Bottom 3rem(D)/2rem(M)
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 hero-spacing border-b border-transparent">
+                <div class="flex flex-col gap-8 md:gap-12">
                     
-                    <!-- Left Column: Content -->
-                    <div class="space-y-6">
-                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-none text-black uppercase mb-6">
-                            ABOUT <span class="text-klyr-red">ALETHRA</span>™
-                        </h1>
-                        <p class="text-xl md:text-2xl text-black font-normal max-w-4xl leading-snug">
-                            Engineering global clarity.<br>
-                            Powering safer decisions.<br>
-                            Enabling a world that runs on truth.
-                        </p>
-                    </div>
-
-                    <!-- Right Column: Image -->
-                    <div id="content-box" class="content-box-border-style rounded-lg flex overflow-hidden"> 
-                        <img id="" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- MISSION & ORIGIN (Gray Background) -->
-            <!-- Rule 2: Desktop py-12, Mobile py-8 -->
-            <section class="bg-gray-50 py-8 md:py-12 border-t border-gray-100">
-                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-                    <!-- Rule 2: Max gap 2rem mobile -->
-                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
+                    <!-- Part 1: About -->
+                    <div>
+                        <h1 class="heading-xl mb-2">ABOUT <span class="text-klyr-red">ALETHRA™</span></h1>
+                        <h2 class="text-xl md:text-2xl font-bold text-klyr-dark mb-6">The Global Standard for Clarity</h2>
                         
-                        <!-- Mission -->
-                        <div class="space-y-6">
-                            <h2 class="text-2xl font-bold uppercase tracking-wide">
-                                <span class="text-klyr-red">OUR</span> <span class="text-black">MISSION</span>
-                            </h2>
-                            <p class="text-lg text-gray-700 leading-relaxed">
-                                <span class="text-klyr-red">ALETHRA</span>™ delivers the foundational clarity modern systems require.
-                            </p>
-                            <p class="text-lg text-gray-700 leading-relaxed">
-                                In industries where errors cost lives, money, and public trust, <span class="text-klyr-red">ALETHRA</span>™ provides an intelligent verification layer that removes ambiguity and elevates decision-making to a new standard of precision.
-                            </p>
-                            <p class="text-lg text-black font-bold">
-                                Our mandate is simple:<br>
-                                replace confusion with certainty.
-                            </p>
+                        <div class="text-body space-y-4 max-w-4xl">
+                            <p><span class="text-klyr-red font-bold">ALETHRA™</span> was created to solve one of humanity's most overlooked crises: confusion.</p>
+                            
+                            <p>Across every primary industry, errors caused by mislabeling, misidentification, misinformation, and miscommunication lead to contamination, wasted billions, operational breakdowns, and preventable loss of life.</p>
+                            
+                            <p><span class="text-klyr-red font-bold">ALETHRA™ exists to end that.</span></p>
+                            
+                            <p>We built the world's first Clarity Intelligence System — a real-time verification architecture that ensures the world knows exactly what it's looking at, exactly what it's handling, and exactly what is safe, authentic, or compliant.</p>
+                            
+                            <p class="font-bold">Every time. Everywhere.</p>
                         </div>
+                    </div>
 
-                        <!-- Origin -->
-                        <div class="space-y-6">
-                            <h2 class="text-2xl font-bold uppercase tracking-wide">
-                                <span class="text-klyr-red">OUR</span> <span class="text-black">ORIGIN</span>
-                            </h2>
-                            <p class="text-lg text-gray-700 leading-relaxed">
-                                <span class="text-klyr-red">ALETHRA</span>™ was built on a fundamental insight: the world’s operating systems fail not because technology is insufficient, but because the truth is often invisible.
-                            </p>
-                            <p class="text-lg text-gray-700 leading-relaxed">
-                                After pioneering <span class="text-klyr-red">All-Scratch!</span>® Identification technology across major consumer sectors, founder Chad Willis identified a larger imperative: give the world a universal mechanism to read the physical environment with absolute confidence.
-                            </p>
-                            <p class="text-lg text-gray-700 leading-relaxed">
-                                The outcome is <span class="text-klyr-red">ALETHRA</span>™ the first Clarity Intelligence System built to authenticate the real world at the speed of life.
-                            </p>
+                    <!-- Part 2: Mission -->
+                    <div class="mt-0 md:mt-0"> <!-- Internal spacing adjustment -->
+                        <h2 class="heading-xl mb-4">OUR MISSION</h2>
+                        <h3 class="text-xl md:text-2xl font-bold text-klyr-dark mb-6">Make clarity a universal standard.</h3>
+                        
+                        <div class="text-body space-y-4 max-w-4xl">
+                            <p>We believe that clarity - true, real-time, verified clarity - is the foundation of trust in modern civilization.</p>
+                            
+                            <p><span class="text-klyr-red">ALETHRA™</span> stands for a world where:</p>
+                            
+                            <ul class="custom-bullets pl-2">
+                                <li>Products cannot be mislabeled,</li>
+                                <li>Medications cannot be misidentified,</li>
+                                <li>Contaminated ingredients cannot slip through,</li>
+                                <li>Environmental dangers cannot be ignored,</li>
+                                <li>Data cannot be falsified,</li>
+                                <li>And human lives are never put at risk by avoidable confusion.</li>
+                            </ul>
+                            
+                            <p class="font-bold pt-2">This mission guides every system we build and every standard we publish.</p>
                         </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <!-- WHAT WE DO SECTION -->
-            <!-- Rule 2: Desktop py-12, Mobile py-8 -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-black text-left mb-6 uppercase">
-                    WHAT WE DO?
-                </h2>
-                <p class="text-lg text-gray-700 mb-12 max-w-4xl">
-                    We enable enterprises, regulators, and frontline operators to verify identity, authenticity, quality, contamination, and safety with unmatched accuracy.
-                </p>
-                
-                <!-- Rule 5 (Strip & Gap): Added gap-y-8 to parent, removed padding/borders from children on mobile -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-y-8">
-                    
-                    <!-- Item 1 -->
-                    <!-- Removed mobile pb-8. Kept desktop padding/borders -->
-                    <div class="md:pr-8 md:border-r-2 md:border-black h-full md:pb-0">
-                        <h3 class="text-xl font-extrabold uppercase mb-4 leading-tight">
-                            <span class="text-klyr-red">CLARITY</span><br>
-                            <span class="text-black">INTELLIGENCE</span>
-                        </h3>
-                        <p class="text-lg text-gray-700 leading-relaxed">
-                            A multi-sensor, micro-surface, and material-signal platform built to detect what the human eye cannot.
-                        </p>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <!-- Removed mobile py-8 & border-t-2. Kept desktop padding/borders -->
-                    <div class="md:px-8 md:border-r-2 md:border-black h-full md:py-0 md:border-t-0">
-                        <h3 class="text-xl font-extrabold uppercase mb-4 leading-tight">
-                            <span class="text-klyr-red">REAL-WORLD</span><br>
-                            <span class="text-black">VERIFICATION</span>
-                        </h3>
-                        <p class="text-lg text-gray-700 leading-relaxed">
-                            Instant verification of items, materials, and environments, from hospital surgery suites to agricultural fields to global supply chains.
-                        </p>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <!-- Removed mobile pt-8 & border-t-2. Kept desktop padding/borders -->
-                    <div class="md:pl-8 h-full md:pt-0 md:border-t-0">
-                        <h3 class="text-xl font-extrabold uppercase mb-4 leading-tight">
-                            <span class="text-klyr-red">HUMAN-CENTERED<br class="md:hidden"></span> <span class="text-black">AI</span><br class="hidden md:block">
-                            <span class="text-black">INTERFACE</span>
-                        </h3>
-                        <p class="text-lg text-gray-700 leading-relaxed">
-                            <span class="text-klyr-red">ALETHRA</span>™, our intelligent interface, translates complex environmental data into clear, actionable guidance.
-                        </p>
                     </div>
 
                 </div>
             </section>
 
-            <!-- IMPACT SECTION -->
-            <!-- Rule 2: Desktop py-12, Mobile py-8 -->
-            <section class="bg-klyr-red py-8 md:py-12">
-                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-left text-white">
-                    <h2 class="text-4xl md:text-5xl font-extrabold uppercase mb-8">THE IMPACT WE DRIVE</h2>
+            <!-- 
+                SECTION 2: PROBLEM & ARCHITECTURE (From 2.png)
+                Rules: Top 0, Bottom 3rem(D)/2rem(M) 
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 section-spacing">
+                <div class="flex flex-col gap-8 md:gap-12">
                     
-                    <div class="max-w-4xl">
-                        <p class="text-white text-lg leading-relaxed mb-6">
-                            Confusion is one of the world's most expensive and dangerous operational failures — responsible for billions in annual losses and hundreds of thousands of preventable deaths.
-                        </p>
-                        <p class="text-white text-lg mb-8">
-                            <span class="font-bold">ALETHRA™</span> is designed to reverse that trajectory by delivering:
-                        </p>
+                    <!-- Problem -->
+                    <div>
+                        <h2 class="heading-lg mb-6">THE PROBLEM WE SOLVE</h2>
+                        <div class="text-body space-y-4 max-w-4xl">
+                            <p>Confusion is not a small issue - it is a <strong>silent global failure mode</strong>.</p>
+                            <p>Healthcare, agriculture, logistics, senior-care, construction, manufacturing, pharmaceuticals, and food systems all suffer from the same vulnerability: <strong>no reliable, universal method to verify identity, condition, or authenticity in real time.</strong></p>
+                            <p>The world has relied on trust - labels, barcodes, paperwork, protocols - and those systems fail every single day.</p>
+                            <p><span class="text-klyr-red font-bold">ALETHRA™</span> <strong>replaces trust with verification.</strong></p>
+                        </div>
+                    </div>
 
-                        <ul class="space-y-2 mb-10">
-                            <li class="flex items-start">
-                                <span class="mr-3 mt-2 h-1.5 w-1.5 bg-white rounded-full flex-shrink-0"></span>
-                                <span class="text-white text-lg">Higher clinical accuracy across care environments</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="mr-3 mt-2 h-1.5 w-1.5 bg-white rounded-full flex-shrink-0"></span>
-                                <span class="text-white text-lg">Stronger food and agriculture integrity</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="mr-3 mt-2 h-1.5 w-1.5 bg-white rounded-full flex-shrink-0"></span>
-                                <span class="text-white text-lg">Trusted global supply chains</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="mr-3 mt-2 h-1.5 w-1.5 bg-white rounded-full flex-shrink-0"></span>
-                                <span class="text-white text-lg">Safer air and travel operations</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="mr-3 mt-2 h-1.5 w-1.5 bg-white rounded-full flex-shrink-0"></span>
-                                <span class="text-white text-lg">Material-level transparency for regulators</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="mr-3 mt-2 h-1.5 w-1.5 bg-white rounded-full flex-shrink-0"></span>
-                                <span class="text-white text-lg">Dramatic reductions in waste, rework, and loss</span>
-                            </li>
+                    <!-- Architecture -->
+                    <div>
+                        <h2 class="heading-lg mb-2">THE <span class="text-klyr-red">ALETHRA™</span></h2>
+                        <h2 class="heading-lg mb-6">CLARITY ARCHITECTURE</h2>
+                        
+                        <p class="text-body mb-8 max-w-4xl"><span class="text-klyr-red">ALETHRA™</span> connects the physical world directly to the truth using a multi-sensor, multi-modality intelligence stack:</p>
+                        
+                        <!-- Grid of 4 Items -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                            <!-- Item 1: SCAN (Left Column - Needs Border) -->
+                            <div class="flex flex-col items-start md:border-r-2 md:border-klyr-dark md:pr-6">
+                                <img src="https://plusbrand.com/wp-content/uploads/2025/11/SCAN_1.webp" alt="ALETHRA SCAN" class="h-24 w-auto object-contain mb-4">
+                                <h3 class="text-lg font-extrabold text-klyr-red mb-2 uppercase">ALETHRA SCAN™</h3>
+                                <p class="text-sm text-gray-700">Micro-surface fingerprinting technology that verifies objects and materials by their unique physical signature.</p>
+                            </div>
+                            
+                            <!-- Item 2: SENSE (Right Column - No Border) -->
+                            <div class="flex flex-col items-start">
+                                <img src="https://plusbrand.com/wp-content/uploads/2025/11/SNSE-scaled.webp" alt="ALETHRA SENSE" class="h-24 w-auto object-contain mb-4">
+                                <h3 class="text-lg font-extrabold text-klyr-red mb-2 uppercase">ALETHRA SENSE™</h3>
+                                <p class="text-sm text-gray-700">Spectral and environmental analysis that identifies contamination, residues, or deviations invisible to the human eye.</p>
+                            </div>
+                            
+                            <!-- Item 3: ENV (Left Column - Needs Border) -->
+                            <div class="flex flex-col items-start md:border-r-2 md:border-klyr-dark md:pr-6">
+                                <img src="https://plusbrand.com/wp-content/uploads/2025/11/ENV-scaled.webp" alt="ALETHRA ENV" class="h-24 w-auto object-contain mb-4">
+                                <h3 class="text-lg font-extrabold text-klyr-red mb-2 uppercase">ALETHRA ENV™</h3>
+                                <p class="text-sm text-gray-700">Contextual environmental sensing to detect risks, conditions, and protocol failures in real time.</p>
+                            </div>
+
+                            <!-- Item 4: CLOUD (Right Column - No Border) -->
+                            <div class="flex flex-col items-start">
+                                <img src="https://plusbrand.com/wp-content/uploads/2025/11/Could-scaled.webp" alt="ALETHRA CLOUD" class="h-24 w-auto object-contain mb-4">
+                                <h3 class="text-lg font-extrabold text-klyr-red mb-2 uppercase">ALETHRA CLOUD™</h3>
+                                <p class="text-sm text-gray-700">A global clarity network that processes signals, compares signatures, and delivers instant, trustworthy verification results.</p>
+                            </div>
+                        </div>
+
+                        <p class="text-body mt-8">Together, these systems form a unified clarity standard that transforms cameras, devices, and sensors into powerful real-time verification tools.</p>
+                        
+                        <div class="mt-8">
+                            <a href="/enterprise-hardware" class="inline-block bg-klyr-red hover:bg-red-700 text-white font-extrabold py-4 px-8 rounded shadow transition duration-300 uppercase text-sm tracking-widest">
+                                MEET THE FULL ARCHITECTURE
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 
+                SECTION 3: MEET ALETHA (From 3.png)
+                Rules: Top 0, Bottom 3rem(D)/2rem(M)
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 section-spacing">
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    
+                    <!-- Left: Text -->
+                    <div class="order-2 md:order-1">
+                        <h2 class="heading-lg mb-2">MEET <span class="text-klyr-red">ALETHA™</span></h2>
+                        <h3 class="text-lg font-bold text-klyr-dark mb-6">The Intelligence Layer Behind the <span class="text-klyr-red">ALETHRA™</span> Standard</h3>
+                        
+                        <div class="text-body space-y-4 text-sm md:text-base">
+                            <p>Launching this week, <span class="text-klyr-red">ALETHA™</span> is the operational face of the <span class="text-klyr-red">ALETHRA™</span> Clarity System.</p>
+                            
+                            <p>More than an avatar, she is the intelligence that interprets, explains, and delivers clarity everywhere <span class="text-klyr-red">ALETHRA™</span> is deployed.</p>
+                            
+                            <p class="font-bold text-klyr-red">ALETHA™:</p>
+                            <ul class="custom-bullets pl-2">
+                                <li>Understands multi-sensor signals,</li>
+                                <li>Communicates risk in plain language,</li>
+                                <li>Guides operators and consumers in real time,</li>
+                                <li>And provides the global interface to <span class="text-klyr-red">ALETHRA's</span> verification engine.</li>
+                            </ul>
+                            
+                            <p class="mt-4">She is the first representation of a living clarity protocol - designed to make <span class="text-klyr-red">ALETHRA™</span> accessible to every user, every industry, and every environment on Earth.</p>
+                        </div>
+                    </div>
+
+                    <!-- Right: Image -->
+                    <div class="order-1 md:order-2 flex justify-center md:justify-end">
+                        <!-- Full image, contain style, no cropping -->
+                         <img src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" alt="ALETHRA Representative" class="w-full h-auto object-contain max-w-md" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'flex flex-col items-center justify-center h-64 bg-gray-100 w-full text-center p-4\'><i class=\'fas fa-user-circle text-6xl text-gray-300 mb-2\'></i><span class=\'text-gray-400\'>Aletha Avatar Image</span></div>'">
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 
+                SECTION 4: INDUSTRIES (From 4.png)
+                Rules: Top 0, Bottom 3rem(D)/2rem(M)
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 section-spacing">
+                <h2 class="heading-lg mb-6">INDUSTRIES WE SERVE</h2>
+                <p class="text-body mb-8"><span class="text-klyr-red">ALETHRA™</span> operates wherever clarity matters:</p>
+
+                <!-- Industry Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 mb-10">
+                    
+                    <!-- 1. Healthcare -->
+                    <div class="flex flex-col items-start border-r-2 border-black pr-4">
+                        <i class="fas fa-hospital text-3xl text-klyr-red mb-3"></i>
+                        <h3 class="font-bold text-klyr-dark text-sm leading-tight">Healthcare &<br>Medicine</h3>
+                    </div>
+                    
+                    <!-- 2. Senior Care (Mobile: Right Edge [No Border] | Desktop: Inner [Border]) -->
+                    <div class="flex flex-col items-start md:border-r-2 md:border-black md:pr-4">
+                        <i class="fas fa-hand-holding-heart text-3xl text-klyr-red mb-3"></i>
+                        <h3 class="font-bold text-klyr-dark text-sm leading-tight">Senior Care</h3>
+                    </div>
+                    
+                    <!-- 3. Agriculture -->
+                    <div class="flex flex-col items-start border-r-2 border-black pr-4">
+                        <i class="fas fa-tractor text-3xl text-klyr-red mb-3"></i>
+                        <h3 class="font-bold text-klyr-dark text-sm leading-tight">Agriculture &<br>Pesticides</h3>
+                    </div>
+                    
+                    <!-- 4. Food Safety (Mobile: Right Edge | Desktop: Right Edge [No Border Ever]) -->
+                    <div class="flex flex-col items-start">
+                        <i class="fas fa-utensils text-3xl text-klyr-red mb-3"></i>
+                        <h3 class="font-bold text-klyr-dark text-sm leading-tight">Food &<br>Beverage Safety</h3>
+                    </div>
+                    
+                    <!-- 5. Pharma -->
+                    <div class="flex flex-col items-start border-r-2 border-black pr-4">
+                        <i class="fas fa-prescription-bottle-alt text-3xl text-klyr-red mb-3"></i>
+                        <h3 class="font-bold text-klyr-dark text-sm leading-tight">Pharmaceuticals<br>& Life Sciences</h3>
+                    </div>
+                    
+                    <!-- 6. Manufacturing (Mobile: Right Edge [No Border] | Desktop: Inner [Border]) -->
+                    <div class="flex flex-col items-start md:border-r-2 md:border-black md:pr-4">
+                        <i class="fas fa-industry text-3xl text-klyr-red mb-3"></i>
+                        <h3 class="font-bold text-klyr-dark text-sm leading-tight">Manufacturing</h3>
+                    </div>
+                    
+                    <!-- 7. Construction -->
+                    <div class="flex flex-col items-start border-r-2 border-black pr-4">
+                        <i class="fas fa-hard-hat text-3xl text-klyr-red mb-3"></i>
+                        <h3 class="font-bold text-klyr-dark text-sm leading-tight">Construction</h3>
+                    </div>
+                    
+                    <!-- 8. Supply Chain (Mobile: Right Edge | Desktop: Right Edge [No Border Ever]) -->
+                    <div class="flex flex-col items-start">
+                        <i class="fas fa-plane-departure text-3xl text-klyr-red mb-3"></i>
+                        <h3 class="font-bold text-klyr-dark text-sm leading-tight">Supply Chain &<br>Logistics</h3>
+                    </div>
+
+                    <!-- 9. Environmental -->
+                    <div class="flex flex-col items-start border-r-2 border-black pr-4">
+                        <i class="fas fa-shield-alt text-3xl text-klyr-red mb-3"></i>
+                        <h3 class="font-bold text-klyr-dark text-sm leading-tight">Environmental<br>Safety</h3>
+                    </div>
+
+                    <!-- 10. Consumer Products (Mobile: Right Edge [No Border] | Desktop: Inner [Border]) -->
+                    <div class="flex flex-col items-start md:border-r-2 md:border-black md:pr-4">
+                        <i class="fas fa-box-open text-3xl text-klyr-red mb-3"></i>
+                        <h3 class="font-bold text-klyr-dark text-sm leading-tight">Consumer<br>Products</h3>
+                    </div>
+
+                    <!-- 11. Gov -->
+                    <div class="flex flex-col items-start border-r-2 border-black pr-4">
+                        <i class="fas fa-landmark text-3xl text-klyr-red mb-3"></i>
+                        <h3 class="font-bold text-klyr-dark text-sm leading-tight">Government &<br>Regulatory Agencies</h3>
+                    </div>
+                </div>
+
+                <p class="text-body font-bold">Each sector faces unique clarity challenges.<br><span class="text-klyr-red font-extrabold">ALETHRA™</span> solves them with one unified intelligence.</p>
+            </section>
+
+            <!-- 
+                SECTION 5: REGULATORY & FUTURE (From 5.png)
+                Rules: Top 0, Bottom 3rem(D)/2rem(M)
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 section-spacing">
+                <div class="flex flex-col gap-8 md:gap-12">
+                    
+                    <!-- Regulatory -->
+                    <div>
+                        <h2 class="heading-lg mb-6">A REGULATORY-FIRST PLATFORM</h2>
+                        <p class="text-body mb-4">Trust is not optional - it must be built into the system.</p>
+                        <p class="text-body mb-4"><span class="text-klyr-red">ALETHRA™</span> is designed from day one to operate in full alignment with global regulatory agencies, certification bodies, and international standards organizations.</p>
+                        <p class="text-body mb-6">Our regulatory engagement plan ensures <span class="text-klyr-red">ALETHRA™</span> is not just compliant — it helps shape the next generation of global verification standards.</p>
+                        
+                        <a href="/regulatory" class="inline-block bg-klyr-red hover:bg-red-700 text-white font-extrabold py-4 px-8 rounded shadow transition duration-300 uppercase text-sm tracking-widest mb-2">
+                            FULL REGULATORY & STANDARDS
+                        </a>
+                    </div>
+
+                    <!-- Clarity Standard -->
+                    <div>
+                        <h2 class="heading-lg mb-6">THE CLARITY STANDARD</h2>
+                        <p class="text-body mb-4">Clarity is becoming its own category - and <span class="text-klyr-red">ALETHRA™</span> is defining it.</p>
+                        <p class="text-body mb-2">We are establishing the world's first multi-industry clarity benchmark:</p>
+                        <ul class="custom-bullets pl-2 text-body mb-4">
+                            <li>Real-time identity verification,</li>
+                            <li>Real-time contamination detection,</li>
+                            <li>Real-time environmental truth-data,</li>
+                            <li>Real-time operational guidance.</li>
                         </ul>
-
-                        <div>
-                            <p class="text-white font-bold text-lg">
-                                We are not iterating on existing systems. We are establishing a new global baseline for truth.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- LEADERSHIP & ADVISORY (UPDATED: BIO OVERLAY) -->
-            <!-- Rule 2: Desktop py-12, Mobile py-8 -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-                <div class="mb-12">
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-black text-left uppercase mb-6">
-                        LEADERSHIP & ADVISORY
-                    </h2>
-                    <p class="text-lg text-gray-700 mb-6">
-                        <span class="text-klyr-red">ALETHRA</span>™ is guided by a select network of domain experts, including medical executives, cloud architects, regulatory leaders, and engineers, each contributing high-level oversight within their field.
-                    </p>
-                    <p class="text-lg text-gray-700">
-                        This multidisciplinary structure ensures that <span class="text-klyr-red">ALETHRA</span>™ meets enterprise rigor, regulatory expectations, and real-world practicality simultaneously.
-                    </p>
-                </div>
-                
-                <!-- Rule 2: Max gap 2rem mobile (gap-y-8) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8 md:gap-y-12">
-                    
-                    <!-- 1 -->
-                    <div class="flex flex-col items-center text-center group">
-                        <div class="relative w-full flex flex-col items-center">
-                            <!-- Visible Content -->
-                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md">
-                                <!-- No Icon -->
-                            </div>
-                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
-                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
-                            <p class="text-gray-600 text-sm mb-4">Strategic oversight and development of core infrastructure technologies.</p>
-                            
-                            <!-- Hidden Bio Overlay -->
-                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
-                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
-                            </div>
-                        </div>
-                        <!-- Button remains visible below -->
-                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
-                            <span>Read Bio</span>
-                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
-                        </button>
+                        <p class="font-bold text-body">The <span class="text-klyr-red font-extrabold">ALETHRA™</span> Standard is what every industry will rely on to eliminate confusion for good.</p>
                     </div>
 
-                    <!-- 2 -->
-                    <div class="flex flex-col items-center text-center group">
-                        <div class="relative w-full flex flex-col items-center">
-                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
-                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
-                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
-                            <p class="text-gray-600 text-sm mb-4">Leading global partnerships and strategic market expansion initiatives.</p>
-                            
-                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
-                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
-                            </div>
-                        </div>
-                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
-                            <span>Read Bio</span>
-                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
-                        </button>
-                    </div>
-
-                    <!-- 3 -->
-                    <div class="flex flex-col items-center text-center group">
-                        <div class="relative w-full flex flex-col items-center">
-                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
-                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
-                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
-                            <p class="text-gray-600 text-sm mb-4">Directing operational excellence and cross-functional team alignment.</p>
-                            
-                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
-                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
-                            </div>
-                        </div>
-                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
-                            <span>Read Bio</span>
-                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
-                        </button>
-                    </div>
-
-                    <!-- 4 -->
-                    <div class="flex flex-col items-center text-center group">
-                        <div class="relative w-full flex flex-col items-center">
-                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
-                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
-                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
-                            <p class="text-gray-600 text-sm mb-4">Driving innovation strategy and future technology roadmap.</p>
-                            
-                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
-                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
-                            </div>
-                        </div>
-                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
-                            <span>Read Bio</span>
-                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
-                        </button>
-                    </div>
-
-                    <!-- 5 -->
-                    <div class="flex flex-col items-center text-center group">
-                        <div class="relative w-full flex flex-col items-center">
-                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
-                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
-                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
-                            <p class="text-gray-600 text-sm mb-4">Overseeing clinical validation protocols and hospital integration.</p>
-                            
-                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
-                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
-                            </div>
-                        </div>
-                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
-                            <span>Read Bio</span>
-                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
-                        </button>
-                    </div>
-
-                    <!-- 6 -->
-                    <div class="flex flex-col items-center text-center group">
-                        <div class="relative w-full flex flex-col items-center">
-                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
-                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
-                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
-                            <p class="text-gray-600 text-sm mb-4">Leading multi-spectral sensor fusion and micro-surface analysis.</p>
-                            
-                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
-                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
-                            </div>
-                        </div>
-                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
-                            <span>Read Bio</span>
-                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
-                        </button>
-                    </div>
-
-                    <!-- 7 -->
-                    <div class="flex flex-col items-center text-center group">
-                        <div class="relative w-full flex flex-col items-center">
-                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
-                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
-                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
-                            <p class="text-gray-600 text-sm mb-4">Architecting the global truth ledger and secure enterprise integrations.</p>
-                            
-                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
-                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
-                            </div>
-                        </div>
-                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
-                            <span>Read Bio</span>
-                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
-                        </button>
-                    </div>
-
-                    <!-- 8 -->
-                    <div class="flex flex-col items-center text-center group">
-                        <div class="relative w-full flex flex-col items-center">
-                            <div class="w-48 h-48 rounded-full bg-gray-200 mb-6 overflow-hidden relative shadow-md"></div>
-                            <h3 class="text-xl font-bold text-klyr-dark">Name Placeholder</h3>
-                            <p class="text-xs font-bold text-klyr-red mb-2 tracking-wide">Position</p>
-                            <p class="text-gray-600 text-sm mb-4">Managing alignment with global compliance standards bodies.</p>
-                            
-                            <div class="profile-bio hidden absolute inset-0 bg-white flex flex-col justify-center items-center p-4 z-10 overflow-y-auto text-left">
-                                <p class="text-sm text-gray-600">This is a placeholder for a future leadership profile. The bio section can contain detailed information about the individual's background, expertise, and role within the organization.</p>
-                            </div>
-                        </div>
-                        <button onclick="toggleBio(this)" class="text-klyr-dark font-bold text-sm uppercase flex items-center hover:text-klyr-red transition pb-2 z-20">
-                            <span>Read Bio</span>
-                            <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200 text-xs"></i>
-                        </button>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- VALUES SECTION -->
-            <!-- Rule 2: Desktop py-12, Mobile py-8 -->
-            <section class="bg-gray-50 py-8 md:py-12">
-                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-black text-left uppercase mb-12">
-                        OUR VALUES
-                    </h2>
-                    
-                    <!-- Rule 5 (Strip & Gap) & Rule 2: Max gap 2rem mobile -->
-                    <div class="grid md:grid-cols-3 gap-y-8 md:gap-y-12">
-                        <!-- Value 1 -->
-                        <div class="md:pr-8 md:border-r-2 md:border-black">
-                            <h3 class="text-xl font-bold text-black uppercase mb-4">INTEGRITY</h3>
-                            <p class="text-lg text-gray-700 leading-relaxed">Truth is non-negotiable. We stand for verifying reality without compromise.</p>
+                    <!-- Future of Trust -->
+                    <div>
+                        <h2 class="heading-lg mb-6">THE FUTURE OF TRUST</h2>
+                        <p class="text-body mb-4">Every major technological leap has been built on a new form of certainty - electricity, computing, the internet, and cloud.</p>
+                        <p class="text-body font-bold mb-4">The next one is clarity.</p>
+                        <p class="text-body mb-4"><span class="text-klyr-red">ALETHRA™</span> is creating a future where the world never has to guess again.</p>
+                        
+                        <div class="text-body font-extrabold mb-6">
+                            <p>Where everything is understood.</p>
+                            <p>Everything is verifiable.</p>
+                            <p>Everything is trusted.</p>
                         </div>
                         
-                        <!-- Value 2 -->
-                        <div class="md:px-8 md:border-r-2 md:border-black">
-                            <h3 class="text-xl font-bold text-black uppercase mb-4">SAFETY</h3>
-                            <p class="text-lg text-gray-700 leading-relaxed">Every interaction must protect human life. Safety is the core of our verification.</p>
-                        </div>
-
-                        <!-- Value 3 -->
-                        <div class="md:pl-8">
-                            <h3 class="text-xl font-bold text-black uppercase mb-4">PRECISION</h3>
-                            <p class="text-lg text-gray-700 leading-relaxed">Accuracy is the standard; assumptions are not. We engineer for exactness.</p>
-                        </div>
-
-                        <!-- Value 4 -->
-                        <div class="md:pr-8 md:border-r-2 md:border-black">
-                            <h3 class="text-xl font-bold text-black uppercase mb-4">SCALABILITY</h3>
-                            <p class="text-lg text-gray-700 leading-relaxed">Global problems require a global-ready architecture. We build for the world.</p>
-                        </div>
-
-                        <!-- Value 5 -->
-                        <div class="md:px-8 md:border-r-2 md:border-black">
-                            <h3 class="text-xl font-bold text-black uppercase mb-4">STEWARDSHIP</h3>
-                            <p class="text-lg text-gray-700 leading-relaxed">Transparency is the foundation of trust. We are stewards of clear data.</p>
-                        </div>
-
-                        <!-- Value 6 -->
-                        <div class="md:pl-8">
-                            <h3 class="text-xl font-bold text-black uppercase mb-4">HUMANITY</h3>
-                            <p class="text-lg text-gray-700 leading-relaxed">Technology exists to serve people, not replace them. We empower human decisions.</p>
-                        </div>
+                        <p class="text-body">Because clarity saves lives, protects systems, and powers the next era of global progress.</p>
                     </div>
-                </div>
-            </section>
-
-            <!-- GLOBAL RESPONSIBILITY & COMMITMENT -->
-            <!-- Rule 2: Desktop py-12, Mobile py-8 -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-                <!-- Rule 2: Max gap 2rem mobile -->
-                <div class="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
-                    
-                    <div>
-                        <h2 class="text-2xl font-bold text-klyr-red uppercase mb-4">GLOBAL RESPONSIBILITY</h2>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                            <span class="text-klyr-red">ALETHRA</span>™ is engineered in alignment with leading global regulators and standards bodies, including FDA, EMA, USDA, ISO, GS1, FAA, DOT, and major agriculture and food authorities.
-                        </p>
-                        <p class="text-lg text-gray-700 leading-relaxed">
-                            Our platform is built to meet the highest expectations of compliance, traceability, and material-level certainty.
-                        </p>
-                    </div>
-
-                    <div>
-                        <h2 class="text-2xl font-bold text-klyr-red uppercase mb-4">OUR COMMITMENT</h2>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                            We are building the clarity infrastructure for the next century, enabling governments, enterprises, and communities to operate with reliability, accountability, and confidence.
-                        </p>
-                        <p class="text-lg text-gray-700 leading-relaxed">
-                            This is <span class="text-klyr-red">ALETHRA</span>™: the new global standard for truth-driven intelligence.
-                        </p>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- CTA SECTION -->
-            <!-- Rule Update: Desktop py-12 (3rem), Mobile py-8 (2rem) -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12 md:pt-0 text-left">
-                <div class="flex flex-col sm:flex-row gap-4">
-                    
-                    <a href="/technology">
-                        <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-sm transition duration-150 uppercase tracking-wide text-lg">
-                            EXPLORE THE TECHNOLOGY
-                        </button>
-                    </a>
-                    
-                    <a href="/impact">
-                        <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-sm transition duration-150 uppercase tracking-wide text-lg">
-                            SEE HOW ALETHRA™ WORKS
-                        </button>
-                    </a>
 
                 </div>
             </section>
             
         </div>
-        
-        
 </main>
 
     

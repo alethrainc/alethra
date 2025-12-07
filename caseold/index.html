@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALETHRA - Technology</title>
+    <title>ALETHRA - CASE STUDIES</title>
     
 <script src="https://cdn.tailwindcss.com"></script>
     
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link rel="stylesheet" href="/animation.css">
-    
+<link rel="stylesheet" href="/animation.css">    
 <script>
         tailwind.config = {
             theme: {
@@ -28,8 +27,6 @@
         }
     </script>
     <style>
-    
-
          /* =================================================================== */
         /* FIX: Ensures cards align horizontally by normalizing description height */
         /* =================================================================== */
@@ -128,7 +125,7 @@
             max-height: 0; 
             /* Opacity starts at 0 */
             opacity: 0; 
-  
+   
             /* Use the variable defined at the top for indentation */
             padding-left: var(--mobile-indent-px);
             /* transition-all includes max-height and opacity/transform */
@@ -178,98 +175,60 @@
     
 <div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
 
-    
-
 
     <main class="fade-in-section">
         
 <div id="homepage-content">
-             <!-- Section 1: Hero - Confusion Costs Lives -->
-             <!-- 
-                EXCEPTION RULE (Header Top): 
-                Top: 6rem (desktop) / 4rem (mobile) -> pt-16 md:pt-24
-                Bottom: 0 (to allow next section to provide gap)
-             -->
-            <section class="fade-in-section max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-0 md:pt-24 md:pb-0">
-                <div class="grid md:grid-cols-2 gap-8 items-start">
-                    <!-- Left Content -->
-                    <div class="space-y-6">
+             <!-- Section 1: Hero - Confusion Turns Fatal (REDUCED PADDING-BOTTOM: pb-4 md:pb-6) -->
+             <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-4 md:pb-6">
+                <!-- UPDATED: Grid layout for Content Left / Image Right -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+                    
+                    <!-- LEFT COLUMN: Text Content -->
+                    <div class="text-left space-y-6">
                         <!-- H1 Text -->
-                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug">
-                            <span class="text-klyr-dark">TECHNOLOGY<br>THAT SEES <br> THE TRUTH</span>
+                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark">
+                            WHEN CONFUSION<br class="md:hidden"> TURNS FATAL
                         </h1>
-                        <!-- Paragraph Text -->
-                        <p class="text-gray-600 text-lg">
-                          <span class="text-klyr-red">ALETHRA</span>™ fuses computer vision, artificial intelligence, and blockchain to turn any camera into a verification tool. It doesn’t just detect, it understands, learns, and protects.
+                        <!-- Unified Paragraph Text -->
+                        <p class="text-gray-600 text-lg text-left">
+                            Across industries, small mix-ups have led to deaths, injuries, and irreversible damage. Each event below represents a tragedy that could have been prevented with <span class="text-klyr-red">ALETHRA</span>™ technology, clarity that sees the truth before harm occurs.
                         </p>
                     </div>
-                    <!-- Right Box (Full-bleed image box) -->
-                    <div id="content-box" class="content-box-border-style rounded-lg flex h-full overflow-hidden"> 
-                        <!-- Content Logo -->
-                        <img id="content-logo-img" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-full object-cover rounded-lg" a onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
+
+                    <!-- RIGHT COLUMN: Image Code Provided -->
+                    <div class="rounded-lg flex overflow-hidden"> 
+                         <!-- MODIFIED: Removed border classes -->
+                         <img src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
                     </div>
+
                 </div>
             </section>
+ <!-- CASE STUDIES AUTO GENERATED HERE -->
+        <section class="pt-4 md:pt-8 pb-12 md:pb-1">
+            <div class="max-w-site mx-auto px-4 sm:px-6">
 
-            <!-- Section 2: KLYR Technology Platform Image (NEW SECTION) -->
-            <!-- 
-                STANDARD RULE:
-                Max desktop: 3rem (pt-12). Max mobile: 2rem (pt-8).
-                Bottom: 0 (to allow next section to provide gap).
-            -->
-            <section class="fade-in-section max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-0 md:pt-12 md:pb-0 text-center">
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 text-klyr-dark">
-                    KEY SYSTEM
-                </h2>
-                <div class="flex justify-center">
-                    <!-- Image source is set by the dynamic-klyr-image script below -->
-                    <img id="dynamic-klyr-image" 
-                         src="/images/ALETHRA4THETECHNOLOGY.webp" 
-                         alt="Visual representation of the KLYR Technology Platform" 
-                         class="w-full max-w-4xl h-auto rounded-xl"
-                         onerror="this.src='https://plusbrand.com/wp-content/uploads/2025/10/ALETHRA_4_THE-TECHNOLOGY-scaled.png';">
-                </div>
-            </section>
-            
-            <!-- NEW SECTION 2.5: Dual CTA Buttons -->
-            <!-- 
-                STANDARD RULE (Modified for Spacing):
-                Top: Standard (pt-8/pt-12).
-                Bottom: Added padding to create part of the gap to the banner.
-                Mobile Gap Math: pb-4 (1rem) + MsgBox pt-4 (1rem) = 2rem Gap.
-                Desktop Gap Math: pb-8 (2rem) + MsgBox pt-4 (1rem) = 3rem Gap.
-            -->
-            <section class="fade-in-section max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4 md:pt-12 md:pb-12 text-center">
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-                    <!-- Button 1: Request Demo (KLYR Red) -->
-                    <a href="/enterprise" class="w-full sm:w-auto">
-                        <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
-                            Request Enterprise Demo
-                        </button>
-                    </a>
-                    <!-- Button 2: Partner (KLYR Red) -->
-                    <a href="/partner" class="w-full sm:w-auto">
-                        <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-wider w-full sm:w-auto">
-                            Partner with ALETHRA™
-                        </button>
-                    </a>
-                </div>
-            </section>
-             <!-- Add a general message box for global feedback -->
-             <!-- NOTE: This container adds pt-4 (1rem) of space even when empty -->
-           
+                <!-- Divider -->
+                <hr class="max-w-4xl mx-auto border-t-4 border-klyr-dark mt-4 md:mt-8 mb-12 md:mb-16">
+
+                <!-- 🔥 DYNAMIC CASE STUDIES -->
+                <div class="">
+    <div id="case-container" class="max-w-4xl mx-auto "></div>
+</div>
+        </section>
+
+         
+             <!-- Add a general message box for global feedback --><div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
+            </div>
 
 
-            <!-- Red Banner -->
-            <!-- 
-                STANDARD RULE:
-                Desktop: py-12 (3rem). Mobile: py-8 (2rem).
-                Restored to standard padding so text inside is not cramped.
-            -->
-             <section class="bg-klyr-red py-8 md:py-12">
+             <section class="bg-klyr-red py-10">
                 <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
                     <p class="text-xl sm:text-2xl mb-1">
-                        Clarity isn’t a feature — it’s the foundation for a safer world.
+                       Every Loss Was Preventable.<br> Confusion kills. Waste destroys.
+ Clarity saves.
+
                     </p>
                 
                 </div>
@@ -294,7 +253,7 @@
     </div>
     
     
- <div id="footer-placeholder"></div>
+<div id="footer-placeholder"></div>
 
 <script src="/nav-logic.js"></script>
 <script src="/inject.js"></script>
@@ -335,6 +294,58 @@
         });
     });
 </script>
+<!-- CASE STUDIES JSON FETCH -->
+
+
+<script>
+fetch("/case/cases.json")
+  .then(res => res.json())
+  .then(data => {
+      const cases = data.cases;
+      const container = document.getElementById("case-container");
+
+      function styleExcerpts(text) {
+          return text
+            // Match "ALETHRA™ AI"
+            .replace(/ALETHRA(™) AI/g, 
+                '<span class="font-bold text-klyr-red">ALETHRA</span><span class="font-normal text-klyr-dark">™</span> <span class="font-bold text-klyr-red">AI</span>'
+            )
+            // Then match standalone "ALETHRA™"
+            .replace(/ALETHRA(™)/g, 
+                '<span class="font-bold text-klyr-red">ALETHRA</span><span class="font-normal text-klyr-dark">™</span>'
+            )
+            .replace(/\n/g, "<br>");
+      }
+
+      container.innerHTML = cases.map((c, i) => `
+        <div class="text-left mx-auto max-w-4xl">
+
+            <p class="text-4xl lg:text-4xl font-extrabold text-klyr-red tracking-wider uppercase">
+                CASE ${i + 1}
+            </p>
+
+            <p class="text-4xl lg:text-4xl font-extrabold text-klyr-dark mt-2 uppercase">
+                ${c.title}
+            </p>
+
+            <p class="text-lg text-gray-700 leading-relaxed mt-4">
+                ${styleExcerpts(c.excerpt)}
+            </p>
+
+            <a href="${c.url}"
+               class="inline-block mt-6 text-2xl lg:text-xl font-bold text-klyr-red uppercase hover:text-red-700 transition duration-300">
+               ${c.ctaText || "READ MORE"} &rarr;
+            </a>
+
+        </div>
+
+        <hr class="max-w-4xl mx-auto border-t-4 border-klyr-dark my-12 md:my-16">
+      `).join("");
+  })
+  .catch(err => console.error("Error loading cases:", err));
+</script>
+
+
 
 </body>
 </html>

@@ -1,0 +1,50 @@
+documentation
+
+
+nav and footer are injected js 
+press and blog posts are dynamic (md + json)
+
+
+node build.js runs blog template updates 
+
+node scripts/convert-docx.js "./docs/blogs/Founders Vission .docx"              docxs to md  with mamoth
+
+python3 -m http.server 8000
+
+node scripts/convert-case-docx.js "./docs/cases/ALETHRA_Case Study A_Blood & Medication.docx"
+
+
+
+node scripts/convert-case-docx.js all
+
+node scripts/build-case.js
+
+theme 
+
+
+desktop  paddings 6rem and 3rem (24 and 12 )
+mobile.   paddings 4rem and 2 rem (16 and 8)
+
+like this if you want direct download <a href="/downloads/ALETHRA_ENV.pdf" target="_blank" class="w-full sm:w-auto" download>
+
+https://myalethra.com/white-papers/clarity-in-construction
+https://myalethra.com/white-papers/the-death-of-trust-by-proxy
+https://myalethra.com/white-papers/the-global-cost-of-confusion
+
+structure
+
+index.html
+nav.html
+footer.html
+nav-logic.js
+inject.js
+package.json
+build.js
+animation.css
+scripts/convert-docx.ks
+blog/posts.json 
+blog/content/post.md
+press/index.html
+press/blog-template.html
+press/eachblog filder with index.html in it
+/every page folder with index.html

@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "regions": {
+    "EU": { "strict": true, "autoBlock": true },
+    "US": { "strict": false, "autoBlock": false },
+    "MX": { "strict": false, "autoBlock": false }
+  },
+  "cookieTypes": {
+    "essential": { "default": true },
+    "analytics": { "default": false },
+    "marketing": { "default": false },
+    "personalization": { "default": false }
+  }
+}

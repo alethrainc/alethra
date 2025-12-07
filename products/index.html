@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - PRODUCTS</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE
+                        'klyr-dark': '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+    
+        /* =================================================================== */
+        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* =================================================================== */
+        @media (min-width: 768px) {
+            .description-alignment-fix {
+                /* Min-height large enough for 2 lines of text-lg */
+                min-height: 3.5rem; 
+            }
+        }
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+            
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+            This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+
+      <!-- =================================================================
+             1. HERO SECTION
+             Desktop Padding: Top 6rem, Bottom 3rem
+             Mobile Padding: Top 4rem, Bottom 2rem
+        ================================================================== -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12">
+            <div class="grid md:grid-cols-2 gap-8 items-start mb-8 md:mb-12">
+                
+                <!-- Left Content -->
+                <div class="space-y-6 text-left">
+                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-klyr-dark">
+                        THE <span class="text-klyr-red">ALETHRA</span>™<br>
+                        PRODUCT SUITE
+                    </h1>
+                    <p class="text-lg md:text-xl text-klyr-dark font-medium max-w-lg leading-relaxed">
+                        A unified clarity platform built to verify identity, detect contamination, analyze environments, and deliver real-time truth across every industry.
+                    </p>
+                </div>
+
+                <!-- Right Image -->
+                <div class="relative">
+                    <img src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" alt="Alethra AI Specialist" class="w-full h-auto object-contain rounded-lg">
+                </div>
+            </div>
+            
+            <!-- CTA Button below hero content -->
+            <a href="/enterprise"><div class="text-left">
+                <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-4 px-8 rounded transition duration-300 uppercase tracking-wide text-sm md:text-base">
+                    REQUEST ENTERPRISE ACCESS
+                </button>
+            </div></a>
+        </section>
+
+        <!-- =================================================================
+             2. ONE PLATFORM TEXT BLOCK
+             Spacing Rule: Combined vertical space <= 3rem desktop / 2rem mobile.
+             Since Hero pb is 3rem/2rem, this pt must be 0.
+        ================================================================== -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12 text-left">
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-klyr-dark mb-6">
+                ONE PLATFORM<br>TOTAL CLARITY
+            </h2>
+            <div class="max-w-4xl space-y-6 text-lg text-black leading-relaxed">
+                <p>
+                    The <span class="text-klyr-red">ALETHRA</span>™ suite is powered by a single intelligence architecture - 
+                    <span class="text-klyr-red">SCAN</span>™, <span class="text-klyr-red">SENSE</span>™, 
+                    <span class="text-klyr-red">ENV</span>™, and <span class="text-klyr-red">ALETHRA CLOUD</span>™ - 
+                    delivering real-time verification wherever accuracy, safety, and trust matter most.
+                </p>
+                <p>
+                    Deploy one module or deploy all of them.
+                </p>
+                <p class="font-bold text-klyr-dark">
+                    Every product integrates seamlessly and scales globally.
+                </p>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             3. CORE PRODUCTS GRID (RESTRUCTURED)
+        ================================================================== -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12 text-left">
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-klyr-dark mb-10">
+                CORE PRODUCTS
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-y-8 md:gap-y-16 lg:gap-x-0">
+                
+                <!-- ================= ROW 1 ================= -->
+                
+                <!-- Item 1 -->
+                <div class="lg:border-r-2 lg:border-black pr-0 lg:pr-8">
+                    <h3 class="text-lg font-bold text-klyr-dark mb-3">
+                        1. <span class="text-klyr-red">ALETHRA ENTERPRISE</span>™
+                    </h3>
+                    <p class="text-lg text-black leading-relaxed">
+                        <strong>The complete clarity system for hospitals, farms, factories, labs, and high-risk environments.</strong><br>
+                        Enterprise dashboards, real-time verification, global monitoring, alerts, and compliance-ready reporting.
+                    </p>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="lg:border-r-2 lg:border-black pr-0 lg:px-8">
+                    <h3 class="text-lg font-bold text-klyr-dark mb-3">
+                        2. <span class="text-klyr-red">ALETHRA MOBIL APP</span>™
+                    </h3>
+                    <p class="text-lg text-black leading-relaxed mb-4">
+                        <strong>Clarity in your hand - anywhere, anytime.</strong><br>
+                        Turns any smartphone into a real-time verification device using <span class="text-klyr-red">SCAN</span>™, <span class="text-klyr-red">SENSE</span>™, and <span class="text-klyr-red">ENV</span>™ capabilities through the device's camera and onboard sensors.
+                    </p>
+                    <p class="text-lg text-black mb-2">Mobile features:</p>
+                    <ul class="text-lg text-black list-disc pl-4 space-y-1">
+                        <li>Instant material verification</li>
+                        <li>Contamination & residue detection (device-supported)</li>
+                        <li>Environmental condition alerts</li>
+                        <li>Real-time notifications</li>
+                        <li>Enterprise login & permissions</li>
+                        <li>Offline mode with sync</li>
+                        <li>Secure clarity reporting</li>
+                    </ul>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="pl-0 lg:pl-8">
+                    <h3 class="text-lg font-bold text-klyr-dark mb-3">
+                        3. <span class="text-klyr-red">ALETHRA CERTIFIED</span>™
+                    </h3>
+                    <p class="text-lg text-black leading-relaxed">
+                        <strong>The official global clarity mark.</strong><br>
+                        Certifies identity, purity, safety, and authenticity - backed by the <span class="text-klyr-red">ALETHRA</span>™ intelligence engine.
+                    </p>
+                </div>
+
+
+                <!-- ================= ROW 2 ================= -->
+
+                <!-- Item 4 -->
+                <div class="lg:border-r-2 lg:border-black pr-0 lg:pr-8">
+                    <h3 class="text-lg font-bold text-klyr-dark mb-3">
+                        4. <span class="text-klyr-red">ALETHRA AG</span>™
+                    </h3>
+                    <p class="text-lg text-black leading-relaxed">
+                        <strong>Clarity for agriculture and food systems.</strong><br>
+                        Detects pesticide residues, analyzes crop conditions, and verifies organic and free-range claims with real-time accuracy.
+                    </p>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="lg:border-r-2 lg:border-black pr-0 lg:px-8">
+                    <h3 class="text-lg font-bold text-klyr-dark mb-3">
+                        5. <span class="text-klyr-red">ALETHRA PHARMA</span>™
+                    </h3>
+                    <p class="text-lg text-black leading-relaxed">
+                        <strong>Pharmaceutical-grade verification.</strong><br>
+                        Composition integrity, contaminant detection, anti-counterfeit protection, and GMP-aligned clarity.
+                    </p>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="pl-0 lg:pl-8">
+                    <h3 class="text-lg font-bold text-klyr-dark mb-3">
+                        6. <span class="text-klyr-red">ALETHRA HOMECARE</span>™
+                    </h3>
+                    <p class="text-lg text-black leading-relaxed">
+                        <strong>Environmental and safety clarity inside private homes and senior-care environments.</strong><br>
+                        Real-time condition alerts, risk detection, workflow clarity, and caregiver support.
+                    </p>
+                </div>
+
+
+                <!-- ================= ROW 3 ================= -->
+
+                <!-- Item 7 -->
+                <div class="lg:border-r-2 lg:border-black pr-0 lg:pr-8">
+                    <h3 class="text-lg font-bold text-klyr-dark mb-3">
+                        7. <span class="text-klyr-red">ALETHRA FOOD & BEVERAGE</span>™
+                    </h3>
+                    <p class="text-lg text-black leading-relaxed">
+                        <strong>Purity, safety, and ingredient integrity - verified instantly.</strong><br>
+                        Identifies adulterants, contamination, and labeling inconsistencies across production lines.
+                    </p>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="pr-0 lg:px-8">
+                    <h3 class="text-lg font-bold text-klyr-dark mb-3">
+                        8. <span class="text-klyr-red">ALETHRA CONSTRUCTION</span>™
+                    </h3>
+                    <p class="text-lg text-black leading-relaxed">
+                        <strong>Clarity for complex build environments.</strong><br>
+                        Material verification, environmental monitoring, and workflow consistency that eliminate rework and reduce risk.
+                    </p>
+                </div>
+
+                <!-- Empty 3rd Column for Row 3 alignment -->
+                <div class="hidden lg:block"></div>
+
+            </div>
+        </section>
+
+        <!-- =================================================================
+             4. POWERING EVERY PRODUCT
+             Spacing Rule applied: pt-0.
+        ================================================================== -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12 text-left">
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-klyr-dark mb-10">
+                POWERING EVERY PRODUCT
+            </h2>
+
+            <!-- 2x3 Grid for Features -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mb-8 md:mb-12">
+                
+                <!-- Cloud -->
+                <div>
+                    <div class="text-klyr-red text-4xl mb-4"><i class="fas fa-cloud"></i></div>
+                    <h3 class="text-lg font-bold text-klyr-red mb-2 uppercase">ALETHRA CLOUD™</h3>
+                    <p class="text-lg font-bold text-klyr-dark mb-1">The global verification engine.</p>
+                    <p class="text-lg text-black">Processes fingerprints, spectral signatures, environmental inputs, and workflow signals - delivering instant clarity.</p>
+                </div>
+
+                <!-- Scan -->
+                <div>
+                    <div class="text-klyr-red text-4xl mb-4"><i class="fas fa-wifi"></i></div>
+                    <h3 class="text-lg font-bold text-klyr-red mb-2 uppercase">ALETHRA SCAN™</h3>
+                    <p class="text-lg font-bold text-klyr-dark mb-1">Micro-surface fingerprinting.</p>
+                    <p class="text-lg text-black">Authenticates products, materials, and components using their unique physical signatures.</p>
+                </div>
+
+                <!-- Sense -->
+                <div>
+                    <div class="text-klyr-red text-4xl mb-4"><i class="fas fa-wave-square"></i></div>
+                    <h3 class="text-lg font-bold text-klyr-red mb-2 uppercase">ALETHRA SENSE™</h3>
+                    <p class="text-lg font-bold text-klyr-dark mb-1">Spectral and contamination intelligence.</p>
+                    <p class="text-lg text-black">Detects purity deviations, adulterants, toxins, and residues invisible to the human eye.</p>
+                </div>
+
+                <!-- ENV -->
+                <div>
+                    <div class="text-klyr-red text-4xl mb-4"><i class="fas fa-temperature-high"></i></div>
+                    <h3 class="text-lg font-bold text-klyr-red mb-2 uppercase">ALETHRA ENV™</h3>
+                    <p class="text-lg font-bold text-klyr-dark mb-1">Environmental and protocol intelligence.</p>
+                    <p class="text-lg text-black">Reads environmental conditions, identifies risks, and detects workflow deviations in real time.</p>
+                </div>
+
+                <!-- Alethra -->
+                <div>
+                    <div class="text-klyr-red text-4xl mb-4"><i class="fas fa-user"></i></div>
+                    <h3 class="text-lg font-bold text-klyr-red mb-2 uppercase">ALETHRA™</h3>
+                    <p class="text-lg font-bold text-klyr-dark mb-1">The interactive intelligence layer.</p>
+                    <p class="text-lg text-black">Explains clarity findings in plain language and guides users through real-time decisions.</p>
+                </div>
+
+                <!-- API -->
+                <div>
+                    <div class="text-klyr-red text-4xl mb-4"><i class="fas fa-check-square"></i></div>
+                    <h3 class="text-lg font-bold text-klyr-red mb-2 uppercase">ALETHRA API & INTEGRATIONS</h3>
+                    <p class="text-lg font-bold text-klyr-dark mb-1">Plug clarity into your existing systems.</p>
+                    <p class="text-lg text-black">APIs, SDKs, edge-device compatibility, and enterprise system integrations.</p>
+                </div>
+            </div>
+
+            <!-- Why Organizations Choose Section -->
+            <div class="border-t border-black pt-8 md:pt-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark mb-8">
+                    WHY ORGANIZATIONS CHOOSE<br class="hidden md:block">
+                    <span class="text-klyr-red">ALETHRA</span>™
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-klyr-dark text-lg">Clarity</h4>
+                            <p class="text-black text-lg">Real-time verified truth</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-klyr-dark text-lg">Compliance</h4>
+                            <p class="text-black text-lg">Built for the world's strictest standards</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-klyr-dark text-lg">Scalability</h4>
+                            <p class="text-black text-lg">For single sites or global networks</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                         <div>
+                            <h4 class="font-bold text-klyr-dark text-lg">Security</h4>
+                            <p class="text-black text-lg">Encrypted, auditable, enterprise-grade</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-klyr-dark text-lg">Interoperability</h4>
+                            <p class="text-black text-lg">Works with existing devices and workflows</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                    <p class="font-bold text-klyr-dark text-lg">Clarity becomes a competitive advantage.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             5. APPLICATIONS & TABLE
+             Spacing Rule applied: pt-0.
+        ================================================================== -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12 text-left">
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-klyr-dark mb-8">
+                REAL-WORLD APPLICATIONS
+            </h2>
+            
+            <div class="mb-12">
+                 <div class="text-klyr-red text-5xl mb-6"><i class="fas fa-globe-americas"></i></div>
+                 <ul class="text-lg text-black space-y-2 list-disc pl-5">
+                    <li>Verifying medication identity before administration</li>
+                    <li>Detecting pesticide residue on crops</li>
+                    <li>Identifying contamination on production lines</li>
+                    <li>Verifying component authenticity in manufacturing</li>
+                    <li>Flagging unsafe environmental conditions</li>
+                    <li>Preventing counterfeit goods in supply chains</li>
+                    <li>Monitoring workflows in healthcare and construction</li>
+                 </ul>
+                 <p class="mt-8 md:mt-12 font-bold text-klyr-dark text-xl">
+                    <span class="text-klyr-red">ALETHRA</span>™ adapts to any operational clarity gap.
+                 </p>
+            </div>
+
+            <!-- Table -->
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-klyr-dark mb-8">
+                ENTERPRISE COMPARISON TABLE
+            </h2>
+            
+            <div class="overflow-x-auto mb-16">
+                <table class="w-full comparison-table min-w-[800px]">
+                    <thead>
+                        <tr>
+                            <th class="w-1/4">Product</th>
+                            <th class="text-center">Identity</th>
+                            <th class="text-center">Contamination</th>
+                            <th class="text-center">Environment</th>
+                            <th>Mobile</th>
+                            <th>Compliance</th>
+                            <th>Deployment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-medium">Enterprise</td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td>Optional</td>
+                            <td>Full</td>
+                            <td>Facility/Network</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Mobile App</td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td>Built-in</td>
+                            <td>High</td>
+                            <td>On-Device</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Certified</td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td class="text-center text-xs">Partial</td>
+                            <td class="text-center">—</td>
+                            <td>—</td>
+                            <td>High</td>
+                            <td>Product-Based</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">AG</td>
+                            <td class="text-center">—</td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td>Optional</td>
+                            <td>High</td>
+                            <td>Field/Factory</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Pharma</td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td class="text-center">—</td>
+                            <td>—</td>
+                            <td>High</td>
+                            <td>GMP-Ready</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Food & Beverage</td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td>Optional</td>
+                            <td>High</td>
+                            <td>Production</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Construction</td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td class="text-center">—</td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td>Optional</td>
+                            <td>OSHA-Aligned</td>
+                            <td>On-Site</td>
+                        </tr>
+                         <tr>
+                            <td class="font-medium">Homecare</td>
+                            <td class="text-center">—</td>
+                            <td class="text-center">—</td>
+                            <td class="text-center text-klyr-red"><i class="fas fa-check"></i></td>
+                            <td>Built-in</td>
+                            <td>Variable</td>
+                            <td>Residential</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Final CTA -->
+            <div>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-klyr-dark mb-6 leading-tight">
+                    DEPLOY THE <span class="text-klyr-red">ALETHRA</span>™ SUITE ACROSS YOUR ORGANIZATION
+                </h2>
+                <p class="text-lg text-gray-700 mb-8 max-w-3xl">
+                    Whether you operate a single facility or a global network, <span class="text-klyr-red">ALETHRA</span>™ integrates seamlessly with your existing hardware, workflows, and compliance requirements.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                     <a href="/enterprise"><button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-4 px-8 rounded transition duration-300 uppercase tracking-wide text-center">
+                        REQUEST ENTERPRISE ACCESS
+                    </button></a>
+                   <a href="/join"> <button class="bg-klyr-red hover:bg-red-700 text-white font-bold py-4 px-8 rounded transition duration-300 uppercase tracking-wide text-center">
+                        TALK TO OUR TEAM
+                    </button></a>
+                </div>
+            </div>
+
+        </section>
+
+
+</main>
+
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+    
+    
+<div id="footer-placeholder"></div>
+<script src="/animation.js"></script>
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+<script src="/symbol-formatter.js"></script>
+<script type="text/javascript">
+     // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+
+</body>
+</html>
