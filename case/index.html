@@ -178,63 +178,262 @@
 
     <main class="fade-in-section">
         
-<div id="homepage-content">
-             <!-- Section 1: Hero - Confusion Turns Fatal (REDUCED PADDING-BOTTOM: pb-4 md:pb-6) -->
-             <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-4 md:pb-6">
-                <!-- UPDATED: Grid layout for Content Left / Image Right -->
+    <div id="homepage-content">
+            
+            <!-- 
+                1. HERO SECTION 
+                Rules: 
+                Desktop: pt-24 (6rem), pb-12 (3rem)
+                Mobile: pt-16 (4rem), pb-8 (2rem)
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 border-b border-transparent">
                 <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-                    
-                    <!-- LEFT COLUMN: Text Content -->
-                    <div class="text-left space-y-6">
-                        <!-- H1 Text -->
-                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug text-klyr-dark">
-                            WHEN CONFUSION<br class="md:hidden"> TURNS FATAL
+                    <div class="space-y-6 flex flex-col justify-center">
+                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-klyr-dark uppercase">
+                            CLARITY IN ACTION
                         </h1>
-                        <!-- Unified Paragraph Text -->
-                        <p class="text-gray-600 text-lg text-left">
-                            Across industries, small mix-ups have led to deaths, injuries, and irreversible damage. Each event below represents a tragedy that could have been prevented with <span class="text-klyr-red">ALETHRA</span>™ technology, clarity that sees the truth before harm occurs.
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            How <span class="text-klyr-red font-bold">ALETHRA™</span> prevents errors, eliminates contamination, protects environments, and restores trust across the world's most critical industries.
                         </p>
                     </div>
-
-                    <!-- RIGHT COLUMN: Image Code Provided -->
-                    <div class="rounded-lg flex overflow-hidden"> 
-                         <!-- MODIFIED: Removed border classes -->
-                         <img src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
+                    <div class="relative">
+                        <!-- Using a representative image or fallback -->
+                         <img src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" alt="ALETHRA Representative" class="w-full h-auto object-cover rounded-lg" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'bg-gray-100 h-64 flex items-center justify-center rounded-lg\'><span class=\'text-gray-400\'>Image Placeholder</span></div>'">
                     </div>
+                </div>
 
+                <!-- Button moved below the grid to prevent squeezing -->
+                <div class="mt-8 md:mt-12">
+                    <a href="/enterprise" class="inline-block bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow transition duration-300 text-center uppercase text-sm tracking-wider">
+                        REQUEST ENTERPRISE ACCESS
+                    </a>
                 </div>
             </section>
- <!-- CASE STUDIES AUTO GENERATED HERE -->
-        <section class="pt-4 md:pt-8 pb-12 md:pb-1">
-            <div class="max-w-site mx-auto px-4 sm:px-6">
 
-                <!-- Divider -->
-                <hr class="max-w-4xl mx-auto border-t-4 border-klyr-dark mt-4 md:mt-8 mb-12 md:mb-16">
-
-                <!-- 🔥 DYNAMIC CASE STUDIES -->
-                <div class="">
-    <div id="case-container" class="max-w-4xl mx-auto "></div>
-</div>
-        </section>
-
-         
-             <!-- Add a general message box for global feedback --><div id="general-message-box" class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-                <div id="message-box-content" class="bg-gray-100 border border-gray-300 text-gray-700 p-4 rounded-lg hidden"></div>
-            </div>
-
-
-             <section class="bg-klyr-red py-10">
-                <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-                    <p class="text-xl sm:text-2xl mb-1">
-                       Every Loss Was Preventable.<br> Confusion kills. Waste destroys.
- Clarity saves.
-
-                    </p>
+            <!-- 
+                MAIN CONTENT WRAPPER
+                Spacing Rules:
+                Vertical white space between sections (combined) max: Desktop 3rem, Mobile 2rem.
+                We achieve this by setting space-y-8 (2rem) for mobile and space-y-12 (3rem) for desktop
+                on the container, effectively making the gap between sections exactly that amount.
+            -->
+            <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 space-y-8 md:space-y-12 pb-16">
                 
-                </div>
-            </section>
+                <!-- 2. REAL-WORLD IMPACT INTRO -->
+                <section>
+                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 leading-tight">
+                        REAL-WORLD IMPACT<br>REAL-WORLD VERIFICATION
+                    </h2>
+                    
+                    <div class="prose max-w-none text-gray-700 text-base md:text-lg">
+                        <p class="mb-4">
+                            These case studies demonstrate how <span class="text-klyr-red font-bold">ALETHRA™</span> delivers measurable clarity across healthcare, agriculture, food systems, construction, manufacturing, logistics, and senior care.
+                        </p>
+                        <p class="mb-4">
+                            Each example is distilled into the essentials:
+                        </p>
+                        <p class="font-bold mb-4 text-klyr-dark">
+                            The Problem <span class="text-klyr-red">→</span> The Breakdown <span class="text-klyr-red">→</span> The Clarity Solution <span class="text-klyr-red">→</span> The Outcome.
+                        </p>
+                        <p class="font-bold text-klyr-dark">
+                            No marketing fluff - only verified operational improvements.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 3. PRIMARY CASE STUDIES (1-6) -->
+                <section>
+                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase">
+                        CASE STUDY
+                    </h2>
+                    <!-- Red Underline -->
+                    <div class="w-16 h-1 bg-klyr-red mt-2 mb-8"></div>
+
+                    <!-- Grid for Case Studies 1-6 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 text-left">
+                        
+                        <!-- 1 -->
+                        <div>
+                            <h3 class="font-bold text-klyr-dark text-lg mb-2">1. Healthcare - Medication Verification</h3>
+                            <div class="text-gray-700 space-y-1 text-sm md:text-base leading-relaxed">
+                                <p><strong class="text-klyr-dark">Problem:</strong> Medication misidentification at the point of administration.</p>
+                                <p><strong class="text-klyr-dark">Breakdown:</strong> Similar packaging, staff fatigue, chaotic workflow.</p>
+                                <p><strong class="text-klyr-dark">Clarity Solution:</strong> <span class="text-klyr-red font-bold">ALETHRA SCAN™</span> + <span class="text-klyr-red font-bold">ALETHRA MOBIL APP™</span> verified micro-surface signatures and packaging integrity.</p>
+                                <p><strong class="text-klyr-dark">Outcome:</strong> Zero medication confusion incidents during the pilot window.</p>
+                            </div>
+                        </div>
+
+                        <!-- 2 -->
+                        <div>
+                            <h3 class="font-bold text-klyr-dark text-lg mb-2">2. Healthcare - Specimen Identity Protection</h3>
+                            <div class="text-gray-700 space-y-1 text-sm md:text-base leading-relaxed">
+                                <p><strong class="text-klyr-dark">Problem:</strong> Specimen mix-ups in high-volume hospital labs.</p>
+                                <p><strong class="text-klyr-dark">Breakdown:</strong> Labeling inconsistencies, workflow drift, and high turnover.</p>
+                                <p><strong class="text-klyr-dark">Clarity Solution:</strong> <span class="text-klyr-red font-bold">ALETHRA SCAN™</span> fingerprinting validates specimen identity before processing.</p>
+                                <p><strong class="text-klyr-dark">Outcome:</strong> 100% match accuracy across thousands of samples.</p>
+                            </div>
+                        </div>
+
+                        <!-- 3 -->
+                        <div>
+                            <h3 class="font-bold text-klyr-dark text-lg mb-2">3. Senior Care - Environmental Risk Detection</h3>
+                            <div class="text-gray-700 space-y-1 text-sm md:text-base leading-relaxed">
+                                <p><strong class="text-klyr-dark">Problem:</strong> Residents experiencing falls and safety incidents in private rooms.</p>
+                                <p><strong class="text-klyr-dark">Breakdown:</strong> Poor lighting, inconsistent workflows, and environmental drift.</p>
+                                <p><strong class="text-klyr-dark">Clarity Solution:</strong> <span class="text-klyr-red font-bold">ALETHRA ENV™</span> identified unsafe environmental conditions and workflow failures in real time.</p>
+                                <p><strong class="text-klyr-dark">Outcome:</strong> Significant decrease in environmental risk events.</p>
+                            </div>
+                        </div>
+
+                        <!-- 4 -->
+                        <div>
+                            <h3 class="font-bold text-klyr-dark text-lg mb-2">4. Agriculture - Pesticide Residue Detection</h3>
+                            <div class="text-gray-700 space-y-1 text-sm md:text-base leading-relaxed">
+                                <p><strong class="text-klyr-dark">Problem:</strong> Undetected pesticide residues entering organic supply chains.</p>
+                                <p><strong class="text-klyr-dark">Breakdown:</strong> Visual inspections are unable to catch micro-contamination.</p>
+                                <p><strong class="text-klyr-dark">Clarity Solution:</strong> <span class="text-klyr-red font-bold">ALETHRA SENSE™</span> spectral detection identified residue inconsistencies instantly.</p>
+                                <p><strong class="text-klyr-dark">Outcome:</strong> Verified organic integrity and eliminated contaminated batches.</p>
+                            </div>
+                        </div>
+
+                        <!-- 5 -->
+                        <div>
+                            <h3 class="font-bold text-klyr-dark text-lg mb-2">5. Food & Beverage - Contamination Prevention</h3>
+                            <div class="text-gray-700 space-y-1 text-sm md:text-base leading-relaxed">
+                                <p><strong class="text-klyr-dark">Problem:</strong> Foreign substance contamination during bottling and packaging.</p>
+                                <p><strong class="text-klyr-dark">Breakdown:</strong> Multi-stage processes with many human touch points.</p>
+                                <p><strong class="text-klyr-dark">Clarity Solution:</strong> <span class="text-klyr-red font-bold">ALETHRA SENSE™</span> and <span class="text-klyr-red font-bold">ALETHRA ENV™</span> monitored purity and environmental conditions along the production line.</p>
+                                <p><strong class="text-klyr-dark">Outcome:</strong> Zero contamination events recorded during pilot operations.</p>
+                            </div>
+                        </div>
+
+                        <!-- 6 -->
+                        <div>
+                            <h3 class="font-bold text-klyr-dark text-lg mb-2">6. Construction - Material Verification & Rework Prevention</h3>
+                            <div class="text-gray-700 space-y-1 text-sm md:text-base leading-relaxed">
+                                <p><strong class="text-klyr-dark">Problem:</strong> Incorrect materials leading to structural rework and wasted costs.</p>
+                                <p><strong class="text-klyr-dark">Breakdown:</strong> Inconsistent labeling, storage confusion, and human error.</p>
+                                <p><strong class="text-klyr-dark">Clarity Solution:</strong> <span class="text-klyr-red font-bold">ALETHRA SCAN™</span> verified material identity before installation.</p>
+                                <p><strong class="text-klyr-dark">Outcome:</strong> Prevented rework events and reduced material waste.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- 4. SECONDARY CASE STUDIES (7-12) -->
+                <section>
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-klyr-dark uppercase mb-8">
+                        SECONDARY CASE STUDIES
+                    </h2>
+                    <!-- Red Underline (small/optional per design but good for consistency, screenshot didn't explicitly show it big but it's part of the sys) -->
+                    <!-- <div class="w-16 h-1 bg-klyr-red mt-2 mb-8"></div> -->
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10 text-left">
+                        
+                        <!-- 7 -->
+                        <div>
+                            <h3 class="font-bold text-klyr-dark text-base mb-2">7. Logistics - Counterfeit Product Interception</h3>
+                            <div class="text-gray-700 space-y-1 text-sm leading-relaxed">
+                                <p><strong class="text-klyr-dark">Problem:</strong> Counterfeit items entering distribution hubs.</p>
+                                <p><strong class="text-klyr-dark">Solution:</strong> <span class="text-klyr-red font-bold">ALETHRA SCAN™</span> authenticated each unit.</p>
+                                <p><strong class="text-klyr-dark">Outcome:</strong> Fake products identified instantly.</p>
+                            </div>
+                        </div>
+
+                        <!-- 8 -->
+                        <div>
+                            <h3 class="font-bold text-klyr-dark text-base mb-2">8. Pharma - Composition Integrity</h3>
+                            <div class="text-gray-700 space-y-1 text-sm leading-relaxed">
+                                <p><strong class="text-klyr-dark">Problem:</strong> Variation in ingredient purity across lots.</p>
+                                <p><strong class="text-klyr-dark">Solution:</strong> <span class="text-klyr-red font-bold">ALETHRA SENSE™</span> analyzed spectral profiles.</p>
+                                <p><strong class="text-klyr-dark">Outcome:</strong> Deviations flagged before distribution.</p>
+                            </div>
+                        </div>
+
+                        <!-- 9 -->
+                        <div>
+                            <h3 class="font-bold text-klyr-dark text-base mb-2">9. Manufacturing - Workflow Drift Detection</h3>
+                            <div class="text-gray-700 space-y-1 text-sm leading-relaxed">
+                                <p><strong class="text-klyr-dark">Problem:</strong> Production steps are inconsistently executed.</p>
+                                <p><strong class="text-klyr-dark">Solution:</strong> <span class="text-klyr-red font-bold">ALETHRA ENV™</span> monitored environmental and motion patterns.</p>
+                                <p><strong class="text-klyr-dark">Outcome:</strong> Workflow clarity restored.</p>
+                            </div>
+                        </div>
+
+                        <!-- 10 -->
+                        <div>
+                            <h3 class="font-bold text-klyr-dark text-base mb-2">10. Retail - Authenticity Verification</h3>
+                            <div class="text-gray-700 space-y-1 text-sm leading-relaxed">
+                                <p><strong class="text-klyr-dark">Problem:</strong> High-value products are counterfeited in secondary markets.</p>
+                                <p><strong class="text-klyr-dark">Solution:</strong> <span class="text-klyr-red font-bold">ALETHRA SCAN™</span> created unforgeable identity signatures.</p>
+                                <p><strong class="text-klyr-dark">Outcome:</strong> Authenticity guaranteed instantly.</p>
+                            </div>
+                        </div>
+
+                        <!-- 11 -->
+                        <div>
+                            <h3 class="font-bold text-klyr-dark text-base mb-2">11. Government - Environmental Hazard Interpretation</h3>
+                            <div class="text-gray-700 space-y-1 text-sm leading-relaxed">
+                                <p><strong class="text-klyr-dark">Problem:</strong> Agencies are unable to detect micro-level environmental changes.</p>
+                                <p><strong class="text-klyr-dark">Solution:</strong> <span class="text-klyr-red font-bold">ALETHRA ENV™</span> delivered real-time environmental clarity.</p>
+                                <p><strong class="text-klyr-dark">Outcome:</strong> Faster response and better public safety.</p>
+                            </div>
+                        </div>
+
+                        <!-- 12 -->
+                        <div>
+                            <h3 class="font-bold text-klyr-dark text-base mb-2">12. Public Institutions - Safety Compliance</h3>
+                            <div class="text-gray-700 space-y-1 text-sm leading-relaxed">
+                                <p><strong class="text-klyr-dark">Problem:</strong> Buildings drifting out of environmental compliance.</p>
+                                <p><strong class="text-klyr-dark">Solution:</strong> <span class="text-klyr-red font-bold">ALETHRA ENV™</span> monitored in real time.</p>
+                                <p><strong class="text-klyr-dark">Outcome:</strong> Improved regulatory alignment.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- 5. CROSS-SECTOR OUTCOMES -->
+                <section>
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-klyr-dark uppercase mb-6">
+                        CROSS-SECTOR OUTCOMES
+                    </h2>
+                    <ul class="space-y-2 mb-8 text-gray-700 list-disc pl-5 marker:text-klyr-dark text-base md:text-lg">
+                        <li>Fewer preventable errors</li>
+                        <li>Stronger compliance alignment</li>
+                        <li>Reduced contamination events</li>
+                        <li>Verified material and product identity</li>
+                        <li>Enhanced workflow reliability</li>
+                        <li>Lower operational waste</li>
+                        <li>Increased safety and trust</li>
+                    </ul>
+                    <p class="font-bold text-klyr-dark text-base md:text-lg">
+                        Clarity creates measurable results across every environment.
+                    </p>
+                </section>
+
+                <!-- 6. FINAL CTA -->
+                <section>
+                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 leading-tight">
+                        READY TO BRING CLARITY TO YOUR ORGANIZATION?
+                    </h2>
+                    <p class="text-gray-700 mb-8 max-w-4xl text-lg">
+                        <span class="text-klyr-red font-bold">ALETHRA™</span> is available for enterprise deployment across hospitals, farms, factories, labs, senior-care networks, logistics operations, and global supply chains.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="/enterprise" class="inline-block bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow transition duration-300 text-center uppercase text-sm tracking-wider">
+                            REQUEST ENTERPRISE ACCESS
+                        </a>
+                        <a href="/join" class="inline-block bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow transition duration-300 text-center uppercase text-sm tracking-wider">
+                            TALK TO OUR TEAM
+                        </a>
+                    </div>
+                </section>
+
+            </div>
+            
         </div>
-        
 </main>
 
     
