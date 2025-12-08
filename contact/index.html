@@ -307,7 +307,7 @@
                 Rules:
                 - Padding between content: desktop 3rem, mobile 2rem.
             -->
-            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+           <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
                 <h2 class="text-3xl md:text-4xl font-extrabold text-klyr-dark uppercase mb-8 md:mb-12">
                     REACH OUT DIRECTLY
                 </h2>
@@ -353,11 +353,26 @@
                                            class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400 transition duration-200">
                                 </div>
 
-                                <!-- Country / Region -->
+                                <!-- Country / Region (UPDATED TO DROPDOWN) -->
                                 <div>
-                                    <label for="country" class="block text-sm font-bold text-klyr-dark mb-2 ml-1">Country / Region</label>
-                                    <input type="text" id="country"
-                                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400 transition duration-200">
+                                    <label class="block text-sm font-bold text-klyr-dark mb-2 ml-1">Country / Region</label>
+                                    <div class="relative">
+                                        <!-- Hidden input to store the actual selected value -->
+                                        <input type="hidden" name="country" id="contact-country-hidden" required value="">
+                                        
+                                        <!-- Button that displays the selection and acts as the modal trigger -->
+                                        <button type="button" id="contact-country-display-btn" 
+                                                onclick="openContactModal()"
+                                                class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 text-gray-400 text-left transition duration-150 hover:bg-gray-50 bg-white"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            Select Country / Region
+                                        </button>
+                                        
+                                        <!-- Custom Arrow Icon -->
+                                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-500">
+                                            <i class="fas fa-chevron-down text-sm"></i>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- Inquiry Type -->
@@ -394,7 +409,6 @@
 
                 </div>
             </section>
-
             <!-- 
                 4. RESPONSE TIMES SECTION
                 Rules:
@@ -448,6 +462,37 @@
 </div>
         </div>
     </div>
+
+      <!-- UPDATED MODAL STRUCTURE FOR SEARCHABLE COUNTRY LIST (IDS ARE NOW PREFIXED) -->
+<div id="regulatory-country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+    <!-- max-w-lg for a better, tighter list experience (ID UPDATED) -->
+    <div id="regulatory-modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-lg p-6 sm:p-8 relative transform scale-95 modal-transition">
+        
+        <!-- FIX 1: HEADER (Title and Close Button inline to prevent overlap) -->
+        <div class="flex justify-between items-center mb-6">
+            
+            <!-- Close button (ID UPDATED & onclick ADDED) -->
+            <button type="button" id="regulatory-close-modal-btn" 
+                    onclick="closeContactModal()"
+                    class="text-gray-500 hover:text-klyr-red transition duration-150 p-2 -mr-2 z-10">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Search Bar (ID UPDATED) -->
+        <div class="relative mb-4">
+            <input type="text" id="regulatory-country-search-input" placeholder="Search"
+                   class="w-full rounded-xl border border-gray-300 bg-gray-50 shadow-inner focus:border-klyr-red focus:ring-klyr-red text-base p-4 pl-12 placeholder-gray-500">
+            <!-- Search Icon -->
+            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+        
+        <!-- Country List Container (ID UPDATED) -->
+        <div id="regulatory-country-list-container" class="space-y-1 max-h-[60vh] overflow-y-auto pt-4 pb-2">
+            <!-- List items will be dynamically injected here by JS -->
+        </div>
+    </div>
+</div>
     
     
 <div id="footer-placeholder"></div>
@@ -455,6 +500,314 @@
 <script src="/nav-logic.js"></script>
 <script src="/inject.js"></script>
 <script src="/symbol-formatter.js"></script>
+<!-- New script for Country Selection Modal Logic and Form/Scroll Handling -->
+<script>
+    // ===================================================================
+    // COUNTRY SELECTION MODAL LOGIC (UPDATED WITH UNIQUE regulatory- PREFIXED IDs and FUNCTIONS)
+    // ===================================================================
+
+    // Helper to get the English part of the name for consistent sorting and searching
+    const getSortKey = (name) => {
+        // This handles cases like "Brazil | Brasil" or "Global 🌎"
+        return name.split('|')[0].trim().replace('🌎', '').trim();
+    };
+
+    // Define all country/region names and their associated display codes
+    const nameCodeMap = {
+        "United States of America": "+1",
+        "Mexico | México": "+52",
+        "Canada | (English)": "+1",
+        "Canada | Le Canada (Français)": "+1",
+        "Global 🌎": "N/A",
+        "Argentina": "+54",
+        "Australia & New Zealand": "+61",
+        "Belgium": "+32",
+        "Brazil | Brasil": "+55",
+        "Central America & Caribbean | América Central y el Caribe": "+XX",
+        "Chile": "+56",
+        "China | 中国": "+86",
+        "Colombia": "+57",
+        "Croatia": "+385",
+        "Czech Republic": "+420",
+        "Ecuador": "+593",
+        "Finland": "+358",
+        "France": "+33",
+        "Germany, Austria, Switzerland | Deutschland, Österreich, Schweiz": "+49",
+        "Greece": "+30",
+        "Hungary": "+36",
+        "India": "+91",
+        "Indonesia": "+62",
+        "Ireland": "+353",
+        "Italy | Italia": "+39",
+        "Japan | 日本": "+81",
+        "Latvia": "+371",
+        "Maghreb | Le Maghreb": "+XX",
+        "Malaysia": "+60",
+        "Netherlands": "+31",
+        "Norway": "+47",
+        "Pakistan": "+92",
+        "Paraguay": "+595",
+        "Peru | Perú": "+51",
+        "Philippines": "+63",
+        "Poland": "+48",
+        "Portugal": "+351",
+        "Romania": "+40",
+        "Saudi Arabia": "+966",
+        "Serbia": "+381",
+        "Singapore": "+65",
+        "Slovakia": "+421",
+        "South Africa": "+27",
+        "South Korea": "+82",
+        "Spain | España": "+34",
+        "Sweden | Sverige": "+46",
+        "Switzerland | Suisse (Français)": "+41",
+        "Taiwan": "+886",
+        "Thailand": "+66",
+        "Turkey | Türkiye": "+90",
+        "Ukraine": "+380",
+        "United Kingdom": "+44",
+        "Venezuela": "+58",
+        "Vietnam": "+84"
+    };
+
+    const allNames = [
+        "United States of America",
+        "Mexico",
+        "Canada",
+        "Argentina",
+        "Australia & New Zealand",
+        "Austria | Österreich",
+        "Belgium",
+        "Brazil | Brasil",
+        "Central America & Caribbean | América Central y el Caribe",
+        "Chile",
+        "China | 中国",
+        "Colombia",
+        "Croatia",
+        "Czech Republic",
+        "Ecuador",
+        "Finland",
+        "France",
+        "Germany | Deutschland",
+        "Greece",
+        "Hungary",
+        "India",
+        "Indonesia",
+        "Ireland",
+        "Italy | Italia",
+        "Japan | 日本",
+        "Latvia",
+        "Maghreb | Le Maghreb",
+        "Malaysia",
+        "Netherlands",
+        "Norway",
+        "Pakistan",
+        "Paraguay",
+        "Peru | Perú",
+        "Philippines",
+        "Poland",
+        "Portugal",
+        "Romania",
+        "Saudi Arabia",
+        "Serbia",
+        "Singapore",
+        "Slovakia",
+        "South Africa",
+        "South Korea",
+        "Spain | España",
+        "Sweden | Sverige",
+        "Switzerland | Schweiz",
+        "Taiwan",
+        "Thailand",
+        "Turkey | Türkiye",
+        "Ukraine",
+        "United Kingdom",
+        "Venezuela",
+        "Vietnam"
+    ];
+
+    // Convert names to objects with codes
+    const allCountriesData = allNames.map(name => ({
+        name: name,
+        code: nameCodeMap[name] || "+XX" // Assign code, defaulting if not found
+    }));
+
+    // Define priority countries for custom sorting (US, Mexico, Canada)
+    const priorityNames = [
+        "United States of America",
+        "Mexico",
+        "Canada",
+        
+    ];
+
+    const priorityCountriesData = allCountriesData.filter(c => priorityNames.includes(c.name));
+    const otherCountriesData = allCountriesData.filter(c => !priorityNames.includes(c.name));
+
+    // Sort the rest alphabetically using the English part of the name
+    otherCountriesData.sort((a, b) => {
+        const keyA = getSortKey(a.name);
+        const keyB = getSortKey(b.name);
+        return keyA.localeCompare(keyB);
+    });
+
+    // Final combined list
+    const COUNTRIES = priorityCountriesData.concat(otherCountriesData);
+
+    function renderCountryList(filterText = '') {
+        const container = document.getElementById('regulatory-country-list-container');
+        container.innerHTML = '';
+        const normalizedFilter = filterText.toLowerCase().trim();
+
+        const filteredCountries = COUNTRIES.filter(country => {
+            // Search against the full name AND the English part of the name
+            const searchKey = country.name.toLowerCase();
+            const sortKey = getSortKey(country.name).toLowerCase();
+            return searchKey.includes(normalizedFilter) || sortKey.includes(normalizedFilter);
+        });
+
+        if (filteredCountries.length === 0) {
+            container.innerHTML = '<p class="text-center text-gray-500 py-8">No countries found matching your search.</p>';
+            return;
+        }
+
+        filteredCountries.forEach(country => {
+            const item = document.createElement('div');
+            // FIX 2: Removed justify-between and only render the name
+            item.className = 'flex justify-start items-center py-3 px-3 rounded-lg cursor-pointer hover:bg-gray-100 transition duration-100 country-list-item';
+            
+            // Country Name (Left side)
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'text-klyr-dark text-base font-medium';
+            nameSpan.textContent = country.name;
+            
+            // NOTE: Country code span removed entirely to fulfill user request
+            
+            item.appendChild(nameSpan);
+            
+            // Set the full display name as the value
+            // UPDATED: Now calls selectCountry instead of regulatorySelectCountry
+            item.addEventListener('click', () => selectCountry(country.name)); 
+            container.appendChild(item);
+        });
+    }
+
+    // RENAMED & FIXED: Now targets the Contact form IDs
+    function selectCountry(countryName) {
+        // FIXED: IDs now match the HTML form
+        const hiddenInput = document.getElementById('contact-country-hidden');
+        const displayBtn = document.getElementById('contact-country-display-btn');
+        
+        // 1. Update form value
+        if(hiddenInput) hiddenInput.value = countryName;
+        
+        // 2. Update display button text and style (from gray placeholder to dark text)
+        if(displayBtn) {
+            displayBtn.textContent = countryName;
+            displayBtn.classList.remove('text-gray-400');
+            displayBtn.classList.add('text-klyr-dark');
+        }
+        
+        closeContactModal();
+    }
+
+    // RENAMED to match the button onclick="openContactModal()"
+    function openContactModal() {
+        const modal = document.getElementById('regulatory-country-modal');
+        const modalContent = document.getElementById('regulatory-modal-content');
+        
+        // Reset search and re-render list
+        document.getElementById('regulatory-country-search-input').value = '';
+        renderCountryList();
+        
+        modal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden'); // Disable background scroll
+        
+        // Focus the search input for immediate typing on desktop
+        document.getElementById('regulatory-country-search-input').focus();
+        
+        // Trigger transition (must be done after a short delay for CSS to register display change)
+        setTimeout(() => {
+            modal.classList.add('opacity-100');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }, 10);
+    }
+
+    // RENAMED to match
+    function closeContactModal() {
+        const modal = document.getElementById('regulatory-country-modal');
+        const modalContent = document.getElementById('regulatory-modal-content');
+        
+        modal.classList.remove('opacity-100');
+        modalContent.classList.remove('scale-100');
+        modalContent.classList.add('scale-95');
+        document.body.classList.remove('overflow-hidden');
+        
+        // Hide modal completely after transition ends
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
+
+    // ===================================================================
+    // INITIALIZATION & NEW FORM/SCROLL LOGIC
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        // FIXED: IDs updated to match Contact form
+        const displayBtn = document.getElementById('contact-country-display-btn');
+        const closeModalBtn = document.getElementById('regulatory-close-modal-btn');
+        const searchInput = document.getElementById('regulatory-country-search-input');
+        const modal = document.getElementById('regulatory-country-modal');
+        const hiddenInput = document.getElementById('contact-country-hidden');
+        
+        // --- 1. Form Submission Logic ---
+        const form = document.getElementById('contact-form'); // Fixed ID
+        const formContent = document.getElementById('form-content');
+        const successMessage = document.getElementById('success-message');
+
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Stop default form submission/page reload
+                
+                // Hide form content and show success message
+                formContent.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+                
+                // Scroll back to the top of the form area smoothly
+                document.getElementById('contact-form-container').scrollIntoView({
+                      behavior: 'smooth'
+                });
+            });
+        }
+        
+        // --- 3. Modal Initialization ---
+        
+        // Set initial display text based on hidden input value
+        if (hiddenInput && hiddenInput.value) {
+            selectCountry(hiddenInput.value); // Re-select to set button style/text
+        }
+
+        // Close Modal on Backdrop Click
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                // Only close if the click target is the modal backdrop itself
+                if (e.target === modal) {
+                    closeContactModal(); // CALLING RENAMED FUNCTION
+                }
+            });
+        }
+
+        // Search Filtering (real-time filtering)
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                renderCountryList(e.target.value);
+            });
+        }
+        
+        // Initial render of country list on load
+        renderCountryList();
+    });
+</script>
 <script type="text/javascript">
      // ===================================================================
     // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
