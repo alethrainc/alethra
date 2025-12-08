@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - INDUSTRIES</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE
+                        'klyr-dark': '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+     
+        /* =================================================================== */
+        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* =================================================================== */
+        @media (min-width: 768px) {
+            .description-alignment-fix {
+                /* Min-height large enough for 2 lines of text-lg */
+                min-height: 3.5rem; 
+            }
+        }
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+            
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+            This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+
+    <main class="">
+        
+    < <div id="homepage-content">
+            
+            <!-- 
+                1. HERO SECTION (EVERY INDUSTRY)
+                Padding Rules:
+                - Top: Desktop 6rem (24), Mobile 4rem (16)
+                - Bottom: Desktop 3rem (12), Mobile 2rem (8)
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 border-b border-transparent">
+                <!-- UPDATED: Changed items-center to items-start for top alignment -->
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <!-- Left Content -->
+                    <!-- UPDATED: Removed justify-center to allow natural top flow -->
+                    <div class="flex flex-col items-start text-left">
+                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-klyr-dark uppercase mb-8 md:mb-4">
+                            EVERY INDUSTRY
+                        </h1>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-0">
+                            Clarity eliminates confusion across all sectors and environments.
+                        </p>
+                    </div>
+                    
+                    <!-- Right Image -->
+                    <div class="relative mt-0 md:mt-0">
+                         <!-- Using a representative image for the woman in red shirt -->
+                        <img src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" alt="ALETHRA Representative" class="w-full h-auto object-cover rounded-lg shadow-sm" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'bg-gray-100 h-64 flex items-center justify-center rounded-lg\'><span class=\'text-gray-400\'>ALETHRA Representative</span></div>'">
+                    </div>
+                </div>
+                
+                <!-- CTA Moved Below Hero Content -->
+                <div class="mt-8 md:mt-12 text-left">
+                    <a href="/industries" class="inline-block bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow transition duration-300 text-center uppercase text-sm tracking-wider">
+                        EXPLORE INDUSTRIES
+                    </a>
+                </div>
+            </section>
+
+            <!-- 
+                2. CONTENT BLOCKS (PROBLEM -> BREAKDOWN -> CLARITY -> OUTCOME)
+                Padding Rules:
+                - Combined vertical whitespace between sections max 3rem (desktop) / 2rem (mobile).
+                - Hero used pb-12/8. 
+                - This section starts pt-0 to respect the gap.
+                - Internal spacing: Desktop 3rem (12), Mobile 2rem (8).
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+                <div class="space-y-8 md:space-y-12">
+                    
+                    <!-- PROBLEM -->
+                    <div class="text-left">
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-klyr-dark uppercase mb-4">PROBLEM</h2>
+                        <div class="text-gray-700 text-base md:text-lg leading-relaxed space-y-4">
+                            <p>Every industry faces the same foundational threat: <strong>confusion.</strong></p>
+                            <p>Misidentified items, mislabeled materials, inaccurate records, missing verification, environmental inconsistencies, and fragmented systems create errors that cascade into massive operational, financial, and regulatory failures.</p>
+                            <p>Whether in healthcare, agriculture, manufacturing, logistics, food, water, or life sciences, confusion enters at the point of verification - and everything built on top becomes compromised.</p>
+                            <p class="font-bold text-klyr-dark">When inputs are wrong, outcomes are wrong. Every failure looks different. Every root cause is the same.</p>
+                        </div>
+                    </div>
+
+                    <!-- BREAKDOWN -->
+                    <div class="text-left">
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-klyr-dark uppercase mb-4">BREAKDOWN</h2>
+                        <div class="text-gray-700 text-base md:text-lg leading-relaxed space-y-4">
+                            <p>Traditional tools assume accuracy instead of proving it. Labels are trusted without verification. Data entries are accepted without validation. Inspections vary from person to person. Environments shift, and readings become less reliable. Legacy systems cannot confirm that an item is what it claims to be or that a process is occurring as intended.</p>
+                            <p>This creates blind spots: <strong>recalls, contamination, misdiagnosis, defects, compliance exposure, chain-of-custody gaps, lost inventory, and billions in preventable losses.</strong></p>
+                            <p class="font-bold text-klyr-dark">The breakdown is systemic because the world operates without a universal source of truth.</p>
+                        </div>
+                    </div>
+
+                    <!-- CLARITY SOLUTION -->
+                    <div class="text-left">
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-klyr-dark uppercase mb-4">CLARITY SOLUTION</h2>
+                        <div class="text-gray-700 text-base md:text-lg leading-relaxed space-y-4">
+                            <p><strong class="text-klyr-red">ALETHRA™</strong> <strong>introduces a single clarity layer for every industry.</strong></p>
+                            <p>Using multi-sensor intelligence, micro-surface fingerprinting, environmental normalization, and real-time truth scoring, <span class="text-klyr-red font-bold">ALETHRA™</span> verifies items, materials, environments, and processes at the exact point where confusion typically enters.</p>
+                            <p>This delivers instant verification, regulatory-grade accuracy, end-to-end traceability, and a unified source of truth that integrates into any workflow.</p>
+                            <p class="font-bold text-klyr-dark"><span class="text-klyr-red">ALETHRA™</span> does not depend on labels, barcodes, or assumptions. It confirms reality in real time, regardless of industry, location, or conditions.</p>
+                        </div>
+                    </div>
+
+                    <!-- OUTCOME -->
+                    <div class="text-left">
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-klyr-dark uppercase mb-4">OUTCOME</h2>
+                        <div class="text-gray-700 text-base md:text-lg leading-relaxed space-y-4">
+                            <p>With verified truth at the center of operations, industries eliminate errors before they occur. Organizations achieve fewer recalls, fewer compliance failures, cleaner audits, stronger risk controls, higher operational integrity, and measurable cost savings. Supply chains become visible. Manufacturing becomes consistent. Healthcare becomes safer. Agriculture becomes transparent. Environmental data becomes trustworthy.</p>
+                            <p>The outcome is universal: <strong>workflows improve, waste disappears, trust increases, and operations finally run correctly the first time.</strong></p>
+                            <p class="font-bold text-klyr-dark"><span class="text-klyr-red">ALETHRA™</span> delivers clarity at scale across every industry.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 
+                3. NAVIGATION & EXTENSIONS (From 2.png)
+                Padding Rules:
+                - Gap from previous content: 3rem desktop / 2rem mobile.
+                - Internal spacing managed via margin-bottom.
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+                
+                <!-- INDUSTRY NAVIGATION -->
+                <div class="mb-12 md:mb-16">
+                    <div class="mb-8">
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-klyr-dark uppercase inline-block relative">
+                            INDUSTRY NAVIGATION
+                            <span class="absolute left-0 -bottom-2 w-16 h-1 bg-klyr-red"></span>
+                        </h2>
+                    </div>
+
+                    <!-- 
+                        UPDATED GRID STRUCTURE:
+                        Using columns instead of rows to ensure the vertical border spans perfectly 
+                        across the height of the two items. 
+                        Border-right-2 (black) added to the first 3 columns.
+                    -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-left text-gray-700 font-medium">
+                        
+                        <!-- Column 1 -->
+                        <div class="flex flex-col space-y-8 md:border-r-2 md:border-black md:pr-4">
+                            <div class="flex items-start h-full">
+                                <a href="#" class="hover:text-klyr-red transition">Healthcare &<br>Senior Care</a>
+                            </div>
+                            <div class="flex items-start h-full">
+                                <a href="#" class="hover:text-klyr-red transition">Construction &<br>Manufacturing</a>
+                            </div>
+                        </div>
+
+                        <!-- Column 2 -->
+                        <div class="flex flex-col space-y-8 md:border-r-2 md:border-black md:px-4">
+                            <div class="flex items-start h-full">
+                                <a href="#" class="hover:text-klyr-red transition">Agriculture &<br>Pesticides</a>
+                            </div>
+                            <div class="flex items-start h-full">
+                                <a href="#" class="hover:text-klyr-red transition">Logistics &<br>Supply Chain</a>
+                            </div>
+                        </div>
+
+                        <!-- Column 3 -->
+                        <div class="flex flex-col space-y-8 md:border-r-2 md:border-black md:px-4">
+                            <div class="flex items-start h-full">
+                                <a href="#" class="hover:text-klyr-red transition">Food &<br>Beverage</a>
+                            </div>
+                            <div class="flex items-start h-full">
+                                <a href="#" class="hover:text-klyr-red transition">Environmental<br>Health & Water</a>
+                            </div>
+                        </div>
+
+                        <!-- Column 4 (No Border) -->
+                        <div class="flex flex-col space-y-8 md:pl-4">
+                            <div class="flex items-start h-full">
+                                <a href="#" class="hover:text-klyr-red transition">Pharma &<br>Life Sciences</a>
+                            </div>
+                            <!-- Empty slot naturally handled by flex col if needed, or just left as 1 item -->
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- PLATFORM EXTENSIONS -->
+                <div>
+                    <div class="mb-8">
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-klyr-dark uppercase inline-block relative">
+                            PLATFORM EXTENSIONS
+                            <span class="absolute left-0 -bottom-2 w-16 h-1 bg-klyr-red"></span>
+                        </h2>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row md:items-center text-left text-klyr-red md:text-gray-700 font-medium gap-4 md:gap-0">
+                         <div class="md:border-r md:border-gray-300 md:pr-6">
+                            <!-- UPDATED: Split text colors. API is red, Integrations is dark. -->
+                            <a href="#" class="hover:text-red-700 transition group">
+                                <span class="text-klyr-red">ALETHRA API™</span> <span class="text-klyr-dark">& Integrations</span>
+                            </a>
+                        </div>
+                        <div class="md:border-r md:border-gray-300 md:px-6">
+                            <!-- UPDATED: Text color changed to klyr-dark -->
+                            <a href="#" class="text-klyr-dark hover:text-klyr-red transition">Security & Compliance Architecture</a>
+                        </div>
+                        <div class="md:pl-6">
+                            <a href="#" class="text-klyr-dark hover:text-klyr-red transition">Resources & Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            
+        </div>
+        
+        
+</main>
+
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+    
+    
+<div id="footer-placeholder"></div>
+<script src="/animation.js"></script>
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+<script src="/symbol-formatter.js"></script>
+<script type="text/javascript">
+     // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+
+</body>
+</html>
