@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - Agriculture</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE
+                        'klyr-dark': '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+     
+        /* =================================================================== */
+        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* =================================================================== */
+     
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+            
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+            This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+
+    <main class="">
+        
+    <div id="homepage-content">
+          
+            <!-- 
+                1. HERO SECTION 
+                - Top padding: 6rem (desktop) / 4rem (mobile) -> pt-16 md:pt-24
+                - Bottom padding: 3rem (desktop) / 2rem (mobile) -> pb-8 md:pb-12
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 border-b border-transparent">
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="space-y-6 flex flex-col justify-center text-left">
+                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-klyr-dark uppercase">
+                            AGRICULTURE &<br>PESTICIDES
+                        </h1>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Real-time verification that protects farms, supply chains, and consumers from contamination and misinformation.
+                        </p>
+                    </div>
+                    <div class="relative">
+                         <!-- Updated Image Source from user request -->
+                        <img src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" alt="ALETHRA Agricultural Specialist" class="w-full h-auto object-cover rounded-lg" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'bg-gray-100 h-64 flex items-center justify-center rounded-lg\'><span class=\'text-gray-400\'>Image Placeholder</span></div>'">
+                    </div>
+                </div>
+
+                <!-- Hero Button positioned below the grid -->
+                <div class="mt-8 md:mt-12 text-left">
+                    <a href="#" class="inline-block bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow transition duration-300 text-center uppercase text-sm tracking-wider">
+                        EXPLORE USE CASES
+                    </a>
+                </div>
+            </section>
+
+            <!-- 
+                2. PROBLEM SECTION
+                - Top padding: 0 (to combine with previous pb)
+                - Bottom padding: 3rem (desktop) / 2rem (mobile) -> pb-8 md:pb-12
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                    PROBLEM
+                </h2>
+                
+                <div class="prose max-w-none text-gray-700 space-y-6 text-left">
+                    <p>
+                        Agriculture suffers from one of the most damaging global verification problems: uncertainty. Farmers, suppliers, processors, and regulators all rely on labels, disclosures, and assumptions that often fail to reflect reality.
+                    </p>
+                    <p>
+                        Pesticide contamination, misclassified products, incorrect origin claims, feed inconsistencies, soil inaccuracies, and fraudulent certifications cost the world billions and undermine trust across the entire food system.
+                    </p>
+                    <p class="font-bold text-klyr-dark">
+                        Without verified truth, contamination spreads, recalls scale, and consumers are left unprotected.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 
+                3. BREAKDOWN SECTION
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                    BREAKDOWN
+                </h2>
+                
+                <div class="prose max-w-none text-gray-700 space-y-6 text-left">
+                    <p>
+                        Agricultural workflows depend on manual checks, supplier declarations, and paper-based certifications that do not verify what actually exists on the product or in the environment.
+                    </p>
+                    <p>
+                        A crop may be labeled organic yet contain pesticide residue. A shipment may claim a specific origin but come from a different region. A feed supply may not match its stated formulation. Soil conditions may be misreported or outdated.
+                    </p>
+                    <p>
+                        Current tools cannot detect real-world discrepancies fast enough to prevent contamination or fraud.
+                    </p>
+                    <p class="font-bold text-klyr-dark">
+                        The system depends on trust, not truth - and that is where breakdowns occur.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 
+                4. CLARITY SOLUTION SECTION
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                    CLARITY SOLUTION
+                </h2>
+                
+                <div class="prose max-w-none text-gray-700 space-y-6 text-left">
+                    <p>
+                        <span class="text-klyr-red font-normal">ALETHRA™</span> brings real-time, field-to-market verification to agriculture using multi-sensor intelligence, material fingerprinting, and pesticide detection algorithms.
+                    </p>
+                    <p>
+                        It confirms the identity, integrity, and environmental condition of crops, products, feed, soil, water, and agricultural materials at the exact point where risk enters the supply chain.
+                    </p>
+                    <p class="font-bold text-klyr-dark">
+                        <span class="text-klyr-red font-bold">ALETHRA™</span> validates what labels cannot and certifies what current systems only assume.
+                    </p>
+                    
+                    <div class="mt-6">
+                        <p class="mb-4">Supporting Statements:</p>
+                        <ul class="list-disc pl-5 space-y-2 marker:text-klyr-dark">
+                            <li>Detects pesticide residues on crops and products</li>
+                            <li>Confirms organic, free-range, and sustainable claims</li>
+                            <li>Verifies soil and water quality conditions</li>
+                            <li>Identifies fraudulent or mislabeled agricultural goods</li>
+                            <li>Protects processors and distributors from contaminated inputs</li>
+                            <li>Creates verified transparency across the entire farm-to-table chain</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 
+                5. OUTCOME SECTION
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                    OUTCOME
+                </h2>
+                
+                <div class="prose max-w-none text-gray-700 space-y-6 text-left">
+                    <p>
+                        Agricultural operations become safer, cleaner, and more profitable. Pesticide confusion disappears. Organic and sustainability claims become verifiable. Farmers gain transparency. Supply chains gain certainty. Regulators receive real-time clarity. Processors avoid contaminated inputs. Consumers receive products they can trust.
+                    </p>
+                    
+                    <p class="font-bold text-klyr-dark text-lg">
+                        The outcome is a global agricultural system with integrity at every step - from soil to shelf.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 
+                6. USE CASES SECTION
+                - Grid layout: 4 columns desktop, 2 tablet, 1 mobile
+            -->
+            <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-8 md:mb-12 text-left">
+                    USE CASES
+                </h2>
+                
+                <!-- Use Case Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 mb-12 text-left">
+                    
+                    <!-- Item 1: Border on Tablet & Desktop -->
+                    <div class="space-y-3 sm:border-r-2 border-black sm:pr-6">
+                        <h3 class="font-bold text-klyr-dark leading-tight">Pesticide Residue<br>Detection</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Verifies that crops and products are free from harmful chemical residues.
+                        </p>
+                    </div>
+
+                    <!-- Item 2: Border on Tablet & Desktop -->
+                    <div class="space-y-3 sm:border-r-2 border-black sm:pr-6">
+                        <h3 class="font-bold text-klyr-dark leading-tight">Organic &<br>Free-Range<br>Verification</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Confirms authenticity of high-value claims using real-world data, not labels.
+                        </p>
+                    </div>
+
+                    <!-- Item 3: Border on Tablet & Desktop -->
+                    <div class="space-y-3 sm:border-r-2 border-black sm:pr-6">
+                        <h3 class="font-bold text-klyr-dark leading-tight">Soil & Water<br>Quality Analysis</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Detects environmental conditions that affect safety and yield.
+                        </p>
+                    </div>
+
+                    <!-- Item 4: No Border (Last item in row 1 Desktop) -->
+                    <div class="space-y-3">
+                        <h3 class="font-bold text-klyr-dark leading-tight">Feed Verification</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Ensures livestock feed matches its stated formulation and is contamination-free.
+                        </p>
+                    </div>
+
+                    <!-- Item 5: Border on Tablet & Desktop -->
+                    <div class="space-y-3 sm:border-r-2 border-black sm:pr-6">
+                        <h3 class="font-bold text-klyr-dark leading-tight">Crop Identity<br>Validation</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Confirms crop type, source, and batch integrity during harvest and processing.
+                        </p>
+                    </div>
+
+                    <!-- Item 6: Border on Tablet & Desktop -->
+                    <div class="space-y-3 sm:border-r-2 border-black sm:pr-6">
+                        <h3 class="font-bold text-klyr-dark leading-tight">Supply Chain<br>Purity Checks</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Detects contamination or fraud before products move downstream.
+                        </p>
+                    </div>
+
+                    <!-- Item 7: No Border -->
+                    <div class="space-y-3">
+                        <h3 class="font-bold text-klyr-dark leading-tight">Origin &<br>Certification<br>Integrity</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Verifies geographic and sustainability claims in real time.
+                        </p>
+                    </div>
+
+                </div>
+                
+                <div class="pt-4">
+                    <a href="/contact" class="inline-block bg-klyr-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow transition duration-300 text-center uppercase text-sm tracking-wider">
+                        CONTACT ALETHRA™ FOR AGRICULTURAL DEPLOYMENT
+                    </a>
+                </div>
+            </section>
+            
+    </div>
+        
+</main>
+
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+    
+    
+<div id="footer-placeholder"></div>
+<script src="/animation.js"></script>
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+<script src="/symbol-formatter.js"></script>
+<script type="text/javascript">
+     // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+
+</body>
+</html>
