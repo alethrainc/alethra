@@ -1,112 +1,186 @@
 {
   "cases": [
     {
+      "id": "toxic-water-broken-trust-and-how-real-time-clarity-could-have-changed-everything",
+      "title": "Toxic Water, Broken Trust, and How Real-Time Clarity Could Have Changed Everything",
+      "excerpt": "Location: Flint, Michigan, USA Population Impacted: ~99,000 residents exposed to lead-contaminated water; predominantly low-income, predominantly Black. Crisis Period: Began April 2014, with consequences persisting more than a decade later.",
+      "ctaText": "View case",
+      "url": "/case/toxic-water-broken-trust-and-how-real-time-clarity-could-have-changed-everything/",
+      "image": "https://placehold.co/800x450/E72F3C/FFFFFF?text=Toxic+Water",
+      "contentFile": "/case/content/toxic-water-broken-trust-and-how-real-time-clarity-could-have-changed-everything.md",
+      "category": "construction environmental healthcare logistics",
+      "problem": "Management relied on delayed sampling, allowing corrosive water to strip lead from pipes undetected. Officials validated compliance paperwork while water quality degraded, exposing residents to toxic metals.",
+      "breakdown": "Protocols failed by depending on manual testing rather than continuous monitoring. The system ignored physical evidence, like brown water, in favor of incomplete data that masked the danger.",
+      "solution": "ALETHRA™ deploys continuous multi-sensor monitoring to detect corrosivity, metal signatures, and disinfectant levels in real time. It creates a shared, transparent truth for regulators and residents, independent of manual sampling intervals or administrative delays.",
+      "outcome": "Corrosive conditions are flagged immediately, forcing control measures before lead mobilizes. The crisis is contained at the source, preventing generational harm and ensuring verified safety."
+    },
+    {
       "id": "hospital-blood-type-and-medication-route-confusion-deadly-errors-massive-liability-and-the-clarity-failure-at-the-core-of-modern-healthcare",
-      "title": "Hospital Blood-Type & Medication-Route Confusion — Deadly Errors, Massive Liability, and the Clarity Failure at the Core of Modern Healthcare",
-      "excerpt": "7,000–9,000 patient deaths per year in the U. S. are caused by preventable medication errors tied directly to mislabeling, wrong-route administration, and data confusion.",
+      "title": "Hospital Blood-Type & Medication-Route Confusion, Deadly Errors, Massive Liability, and the Clarity Failure at the Core of Modern Healthcare",
+      "excerpt": "7,000–9,000 patient deaths per year in the U.S. are caused by preventable medication errors tied directly to mislabeling, wrong-route administration, and data confusion.",
       "ctaText": "See insights",
       "url": "/case/hospital-blood-type-and-medication-route-confusion-deadly-errors-massive-liability-and-the-clarity-failure-at-the-core-of-modern-healthcare/",
       "image": "https://placehold.co/800x450/E72F3C/FFFFFF?text=Medication+Confusion",
-      "contentFile": "/case/content/hospital-blood-type-and-medication-route-confusion-deadly-errors-massive-liability-and-the-clarity-failure-at-the-core-of-modern-healthcare.md"
+      "contentFile": "/case/content/hospital-blood-type-and-medication-route-confusion-deadly-errors-massive-liability-and-the-clarity-failure-at-the-core-of-modern-healthcare.md",
+      "category": "healthcare pharma",
+      "problem": "Systems validated labels rather than reality, allowing mismatched blood and medication errors to escalate into life-threatening failure. Staff trusted incorrect data without ever confirming the physical truth.",
+      "breakdown": "Mislabeled products bypassed safety checks because workflows trusted documentation over the physical material. The error traveled undetected through every digital checkpoint until it was too late.",
+      "solution": "ALETHRA™ deploys multi-sensor verification to confirm the physical product’s true identity in real time. It replaces assumptions with verified truth, independent of flawed digital records.",
+      "outcome": "The mismatch is detected instantly, stopping the error before it ever reaches the patient. Liability is eliminated by ensuring truth is verified before care is delivered."
     },
     {
       "id": "us-hospitals-three-year-medication-errors-across-major-systems",
-      "title": "U.S. Hospitals – Three-Year Medication Errors Across Major Systems",
-      "excerpt": "Over a three-year period, U. S. hospitals incurred an estimated $60 billion+ in extra costs due to medication errors (based on conservative annual estimates of $20 billion/year).",
+      "title": "U.S. Hospitals, Three-Year Medication Errors Across Major Systems",
+      "excerpt": "Over a three-year period, U.S. hospitals incurred an estimated $60 billion+ in extra costs due to medication errors.",
       "ctaText": "View insights",
       "url": "/case/us-hospitals-three-year-medication-errors-across-major-systems/",
       "image": "https://placehold.co/800x450/E72F3C/FFFFFF?text=Medication+Errors",
-      "contentFile": "/case/content/us-hospitals-three-year-medication-errors-across-major-systems.md"
+      "contentFile": "/case/content/us-hospitals-three-year-medication-errors-across-major-systems.md",
+      "category": "healthcare pharma",
+      "problem": "Blind reliance on digital records allowed medication errors to persist unchecked across entire hospital networks. Systems assumed accuracy based on data entries without verifying the physical drug.",
+      "breakdown": "Safety protocols failed because they validated data consistency instead of verifying the actual medication at the bedside. Checkpoints relied on barcodes and labels that did not reflect reality.",
+      "solution": "ALETHRA™ physically analyzes the medication and packaging in real time, catching mismatches that barcodes miss. It confirms the drug identity independent of upstream labeling errors.",
+      "outcome": "Dosage and formulation errors are stopped automatically, ensuring patient safety across the entire network. This drastically lowers system-wide risk and long-term regulatory exposure."
     },
     {
       "id": "beverage-industry-massive-waste-consumer-risk-and-human-impact-driven-by-confusion",
-      "title": "Beverage Industry — Massive Waste, Consumer Risk & Human Impact Driven by Confusion",
+      "title": "Beverage Industry, Massive Waste, Consumer Risk & Human Impact Driven by Confusion",
       "excerpt": "Global beverage waste (from recalls, mislabels, contamination, and routing errors) exceeds $30–$50 billion per year.",
       "ctaText": "See details",
       "url": "/case/beverage-industry-massive-waste-consumer-risk-and-human-impact-driven-by-confusion/",
       "image": "https://placehold.co/800x450/E72F3C/FFFFFF?text=Massive+Waste",
-      "contentFile": "/case/content/beverage-industry-massive-waste-consumer-risk-and-human-impact-driven-by-confusion.md"
+      "contentFile": "/case/content/beverage-industry-massive-waste-consumer-risk-and-human-impact-driven-by-confusion.md",
+      "category": "food-beverages logistics environmental",
+      "problem": "The industry relied on visual uniformity and batch records, allowing invisible errors like wrong concentrations or allergens to pass undetected. Products appeared correct on the outside while being chemically wrong on the inside.",
+      "breakdown": "Operators trusted paperwork over physical reality, meaning skipped cleaning cycles or formulation changes went unnoticed until the product was wasted. The system validated the routine rather than the liquid in the bottle.",
+      "solution": "ALETHRA™ uses multi-sensor intelligence to verify identity and formulation integrity in real time, detecting chemical deviations instantly. It confirms the specific ingredient profile independent of the packaging.",
+      "outcome": "Incorrect formulations are flagged immediately, halting the line to prevent massive waste and protecting consumers from safety risks. The brand avoids financial fallout by catching errors at the source."
     },
     {
       "id": "us-produce-sector-three-year-recalls-and-contamination-events",
-      "title": "U.S. Produce Sector – Three-Year Recalls & Contamination Events",
-      "excerpt": "Over the last three years, U. S. produce recalls and contamination events have led to billions of dollars in losses. For example, one report cites an estimated $1.",
+      "title": "U.S. Produce Sector, Three-Year Recalls & Contamination Events",
+      "excerpt": "U.S. produce recalls and contamination events have led to billions in losses.",
       "ctaText": "View full study",
       "url": "/case/us-produce-sector-three-year-recalls-and-contamination-events/",
       "image": "https://placehold.co/800x450/E72F3C/FFFFFF?text=Contamination+Events",
-      "contentFile": "/case/content/us-produce-sector-three-year-recalls-and-contamination-events.md"
+      "contentFile": "/case/content/us-produce-sector-three-year-recalls-and-contamination-events.md",
+      "category": "agriculture food-beverages environmental",
+      "problem": "Farms and processors relied on documentation rather than validating the constantly changing conditions of soil, water, and handling. Produce carrying invisible pathogens moved freely because the system trusted paper certifications.",
+      "breakdown": "Contamination passed unnoticed because visual checks and compliance records failed to detect microbial shifts or cross-contact. Downstream checkpoints assumed safety based on upstream declarations.",
+      "solution": "ALETHRA™ analyzes surface and environmental conditions in real time, detecting pathogens or pesticide residues before packaging begins. It verifies the biological truth of the produce rather than the label.",
+      "outcome": "Contaminated lots are identified and removed at the source, preventing recalls and ensuring the supply chain operates on verified truth. Consumer exposure is eliminated before the product hits the shelf."
     },
     {
       "id": "pharma-contaminated-eyedrops-leading-to-deaths-and-blindness",
-      "title": "Pharma – Contaminated Eyedrops Leading to Deaths & Blindness",
-      "excerpt": "At least four deaths, eighteen cases of severe vision loss in the U. S. linked to contaminated over-the-counter eyedrops.",
+      "title": "Pharma, Contaminated Eyedrops Leading to Deaths & Blindness",
+      "excerpt": "At least four deaths and multiple cases of severe vision loss linked to contaminated OTC eyedrops.",
       "ctaText": "View case",
       "url": "/case/pharma-contaminated-eyedrops-leading-to-deaths-and-blindness/",
       "image": "https://placehold.co/800x450/E72F3C/FFFFFF?text=Contaminated+Eyedrops",
-      "contentFile": "/case/content/pharma-contaminated-eyedrops-leading-to-deaths-and-blindness.md"
+      "contentFile": "/case/content/pharma-contaminated-eyedrops-leading-to-deaths-and-blindness.md",
+      "category": "pharma healthcare",
+      "problem": "Manufacturing relied on batch records that failed to detect microbial contamination, allowing dangerous products to reach patients. The system validated the process documentation instead of the physical sterility of the product.",
+      "breakdown": "Sterile conditions were assumed based on periodic sample testing, leaving the majority of units unverified against real-world biological risks. Once contamination entered the line, nothing existed to stop it.",
+      "solution": "ALETHRA™ verifies unit-level sterility and material integrity using multi-sensor detection, independent of labels or manual checks. It replaces statistical sampling with total verification.",
+      "outcome": "Contamination is flagged before packaging, isolating affected batches immediately and preventing catastrophic patient injury and death. Regulatory risk is dramatically reduced by ensuring every unit is safe."
     },
     {
       "id": "baby-formula-contamination-mislabeling-and-national-supply-collapse",
-      "title": "Baby Formula — Contamination, Mislabeling & National Supply Collapse",
-      "excerpt": "Over 200 million units of infant formula pulled or destroyed across multiple brands during recent contamination events. Economic impact: $6–$10 billion+ in supply disruption, recall costs, destroyed inventory, facto...",
+      "title": "Baby Formula, Contamination, Mislabeling & National Supply Collapse",
+      "excerpt": "Over 200 million units of infant formula were destroyed during contamination events.",
       "ctaText": "Read case",
       "url": "/case/baby-formula-contamination-mislabeling-and-national-supply-collapse/",
       "image": "https://placehold.co/800x450/E72F3C/FFFFFF?text=Formula+Contamination",
-      "contentFile": "/case/content/baby-formula-contamination-mislabeling-and-national-supply-collapse.md"
+      "contentFile": "/case/content/baby-formula-contamination-mislabeling-and-national-supply-collapse.md",
+      "category": "food-beverages pharma healthcare",
+      "problem": "Reliance on periodic testing and batch records allowed unchecked contamination to trigger a nationwide supply shortage. The facility assumed compliance based on data, missing the physical reality of the production environment.",
+      "breakdown": "Environmental drift and cross-contact went undetected because systems validated documentation instead of verifying the physical product unit. The failure was baked into the process long before the recall occurred.",
+      "solution": "ALETHRA™ provides continuous verification of product purity and equipment integrity, detecting contamination signals the moment they appear. It monitors the entire line for invisible threats.",
+      "outcome": "The failure is stopped at the source, preventing supply chain collapse and ensuring families rely on safe, verified products. A single facility error is contained before it becomes a national crisis."
     },
     {
       "id": "global-bottled-water-safety-breakdown-contamination-and-massive-recall-waste",
-      "title": "Global Bottled Water — Safety Breakdown, Contamination & Massive Recall Waste",
-      "excerpt": "Multi-brand bottled water recalls in the last five years have resulted in tens of millions of bottles destroyed due to contamination and mislabeling.",
+      "title": "Global Bottled Water, Safety Breakdown, Contamination & Massive Recall Waste",
+      "excerpt": "Multi-brand bottled water recalls destroyed tens of millions of bottles.",
       "ctaText": "See insights",
       "url": "/case/global-bottled-water-safety-breakdown-contamination-and-massive-recall-waste/",
       "image": "https://placehold.co/800x450/E72F3C/FFFFFF?text=Water+Safety",
-      "contentFile": "/case/content/global-bottled-water-safety-breakdown-contamination-and-massive-recall-waste.md"
+      "contentFile": "/case/content/global-bottled-water-safety-breakdown-contamination-and-massive-recall-waste.md",
+      "category": "food-beverages environmental",
+      "problem": "Global recalls occurred because safety relied on assumed water purity and random sample testing rather than continuous verification. Systems trusted filtration schedules without confirming the actual output.",
+      "breakdown": "Contaminants moved through filtration and packaging unnoticed because no mechanism existed to verify the true condition of every bottle. Millions of units were shipped based on assumptions derived from a few samples.",
+      "solution": "ALETHRA™ monitors water purity and packaging integrity in real time, catching chemical or environmental anomalies immediately. It turns every bottle into a verified data point.",
+      "outcome": "Contaminated batches are quarantined instantly before shipping, preventing waste and protecting the brand from global reputational damage. The supply chain is secured by verifying the product, not just the paperwork."
     },
     {
       "id": "tyson-foods-chicken-patty-foreign-material-contamination",
-      "title": "Tyson Foods – Chicken Patty Foreign-Material Contamination",
-      "excerpt": "Approximately 29,819 pounds of frozen “Fun Nuggets” chicken patties were recalled after the discovery of metal fragments. (Food Safety and Inspection Service) One minor oral injury was reported (metal piece found du...",
+      "title": "Tyson Foods, Chicken Patty Foreign-Material Contamination",
+      "excerpt": "Nearly 30,000 pounds of chicken patties were recalled after metal fragments were discovered.",
       "ctaText": "View details",
       "url": "/case/tyson-foods-chicken-patty-foreign-material-contamination/",
       "image": "https://placehold.co/800x450/E72F3C/FFFFFF?text=Material+Contamination",
-      "contentFile": "/case/content/tyson-foods-chicken-patty-foreign-material-contamination.md"
+      "contentFile": "/case/content/tyson-foods-chicken-patty-foreign-material-contamination.md",
+      "category": "food-beverages agriculture",
+      "problem": "Foreign metal fragments entered consumer chicken products.",
+      "breakdown": "Mechanical line wear, poor batch isolation, and batch-mixing confusion.",
+      "solution": "Clarity signatures ensured product-batch differentiation and contamination tracing.",
+      "outcome": "Reduced contamination spread and improved QC containment."
     },
     {
       "id": "energy-drink-industry-ingredient-confusion-hidden-stimulants-and-global-recall-fallout",
-      "title": "Energy Drink Industry — Ingredient Confusion, Hidden Stimulants & Global Recall Fallout",
-      "excerpt": "A multi-brand energy drink contamination scandal resulted in over 18 million cans recalled across North America and Europe. Estimated financial hit: $250–$400 million, including product destruction, retailer penalti...",
+      "title": "Energy Drink Industry, Ingredient Confusion, Hidden Stimulants & Global Recall Fallout",
+      "excerpt": "18+ million cans recalled after hidden stimulant ingredients triggered multi-country regulatory action.",
       "ctaText": "View details",
       "url": "/case/energy-drink-industry-ingredient-confusion-hidden-stimulants-and-global-recall-fallout/",
       "image": "https://placehold.co/800x450/E72F3C/FFFFFF?text=Ingredient+Confusion",
-      "contentFile": "/case/content/energy-drink-industry-ingredient-confusion-hidden-stimulants-and-global-recall-fallout.md"
+      "contentFile": "/case/content/energy-drink-industry-ingredient-confusion-hidden-stimulants-and-global-recall-fallout.md",
+      "category": "food-beverages pharma logistics",
+      "problem": "Hidden stimulant ingredients caused global recalls and regulatory violations.",
+      "breakdown": "Supply-chain opacity, formulation inconsistencies, and mislabeled ingredient sets.",
+      "solution": "Clarity authentication validated ingredient integrity before market release.",
+      "outcome": "Improved compliance and prevented mislabeled stimulant-heavy batches."
     },
     {
       "id": "global-airports-luggage-confusion-lost-cargo-and-critical-failures",
-      "title": "Global Airports – Luggage Confusion, Lost Cargo & Critical Failures",
-      "excerpt": "Global airlines lose or mishandle 25–30 million bags per year, resulting in billions in operational losses, reimbursements, and re-routing costs.",
+      "title": "Global Airports, Luggage Confusion, Lost Cargo & Critical Failures",
+      "excerpt": "Airlines lose or mishandle 25–30 million bags each year.",
       "ctaText": "Explore full study",
       "url": "/case/global-airports-luggage-confusion-lost-cargo-and-critical-failures/",
       "image": "https://placehold.co/800x450/E72F3C/FFFFFF?text=Luggage+Confusion",
-      "contentFile": "/case/content/global-airports-luggage-confusion-lost-cargo-and-critical-failures.md"
+      "contentFile": "/case/content/global-airports-luggage-confusion-lost-cargo-and-critical-failures.md",
+      "category": "logistics environmental",
+      "problem": "Airline luggage confusion triggered large-scale loss, delays, and claim costs.",
+      "breakdown": "Manual routing errors, tag confusion, and multi-airline exchange complexity.",
+      "solution": "Clarity identity markers tracked bags uniquely across carriers and airports.",
+      "outcome": "Reduced luggage loss rates and improved cross-airline routing reliability."
     },
     {
       "id": "starbucks-beverage-contamination-recall",
-      "title": "Starbucks – Beverage Contamination Recall",
-      "excerpt": "Approx. Three hundred two thousand four hundred bottles (25,200 cases) of the Starbucks Vanilla Frappuccino RTD drink were recalled nationally after glass fragments were found.",
+      "title": "Starbucks, Beverage Contamination Recall",
+      "excerpt": "Over 300,000 bottles of Starbucks RTD beverages recalled after glass fragments were found.",
       "ctaText": "View details",
       "url": "/case/starbucks-beverage-contamination-recall/",
       "image": "https://placehold.co/800x450/E72F3C/FFFFFF?text=Beverage+Contamination",
-      "contentFile": "/case/content/starbucks-beverage-contamination-recall.md"
+      "contentFile": "/case/content/starbucks-beverage-contamination-recall.md",
+      "category": "food-beverages logistics",
+      "problem": "Glass fragments contaminated bottled beverages in national distribution.",
+      "breakdown": "Fill-line damage, missed detection, and high-speed bottling complexity.",
+      "solution": "Clarity validation confirmed packaging integrity across production cycles.",
+      "outcome": "Prevented further compromised units and improved bottling-line safety."
     },
     {
       "id": "wine-and-spirits-methanol-and-counterfeit-alcohol-contamination",
-      "title": "Wine & Spirits – Methanol & Counterfeit Alcohol Contamination",
-      "excerpt": "Global counterfeit and adulterated alcohol industry: $3+ billion in annual losses to legitimate brands. Mexico's informal alcohol market alone: over $3 billion in illicit sales and $1+ billion in tax losses annually...",
+      "title": "Wine & Spirits, Methanol & Counterfeit Alcohol Contamination",
+      "excerpt": "Counterfeit alcohol causes billions in losses and severe public health risks globally.",
       "ctaText": "Explore details",
       "url": "/case/wine-and-spirits-methanol-and-counterfeit-alcohol-contamination/",
       "image": "https://placehold.co/800x450/E72F3C/FFFFFF?text=Methanol+Contamination",
-      "contentFile": "/case/content/wine-and-spirits-methanol-and-counterfeit-alcohol-contamination.md"
+      "contentFile": "/case/content/wine-and-spirits-methanol-and-counterfeit-alcohol-contamination.md",
+      "category": "food-beverages pharma construction food-beverages environmental",
+      "problem": "Counterfeit and methanol-adulterated alcohol infiltrated legitimate supply chains.",
+      "breakdown": "Weak source authentication, black-market substitution, and poor tracking.",
+      "solution": "Clarity fingerprinting validated authenticity from distillery to retailer.",
+      "outcome": "Reduced counterfeit penetration and improved public safety."
     }
   ]
 }
