@@ -12,7 +12,6 @@ const CASE_JSON = path.join(ROOT, "case/cases.json");
 const CASE_IMG_PREFIX = "/img/case-";
 const DOCS_DIR = path.join(ROOT, "docs/cases");
 
-// Ensure folders exist
 if (!fs.existsSync(CASE_MD_DIR)) fs.mkdirSync(CASE_MD_DIR, { recursive: true });
 
 // -------------------------------------------------------
@@ -116,7 +115,35 @@ function cleanForJson(str) {
 }
 
 // -------------------------------------------------------
-// SMART EXCERPT (25–40 WORDS)
+// CATEGORY AUTO-DETECT (multi-match)
+// -------------------------------------------------------
+const CATEGORY_RULES = [
+  { category: "pharma", keywords: ["pharma", "laboratory", "medication", "drug", "sterile", "gmp"] },
+  { category: "construction", keywords: ["construction", "site", "building", "cement", "infrastructure"] },
+  { category: "food-beverages", keywords: ["food", "beverage", "restaurant", "processing", "fridge", "fda"] },
+  { category: "environmental", keywords: ["waste", "environment", "pollution", "emissions", "monitoring"] },
+  { category: "healthcare", keywords: ["hospital", "clinic", "patient", "doctor", "nurse"] },
+  { category: "agriculture", keywords: ["farm", "crop", "harvest", "agriculture", "soil", "greenhouse"] },
+  { category: "logistics", keywords: ["logistics", "warehouse", "inventory", "fleet", "distribution"] }
+];
+
+function detectCategories(text) {
+  const t = text.toLowerCase();
+  const detected = [];
+
+  for (const rule of CATEGORY_RULES) {
+    if (rule.keywords.some(k => t.includes(k))) {
+      detected.push(rule.category);
+    }
+  }
+
+  if (detected.length === 0) detected.push("other");
+
+  return detected.join(" "); // <<<<<<<<<<<<<<<<<<<<<< HERE: STRING JOINED BY SPACES
+}
+
+// -------------------------------------------------------
+// SMART EXCERPT (25–40 words)
 // -------------------------------------------------------
 function createExcerpt(mdBody) {
   const clean = stripMarkdown(mdBody)
@@ -157,17 +184,7 @@ function generateSmartCTA(title) {
   else if (base.includes("ai") || base.includes("automation")) contextWord = "solution";
 
   const verbs = ["View", "Read"];
-  const endings = [
-    contextWord,
-    `the ${contextWord}`,
-    `full ${contextWord}`,
-    `${contextWord} details`
-  ];
-
-  const verb = verbs[Math.floor(Math.random() * verbs.length)];
-  const end = endings[Math.floor(Math.random() * endings.length)];
-
-  return `${verb} ${end}`.trim().split(" ").slice(0, 4).join(" ");
+  return `${verbs[0]} ${contextWord}`;
 }
 
 // -------------------------------------------------------
@@ -183,10 +200,9 @@ function generateSmartCTA(title) {
       mammothOptions
     );
 
-    const md1 = cleanDocs(mdRaw);
-    const md = cleanEscapes(md1);
+    const md = cleanEscapes(cleanDocs(mdRaw));
 
-    let lines = md.split("\n").map(l => l.trim()).filter(Boolean);
+    const lines = md.split("\n").map(l => l.trim()).filter(Boolean);
 
     if (lines.length < 2) {
       console.error("❌ Invalid DOCX format (needs 'CASE STUDIES:' and a title):", filePath);
@@ -196,12 +212,12 @@ function generateSmartCTA(title) {
     const title = lines[1];
     const titleCleanNoTM = stripTM(title);
     const slug = slugify(titleCleanNoTM, { lower: true, strict: true });
-
     const mdBody = lines.slice(2).join("\n").trim();
 
     // Write MD
     const mdPath = path.join(CASE_MD_DIR, `${slug}.md`);
     fs.writeFileSync(mdPath, mdBody + "\n");
+
     console.log(`📄 Markdown saved → ${mdPath}`);
 
     // Update JSON
@@ -209,6 +225,7 @@ function generateSmartCTA(title) {
 
     const excerpt = createExcerpt(mdBody);
     const ctaText = generateSmartCTA(titleCleanNoTM);
+    const categories = detectCategories(title + " " + mdBody); // <<<<<<<<<<<<<< STRING CATEGORY
 
     const newCase = {
       id: slug,
@@ -217,7 +234,12 @@ function generateSmartCTA(title) {
       ctaText,
       url: `/case/${slug}/`,
       image: `${CASE_IMG_PREFIX}${slug}.webp`,
-      contentFile: `/case/content/${slug}.md`
+      contentFile: `/case/content/${slug}.md`,
+      category: categories, // <<<<<<<<<<<<<< STRING
+      problem: "",
+      breakdown: "",
+      solution: "",
+      outcome: ""
     };
 
     const existingIndex = casesData.cases.findIndex(c => c.id === slug);
