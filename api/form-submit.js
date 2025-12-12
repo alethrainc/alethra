@@ -25,13 +25,15 @@ export default async function handler(req) {
     );
   }
 
-  // Block prototype pollution
-  if (body.__proto__ || body.constructor !== Object) {
-    return new Response(
-      JSON.stringify({ ok: false, error: "Malformed request" }),
-      { status: 400, headers: { "Content-Type": "application/json" } }
-    );
-  }
+  // ---------------------------
+// 1B. Validate body is a plain object
+// ---------------------------
+if (!body || typeof body !== "object" || Array.isArray(body)) {
+  return new Response(
+    JSON.stringify({ ok: false, error: "Malformed request" }),
+    { status: 400, headers: { "Content-Type": "application/json" } }
+  );
+}
 
   // ---------------------------
   // 2. Required fields
