@@ -231,150 +231,108 @@
                         </div>
 
                         <!-- Form -->
-                        <form id="regulatory-request-form" action="#" method="POST" class="space-y-6">
-                            
-                            <!-- Wrapper for all form fields, used to hide them on success -->
-                            <div id="form-content" class="space-y-6">
-
-                                <!-- Name Fields (Two Columns on Desktop) -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <input type="text" name="first-name" id="first-name" autocomplete="given-name" required
-                                           placeholder="First Name"
-                                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
-                                    
-                                    <input type="text" name="last-name" id="last-name" autocomplete="family-name" required
-                                           placeholder="Last Name"
-                                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
-                                </div>
-                                
-                                <!-- Official Email -->
-                                <input type="email" name="official-email" id="official-email" autocomplete="email" required
-                                       placeholder="Email"
-                                       class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
-                                
-                                <!-- Company / Organization (UPDATED) -->
-                                <input type="text" name="organization" id="organization" required
-                                       placeholder="Company / Organization"
-                                       class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
-
-                                <!-- Team Size & Industry (Two Columns) (UPDATED SECTION) -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <!-- Team Size (New Select) -->
-                                    <div class="relative">
-                                        <select name="team-size" id="team-size" required
-                                                class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 text-gray-400 custom-select">
-                                            <option value="" disabled selected>Team Size</option>
-                                            <option value="1-10">1–10</option>
-                                            <option value="11-50">11–50</option>
-                                            <option value="51-250">51–250</option>
-                                            <option value="251-1000">251–1000</option>
-                                            <option value="1000+">1000+</option>
-                                        </select>
-                                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-500">
-                                            <i class="fas fa-chevron-down text-sm"></i>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- INDUSTRY SELECTION (MODAL TRIGGER - Repurposed) -->
-                                    <div class="relative">
-                                        <!-- Hidden input to store the actual selected value (ID RENAMED) -->
-                                        <input type="hidden" name="industry" id="regulatory-industry-hidden" required value="">
-                                        
-                                        <!-- Button that displays the selection and acts as the modal trigger (FUNCTION RENAMED) -->
-                                        <button type="button" id="regulatory-industry-display-btn" 
-                                                onclick="regulatoryOpenIndustryModal()"
-                                                class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 text-gray-400 text-left transition duration-150 hover:bg-gray-50"
-                                                aria-haspopup="true" aria-expanded="false">
-                                            Industry
-                                        </button>
-                                        
-                                        <!-- Custom Arrow Icon -->
-                                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-500">
-                                            <i class="fas fa-chevron-down text-sm"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Role / Department & Desired demo timeframe (Two Columns) (UPDATED SECTION) -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                     <!-- Role / Department -->
-                                    <input type="text" name="role" id="role" required
-                                           placeholder="Role / Department"
-                                           class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
-                                    
-                                    <!-- Desired Demo Timeframe (New Select) -->
-                                    <div class="relative">
-                                        <select name="demo-timeframe" id="demo-timeframe" required
-                                                class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 text-gray-400 custom-select">
-                                            <option value="" disabled selected>Desired demo timeframe</option>
-                                            <option value="this-week">This week</option>
-                                            <option value="next-2-weeks">Next 2 weeks</option>
-                                            <option value="this-month">This month</option>
-                                        </select>
-                                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-500">
-                                            <i class="fas fa-chevron-down text-sm"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Primary use case (Multi-select Checkboxes) - UPDATED -->
-                                <div>
-                                    <label class="block text-sm font-medium text-klyr-dark mb-3">Primary use case</label>
-                                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-base text-gray-700">
-                                        <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <input type="checkbox" name="use-case" value="product_verification" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
-                                            <span class="ml-3 font-medium">Product verification</span>
-                                        </label>
-                                        <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <input type="checkbox" name="use-case" value="regulatory_workflow" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
-                                            <span class="ml-3 font-medium">Regulatory workflow</span>
-                                        </label>
-                                        <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <input type="checkbox" name="use-case" value="supply_chain" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
-                                            <span class="ml-3 font-medium">Supply chain</span>
-                                        </label>
-                                        <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <input type="checkbox" name="use-case" value="customer_trust" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
-                                            <span class="ml-3 font-medium">Customer trust</span>
-                                        </label>
-                                        <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
-                                            <input type="checkbox" name="use-case" value="other" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
-                                            <span class="ml-3 font-medium">Other</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- Anything we should prepare? (Long Text) - UPDATED -->
-                                <div>
-                                    <label for="context" class="block text-sm font-medium text-klyr-dark mb-1">Anything we should prepare?</label>
-                                    <textarea name="context" id="context" rows="4"
-                                              class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400"
-                                              placeholder="Briefly describe your use cases or specific questions so we can tailor the demo."></textarea>
-                                </div>
-
-                                <!-- Consent Checkbox - UNCHANGED -->
-                                <div class="flex items-start pt-2">
-                                    <div class="flex items-center h-5">
-                                        <!-- Checkbox class already uses text-klyr-red -->
-                                        <input id="consent" name="consent" type="checkbox" required
-                                               class="focus:ring-klyr-red h-5 w-5 text-klyr-red border-gray-400 rounded">
-                                    </div>
-                                    <div class="ml-3 text-sm">
-                                        <label for="consent" class="font-medium text-gray-700 cursor-pointer">
-                                            I consent to <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> using this information to respond to my request and understand this is for official regulatory engagement purposes.
-                                        </label>
-                                    </div>
-                                </div>
-                                
-                                <!-- Submit Button - UNCHANGED -->
-                                <div class="pt-4">
-                                    <button type="submit"
-                                            class="w-full bg-klyr-red hover:bg-red-600 active:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-300 transform hover:scale-[1.01] uppercase tracking-wider text-lg">
-                                        Submit Request
-                                    </button>
-                                </div>
+                       <form id="enterprise-request-form" method="POST" class="space-y-6">
+                <div id="form-content" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" name="first-name" id="first-name" autocomplete="given-name" required placeholder="First Name" class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+                        <input type="text" name="last-name" id="last-name" autocomplete="family-name" required placeholder="Last Name" class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+                    </div>
+                    <input type="email" name="official-email" id="official-email" autocomplete="email" required placeholder="Email" class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+                    <input type="text" name="organization" id="organization" required placeholder="Company / Organization" class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+                    
+                    <!-- Team size & industry -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="relative">
+                            <select name="team-size" id="team-size" required class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 text-gray-400 custom-select">
+                                <option value="" disabled selected>Team Size</option>
+                                <option value="1-10">1–10</option>
+                                <option value="11-50">11–50</option>
+                                <option value="51-250">51–250</option>
+                                <option value="251-1000">251–1000</option>
+                                <option value="1000+">1000+</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-500">
+                                <i class="fas fa-chevron-down text-sm"></i>
                             </div>
-                        </form>
+                        </div>
+                        <div class="relative">
+                            <input type="hidden" name="industry" id="enterprise-industry-hidden" required value="">
+                            <button type="button" id="enterprise-industry-display-btn" onclick="openIndustryModal()" class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 text-gray-400 text-left transition duration-150 hover:bg-gray-50" aria-haspopup="true" aria-expanded="false">Industry</button>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-500">
+                                <i class="fas fa-chevron-down text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role / Demo timeframe -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" name="role" id="role" required placeholder="Role / Department" class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400">
+                        <div class="relative">
+                            <select name="demo-timeframe" id="demo-timeframe" required class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 text-gray-400 custom-select">
+                                <option value="" disabled selected>Desired demo timeframe</option>
+                                <option value="this-week">This week</option>
+                                <option value="next-2-weeks">Next 2 weeks</option>
+                                <option value="this-month">This month</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-500">
+                                <i class="fas fa-chevron-down text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Use case checkboxes -->
+                    <div>
+                        <label class="block text-sm font-medium text-klyr-dark mb-3">Primary use case</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-base text-gray-700">
+                            <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
+                                <input type="checkbox" name="use-case" value="product_verification" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
+                                <span class="ml-3 font-medium">Product verification</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
+                                <input type="checkbox" name="use-case" value="regulatory_workflow" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
+                                <span class="ml-3 font-medium">Regulatory workflow</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
+                                <input type="checkbox" name="use-case" value="supply_chain" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
+                                <span class="ml-3 font-medium">Supply chain</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
+                                <input type="checkbox" name="use-case" value="customer_trust" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
+                                <span class="ml-3 font-medium">Customer trust</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl hover:bg-gray-200 transition duration-150 cursor-pointer">
+                                <input type="checkbox" name="use-case" value="other" class="h-5 w-5 text-klyr-red border-gray-400 rounded focus:ring-klyr-red">
+                                <span class="ml-3 font-medium">Other</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Context textarea -->
+                    <div>
+                        <label for="context" class="block text-sm font-medium text-klyr-dark mb-1">Anything we should prepare?</label>
+                        <textarea name="context" id="context" rows="4" class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400" placeholder="Briefly describe your use cases or specific questions so we can tailor the demo."></textarea>
+                    </div>
+
+                    <!-- Consent -->
+                    <div class="flex items-start pt-2">
+                        <div class="flex items-center h-5">
+                            <input id="consent" name="consent" type="checkbox" required class="focus:ring-klyr-red h-5 w-5 text-klyr-red border-gray-400 rounded">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="consent" class="font-medium text-gray-700 cursor-pointer">
+                                I consent to <span class="text-klyr-red">ALETHRA</span><span class="text-klyr-dark">™</span> using this information to respond to my request and understand this is for official regulatory engagement purposes.
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <div class="pt-4">
+                        <button type="submit" class="w-full bg-klyr-red hover:bg-red-600 active:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-300 transform hover:scale-[1.01] uppercase tracking-wider text-lg">
+                            Submit Request
+                        </button>
+                    </div>
+                </div>
+            </form>
                     </div>
                 </div>
             </section>
@@ -434,183 +392,189 @@
 <script src="/nav-logic.js"></script>
 <script src="/inject.js"></script>
 <script src="/symbol-formatter.js"></script>
-<!-- New script for Industry Selection Modal Logic and Form/Scroll Handling -->
-<script>
-    // ===================================================================
-    // INDUSTRY SELECTION MODAL LOGIC (UPDATED WITH UNIQUE regulatory- PREFIXED IDs and FUNCTIONS)
-    // ===================================================================
+<script type="text/javascript">
 
-    // Define major industries (10 major industries + other)
-    const INDUSTRIES = [
-        "Financial Services",
-        "Healthcare & Pharma",
-        "Government / Public Sector",
-        "Technology & Software",
-        "Retail & E-commerce",
-        "Manufacturing & Industrial",
-        "Supply Chain & Logistics",
-        "Energy & Utilities",
-        "Media & Telecommunications",
-        "Education & Research",
-        "Non-Profit / NGO",
-        "Other"
-    ];
+const FORM_ID = 'enterprise-request-form';
+const form = document.getElementById(FORM_ID);
+const formContent = document.getElementById('form-content');
+const successMessage = document.getElementById('success-message');
 
-    function renderIndustryList(filterText = '') {
-        const container = document.getElementById('regulatory-industry-list-container');
-        container.innerHTML = '';
-        const normalizedFilter = filterText.toLowerCase().trim();
+if (form) {
+    function isEmail(s) {
+        return typeof s === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+    }
 
-        const filteredIndustries = INDUSTRIES.filter(industry => {
-            return industry.toLowerCase().includes(normalizedFilter);
-        });
+    function serializeForm(formEl) {
+        const fd = new FormData(formEl);
+        const out = {};
+        for (const [k,v] of fd.entries()) {
+            if (out[k]) {
+                if (!Array.isArray(out[k])) out[k] = [out[k]];
+                out[k].push(v);
+            } else {
+                out[k] = v;
+            }
+        }
+        return out;
+    }
 
-        if (filteredIndustries.length === 0) {
-            container.innerHTML = '<p class="text-center text-gray-500 py-8">No industries found matching your search.</p>';
+    let isSubmitting = false;
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        if (isSubmitting) return;
+        isSubmitting = true;
+
+        const submitBtn = form.querySelector('[type="submit"]');
+        const originalBtnText = submitBtn ? submitBtn.innerHTML : null;
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.setAttribute('aria-disabled','true');
+            submitBtn.innerHTML = 'Sending...';
+        }
+
+        const values = serializeForm(form);
+        const email = values['official-email'] || values['official_email'] || values['email'];
+
+        // required fields
+        const required = ['first-name','last-name','official-email','organization','role','consent'];
+        for (const r of required) {
+            if (r === 'consent') {
+                const c = form.querySelector('#consent');
+                if (!c || !c.checked) {
+                    alert('Please accept the consent to continue.');
+                    resetSubmitState();
+                    return;
+                }
+                continue;
+            }
+            if (!values[r] || (typeof values[r]==='string' && values[r].trim()==='')) {
+                alert('Please complete all required fields.');
+                resetSubmitState();
+                return;
+            }
+        }
+
+        if (!email || !isEmail(email)) {
+            alert('Please enter a valid email address.');
+            resetSubmitState();
             return;
         }
 
-        filteredIndustries.forEach(industryName => {
-            const item = document.createElement('div');
-            item.className = 'flex justify-start items-center py-3 px-3 rounded-lg cursor-pointer hover:bg-gray-100 transition duration-100 industry-list-item';
-            
-            // Industry Name
-            const nameSpan = document.createElement('span');
-            nameSpan.className = 'text-klyr-dark text-base font-medium';
-            nameSpan.textContent = industryName;
-            
-            item.appendChild(nameSpan);
-            
-            // Set the full display name as the value
-            item.addEventListener('click', () => regulatorySelectIndustry(industryName)); 
-            container.appendChild(item);
-        });
-    }
+        values._submitted_at = new Date().toISOString();
 
-    function regulatorySelectIndustry(industryName) {
-        const hiddenInput = document.getElementById('regulatory-industry-hidden');
-        const displayBtn = document.getElementById('regulatory-industry-display-btn');
-        
-        // 1. Update form value
-        hiddenInput.value = industryName;
-        
-        // 2. Update display button text and style (from gray placeholder to dark text)
-        displayBtn.textContent = industryName;
-        displayBtn.classList.remove('text-gray-400');
-        displayBtn.classList.add('text-klyr-dark');
-        
-        regulatoryCloseIndustryModal();
-    }
-
-    // RENAMED FUNCTION
-    function regulatoryOpenIndustryModal() {
-        const modal = document.getElementById('regulatory-industry-modal');
-        const modalContent = document.getElementById('regulatory-modal-content');
-        
-        // Reset search and re-render list
-        document.getElementById('regulatory-industry-search-input').value = '';
-        renderIndustryList();
-        
-        modal.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden'); // Disable background scroll
-        
-        // Focus the search input for immediate typing on desktop
-        document.getElementById('regulatory-industry-search-input').focus();
-        
-        // Trigger transition (must be done after a short delay for CSS to register display change)
-        setTimeout(() => {
-            modal.classList.add('opacity-100');
-            modalContent.classList.remove('scale-95');
-            modalContent.classList.add('scale-100');
-        }, 10);
-    }
-
-    // RENAMED FUNCTION
-    function regulatoryCloseIndustryModal() {
-        const modal = document.getElementById('regulatory-industry-modal');
-        const modalContent = document.getElementById('regulatory-modal-content');
-        
-        modal.classList.remove('opacity-100');
-        modalContent.classList.remove('scale-100');
-        modalContent.classList.add('scale-95');
-        document.body.classList.remove('overflow-hidden');
-        
-        // Hide modal completely after transition ends
-        setTimeout(() => {
-            modal.classList.add('hidden');
-        }, 300);
-    }
-
-    // ===================================================================
-    // INITIALIZATION & NEW FORM/SCROLL LOGIC
-    // ===================================================================
-    document.addEventListener('DOMContentLoaded', () => {
-        const displayBtn = document.getElementById('regulatory-industry-display-btn');
-        const searchInput = document.getElementById('regulatory-industry-search-input');
-        const modal = document.getElementById('regulatory-industry-modal');
-        const hiddenInput = document.getElementById('regulatory-industry-hidden');
-        
-        // --- 1. Form Submission Logic ---
-        const form = document.getElementById('regulatory-request-form');
-        const formContent = document.getElementById('form-content');
-        const successMessage = document.getElementById('success-message');
-
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault(); // Stop default form submission/page reload
-                
-                // Hide form content and show success message
-                formContent.classList.add('hidden');
-                successMessage.classList.remove('hidden');
-                
-                // Scroll back to the top of the form area smoothly
-                document.getElementById('regulatory-form').scrollIntoView({
-                     behavior: 'smooth'
-                });
+        try {
+            const res = await fetch('/api/form-submit', {
+                method:'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(values),
+                credentials:'same-origin'
             });
-        }
-        
-        // --- 2. Smooth Scroll Handler for CTA (UPDATED LOGIC)---
-        // Selects all anchors with the class 'smooth-scroll' and an href starting with '#'
-        const smoothScrollLinks = document.querySelectorAll('a.smooth-scroll[href^="#"]'); 
-        if (smoothScrollLinks.length > 0) {
-            smoothScrollLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // Scrolls to the target element ID specified in the href
-                    const targetId = this.getAttribute('href');
-                    if (targetId && targetId !== '#') {
-                        document.querySelector(targetId).scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        }
-        
-        // --- 3. Modal Initialization ---
-        
-        // Set initial display text based on hidden input value
-        if (hiddenInput.value) {
-            regulatorySelectIndustry(hiddenInput.value); // Re-select to set button style/text
-        }
 
-        // Close Modal on Backdrop Click
-        modal.addEventListener('click', (e) => {
-            // Only close if the click target is the modal backdrop itself
-            if (e.target === modal) {
-                regulatoryCloseIndustryModal(); // CALLING RENAMED FUNCTION
+            if (!res.ok) {
+                const txt = await res.text();
+                const parsed = (()=>{ try{return JSON.parse(txt)}catch{return txt} })();
+                alert(parsed?.error || 'Submission failed. Please try again later.');
+                resetSubmitState();
+                return;
             }
-        });
 
-        // Search Filtering (real-time filtering)
-        searchInput.addEventListener('input', (e) => {
-            renderIndustryList(e.target.value);
-        });
-        
-        // Initial render of industry list on load
-        renderIndustryList();
+            // CRM sync
+            try {
+                if(navigator.sendBeacon){
+                    const blob = new Blob([JSON.stringify(values)], {type:'application/json'});
+                    navigator.sendBeacon('/api/form-crm', blob);
+                } else {
+                    fetch('/api/form-crm',{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},body:JSON.stringify(values)})
+                    .catch(err=>console.warn('CRM sync failed',err));
+                }
+            } catch(err) { console.warn('CRM sync error',err); }
+
+            // success UI
+            if(formContent) formContent.classList.add('hidden');
+            if(successMessage) successMessage.classList.remove('hidden');
+            form.scrollIntoView({behavior:'smooth'});
+
+        } catch(err) {
+            console.error(err);
+            alert('Unexpected error. Please try again later.');
+            resetSubmitState();
+        }
+
+        function resetSubmitState() {
+            isSubmitting = false;
+            if(submitBtn){
+                submitBtn.disabled = false;
+                submitBtn.removeAttribute('aria-disabled');
+                submitBtn.innerHTML = originalBtnText;
+            }
+        }
+    }
+
+    form.addEventListener('submit', handleSubmit);
+}
+</script>
+
+<!-- ===================================================================
+     ENTERPRISE INDUSTRY MODAL LOGIC
+=================================================================== -->
+<script>
+const INDUSTRIES = [
+    "Financial Services","Healthcare & Pharma","Government / Public Sector",
+    "Technology & Software","Retail & E-commerce","Manufacturing & Industrial",
+    "Supply Chain & Logistics","Energy & Utilities","Media & Telecommunications",
+    "Education & Research","Non-Profit / NGO","Other"
+];
+
+function renderIndustryList(filter='') {
+    const container = document.getElementById('regulatory-industry-list-container');
+    container.innerHTML = '';
+    const normalizedFilter = filter.toLowerCase().trim();
+    const filtered = INDUSTRIES.filter(i=>i.toLowerCase().includes(normalizedFilter));
+    if(filtered.length===0){
+        container.innerHTML='<p class="text-center text-gray-500 py-8">No industries found matching your search.</p>';
+        return;
+    }
+    filtered.forEach(ind=>{
+        const div = document.createElement('div');
+        div.className='flex justify-start items-center py-3 px-3 rounded-lg cursor-pointer hover:bg-gray-100 transition duration-100';
+        div.textContent = ind;
+        div.addEventListener('click',()=>selectIndustry(ind));
+        container.appendChild(div);
     });
+}
+
+function selectIndustry(name){
+    document.getElementById('enterprise-industry-hidden').value = name;
+    const btn = document.getElementById('enterprise-industry-display-btn');
+    btn.textContent = name;
+    btn.classList.remove('text-gray-400'); btn.classList.add('text-klyr-dark');
+    closeIndustryModal();
+}
+
+function openIndustryModal(){
+    const modal = document.getElementById('regulatory-industry-modal');
+    const input = document.getElementById('regulatory-industry-search-input');
+    input.value=''; renderIndustryList();
+    modal.classList.remove('hidden'); document.body.classList.add('overflow-hidden');
+    setTimeout(()=>{ modal.classList.add('opacity-100'); document.getElementById('regulatory-modal-content').classList.remove('scale-95'); document.getElementById('regulatory-modal-content').classList.add('scale-100');},10);
+}
+
+function closeIndustryModal(){
+    const modal = document.getElementById('regulatory-industry-modal');
+    modal.classList.remove('opacity-100'); document.getElementById('regulatory-modal-content').classList.remove('scale-100'); document.getElementById('regulatory-modal-content').classList.add('scale-95'); 
+    document.body.classList.remove('overflow-hidden');
+    setTimeout(()=>modal.classList.add('hidden'),300);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+    document.getElementById('regulatory-industry-search-input').addEventListener('input',e=>renderIndustryList(e.target.value));
+    document.getElementById('regulatory-close-modal-btn').addEventListener('click',closeIndustryModal);
+    document.getElementById('regulatory-industry-modal').addEventListener('click',e=>{if(e.target.id==='regulatory-industry-modal') closeIndustryModal();});
+    renderIndustryList();
+});
+
+
 </script>
 <script>
     // ===================================================================

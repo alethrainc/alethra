@@ -83,7 +83,7 @@ function internalEmailTemplate({ formId, fieldsHtml, clientIp, userAgent }) {
       <tr>
         <td align="center" style="padding:40px 20px 20px; background:#ffffff;">
           <h1 style="margin:0; font-size:26px; font-weight:700; color:#111;">ALETHRA™</h1>
-          <p style="margin:6px 0 0; font-size:14px; color:#777;">Internal Report</p>
+          <p style="margin:6px 0 0; font-size:14px; color:#777;">Internal Submission Report</p>
         </td>
       </tr>
 
@@ -156,6 +156,16 @@ const FORM_CONFIG = {
     userText: "Thank you for joining the movement!",
     userHtml: BASE_EMAIL_TEMPLATE(`
       <p>Thank you for joining the ALETHRA™ movement.</p>
+      <p>We’re excited to have you with us — this is the beginning of something powerful.</p>
+    `),
+  },
+  "enterprise-request-form": {
+    internalTo: "orlando@myalethra.com",
+    internalSubject: "New Enterprise Submission",
+    userSubject: "Welcome to ALETHRA™ enterprise",
+    userText: "Thank you for your Enterprise request!",
+    userHtml: BASE_EMAIL_TEMPLATE(`
+      <p>Thank you for joining ALETHRA™ Enterprise</p>
       <p>We’re excited to have you with us — this is the beginning of something powerful.</p>
     `),
   },
