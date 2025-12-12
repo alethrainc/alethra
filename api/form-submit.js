@@ -74,70 +74,67 @@ const BASE_EMAIL_TEMPLATE = (content) => `
 function internalEmailTemplate({ formId, fieldsHtml, clientIp, userAgent }) {
   return `
 <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff" 
-  style="padding:40px 0; font-family:Arial,Helvetica,sans-serif;">
+  style="padding:40px 0; font-family:Arial,Helvetica,sans-serif; background:#ffffff;">
   <tr><td align="center">
-    <table width="640" cellspacing="0" cellpadding="0" 
-      style="border-radius:16px; border:1px solid #eaeaea; overflow:hidden;">
+    <table width="600" cellspacing="0" cellpadding="0" 
+      style="border-radius:16px; border:1px solid #f0f0f0; overflow:hidden; background:#ffffff;">
 
       <!-- Header -->
       <tr>
-        <td align="center" style="padding:40px 20px 20px;">
-          <h1 style="margin:0; font-size:28px; font-weight:700; color:#111;">ALETHRA™</h1>
-          <p style="margin:6px 0 0; font-size:14px; color:#777;">Internal Submission Report</p>
+        <td align="center" style="padding:40px 20px 20px; background:#ffffff;">
+          <h1 style="margin:0; font-size:26px; font-weight:700; color:#111;">ALETHRA™</h1>
+          <p style="margin:6px 0 0; font-size:14px; color:#777;">Internal Report</p>
         </td>
       </tr>
 
       <!-- Divider -->
-      <tr><td style="padding:0 40px;">
-        <div style="height:1px; background:#eee; width:100%; margin:20px 0;"></div>
-      </td></tr>
+      <tr>
+        <td style="padding:0 40px; background:#ffffff;">
+          <div style="height:1px; background:#eee; width:100%; margin:20px 0;"></div>
+        </td>
+      </tr>
 
       <!-- Content -->
       <tr>
-        <td style="padding:0 40px 30px; color:#333; font-size:16px; line-height:1.6;">
-          <p style="margin-top:0;">
-            <strong style="font-size:18px;">📩 New Form Submission</strong><br>
-            <span style="color:#555;">Form ID:</span> <strong>${formId}</strong>
+        <td style="padding:0 40px 30px; color:#333; font-size:16px; line-height:1.6; background:#ffffff;">
+
+          <p style="margin:0 0 20px;">
+            <strong style="font-size:18px;">New Form Submission</strong><br>
+            <span style="color:#555;">Form ID:</span>
+            <strong>${formId}</strong>
           </p>
 
-          <h3 style="font-size:16px; margin:24px 0 10px; color:#111;">Submitted Fields</h3>
+          <h3 style="font-size:16px; margin:30px 0 12px; color:#111;">Submitted Fields</h3>
 
-          <table width="100%" cellspacing="0" cellpadding="0"
-            style="background:#fafafa; border-radius:12px; padding:20px; border:1px solid #e5e5e5;">
-            <tr><td>
-              <ul style="list-style:none; padding:0; margin:0; font-size:15px; line-height:1.5;">
-                ${fieldsHtml}
-              </ul>
-            </td></tr>
-          </table>
+          <ul style="list-style:none; padding:0; margin:0; font-size:15px; line-height:1.7;">
+            ${fieldsHtml}
+          </ul>
 
-          <h3 style="font-size:16px; margin:30px 0 10px; color:#111;">Metadata</h3>
-          <table width="100%" cellspacing="0" cellpadding="0"
-            style="background:#f7f7f7; border-radius:12px; padding:16px; border:1px solid #e5e5e5;">
-            <tr><td style="font-size:14px; color:#555; line-height:1.6;">
-              <strong>Client IP:</strong> ${clientIp}<br>
-              <strong>User-Agent:</strong> ${userAgent}
-            </td></tr>
-          </table>
+          <h3 style="font-size:16px; margin:30px 0 12px; color:#111;">Metadata</h3>
+          <p style="margin:0; font-size:14px; color:#555; line-height:1.6;">
+            <strong>Client IP:</strong> ${clientIp}<br>
+            <strong>User-Agent:</strong> ${userAgent}
+          </p>
+
         </td>
       </tr>
 
       <!-- CTA -->
       <tr>
-        <td align="center" style="padding:10px 40px 40px;">
-          <a href="https://myalethra.com/dashboard"
+        <td align="center" style="padding:10px 40px 40px; background:#ffffff;">
+          <a href="https://myalethra.com"
              style="display:inline-block; padding:14px 32px; background:#111;
              color:#fff; text-decoration:none; font-size:16px; font-weight:600;
              border-radius:8px;">
-            Open ALETHRA™ Dashboard
+            Open Dashboard
           </a>
         </td>
       </tr>
 
       <!-- Footer -->
       <tr>
-        <td align="center" style="background:#fafafa; padding:20px; font-size:12px; color:#aaa;">
-          © ALETHRA™ Internal Systems — Confidential
+        <td align="center" style="background:#ffffff; padding:20px; font-size:12px; color:#aaa;">
+          © ALETHRA™ Internal — Confidential
         </td>
       </tr>
 
