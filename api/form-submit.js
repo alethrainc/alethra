@@ -25,17 +25,76 @@ const EMAIL_WINDOW_SECONDS = 60 * 60 * 24; // 24 hours
 const UPSTASH_URL = process.env.UPSTASH_REST_URL || null;
 const UPSTASH_TOKEN = process.env.UPSTASH_REST_TOKEN || null;
 
+const BASE_EMAIL_TEMPLATE = (content) => `
+<table width="100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff" 
+  style="padding:40px 0; font-family:Arial,Helvetica,sans-serif;">
+  <tr>
+    <td align="center">
+      
+      <table width="600" cellspacing="0" cellpadding="0" 
+        style="border-radius:16px; border:1px solid #f0f0f0; overflow:hidden;">
+        
+        <tr>
+          <td align="center" style="padding:40px 20px 20px;">
+            <h1 style="margin:0; font-size:26px; font-weight:700; color:#111;">
+              ALETHRA
+            </h1>
+            <p style="margin:6px 0 0; font-size:14px; color:#777;">
+              Movement • Mindset • Mastery
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:0 40px;">
+            <div style="height:1px; background:#eee; width:100%; margin:20px 0;"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:0 40px 30px; color:#333; font-size:16px; line-height:1.6;">
+            ${content}
+          </td>
+        </tr>
+
+        <tr>
+          <td align="center" style="padding:10px 40px 40px;">
+            <a href="https://myalethra.com" 
+               style="display:inline-block; padding:14px 32px; 
+               background:#111; color:#fff; text-decoration:none; 
+               font-size:16px; font-weight:600; border-radius:8px;">
+              Visit ALETHRA
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <td align="center" style="background:#fafafa; padding:20px; font-size:12px; color:#aaa;">
+            © ALETHRA. All rights reserved.
+          </td>
+        </tr>
+      
+      </table>
+
+    </td>
+  </tr>
+</table>
+`;
+
+
 const FORM_CONFIG = {
-  // Example forms. Add yours or modify as needed.
   "main-form": {
     internalTo: "orlando@myalethra.com",
     internalSubject: "New Join Movement Submission",
     userSubject: "Welcome to ALETHRA Movement",
     userText: "Thank you for joining the movement!",
-    userHtml: "<p>Thank you for joining the movement!</p>",
+    userHtml: BASE_EMAIL_TEMPLATE(`
+      <p>Thank you for joining the ALETHRA movement.</p>
+      <p>We’re excited to have you with us — this is the beginning of something powerful.</p>
+    `),
   },
-  // add other form-id entries...
 };
+
 
 async function upstashIncrWithExpire(key, expireSeconds) {
   // Returns integer new value, or throws on error
