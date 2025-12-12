@@ -641,406 +641,338 @@
 
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("main-form");
-    const formContent = document.getElementById("form-content");
-    const successMessage = document.getElementById("success-message");
+/* ---------- UNIFIED FRONTEND LOGIC for country modal + form submit ---------- 
+   Replace existing modal scripts & form submit logic with this block.
+   - Uses nameCodeMap as single source of truth
+   - Single submit handler for #main-form
+   - Validates required fields client-side
+   - Disables submit to prevent double-submit
+   - Calls /api/form-submit (server-side handles Postmark)
+   - Sends CRM background keepalive after main submit succeeds (keepalive)
+   - Clear success / error UI handling
+*/
 
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+(() => {
+  /* ===========================
+     COUNTRY LIST (single source)
+     =========================== */
+  const nameCodeMap = {
+    "United States of America": "+1",
+    "Mexico | México": "+52",
+    "Canada | (English)": "+1",
+    "Canada | Le Canada (Français)": "+1",
+    "Global 🌎": "N/A",
+    "Argentina": "+54",
+    "Australia & New Zealand": "+61",
+    "Belgium": "+32",
+    "Brazil | Brasil": "+55",
+    "Central America & Caribbean | América Central y el Caribe": "+XX",
+    "Chile": "+56",
+    "China | 中国": "+86",
+    "Colombia": "+57",
+    "Croatia": "+385",
+    "Czech Republic": "+420",
+    "Ecuador": "+593",
+    "Finland": "+358",
+    "France": "+33",
+    "Germany, Austria, Switzerland | Deutschland, Österreich, Schweiz": "+49",
+    "Greece": "+30",
+    "Hungary": "+36",
+    "India": "+91",
+    "Indonesia": "+62",
+    "Ireland": "+353",
+    "Italy | Italia": "+39",
+    "Japan | 日本": "+81",
+    "Latvia": "+371",
+    "Maghreb | Le Maghreb": "+XX",
+    "Malaysia": "+60",
+    "Netherlands": "+31",
+    "Norway": "+47",
+    "Pakistan": "+92",
+    "Paraguay": "+595",
+    "Peru | Perú": "+51",
+    "Philippines": "+63",
+    "Poland": "+48",
+    "Portugal": "+351",
+    "Romania": "+40",
+    "Saudi Arabia": "+966",
+    "Serbia": "+381",
+    "Singapore": "+65",
+    "Slovakia": "+421",
+    "South Africa": "+27",
+    "South Korea": "+82",
+    "Spain | España": "+34",
+    "Sweden | Sverige": "+46",
+    "Switzerland | Schweiz": "+41",
+    "Taiwan": "+886",
+    "Thailand": "+66",
+    "Turkey | Türkiye": "+90",
+    "Ukraine": "+380",
+    "United Kingdom": "+44",
+    "Venezuela": "+58",
+    "Vietnam": "+84"
+  };
 
-        // Collect all fields
-        const formData = new FormData(form);
-
-        // Convert FormData → JSON (supports checkbox arrays)
-        const data = {};
-        formData.forEach((value, key) => {
-            if (data[key]) {
-                if (!Array.isArray(data[key])) data[key] = [data[key]];
-                data[key].push(value);
-            } else {
-                data[key] = value;
-            }
-        });
-
-        // 1) FAST EMAIL — Edge function
-        try {
-            await fetch("/api/form-submit", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            });
-        } catch (err) {
-            alert("Connection error. Try again.");
-            return;
-        }
-
-        // 2) CRM SYNC — Background fire-and-forget
-        fetch("/api/form-crm", {
-            method: "POST",
-            keepalive: true,
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
-
-        // 3) Show success UI
-        formContent.classList.add("hidden");
-        successMessage.classList.remove("hidden");
+  // Build country array from keys (single source)
+  const COUNTRIES = (() => {
+    // Priority first
+    const priority = ["United States of America", "Mexico | México", "Canada | (English)"];
+    const result = [];
+    // push priorities if exist in map
+    priority.forEach(n => { if (nameCodeMap[n]) result.push({ name: n, code: nameCodeMap[n] }); });
+    // push rest sorted by english label (strip pipes/emojis)
+    const rest = Object.keys(nameCodeMap).filter(n => !priority.includes(n)).map(n => ({ name: n, code: nameCodeMap[n] }));
+    rest.sort((a,b) => {
+      const key = s => s.split('|')[0].replace('🌎','').trim().toLowerCase();
+      return key(a.name).localeCompare(key(b.name));
     });
-});
+    return result.concat(rest);
+  })();
+
+  /* ===========================
+     DOM references
+     =========================== */
+  const modal = document.getElementById('regulatory-country-modal');
+  const modalContent = document.getElementById('regulatory-modal-content');
+  const countryListContainer = document.getElementById('regulatory-country-list-container');
+  const countrySearch = document.getElementById('regulatory-country-search-input');
+  const displayBtn = document.getElementById('regulatory-jurisdiction-display-btn');
+  const hiddenInput = document.getElementById('regulatory-jurisdiction-hidden');
+  const regCloseBtn = document.getElementById('regulatory-close-modal-btn');
+
+  /* ===========================
+     Render & Search Helpers
+     =========================== */
+  function getSortKey(name) {
+    return name.split('|')[0].trim().replace('🌎','').trim();
+  }
+
+  function renderCountryList(filterText = '') {
+    if (!countryListContainer) return;
+    countryListContainer.innerHTML = '';
+    const normalized = (filterText || '').toLowerCase().trim();
+
+    const filtered = COUNTRIES.filter(c => {
+      const searchKey = c.name.toLowerCase();
+      const sortKey = getSortKey(c.name).toLowerCase();
+      return searchKey.includes(normalized) || sortKey.includes(normalized);
+    });
+
+    if (filtered.length === 0) {
+      countryListContainer.innerHTML = '<p class="text-center text-gray-500 py-8">No countries found matching your search.</p>';
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+    filtered.forEach(c => {
+      const item = document.createElement('div');
+      item.className = 'flex justify-start items-center py-3 px-3 rounded-lg cursor-pointer hover:bg-gray-100 transition duration-100 country-list-item';
+      item.setAttribute('role','button');
+      item.setAttribute('tabindex','0');
+
+      const nameSpan = document.createElement('span');
+      nameSpan.className = 'text-klyr-dark text-base font-medium';
+      nameSpan.textContent = c.name;
+
+      item.appendChild(nameSpan);
+
+      item.addEventListener('click', () => selectCountry(c.name));
+      item.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); selectCountry(c.name); } });
+
+      fragment.appendChild(item);
+    });
+    countryListContainer.appendChild(fragment);
+  }
+
+  function openModal() {
+    if (!modal) return;
+    // reset
+    if (countrySearch) countrySearch.value = '';
+    renderCountryList();
+    modal.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+    setTimeout(() => { modal.classList.add('opacity-100'); modalContent.classList.remove('scale-95'); modalContent.classList.add('scale-100'); }, 10);
+    if (countrySearch) countrySearch.focus();
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('opacity-100');
+    modalContent && modalContent.classList.remove('scale-100');
+    document.body.classList.remove('overflow-hidden');
+    setTimeout(() => { modal.classList.add('hidden'); }, 260);
+  }
+
+  function selectCountry(name) {
+    if (!hiddenInput || !displayBtn) return;
+    hiddenInput.value = name;
+    displayBtn.textContent = name;
+    displayBtn.classList.remove('text-gray-400');
+    displayBtn.classList.add('text-klyr-dark');
+    closeModal();
+  }
+
+  if (displayBtn) displayBtn.addEventListener('click', openModal);
+  if (regCloseBtn) regCloseBtn.addEventListener('click', closeModal);
+  if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  if (countrySearch) countrySearch.addEventListener('input', (e) => renderCountryList(e.target.value));
+
+  // initial render
+  renderCountryList();
+
+  /* ===========================
+     FORM SUBMISSION LOGIC
+     =========================== */
+  const FORM_ID = 'main-form';
+  const form = document.getElementById(FORM_ID);
+  const formContent = document.getElementById('form-content');
+  const successMessage = document.getElementById('success-message');
+
+  if (!form) {
+    console.warn('Form not found:', FORM_ID);
+    return;
+  }
+
+  // helper validators
+  function isEmail(s) {
+    return typeof s === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+  }
+
+  function serializeForm(formEl) {
+    const fd = new FormData(formEl);
+    const out = {};
+    for (const [k, v] of fd.entries()) {
+      // handle multiple checkboxes (same name)
+      if (out[k]) {
+        if (!Array.isArray(out[k])) out[k] = [out[k]];
+        out[k].push(v);
+      } else {
+        out[k] = v;
+      }
+    }
+    return out;
+  }
+
+  let isSubmitting = false;
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (isSubmitting) return;
+    isSubmitting = true;
+
+    // UI: disable button and show loading
+    const submitBtn = form.querySelector('[type="submit"]');
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : null;
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.setAttribute('aria-disabled','true');
+      submitBtn.innerHTML = 'Sending...';
+    }
+
+    // client-side validation
+    const values = serializeForm(form);
+    const email = values['official-email'] || values['official_email'] || values['email'];
+    if (!email || !isEmail(email)) {
+      alert('Please enter a valid email address.');
+      resetSubmitState();
+      return;
+    }
+    // Ensure required fields exist
+    const required = ['first-name','last-name','official-email','organization','role','jurisdiction','consent'];
+    for (const r of required) {
+      // consent checkbox may be true/undefined
+      if (r === 'consent') {
+        const c = form.querySelector('#consent');
+        if (!c || !c.checked) {
+          alert('Please accept the consent to continue.');
+          resetSubmitState();
+          return;
+        }
+        continue;
+      }
+      // jurisdiction hidden input might be empty string but required in markup
+      if (!values[r] || (typeof values[r] === 'string' && values[r].trim() === '')) {
+        // exclude jurisdiction if you choose to make it optional; currently markup sets required
+        alert('Please complete all required fields.');
+        resetSubmitState();
+        return;
+      }
+    }
+
+    // Add meta fields
+    values._submitted_at = new Date().toISOString();
+    try {
+      // 1) Primary server-side submit (calls Postmark)
+      const res = await fetch('/api/form-submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+        credentials: 'same-origin'
+      });
+
+      if (!res.ok) {
+        const txt = await res.text();
+        console.error('Form submit failed:', res.status, txt);
+        const parsed = (() => { try { return JSON.parse(txt); } catch { return txt; } })();
+        alert(parsed?.error || 'Submission failed. Please try again later.');
+        resetSubmitState();
+        return;
+      }
+
+      // 2) Fire-and-forget CRM sync only after success (keepalive)
+      try {
+        // background best-effort
+        navigator.sendBeacon && (() => {
+          const payload = JSON.stringify(values);
+          const blob = new Blob([payload], { type: 'application/json' });
+          navigator.sendBeacon('/api/form-crm', blob);
+        })();
+      } catch (err) {
+        // fallback to fetch keepalive
+        fetch('/api/form-crm', {
+          method: 'POST',
+          keepalive: true,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values)
+        }).catch(err => console.warn('CRM sync failed', err));
+      }
+
+      // 3) Show success UI
+      if (formContent) formContent.classList.add('hidden');
+      if (successMessage) successMessage.classList.remove('hidden');
+      form.scrollIntoView({ behavior: 'smooth' });
+
+    } catch (err) {
+      console.error('Unexpected submission error:', err);
+      alert('Unexpected error. Please try again later.');
+      resetSubmitState();
+      return;
+    }
+
+    function resetSubmitState() {
+      isSubmitting = false;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-disabled');
+        submitBtn.innerHTML = originalBtnText;
+      }
+    }
+  }
+
+  form.addEventListener('submit', handleSubmit);
+
+  /* ===========================
+     Accessibility & small fixes
+     =========================== */
+  // Ensure modal has aria attributes
+  if (modal) {
+    modal.setAttribute('role','dialog');
+    modal.setAttribute('aria-modal','true');
+    modal.setAttribute('aria-hidden', modal.classList.contains('hidden') ? 'true' : 'false');
+  }
+
+})();
 </script>
 
-<!-- New script for Country Selection Modal Logic and Form/Scroll Handling -->
-<script>
-    // ===================================================================
-    // COUNTRY SELECTION MODAL LOGIC (UPDATED WITH UNIQUE regulatory- PREFIXED IDs and FUNCTIONS)
-    // ===================================================================
-
-    // Helper to get the English part of the name for consistent sorting and searching
-    const getSortKey = (name) => {
-        // This handles cases like "Brazil | Brasil" or "Global 🌎"
-        return name.split('|')[0].trim().replace('🌎', '').trim();
-    };
-
-    // Define all country/region names and their associated display codes
-    const nameCodeMap = {
-        "United States of America": "+1",
-        "Mexico | México": "+52",
-        "Canada | (English)": "+1",
-        "Canada | Le Canada (Français)": "+1",
-        "Global 🌎": "N/A",
-        "Argentina": "+54",
-        "Australia & New Zealand": "+61",
-        "Belgium": "+32",
-        "Brazil | Brasil": "+55",
-        "Central America & Caribbean | América Central y el Caribe": "+XX",
-        "Chile": "+56",
-        "China | 中国": "+86",
-        "Colombia": "+57",
-        "Croatia": "+385",
-        "Czech Republic": "+420",
-        "Ecuador": "+593",
-        "Finland": "+358",
-        "France": "+33",
-        "Germany, Austria, Switzerland | Deutschland, Österreich, Schweiz": "+49",
-        "Greece": "+30",
-        "Hungary": "+36",
-        "India": "+91",
-        "Indonesia": "+62",
-        "Ireland": "+353",
-        "Italy | Italia": "+39",
-        "Japan | 日本": "+81",
-        "Latvia": "+371",
-        "Maghreb | Le Maghreb": "+XX",
-        "Malaysia": "+60",
-        "Netherlands": "+31",
-        "Norway": "+47",
-        "Pakistan": "+92",
-        "Paraguay": "+595",
-        "Peru | Perú": "+51",
-        "Philippines": "+63",
-        "Poland": "+48",
-        "Portugal": "+351",
-        "Romania": "+40",
-        "Saudi Arabia": "+966",
-        "Serbia": "+381",
-        "Singapore": "+65",
-        "Slovakia": "+421",
-        "South Africa": "+27",
-        "South Korea": "+82",
-        "Spain | España": "+34",
-        "Sweden | Sverige": "+46",
-        "Switzerland | Suisse (Français)": "+41",
-        "Taiwan": "+886",
-        "Thailand": "+66",
-        "Turkey | Türkiye": "+90",
-        "Ukraine": "+380",
-        "United Kingdom": "+44",
-        "Venezuela": "+58",
-        "Vietnam": "+84"
-    };
-
-    const allNames = [
-        "United States of America",
-        "Mexico",
-        "Canada",
-        "Argentina",
-        "Australia & New Zealand",
-        "Austria | Österreich",
-        "Belgium",
-        "Brazil | Brasil",
-        "Central America & Caribbean | América Central y el Caribe",
-        "Chile",
-        "China | 中国",
-        "Colombia",
-        "Croatia",
-        "Czech Republic",
-        "Ecuador",
-        "Finland",
-        "France",
-        "Germany | Deutschland",
-        "Greece",
-        "Hungary",
-        "India",
-        "Indonesia",
-        "Ireland",
-        "Italy | Italia",
-        "Japan | 日本",
-        "Latvia",
-        "Maghreb | Le Maghreb",
-        "Malaysia",
-        "Netherlands",
-        "Norway",
-        "Pakistan",
-        "Paraguay",
-        "Peru | Perú",
-        "Philippines",
-        "Poland",
-        "Portugal",
-        "Romania",
-        "Saudi Arabia",
-        "Serbia",
-        "Singapore",
-        "Slovakia",
-        "South Africa",
-        "South Korea",
-        "Spain | España",
-        "Sweden | Sverige",
-        "Switzerland | Schweiz",
-        "Taiwan",
-        "Thailand",
-        "Turkey | Türkiye",
-        "Ukraine",
-        "United Kingdom",
-        "Venezuela",
-        "Vietnam"
-    ];
-
-    // Convert names to objects with codes
-    const allCountriesData = allNames.map(name => ({
-        name: name,
-        code: nameCodeMap[name] || "+XX" // Assign code, defaulting if not found
-    }));
-
-    // Define priority countries for custom sorting (US, Mexico, Canada)
-    const priorityNames = [
-        "United States of America",
-        "Mexico",
-        "Canada",
-       
-    ];
-
-    const priorityCountriesData = allCountriesData.filter(c => priorityNames.includes(c.name));
-    const otherCountriesData = allCountriesData.filter(c => !priorityNames.includes(c.name));
-
-    // Sort the rest alphabetically using the English part of the name
-    otherCountriesData.sort((a, b) => {
-        const keyA = getSortKey(a.name);
-        const keyB = getSortKey(b.name);
-        return keyA.localeCompare(keyB);
-    });
-
-    // Final combined list
-    const COUNTRIES = priorityCountriesData.concat(otherCountriesData);
-
-    function renderCountryList(filterText = '') {
-        const container = document.getElementById('regulatory-country-list-container');
-        container.innerHTML = '';
-        const normalizedFilter = filterText.toLowerCase().trim();
-
-        const filteredCountries = COUNTRIES.filter(country => {
-            // Search against the full name AND the English part of the name
-            const searchKey = country.name.toLowerCase();
-            const sortKey = getSortKey(country.name).toLowerCase();
-            return searchKey.includes(normalizedFilter) || sortKey.includes(normalizedFilter);
-        });
-
-        if (filteredCountries.length === 0) {
-            container.innerHTML = '<p class="text-center text-gray-500 py-8">No countries found matching your search.</p>';
-            return;
-        }
-
-        filteredCountries.forEach(country => {
-            const item = document.createElement('div');
-            // FIX 2: Removed justify-between and only render the name
-            item.className = 'flex justify-start items-center py-3 px-3 rounded-lg cursor-pointer hover:bg-gray-100 transition duration-100 country-list-item';
-            
-            // Country Name (Left side)
-            const nameSpan = document.createElement('span');
-            nameSpan.className = 'text-klyr-dark text-base font-medium';
-            nameSpan.textContent = country.name;
-            
-            // NOTE: Country code span removed entirely to fulfill user request
-            
-            item.appendChild(nameSpan);
-            
-            // Set the full display name as the value
-            item.addEventListener('click', () => regulatorySelectCountry(country.name)); 
-            container.appendChild(item);
-        });
-    }
-
-    function regulatorySelectCountry(countryName) {
-        const hiddenInput = document.getElementById('regulatory-jurisdiction-hidden');
-        const displayBtn = document.getElementById('regulatory-jurisdiction-display-btn');
-        
-        // 1. Update form value
-        hiddenInput.value = countryName;
-        
-        // 2. Update display button text and style (from gray placeholder to dark text)
-        displayBtn.textContent = countryName;
-        displayBtn.classList.remove('text-gray-400');
-        displayBtn.classList.add('text-klyr-dark');
-        
-        regulatoryCloseModal();
-    }
-
-    // RENAMED FUNCTION
-    function regulatoryOpenModal() {
-        const modal = document.getElementById('regulatory-country-modal');
-        const modalContent = document.getElementById('regulatory-modal-content');
-        
-        // Reset search and re-render list
-        document.getElementById('regulatory-country-search-input').value = '';
-        renderCountryList();
-        
-        modal.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden'); // Disable background scroll
-        
-        // Focus the search input for immediate typing on desktop
-        document.getElementById('regulatory-country-search-input').focus();
-        
-        // Trigger transition (must be done after a short delay for CSS to register display change)
-        setTimeout(() => {
-            modal.classList.add('opacity-100');
-            modalContent.classList.remove('scale-95');
-            modalContent.classList.add('scale-100');
-        }, 10);
-    }
-
-    // RENAMED FUNCTION
-    function regulatoryCloseModal() {
-        const modal = document.getElementById('regulatory-country-modal');
-        const modalContent = document.getElementById('regulatory-modal-content');
-        
-        modal.classList.remove('opacity-100');
-        modalContent.classList.remove('scale-100');
-        modalContent.classList.add('scale-95');
-        document.body.classList.remove('overflow-hidden');
-        
-        // Hide modal completely after transition ends
-        setTimeout(() => {
-            modal.classList.add('hidden');
-        }, 300);
-    }
-
-    // ===================================================================
-    // INITIALIZATION & NEW FORM/SCROLL LOGIC
-    // ===================================================================
-    document.addEventListener('DOMContentLoaded', () => {
-        const displayBtn = document.getElementById('regulatory-jurisdiction-display-btn');
-        const closeModalBtn = document.getElementById('regulatory-close-modal-btn');
-        const searchInput = document.getElementById('regulatory-country-search-input');
-        const modal = document.getElementById('regulatory-country-modal');
-        const hiddenInput = document.getElementById('regulatory-jurisdiction-hidden');
-        
-        // --- 1. Form Submission Logic ---
-        const form = document.getElementById('regulatory-request-form');
-        const formContent = document.getElementById('form-content');
-        const successMessage = document.getElementById('success-message');
-
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault(); // Stop default form submission/page reload
-                
-                // Hide form content and show success message
-                formContent.classList.add('hidden');
-                successMessage.classList.remove('hidden');
-                
-                // Scroll back to the top of the form area smoothly
-                document.getElementById('regulatory-form').scrollIntoView({
-                     behavior: 'smooth'
-                });
-            });
-        }
-        
-        // --- 2. Smooth Scroll Handler for CTA (UPDATED LOGIC)---
-        // Selects all anchors with the class 'smooth-scroll' and an href starting with '#'
-        const smoothScrollLinks = document.querySelectorAll('a.smooth-scroll[href^="#"]'); 
-        if (smoothScrollLinks.length > 0) {
-            smoothScrollLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // Scrolls to the target element ID specified in the href
-                    const targetId = this.getAttribute('href');
-                    if (targetId && targetId !== '#') {
-                        document.querySelector(targetId).scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        }
-        
-        // --- 3. Modal Initialization ---
-        
-        // Set initial display text based on hidden input value
-        if (hiddenInput.value) {
-            regulatorySelectCountry(hiddenInput.value); // Re-select to set button style/text
-        }
-
-        // Close Modal on Backdrop Click
-        modal.addEventListener('click', (e) => {
-            // Only close if the click target is the modal backdrop itself
-            if (e.target === modal) {
-                regulatoryCloseModal(); // CALLING RENAMED FUNCTION
-            }
-        });
-
-        // Search Filtering (real-time filtering)
-        searchInput.addEventListener('input', (e) => {
-            renderCountryList(e.target.value);
-        });
-        
-        // Initial render of country list on load
-        renderCountryList();
-    });
-</script>
-<script>
-    // ===================================================================
-    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
-    // ===================================================================
-    document.addEventListener('DOMContentLoaded', () => {
-        const fadeSections = document.querySelectorAll('.fade-in-section');
-
-        // Create the observer
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                // Check if the element is currently visible in the viewport
-                if (entry.isIntersecting) {
-                    // Add the 'is-visible' class to trigger the CSS transition
-                    entry.target.classList.add('is-visible');
-                    // Stop observing the element once it has faded in
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            // Options for the observer
-            root: null, // Use the viewport as the container
-            rootMargin: '0px', // No extra margin
-            threshold: 0.1 // Trigger when 10% of the item is visible
-        });
-
-        // Loop through all elements and observe them
-        fadeSections.forEach((section, index) => {
-            // Apply a staggered delay based on its order in the array
-            // The delay is only applied if the delay style variable is defined on the element
-            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
-            section.style.setProperty('--delay', `${delay + 0.05}s`); 
-            
-            observer.observe(section);
-        });
-    });
-</script>
 </body>
 </html>
