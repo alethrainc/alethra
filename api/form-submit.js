@@ -27,7 +27,7 @@ const UPSTASH_TOKEN = process.env.UPSTASH_REST_TOKEN || null;
 
 const FORM_CONFIG = {
   // Example forms. Add yours or modify as needed.
-  "join-movement": {
+  "main-form": {
     internalTo: "orlando@myalethra.com",
     internalSubject: "New Join Movement Submission",
     userSubject: "Welcome to ALETHRA Movement",
