@@ -329,7 +329,7 @@
 
                         <!-- FORM -->
                         <form id="contact-form" class="space-y-6">
-                            
+                            <input type="hidden" name="form-id" value="contact-form">
                             <div id="form-content" class="space-y-6">
                                 
                                 <!-- Full Name -->
@@ -500,6 +500,133 @@
 <script src="/nav-logic.js"></script>
 <script src="/inject.js"></script>
 <script src="/symbol-formatter.js"></script>
+<script type="text/javascript">
+
+    // ===================================================================
+    // FORM LOGIC
+    // ===================================================================
+
+const FORM_ID = 'contact-form';
+const form = document.getElementById(FORM_ID);
+const formContent = document.getElementById('form-content');
+const successMessage = document.getElementById('success-message');
+
+if (form) {
+    function isEmail(s) {
+        return typeof s === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+    }
+
+    function serializeForm(formEl) {
+        const fd = new FormData(formEl);
+        const out = {};
+        for (const [k,v] of fd.entries()) {
+            if (out[k]) {
+                if (!Array.isArray(out[k])) out[k] = [out[k]];
+                out[k].push(v);
+            } else {
+                out[k] = v;
+            }
+        }
+        return out;
+    }
+
+    let isSubmitting = false;
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        if (isSubmitting) return;
+        isSubmitting = true;
+
+        const submitBtn = form.querySelector('[type="submit"]');
+        const originalBtnText = submitBtn ? submitBtn.innerHTML : null;
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.setAttribute('aria-disabled','true');
+            submitBtn.innerHTML = 'Sending...';
+        }
+
+        const values = serializeForm(form);
+        const email = values['official-email'] || values['official_email'] || values['email'];
+
+        // required fields
+        const required = ['first-name','last-name','official-email','organization','role','consent'];
+        for (const r of required) {
+            if (r === 'consent') {
+                const c = form.querySelector('#consent');
+                if (!c || !c.checked) {
+                    alert('Please accept the consent to continue.');
+                    resetSubmitState();
+                    return;
+                }
+                continue;
+            }
+            if (!values[r] || (typeof values[r]==='string' && values[r].trim()==='')) {
+                alert('Please complete all required fields.');
+                resetSubmitState();
+                return;
+            }
+        }
+
+        if (!email || !isEmail(email)) {
+            alert('Please enter a valid email address.');
+            resetSubmitState();
+            return;
+        }
+
+        values._submitted_at = new Date().toISOString();
+
+        try {
+            const res = await fetch('/api/form-submit', {
+                method:'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(values),
+                credentials:'same-origin'
+            });
+
+            if (!res.ok) {
+                const txt = await res.text();
+                const parsed = (()=>{ try{return JSON.parse(txt)}catch{return txt} })();
+                alert(parsed?.error || 'Submission failed. Please try again later.');
+                resetSubmitState();
+                return;
+            }
+
+            // CRM sync
+            try {
+                if(navigator.sendBeacon){
+                    const blob = new Blob([JSON.stringify(values)], {type:'application/json'});
+                    navigator.sendBeacon('/api/form-crm', blob);
+                } else {
+                    fetch('/api/form-crm',{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},body:JSON.stringify(values)})
+                    .catch(err=>console.warn('CRM sync failed',err));
+                }
+            } catch(err) { console.warn('CRM sync error',err); }
+
+            // success UI
+            if(formContent) formContent.classList.add('hidden');
+            if(successMessage) successMessage.classList.remove('hidden');
+            form.scrollIntoView({behavior:'smooth'});
+
+        } catch(err) {
+            console.error(err);
+            alert('Unexpected error. Please try again later.');
+            resetSubmitState();
+        }
+
+        function resetSubmitState() {
+            isSubmitting = false;
+            if(submitBtn){
+                submitBtn.disabled = false;
+                submitBtn.removeAttribute('aria-disabled');
+                submitBtn.innerHTML = originalBtnText;
+            }
+        }
+    }
+
+    form.addEventListener('submit', handleSubmit);
+}
+</script>
+
 <!-- New script for Country Selection Modal Logic and Form/Scroll Handling -->
 <script>
     // ===================================================================
