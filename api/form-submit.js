@@ -179,6 +179,36 @@ const FORM_CONFIG = {
       <p>We’re excited to have you with us — this is the beginning of something powerful.</p>
     `),
   },
+  "contact-form": {
+    internalTo: "orlando@myalethra.com",
+    internalSubject: "New Contact Request",
+    userSubject: "Thank you for contacting ALETHRA™",
+    userText: "Thank you for your contacting ALETHRA™",
+    userHtml: BASE_EMAIL_TEMPLATE(`
+      <p>Thank you for contacting ALETHRA™</p>
+      <p>We'll reply as soon as possible!</p>
+    `),
+  },
+  "interview-form": {
+    internalTo: "orlando@myalethra.com",
+    internalSubject: "New Interview Request",
+    userSubject: "Thank you for your interview request to ALETHRA™",
+    userText: "Thank you for your contacting ALETHRA™",
+    userHtml: BASE_EMAIL_TEMPLATE(`
+      <p>Thank you for requesting an interview to ALETHRA™</p>
+      <p>We'll reply as soon as possible!</p>
+    `),
+  },
+  "partner-form": {
+    internalTo: "orlando@myalethra.com",
+    internalSubject: "New Partner Request",
+    userSubject: "Thank you for your Partner ALETHRA™ request",
+    userText: "Thank you for your contacting ALETHRA™ to Partner",
+    userHtml: BASE_EMAIL_TEMPLATE(`
+      <p>Thank you for your inquiry to Partner with ALETHRA™</p>
+      <p>We'll reply as soon as possible!</p>
+    `),
+  },
 };
 
 /* ---------------------------------------------------
