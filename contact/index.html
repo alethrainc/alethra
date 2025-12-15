@@ -367,8 +367,8 @@
       </label>
       <input
         type="email"
-        id="email"
-        name="email"
+        id="official-email"
+        name="official-email"
         required
         class="block w-full rounded-xl border border-gray-300 shadow-sm focus:border-klyr-red focus:ring-klyr-red text-base p-4 placeholder-gray-400 transition duration-200"
       >
@@ -594,7 +594,7 @@ if (form) {
         const email = values['official-email'] || values['official_email'] || values['email'];
 
         // required fields
-        const required = ['first-name','last-name','official-email','organization','role','consent'];
+        const required = ['fullname','official-email'];
         for (const r of required) {
             if (r === 'consent') {
                 const c = form.querySelector('#consent');
