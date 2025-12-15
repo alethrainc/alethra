@@ -162,10 +162,20 @@ const FORM_CONFIG = {
   "enterprise-request-form": {
     internalTo: "orlando@myalethra.com",
     internalSubject: "New Enterprise Submission",
-    userSubject: "Welcome to ALETHRA™ enterprise",
+    userSubject: "Welcome to ALETHRA™ Enterprise",
     userText: "Thank you for your Enterprise request!",
     userHtml: BASE_EMAIL_TEMPLATE(`
       <p>Thank you for joining ALETHRA™ Enterprise</p>
+      <p>We’re excited to have you with us — this is the beginning of something powerful.</p>
+    `),
+  },
+  "regulatory-request-form": {
+    internalTo: "orlando@myalethra.com",
+    internalSubject: "New Regulatory Submission",
+    userSubject: "Welcome to ALETHRA™ Regulatory",
+    userText: "Thank you for your Regulatory request!",
+    userHtml: BASE_EMAIL_TEMPLATE(`
+      <p>Thank you for joining ALETHRA™ Regulatory</p>
       <p>We’re excited to have you with us — this is the beginning of something powerful.</p>
     `),
   },
