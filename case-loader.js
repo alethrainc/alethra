@@ -73,33 +73,43 @@ document.addEventListener("DOMContentLoaded", async () => {
             wrapper.innerHTML = `
                 <div class="case-study-item">
 
-                    <h3 class="font-bold text-black text-lg mb-2">
+                    <h3 class="case-title font-bold text-black text-lg mb-2 transition-colors duration-200">
                         ${index + 1}. ${caseItem.title}
                     </h3>
 
                     <div class="text-black space-y-1 text-sm md:text-base leading-relaxed">
 
                         <p>
-                            <strong class="text-black">Problem:</strong>
+                            <strong>Problem:</strong>
                             ${caseItem.problem ?? ""}
                         </p>
 
                         <p>
-                            <strong class="text-black">Breakdown:</strong>
+                            <strong>Breakdown:</strong>
                             ${caseItem.breakdown ?? ""}
                         </p>
 
                         <p>
-                            <strong class="text-black">Clarity Solution:</strong>
+                            <strong>Clarity Solution:</strong>
                             ${formatProductName(caseItem.solution ?? "")}
                         </p>
 
                         <p>
-                            <strong class="text-black">Outcome:</strong>
+                            <strong>Outcome:</strong>
                             ${caseItem.outcome ?? ""}
                         </p>
 
                     </div>
+
+                    <!-- CTA ONLY -->
+                    <div class="mt-4">
+                        <span class="read-case-btn inline-block bg-klyr-red text-white
+                                     text-[11px] tracking-widest font-semibold
+                                     px-4 py-2 transition-opacity duration-200">
+                            READ FULL CASE
+                        </span>
+                    </div>
+
                 </div>
             `;
 
