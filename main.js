@@ -2,24 +2,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     const video = document.getElementById("avatar");
 
     try {
-        const res = await fetch("/api/did/createStream");
-        const { streamId, offer, ice_servers } = await res.json();
+        // Fetch your agent stream info from your backend API
+        const res = await fetch("/api/did/createStream"); 
+        const data = await res.json();
 
+        const { streamId, offer, ice_servers } = data;
+
+        // Use ice_servers correctly
         const pc = new RTCPeerConnection({ iceServers: ice_servers });
 
-        // Attach avatar stream to video element
-        pc.ontrack = (event) => {
-            video.srcObject = event.streams[0];
-        };
+        pc.ontrack = (event) => { video.srcObject = event.streams[0]; };
 
-        // Set remote SDP from D-ID
         await pc.setRemoteDescription(offer);
 
-        // Create local answer
         const answer = await pc.createAnswer();
         await pc.setLocalDescription(answer);
 
-        // Send SDP back to D-ID
         await fetch("/api/did/sdp", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
