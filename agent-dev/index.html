@@ -44,9 +44,9 @@ body { font-family: 'Inter', sans-serif; background-color: white; top:0px !impor
 .mobile-sub-item { padding-top:16px; padding-bottom:16px; @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; }
 .mobile-dropdown-content .mobile-sub-item:not(:first-child) { @apply border-t border-gray-300; }
 
-/* FIX: ensure video displays correctly */
+/* Video fixes */
 #avatar {
-    background-color: black; /* placeholder if stream fails */
+    background-color: black; /* fallback if no stream */
     min-height: 200px;
     display: block;
 }
@@ -82,17 +82,27 @@ document.addEventListener("DOMContentLoaded", async () => {
     const overlay = document.getElementById("loading-overlay");
 
     try {
-        const res = await fetch("/api/did/createStream"); 
+        const res = await fetch("/api/did/createStream");
         const data = await res.json();
+        console.log("Stream info:", data);
 
         const { streamId, offer, ice_servers } = data;
-        const pc = new RTCPeerConnection({ iceServers: ice_servers });
 
-        // Set remote track to video element
+        // DEBUG: ensure ice_servers exists
+        if (!ice_servers || ice_servers.length === 0) {
+            console.warn("No ICE servers provided, adding default STUN");
+            ice_servers = [{ urls: "stun:stun.l.google.com:19302" }];
+        }
+
+        const pc = new RTCPeerConnection({ iceServers });
+
         pc.ontrack = (event) => {
             console.log("Track received:", event.streams[0]);
             video.srcObject = event.streams[0];
-            if (overlay) overlay.style.display = "none"; // hide loading
+            if (overlay) overlay.style.display = "none";
+            // DEBUG: check track type
+            console.log("Video tracks:", event.streams[0].getVideoTracks());
+            console.log("Audio tracks:", event.streams[0].getAudioTracks());
         };
 
         pc.onicecandidate = (event) => {
@@ -111,11 +121,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
 
         console.log("✅ Agent stream started automatically");
+
+        // DEBUG: autoplay fix for some browsers
+        video.onloadedmetadata = () => video.play().catch(err => console.warn("Video play failed:", err));
+
     } catch (err) {
         console.error("❌ Failed to start agent:", err);
+        if (overlay) overlay.textContent = "Failed to load avatar";
     }
 });
 </script>
+
 </main>
 
 <div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
