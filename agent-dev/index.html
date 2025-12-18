@@ -64,41 +64,47 @@
 <main>
     <video id="avatar" autoplay playsinline muted class="w-full max-w-md mx-auto rounded-xl shadow-lg"></video>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            const video = document.getElementById("avatar");
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+    const video = document.getElementById("avatar");
 
-            try {
-                const res = await fetch("/api/did/createStream");
-                const data = await res.json();
+    try {
+        const res = await fetch("/api/did/createStream"); 
+        const data = await res.json();
 
-                const { streamId, offer, ice_servers } = data;
+        const { streamId, offer, ice_servers } = data;
 
-                // Ensure ice_servers is defined
-                const pc = new RTCPeerConnection({ iceServers: ice_servers || [] });
+        const pc = new RTCPeerConnection({ iceServers: ice_servers });
 
-                // Attach remote avatar video
-                pc.ontrack = (event) => { video.srcObject = event.streams[0]; };
+        // Set remote track to video element
+        pc.ontrack = (event) => {
+            console.log("Track received:", event.streams[0]);
+            video.srcObject = event.streams[0];
+        };
 
-                // Wrap offer in RTCSessionDescription
-                await pc.setRemoteDescription(new RTCSessionDescription(offer));
+        // Optional: log ICE candidates
+        pc.onicecandidate = (event) => {
+            if (event.candidate) console.log("ICE candidate:", event.candidate);
+        };
 
-                const answer = await pc.createAnswer();
-                await pc.setLocalDescription(answer);
+        await pc.setRemoteDescription(new RTCSessionDescription(offer));
 
-                // Send answer back to your backend
-                await fetch("/api/did/sdp", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ streamId, sdp: pc.localDescription })
-                });
+        const answer = await pc.createAnswer();
+        await pc.setLocalDescription(answer);
 
-                console.log("✅ Agent stream started automatically");
-            } catch (err) {
-                console.error("❌ Failed to start agent:", err);
-            }
+        await fetch("/api/did/sdp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ streamId, sdp: pc.localDescription })
         });
-    </script>
+
+        console.log("✅ Agent stream started automatically");
+    } catch (err) {
+        console.error("❌ Failed to start agent:", err);
+    }
+});
+</script>
+
 </main>
 
 <div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
