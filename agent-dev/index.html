@@ -10,79 +10,91 @@
 <link rel="stylesheet" href="/animation.css">    
 
 <script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    'klyr-red': '#E72F3C',
-                    'klyr-dark': '#1F2937',
-                },
-                fontFamily: {
-                    sans: ['Inter', 'sans-serif'],
-                }
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                'klyr-red': '#E72F3C',
+                'klyr-dark': '#1F2937',
+            },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
             }
         }
     }
+}
 </script>
 
 <style>
-    @media (min-width: 768px) { .description-alignment-fix { min-height: 3.5rem; } }
-    .skiptranslate { display: none!important; }
-    @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-    body { font-family: 'Inter', sans-serif; background-color: white; top:0px !important; position:relative !important; }
-    .max-w-site { max-width: 1100px; }
-    .max-w-super-wide { max-width: 2000px; }
-    .crisis-card-style { background-color: #f9f9f9; box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08); }
-    #content-box.content-box-border-style { border: 4px solid var(--klyr-red) !important; }
-    #google_translate_element, .goog-te-gadget, .goog-te-banner-frame { display: none !important; visibility: hidden !important; }
-    .nav-item:hover { color: #E72F3C; }
-    .mobile-dropdown-group { @apply border-b border-gray-100; }
-    .mobile-dropdown-group:not(:first-child) { margin-top: 18px; }
-    .mobile-nav-item-base { @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150; }
-    .mobile-dropdown-content { max-height: 0; opacity: 0; padding-left: 32px; @apply overflow-hidden bg-gray-50 transition-all duration-300; }
-    .mobile-dropdown-content.open { opacity:1; pointer-events:auto; }
-    .mobile-sub-item { padding-top:16px; padding-bottom:16px; @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; }
-    .mobile-dropdown-content .mobile-sub-item:not(:first-child) { @apply border-t border-gray-300; }
+@media (min-width: 768px) { .description-alignment-fix { min-height: 3.5rem; } }
+.skiptranslate { display: none!important; }
+@import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+body { font-family: 'Inter', sans-serif; background-color: white; top:0px !important; position:relative !important; }
+.max-w-site { max-width: 1100px; }
+.max-w-super-wide { max-width: 2000px; }
+.crisis-card-style { background-color: #f9f9f9; box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08); }
+#content-box.content-box-border-style { border: 4px solid var(--klyr-red) !important; }
+#google_translate_element, .goog-te-gadget, .goog-te-banner-frame { display: none !important; visibility: hidden !important; }
+.nav-item:hover { color: #E72F3C; }
+.mobile-dropdown-group { @apply border-b border-gray-100; }
+.mobile-dropdown-group:not(:first-child) { margin-top: 18px; }
+.mobile-nav-item-base { @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150; }
+.mobile-dropdown-content { max-height: 0; opacity: 0; padding-left: 32px; @apply overflow-hidden bg-gray-50 transition-all duration-300; }
+.mobile-dropdown-content.open { opacity:1; pointer-events:auto; }
+.mobile-sub-item { padding-top:16px; padding-bottom:16px; @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; }
+.mobile-dropdown-content .mobile-sub-item:not(:first-child) { @apply border-t border-gray-300; }
+
+/* FIX: ensure video displays correctly */
+#avatar {
+    background-color: black; /* placeholder if stream fails */
+    min-height: 200px;
+    display: block;
+}
 </style>
 </head>
 <body>
 
 <div id="google_translate_element"></div>
 <script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'en',
-            autoDisplay: false,
-            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
-        }, 'google_translate_element');
-    }
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        autoDisplay: false,
+        layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+    }, 'google_translate_element');
+}
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
 
-<main>
-    <video id="avatar" autoplay playsinline muted class="w-full max-w-md mx-auto rounded-xl shadow-lg"></video>
+<main class="py-10 flex justify-center">
+    <div class="relative w-full max-w-md">
+        <video id="avatar" autoplay playsinline muted class="rounded-xl shadow-lg w-full h-auto"></video>
+        <div id="loading-overlay" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-lg font-semibold">
+            Loading avatar...
+        </div>
+    </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
     const video = document.getElementById("avatar");
+    const overlay = document.getElementById("loading-overlay");
 
     try {
         const res = await fetch("/api/did/createStream"); 
         const data = await res.json();
 
         const { streamId, offer, ice_servers } = data;
-
         const pc = new RTCPeerConnection({ iceServers: ice_servers });
 
         // Set remote track to video element
         pc.ontrack = (event) => {
             console.log("Track received:", event.streams[0]);
             video.srcObject = event.streams[0];
+            if (overlay) overlay.style.display = "none"; // hide loading
         };
 
-        // Optional: log ICE candidates
         pc.onicecandidate = (event) => {
             if (event.candidate) console.log("ICE candidate:", event.candidate);
         };
@@ -104,7 +116,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 </script>
-
 </main>
 
 <div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
