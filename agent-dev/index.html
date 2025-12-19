@@ -28,7 +28,7 @@ tailwind.config = {
 <style>
 @media (min-width: 768px) { .description-alignment-fix { min-height: 3.5rem; } }
 .skiptranslate { display: none!important; }
-@import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 body { font-family: 'Inter', sans-serif; background-color: white; top:0px !important; position:relative !important; }
 .max-w-site { max-width: 1100px; }
 .max-w-super-wide { max-width: 2000px; }
@@ -49,6 +49,21 @@ body { font-family: 'Inter', sans-serif; background-color: white; top:0px !impor
     background-color: black; /* fallback if no stream */
     min-height: 200px;
     display: block;
+    width: 100%;
+    object-fit: contain;
+}
+/* Debug overlay */
+#debug-overlay {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    z-index: 10;
+    pointer-events: none;
 }
 </style>
 </head>
@@ -74,40 +89,54 @@ function googleTranslateElementInit() {
         <div id="loading-overlay" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-lg font-semibold">
             Loading avatar...
         </div>
+        <div id="debug-overlay">Debug: Waiting for stream...</div>
     </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
     const video = document.getElementById("avatar");
     const overlay = document.getElementById("loading-overlay");
+    const debug = document.getElementById("debug-overlay");
+
+    function logDebug(msg) {
+        console.log(msg);
+        if (debug) debug.textContent = "Debug: " + msg;
+    }
 
     try {
         const res = await fetch("/api/did/createStream");
         const data = await res.json();
-        console.log("Stream info:", data);
+        logDebug("Stream info received");
 
-        // Correct variable naming for WebRTC
-        let { streamId, offer, ice_servers } = data;
+        // Ensure we have correct variables
+        let { id: streamId, offer, ice_servers } = data;
         const iceServers = ice_servers && ice_servers.length > 0
             ? ice_servers
             : [{ urls: "stun:stun.l.google.com:19302" }];
 
         const pc = new RTCPeerConnection({ iceServers });
 
+        // Track received handler
         pc.ontrack = (event) => {
-            console.log("Track received:", event.streams[0]);
+            logDebug("Track received");
             video.srcObject = event.streams[0];
             if (overlay) overlay.style.display = "none";
-            console.log("Video tracks:", event.streams[0].getVideoTracks());
-            console.log("Audio tracks:", event.streams[0].getAudioTracks());
+
+            // Log video/audio tracks
+            const vTracks = event.streams[0].getVideoTracks();
+            const aTracks = event.streams[0].getAudioTracks();
+            logDebug(`Video tracks: ${vTracks.length}, Audio tracks: ${aTracks.length}`);
+
+            // Debug each track
+            vTracks.forEach(t => console.log("Video track:", t));
+            aTracks.forEach(t => console.log("Audio track:", t));
         };
 
         pc.onicecandidate = (event) => {
-            if (event.candidate) console.log("ICE candidate:", event.candidate);
+            if (event.candidate) logDebug(`ICE candidate: ${event.candidate.type}`);
         };
 
         await pc.setRemoteDescription(new RTCSessionDescription(offer));
-
         const answer = await pc.createAnswer();
         await pc.setLocalDescription(answer);
 
@@ -117,14 +146,23 @@ document.addEventListener("DOMContentLoaded", async () => {
             body: JSON.stringify({ streamId, sdp: pc.localDescription })
         });
 
-        console.log("✅ Agent stream started automatically");
+        logDebug("✅ Agent stream started");
 
-        // Ensure video autoplay
-        video.onloadedmetadata = () => video.play().catch(err => console.warn("Video play failed:", err));
+        // Ensure autoplay works
+        video.onloadedmetadata = () => video.play().catch(err => logDebug("Video play failed: " + err));
+
+        // Extra debug: update every second if video frames are coming
+        setInterval(() => {
+            if (video.readyState >= 2) {
+                const frameCheck = video.videoWidth + "x" + video.videoHeight;
+                logDebug(`Video playing, size: ${frameCheck}`);
+            }
+        }, 1000);
 
     } catch (err) {
         console.error("❌ Failed to start agent:", err);
         if (overlay) overlay.textContent = "Failed to load avatar";
+        logDebug("Failed to start agent");
     }
 });
 </script>
