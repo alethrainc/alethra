@@ -151,11 +151,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Ensure autoplay works
         video.onloadedmetadata = () => video.play().catch(err => logDebug("Video play failed: " + err));
 
-        // Extra debug: update every second if video frames are coming
+        // Extra debug: check video frames every second
         setInterval(() => {
             if (video.readyState >= 2) {
                 const frameCheck = video.videoWidth + "x" + video.videoHeight;
                 logDebug(`Video playing, size: ${frameCheck}`);
+            } else {
+                logDebug("Video not yet ready");
             }
         }, 1000);
 
