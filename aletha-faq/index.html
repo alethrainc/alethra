@@ -14,9 +14,7 @@
             theme: {
                 extend: {
                     colors: {
-                        // PRIMARY COLOR VARIABLE
                         'klyr-red': '#E72F3C',
-                        // DARK TEXT COLOR VARIABLE
                         'klyr-dark': '#1F2937',
                     },
                     fontFamily: {
@@ -27,30 +25,13 @@
         }
     </script>
     <style>
-    
         /* =================================================================== */
-        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* GLOBAL STYLING */
         /* =================================================================== */
-        @media (min-width: 768px) {
-            .description-alignment-fix {
-                /* Min-height large enough for 2 lines of text-lg */
-                min-height: 3.5rem; 
-            }
-        }
-        .skiptranslate {
-            display: none!important;
-        }
-        /* ===================================================================
-        GLOBAL STYLING
-        =================================================================== */
-        
-        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
-        /* Adjust these values (in pixels) to control the mobile navigation layout */
         :root { 
-            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
-            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
-            /* Padding for sub-links to make them cleaner (was 48px) */
-            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --mobile-indent-px: 32px; 
+            --mobile-group-spacing-px: 18px; 
+            --mobile-sub-item-py: 16px; 
             --site-max-width: 1100px; 
             --nav-footer-max-width: 2000px; 
         }
@@ -58,22 +39,12 @@
         .nav-item:hover {
             color: #E72F3C;
         }
-        /* -------------------------------------------------- */
 
-        /* Ensures Inter font loads smoothly */
         @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         
-     /* ===================================================================
-           AGGRESSIVE FONT OVERRIDE (THE FIX)
-           This forces every text container to use Inter, ignoring the Agent's CSS.
-           We intentionally exclude the 'i' tag to preserve FontAwesome icons.
-        =================================================================== */
-        html, body, 
-        h1, h2, h3, h4, h5, h6, 
-        p, span, div, a, 
-        li, ul, ol, 
-        button, input, textarea, label, strong, b, em, small {
-            font-family: 'Inter', sans-serif !important;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
         }
 
         /* Custom class for standard content width */
@@ -109,66 +80,56 @@
         /* ===================================================================
         NAVIGATION & DROPDOWN STYLES
         =================================================================== */
-        /* Desktop Navigation Item Base Style */
-        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
         .nav-item {
             @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
         }
         
-        /* Mobile Accordion Wrapper (Main Navigation Items) */
         .mobile-dropdown-group {
             @apply border-b border-gray-100;
         }
-        /* Add spacing between the main navigation items, but not before the first one */
         .mobile-dropdown-group:not(:first-child) {
             margin-top: var(--mobile-group-spacing-px);
         }
         
-        /* Consolidated Mobile Item Base Style for Links and Buttons */
         .mobile-nav-item-base {
             @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
         }
         
-        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
         .mobile-dropdown-content {
-            /* max-height: 0 is the starting state */
             max-height: 0; 
-            /* Opacity starts at 0 */
             opacity: 0; 
-            
-            /* Use the variable defined at the top for indentation */
             padding-left: var(--mobile-indent-px);
-            /* transition-all includes max-height and opacity/transform */
             @apply overflow-hidden bg-gray-50 transition-all duration-300; 
         }
         
-        /* Class added by JS when the accordion is OPEN */
         .mobile-dropdown-content.open {
             opacity: 1;
             pointer-events: auto; 
-            /* max-height set inline by JS when opening, not here */
         }
 
-        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
         .mobile-sub-item {
-            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
             padding-top: var(--mobile-sub-item-py);
             padding-bottom: var(--mobile-sub-item-py);
-            /* Base styles */
             @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
         }
         
-        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
-            This creates a single, clean dividing line BETWEEN items. */
         .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
             @apply border-t border-gray-300; 
+        }
+
+        @media (min-width: 768px) {
+            .description-alignment-fix {
+                min-height: 3.5rem; 
+            }
+        }
+        .skiptranslate {
+            display: none!important;
         }
 
     </style>
 </head>
 <body>
 
-    
 <div id="google_translate_element"></div>
     <script type="text/javascript">
         function googleTranslateElementInit() {
@@ -181,8 +142,6 @@
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
 <div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
 
     <main class="">
@@ -202,17 +161,7 @@
             </div>
 
             <div id="content-box" class="content-box-border-style rounded-lg flex overflow-hidden w-full relative h-[400px] md:h-full"> 
-                <script type="module"
-                    src="https://agent.d-id.com/v2/index.js"
-                    data-mode="full"
-                    data-client-key="Z29vZ2xlLW9hdXRoMnwxMDM3NTMwNjQ3MzA3OTA4MDA2NzQ6aFZvRkFiRzhJZTVsYUNqVEoyRWdh"
-                    data-agent-id="v2_agt_n4gt0-NZ"
-                    data-name="did-agent"
-                    data-monitor="true"
-                    data-target-id="content-box">
-                </script>
             </div>
-           
 
         </div>
 
@@ -298,7 +247,6 @@
         </h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            
             <div class="text-left border-l-2 border-black pl-4">
                 <h3 class="text-lg font-bold text-klyr-red uppercase mb-4">ALETHRA SCAN™</h3>
                 <ul class="text-sm text-gray-700 space-y-3 mb-6 list-disc pl-4">
@@ -402,7 +350,7 @@
             <span class="text-klyr-red">ALETHA</span>™ integrates natively with Oracle Cloud, AWS, Microsoft Azure, Google Cloud, and enterprise agent frameworks. She consumes <span class="text-klyr-red">ALETHRA</span>™ truth states and exposes them through APIs, dashboards, and intelligent workflows, powering verified decisions at cloud scale.
         </p>
 
-        <div class="space-y-8 md:space-y-12 opacity-80 max-w-5xl mx-auto mt-8 md:mt-16 flex flex-col items-start md:items-center">
+       <div class="space-y-8 md:space-y-12 opacity-80 max-w-5xl mx-auto mt-8 md:mt-16 flex flex-col items-start md:items-center">
                 
                 <div class="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-8 md:gap-0 px-4">
                     <div class="flex items-center space-x-3">
@@ -553,7 +501,6 @@
 
 </main>
 
-    
 <div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
         <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
             
@@ -561,51 +508,84 @@
                 <i class="fas fa-times text-2xl"></i>
             </button>
             
-            
 <div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
                 
 </div>
         </div>
     </div>
     
-    
 <div id="footer-placeholder"></div>
 <script src="/animation.js"></script>
 <script src="/nav-logic.js"></script>
 <script src="/inject.js"></script>
 <script src="/symbol-formatter.js"></script>
-<script type="text/javascript">
-     // ===================================================================
-    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
-    // ===================================================================
-    document.addEventListener('DOMContentLoaded', () => {
-        const fadeSections = document.querySelectorAll('.fade-in-section');
 
-        // Create the observer
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Define the HTML for the Agent's "Private World"
+        // This HTML is what goes INSIDE the iframe.
+        const agentHTML = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <style>
+                    /* Reset margin/padding so it fits perfectly in the iframe */
+                    body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
+                    /* Ensure the specific container fills the frame */
+                    #agent-container { width: 100%; height: 100%; }
+                </style>
+            </head>
+            <body>
+                <div id="agent-container"></div>
+
+                <script type="module"
+                    src="https://agent.d-id.com/v2/index.js"
+                    data-mode="full"
+                    data-client-key="Z29vZ2xlLW9hdXRoMnwxMDM3NTMwNjQ3MzA3OTA4MDA2NzQ6aFZvRkFiRzhJZTVsYUNqVEoyRWdh"
+                    data-agent-id="v2_agt_n4gt0-NZ"
+                    data-name="did-agent"
+                    data-monitor="true"
+                    data-target-id="agent-container">
+                <\/script>
+            </body>
+            </html>
+        `;
+
+        // 2. Create a "Virtual File" (Blob URL) from that HTML string
+        const blob = new Blob([agentHTML], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+
+        // 3. Inject an Iframe pointing to that Virtual File into your #content-box
+        const container = document.getElementById('content-box');
+        if (container) {
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            // Allow microphone access for the agent
+            iframe.allow = "microphone; camera; display-capture; autoplay"; 
+            container.appendChild(iframe);
+        }
+
+        // ===================================================================
+        // FADE IN ANIMATION LOGIC (EXISTING)
+        // ===================================================================
+        const fadeSections = document.querySelectorAll('.fade-in-section');
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
-                // Check if the element is currently visible in the viewport
                 if (entry.isIntersecting) {
-                    // Add the 'is-visible' class to trigger the CSS transition
                     entry.target.classList.add('is-visible');
-                    // Stop observing the element once it has faded in
                     observer.unobserve(entry.target);
                 }
             });
-        }, {
-            // Options for the observer
-            root: null, // Use the viewport as the container
-            rootMargin: '0px', // No extra margin
-            threshold: 0.1 // Trigger when 10% of the item is visible
-        });
+        }, { root: null, rootMargin: '0px', threshold: 0.1 });
 
-        // Loop through all elements and observe them
         fadeSections.forEach((section, index) => {
-            // Apply a staggered delay based on its order in the array
-            // The delay is only applied if the delay style variable is defined on the element
             const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
             section.style.setProperty('--delay', `${delay + 0.05}s`); 
-            
             observer.observe(section);
         });
     });
