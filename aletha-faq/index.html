@@ -63,12 +63,17 @@
         /* Ensures Inter font loads smoothly */
         @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         
-        /* FIX APPLIED HERE: 
-           Added !important to font-family to override the D-ID Agent's injected styles 
-        */
-        body {
+     /* ===================================================================
+           AGGRESSIVE FONT OVERRIDE (THE FIX)
+           This forces every text container to use Inter, ignoring the Agent's CSS.
+           We intentionally exclude the 'i' tag to preserve FontAwesome icons.
+        =================================================================== */
+        html, body, 
+        h1, h2, h3, h4, h5, h6, 
+        p, span, div, a, 
+        li, ul, ol, 
+        button, input, textarea, label, strong, b, em, small {
             font-family: 'Inter', sans-serif !important;
-            background-color: white;
         }
 
         /* Custom class for standard content width */
