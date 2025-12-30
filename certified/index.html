@@ -231,10 +231,7 @@
 
                     <!-- Right Column: Image & Icon -->
                     <div class="flex flex-col items-center w-full">
-                        <div id="" class="content-box-border-style rounded-lg flex overflow-hidden w-full mb-8"> 
-                            <!-- MODIFIED: Changed to h-auto and object-contain to respect aspect ratio without cropping -->
-                            <img id="" src="https://plusbrand.com/wp-content/uploads/2025/11/Aletha-1.webp" class="content-logo-border w-full h-auto object-contain rounded-lg"  onerror="this.outerHTML = '<span class=\'text-6xl font-extrabold text-klyr-red\'>ALETHRA™</span>';">
-                        </div>
+                         <div id="content-box" class="content-box-border-style rounded-lg flex overflow-hidden w-full relative h-[400px] md:h-[300px]"></div>
 
                          <!-- Certification Icon (Larger, below image) -->
                         <img src="https://plusbrand.com/wp-content/uploads/2025/11/ALETHRA_Certified-scaled.webp" 
@@ -334,6 +331,7 @@
 <script src="/nav-logic.js"></script>
 <script src="/inject.js"></script>
 <script src="/symbol-formatter.js"></script>
+<script src="/agent-loader.js"></script>
 <script>
     // ===================================================================
     // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
