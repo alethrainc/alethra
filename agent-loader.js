@@ -15,6 +15,10 @@
                 /* Reset internal styles so agent fills the box */
                 body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: transparent; }
                 #agent-inner-container { width: 100%; height: 100%; }
+                /* --- HIDE CHAT TOGGLE BUTTON --- */
+                .didagent__chat__toggle {
+                    display: none !important;
+                }
             </style>
         </head>
         <body>
