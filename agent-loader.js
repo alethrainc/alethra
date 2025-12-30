@@ -17,7 +17,7 @@
                 #agent-inner-container { width: 100%; height: 100%; }
                 /* --- HIDE CHAT TOGGLE BUTTON --- */
                 .didagent__chat__toggle {
-                    display: none !important;
+                    display: none!important;
                 }
             </style>
         </head>
