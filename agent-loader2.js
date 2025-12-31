@@ -43,62 +43,56 @@
                     background-color: #ffffff;
                     z-index: 9999;
                     display: flex;
-                    flex-direction: column; /* Stack circle and text */
                     justify-content: center;
                     align-items: center;
                     transition: opacity 0.6s ease-out 0.1s, visibility 0.6s 0.1s;
                 }
 
+                /* Wrapper: Holds the text and the spinner in the same spot */
                 .loader-content {
                     position: relative;
-                    width: 64px; /* Apple standard icon size */
-                    height: 64px;
+                    width: 80px; /* Slightly larger to give text breathing room */
+                    height: 80px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     transition: opacity 0.1s ease-out; 
                 }
 
-                /* --- 1. THE TRACK (Faint Grey Ring) --- */
-                /* This gives it that "Engineered" look */
-                .ring-track {
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 50%;
-                    border: 1.5px solid rgba(0, 0, 0, 0.06); /* Extremely subtle grey */
-                }
-
-                /* --- 2. THE PHOTON (Spinning Light) --- */
+                /* --- 1. THE PHOTON (Spinning Light) --- */
                 .ring-spinner {
                     position: absolute;
+                    top: 0;
+                    left: 0;
                     width: 100%;
                     height: 100%;
                     border-radius: 50%;
-                    /* Apple Easing: Starts slow, sprints, stops slow */
-                    animation: appleSpin 1.4s cubic-bezier(0.65, 0, 0.35, 1) infinite; 
+                    
+                    /* Apple Physics Easing: Starts slow, fast middle, stops slow */
+                    animation: appleSpin 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite; 
                     
                     /* The actual colored segment */
                     border: 1.5px solid transparent;
                     border-top-color: #E72F3C; /* Brand Red */
                     
-                    /* The Glow Effect - Makes it look like light */
-                    filter: drop-shadow(0 0 2px rgba(231, 47, 60, 0.5));
+                    /* The Glow Effect */
+                    filter: drop-shadow(0 0 3px rgba(231, 47, 60, 0.6));
                 }
 
-                /* --- 3. LUXURY TYPOGRAPHY --- */
+                /* --- 2. LUXURY TEXT (Inside the Circle) --- */
                 .brand-text {
-                    margin-top: 24px; /* Space from circle */
+                    position: absolute; /* Locks it to center */
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-                    font-size: 10px; 
+                    font-size: 9px; /* Small, minimal */
                     font-weight: 600;
                     color: #8e8e93; /* Apple "Secondary Label" Color */
-                    letter-spacing: 0.4em; /* MASSIVE tracking = Luxury */
+                    letter-spacing: 0.3em; /* Luxury Spacing */
                     text-transform: uppercase;
-                    text-align: center;
-                    /* Offset left slightly to mathematically center the text due to letter-spacing */
-                    padding-left: 0.4em; 
-                    animation: pulseText 2s ease-in-out infinite;
+                    
+                    /* Visual Centering adjustment for the letter spacing */
+                    margin-left: 0.3em; 
+                    
+                    animation: pulseText 3s ease-in-out infinite;
                 }
 
                 /* --- ANIMATIONS --- */
@@ -109,17 +103,14 @@
                 }
 
                 @keyframes pulseText {
-                    0% { opacity: 0.6; }
+                    0%, 100% { opacity: 0.4; }
                     50% { opacity: 1; }
-                    100% { opacity: 0.6; }
                 }
 
                 /* --- DISMISSAL STATES --- */
-                .content-vanished .loader-content, 
-                .content-vanished .brand-text {
+                .content-vanished .loader-content {
                     opacity: 0;
-                    transform: scale(0.98); /* Slight recession */
-                    transition: opacity 0.2s ease, transform 0.2s ease;
+                    transform: scale(0.95); /* Slight shrink on exit */
                 }
 
                 .loader-hidden {
@@ -133,10 +124,9 @@
             
             <div id="custom-loader">
                 <div class="loader-content">
-                    <div class="ring-track"></div>
                     <div class="ring-spinner"></div>
+                    <div class="brand-text">ALETHA</div>
                 </div>
-                <div class="brand-text">ALETHA</div>
             </div>
 
             <div id="agent-inner-container"></div>
@@ -193,7 +183,6 @@
                     });
 
                     const video = findElementInShadow('video');
-                    // Check if video is ready
                     if (video && video.readyState >= 1) { 
                         dismissLoader();
                     }
