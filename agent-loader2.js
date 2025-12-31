@@ -48,11 +48,11 @@
                     transition: opacity 0.6s ease-out 0.1s, visibility 0.6s 0.1s;
                 }
 
-                /* Wrapper: Holds the text and the spinner in the same spot */
+                /* Wrapper */
                 .loader-content {
                     position: relative;
-                    width: 80px; /* Slightly larger to give text breathing room */
-                    height: 80px;
+                    width: 90px; /* Slightly wider to accommodate TM */
+                    height: 90px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -68,31 +68,42 @@
                     height: 100%;
                     border-radius: 50%;
                     
-                    /* Apple Physics Easing: Starts slow, fast middle, stops slow */
+                    /* Apple Physics Easing */
                     animation: appleSpin 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite; 
                     
-                    /* The actual colored segment */
-                    border: 1.5px solid transparent;
+                    /* RAZOR THIN LINE (1px) */
+                    border: 1px solid transparent;
                     border-top-color: #E72F3C; /* Brand Red */
                     
-                    /* The Glow Effect */
-                    filter: drop-shadow(0 0 3px rgba(231, 47, 60, 0.6));
+                    /* Subtle Glow */
+                    filter: drop-shadow(0 0 2px rgba(231, 47, 60, 0.4));
                 }
 
-                /* --- 2. LUXURY TEXT (Inside the Circle) --- */
+                /* --- 2. LUXURY TEXT (Black + TM) --- */
                 .brand-text {
-                    position: absolute; /* Locks it to center */
+                    position: absolute; 
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-                    font-size: 9px; /* Small, minimal */
+                    font-size: 10px; 
                     font-weight: 600;
-                    color: #8e8e93; /* Apple "Secondary Label" Color */
-                    letter-spacing: 0.3em; /* Luxury Spacing */
+                    color: #000000; /* Pure Black */
+                    letter-spacing: 0.3em; 
                     text-transform: uppercase;
                     
-                    /* Visual Centering adjustment for the letter spacing */
+                    /* Centering adjustment */
                     margin-left: 0.3em; 
                     
                     animation: pulseText 3s ease-in-out infinite;
+                }
+
+                /* TM Styling */
+                sup {
+                    font-size: 5px;
+                    vertical-align: top;
+                    position: relative;
+                    top: -3px;
+                    margin-left: 2px;
+                    color: #8e8e93; /* TM is slightly grey to not distract */
+                    letter-spacing: 0; /* Reset spacing for TM */
                 }
 
                 /* --- ANIMATIONS --- */
@@ -103,14 +114,14 @@
                 }
 
                 @keyframes pulseText {
-                    0%, 100% { opacity: 0.4; }
+                    0%, 100% { opacity: 0.5; }
                     50% { opacity: 1; }
                 }
 
                 /* --- DISMISSAL STATES --- */
                 .content-vanished .loader-content {
                     opacity: 0;
-                    transform: scale(0.95); /* Slight shrink on exit */
+                    transform: scale(0.95); 
                 }
 
                 .loader-hidden {
@@ -125,7 +136,7 @@
             <div id="custom-loader">
                 <div class="loader-content">
                     <div class="ring-spinner"></div>
-                    <div class="brand-text">ALETHA</div>
+                    <div class="brand-text">ALETHA<sup>TM</sup></div>
                 </div>
             </div>
 
@@ -183,6 +194,7 @@
                     });
 
                     const video = findElementInShadow('video');
+                    // Check if video is ready
                     if (video && video.readyState >= 1) { 
                         dismissLoader();
                     }
