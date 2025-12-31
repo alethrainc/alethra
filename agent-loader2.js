@@ -51,7 +51,7 @@
                 /* Wrapper */
                 .loader-content {
                     position: relative;
-                    width: 90px; /* Slightly wider to accommodate TM */
+                    width: 90px;
                     height: 90px;
                     display: flex;
                     justify-content: center;
@@ -59,7 +59,7 @@
                     transition: opacity 0.1s ease-out; 
                 }
 
-                /* --- 1. THE PHOTON (Spinning Light) --- */
+                /* --- 1. THE LONG FADING TAIL SPINNER --- */
                 .ring-spinner {
                     position: absolute;
                     top: 0;
@@ -71,15 +71,40 @@
                     /* Apple Physics Easing */
                     animation: appleSpin 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite; 
                     
-                    /* RAZOR THIN LINE (1px) */
-                    border: 1px solid transparent;
-                    border-top-color: #E72F3C; /* Brand Red */
+                    /* THE GRADIENT FIX: 
+                       This creates a long tail that starts transparent and 
+                       slowly becomes red over 80% of the circle. */
+                    background: conic-gradient(
+                        from 0deg, 
+                        transparent 0%, 
+                        transparent 20%, 
+                        rgba(231, 47, 60, 0.1) 40%, 
+                        #E72F3C 100%
+                    );
+                    
+                    /* THE MASK: Cuts out the center to leave a 1px thin line */
+                    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
+                    mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
                     
                     /* Subtle Glow */
                     filter: drop-shadow(0 0 2px rgba(231, 47, 60, 0.4));
                 }
 
-                /* --- 2. LUXURY TEXT (Black + TM) --- */
+                /* OPTIONAL: A tiny cap to round off the "Head" of the spinner */
+                .ring-spinner::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 1px; /* Matches line width */
+                    height: 1px;
+                    background: #E72F3C;
+                    border-radius: 50%;
+                    box-shadow: 0 0 4px #E72F3C;
+                }
+
+                /* --- 2. LUXURY TEXT (Black + Black TM) --- */
                 .brand-text {
                     position: absolute; 
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -88,26 +113,21 @@
                     color: #000000; /* Pure Black */
                     letter-spacing: 0.3em; 
                     text-transform: uppercase;
-                    
-                    /* Centering adjustment */
                     margin-left: 0.3em; 
-                    
                     animation: pulseText 3s ease-in-out infinite;
                 }
 
-                /* TM Styling */
                 sup {
                     font-size: 5px;
                     vertical-align: top;
                     position: relative;
                     top: -3px;
                     margin-left: 2px;
-                    color: #8e8e93; /* TM is slightly grey to not distract */
-                    letter-spacing: 0; /* Reset spacing for TM */
+                    color: #000000; 
+                    letter-spacing: 0; 
                 }
 
                 /* --- ANIMATIONS --- */
-                
                 @keyframes appleSpin {
                     0% { transform: rotate(0deg); }
                     100% { transform: rotate(360deg); }
@@ -203,8 +223,8 @@
                 function dismissLoader() {
                     const loader = document.getElementById('custom-loader');
                     if (loader && !loader.classList.contains('content-vanished')) {
-                        loader.classList.add('content-vanished'); // Vanish Elements
-                        loader.classList.add('loader-hidden');    // Fade Background
+                        loader.classList.add('content-vanished'); 
+                        loader.classList.add('loader-hidden');    
                     }
                 }
 
