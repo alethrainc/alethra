@@ -25,15 +25,15 @@
                 /* --- VIDEO FIXES --- */
                 video { object-position: top center !important; }
 
-                /* --- CUSTOM LOADER (THE COOL PART) --- */
+                /* --- CUSTOM LOADER --- */
                 #custom-loader {
                     position: absolute;
                     top: 0;
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background-color: #ffffff; /* Matches your card background */
-                    z-index: 9999; /* Sits on top of everything */
+                    background-color: #ffffff;
+                    z-index: 9999;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -41,7 +41,6 @@
                     transition: opacity 0.8s ease-in-out, visibility 0.8s;
                 }
 
-                /* The "Breathing" Ring Animation */
                 .pulse-ring {
                     width: 60px;
                     height: 60px;
@@ -51,13 +50,12 @@
                     animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
                 }
                 
-                /* Brand Name Fade In */
                 .loader-text {
                     margin-top: 16px;
                     font-family: 'Inter', sans-serif;
                     font-weight: 700;
                     font-size: 14px;
-                    color: #1F2937; /* klyr-dark */
+                    color: #1F2937;
                     letter-spacing: 0.1em;
                     text-transform: uppercase;
                     animation: fadeText 2s infinite ease-in-out;
@@ -74,7 +72,6 @@
                     50% { opacity: 1; }
                 }
 
-                /* Class to hide the loader smoothly */
                 .loader-hidden {
                     opacity: 0;
                     visibility: hidden;
@@ -102,7 +99,27 @@
             <\/script>
 
             <script>
-                // 1. Hide Chat Button Logic (Shadow DOM)
+                // 1. Shadow DOM Helper (Finds elements inside protected layers)
+                function findElementInShadow(selector) {
+                    function search(root) {
+                        // Check standard DOM
+                        let found = root.querySelector(selector);
+                        if (found) return found;
+
+                        // Check inside every element's Shadow DOM
+                        const allNodes = root.querySelectorAll('*');
+                        for (let node of allNodes) {
+                            if (node.shadowRoot) {
+                                found = search(node.shadowRoot);
+                                if (found) return found;
+                            }
+                        }
+                        return null;
+                    }
+                    return search(document.body);
+                }
+
+                // 2. Hide Chat Button Logic
                 const hideStyle = document.createElement('style');
                 hideStyle.textContent = '.didagent__chat__toggle { display: none !important; }';
 
@@ -114,41 +131,36 @@
                     }
                 }
 
-                // 2. Watch for Video Ready (To Dismiss Loader)
-                const loaderCheckInterval = setInterval(() => {
-                    // We look for the video element D-ID creates
-                    const video = document.querySelector('video');
-                    
-                    // If video exists AND has enough data to play frame 1
+                // 3. WATCHER: Hides Chat Button AND Checks Video Status
+                const checkInterval = setInterval(() => {
+                    // A. Hide the button wherever it hides
+                    const allNodes = document.querySelectorAll('*');
+                    allNodes.forEach(node => {
+                        if (node.shadowRoot) pierceShadowAndHide(node.shadowRoot);
+                    });
+
+                    // B. Hunt for the video to dismiss loader
+                    const video = findElementInShadow('video');
                     if (video && video.readyState >= 2) {
-                        const loader = document.getElementById('custom-loader');
-                        if (loader) {
-                            loader.classList.add('loader-hidden');
-                            clearInterval(loaderCheckInterval);
-                        }
+                        dismissLoader();
                     }
                 }, 100);
 
-                // 3. Shadow DOM Observer
-                const observer = new MutationObserver((mutations) => {
-                    const allNodes = document.querySelectorAll('*');
-                    allNodes.forEach(node => {
-                        if (node.shadowRoot) {
-                            pierceShadowAndHide(node.shadowRoot);
-                        }
-                    });
-                });
-                observer.observe(document.body, { childList: true, subtree: true });
-                
-                // Fallback Shadow Check
-                setInterval(() => {
-                   const allNodes = document.querySelectorAll('*');
-                   allNodes.forEach(node => {
-                       if (node.shadowRoot) {
-                           pierceShadowAndHide(node.shadowRoot);
-                       }
-                   });
-                }, 100);
+                // 4. DISMISS FUNCTION (Stops checking once done)
+                function dismissLoader() {
+                    const loader = document.getElementById('custom-loader');
+                    if (loader && !loader.classList.contains('loader-hidden')) {
+                        loader.classList.add('loader-hidden');
+                        // We keep the interval running for the chat button, but slow it down
+                        // to save performance
+                    }
+                }
+
+                // 5. SAFETY VALVE: Force dismiss after 8 seconds no matter what
+                setTimeout(() => {
+                    dismissLoader();
+                }, 8000);
+
             <\/script>
         </body>
         </html>
