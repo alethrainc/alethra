@@ -48,11 +48,11 @@
                     transition: opacity 0.6s ease-out 0.1s, visibility 0.6s 0.1s;
                 }
 
-                /* Wrapper - UPDATED: Smaller Size (70px) */
+                /* Wrapper */
                 .loader-content {
                     position: relative;
-                    width: 70px;
-                    height: 70px;
+                    width: 90px;
+                    height: 90px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -71,10 +71,10 @@
                     /* Apple Physics Easing */
                     animation: appleSpin 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite; 
                     
-                    /* HEAD START: -0.4s */
+                    /* UPDATED: Only 0.4s head start (Less than a second) */
                     animation-delay: -0.4s;
                     
-                    /* LONG GRADIENT TAIL */
+                    /* LONG GRADIENT TAIL (80% Coverage) */
                     background: conic-gradient(
                         from 0deg, 
                         transparent 0%, 
@@ -91,25 +91,25 @@
                     filter: drop-shadow(0 0 2px rgba(231, 47, 60, 0.4));
                 }
 
-                /* --- LUXURY TEXT - UPDATED: Smaller font & tighter tracking --- */
+                /* --- LUXURY TEXT (Black + Black TM) --- */
                 .brand-text {
                     position: absolute; 
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-                    font-size: 9px; 
+                    font-size: 10px; 
                     font-weight: 600;
                     color: #000000; 
-                    letter-spacing: 0.25em; 
+                    letter-spacing: 0.3em; 
                     text-transform: uppercase;
-                    margin-left: 0.25em; /* Matches spacing for center alignment */
+                    margin-left: 0.3em; 
                     animation: pulseText 3s ease-in-out infinite;
                 }
 
                 sup {
-                    font-size: 4px;
+                    font-size: 5px;
                     vertical-align: top;
                     position: relative;
                     top: -3px;
-                    margin-left: 1px;
+                    margin-left: 2px;
                     color: #000000; 
                     letter-spacing: 0; 
                 }
