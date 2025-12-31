@@ -25,7 +25,7 @@
                 /* --- VIDEO FIXES --- */
                 video { object-position: top center !important; }
 
-                /* --- CUSTOM LOADER --- */
+                /* --- CUSTOM LOADER CONTAINER --- */
                 #custom-loader {
                     position: absolute;
                     top: 0;
@@ -41,35 +41,61 @@
                     transition: opacity 0.8s ease-in-out, visibility 0.8s;
                 }
 
-                .pulse-ring {
-                    width: 60px;
-                    height: 60px;
-                    border-radius: 50%;
-                    border: 4px solid #E72F3C; /* klyr-red */
+                /* --- LUXURY MORPHING RING --- */
+                .morph-ring {
+                    width: 80px; /* Slightly larger base for elegance */
+                    height: 80px;
+                    /* MUCH Thinner, luxury line */
+                    border: 1px solid #E72F3C; 
+                    /* Subtle luxury glow */
+                    box-shadow: 0 0 10px rgba(231, 47, 60, 0.15);
                     opacity: 0;
-                    animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+                    /* The new morphing animation */
+                    animation: morphPulse 3s infinite ease-in-out;
+                    /* Starting shape */
+                    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
                 }
                 
                 .loader-text {
-                    margin-top: 16px;
+                    margin-top: 24px; /* Little more spacing */
                     font-family: 'Inter', sans-serif;
-                    font-weight: 700;
-                    font-size: 14px;
+                    font-weight: 600; /* Slightly lighter weight for luxury */
+                    font-size: 13px; /* Slightly smaller */
                     color: #1F2937;
-                    letter-spacing: 0.1em;
+                    letter-spacing: 0.2em; /* Wider spacing for expensive feel */
                     text-transform: uppercase;
-                    animation: fadeText 2s infinite ease-in-out;
+                    animation: fadeText 3s infinite ease-in-out;
                 }
 
-                @keyframes pulse {
-                    0% { transform: scale(0.5); opacity: 0; }
-                    50% { opacity: 1; }
-                    100% { transform: scale(1.5); opacity: 0; }
+                /* NEW ANIMATION: Combines pulsing with organic shape shifting */
+                @keyframes morphPulse {
+                    0% {
+                        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+                        transform: scale(0.8) rotate(0deg);
+                        opacity: 0;
+                    }
+                    25% {
+                         border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+                    }
+                    50% {
+                        /* At peak opacity, the shape is most complex */
+                        border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+                        opacity: 0.7; /* Subtle opacity, not full 1 */
+                        transform: scale(1.1) rotate(90deg);
+                    }
+                    75% {
+                         border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+                    }
+                    100% {
+                        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+                        transform: scale(1.3) rotate(180deg);
+                        opacity: 0;
+                    }
                 }
 
                 @keyframes fadeText {
-                    0%, 100% { opacity: 0.3; }
-                    50% { opacity: 1; }
+                    0%, 100% { opacity: 0.2; }
+                    50% { opacity: 0.8; }
                 }
 
                 .loader-hidden {
@@ -82,7 +108,7 @@
         <body>
             
             <div id="custom-loader">
-                <div class="pulse-ring"></div>
+                <div class="morph-ring"></div>
                 <div class="loader-text">ALETHA</div>
             </div>
 
@@ -99,14 +125,11 @@
             <\/script>
 
             <script>
-                // 1. Shadow DOM Helper (Finds elements inside protected layers)
+                // 1. Shadow DOM Helper
                 function findElementInShadow(selector) {
                     function search(root) {
-                        // Check standard DOM
                         let found = root.querySelector(selector);
                         if (found) return found;
-
-                        // Check inside every element's Shadow DOM
                         const allNodes = root.querySelectorAll('*');
                         for (let node of allNodes) {
                             if (node.shadowRoot) {
@@ -131,35 +154,29 @@
                     }
                 }
 
-                // 3. WATCHER: Hides Chat Button AND Checks Video Status
+                // 3. WATCHER & DISMISS LOGIC
                 const checkInterval = setInterval(() => {
-                    // A. Hide the button wherever it hides
                     const allNodes = document.querySelectorAll('*');
                     allNodes.forEach(node => {
                         if (node.shadowRoot) pierceShadowAndHide(node.shadowRoot);
                     });
 
-                    // B. Hunt for the video to dismiss loader
                     const video = findElementInShadow('video');
-                    if (video && video.readyState >= 2) {
+                    // NOTE: Lowered readyState requirement slightly to speed up dismissal
+                    if (video && video.readyState >= 1) { 
                         dismissLoader();
                     }
                 }, 100);
 
-                // 4. DISMISS FUNCTION (Stops checking once done)
                 function dismissLoader() {
                     const loader = document.getElementById('custom-loader');
                     if (loader && !loader.classList.contains('loader-hidden')) {
                         loader.classList.add('loader-hidden');
-                        // We keep the interval running for the chat button, but slow it down
-                        // to save performance
                     }
                 }
 
-                // 5. SAFETY VALVE: Force dismiss after 8 seconds no matter what
-                setTimeout(() => {
-                    dismissLoader();
-                }, 8000);
+                // Safety Valve (8 seconds)
+                setTimeout(() => { dismissLoader(); }, 8000);
 
             <\/script>
         </body>
