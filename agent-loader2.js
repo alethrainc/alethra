@@ -1,8 +1,16 @@
 (function() {
+    // ==========================================
     // 1. CONFIGURATION
+    // ==========================================
     const targetContainerId = 'content-box2'; 
+    
+    // TRUE  = HIDE the chat button (It vanishes)
+    // FALSE = SHOW the chat button (It is Active)
+    const HIDE_CHAT_BUTTON = false; 
 
+    // ==========================================
     // 2. SANDBOX HTML DEFINITION
+    // ==========================================
     const agentHTML = `
         <!DOCTYPE html>
         <html lang="en">
@@ -37,11 +45,9 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    /* The background fade is slightly delayed so content disappears first */
                     transition: opacity 0.6s ease-out 0.1s, visibility 0.6s 0.1s;
                 }
 
-                /* Wrapper to hold Spinner + Text together */
                 .loader-content {
                     position: relative;
                     width: 80px;
@@ -49,7 +55,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    transition: opacity 0.1s ease-out; /* Super fast fade for contents */
+                    transition: opacity 0.1s ease-out; 
                 }
 
                 /* --- THE SLOW COMET --- */
@@ -60,17 +66,12 @@
                     width: 100%;
                     height: 100%;
                     border-radius: 50%;
-                    animation: spin 2s linear infinite; /* Slower, luxury speed */
-                    
-                    /* Extended trace for slower speed */
+                    animation: spin 2s linear infinite; 
                     background: conic-gradient(from 0deg, rgba(231, 47, 60, 0) 0%, rgba(231, 47, 60, 0.1) 50%, rgba(231, 47, 60, 1) 100%);
-                    
-                    /* 1px Thin Mask */
                     -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
                     mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
                 }
 
-                /* The Leading Dot */
                 .comet-spinner::after {
                     content: "";
                     position: absolute;
@@ -84,18 +85,16 @@
                     box-shadow: 0 0 6px rgba(231, 47, 60, 0.6);
                 }
 
-                /* --- INNER TEXT --- */
                 .inner-text {
                     position: absolute;
                     font-family: 'Inter', sans-serif;
-                    font-size: 10px; /* Small, expensive look */
+                    font-size: 10px; 
                     font-weight: 600;
                     color: #1F2937;
                     letter-spacing: 0.1em;
                     z-index: 2;
                 }
 
-                /* Tiny TM */
                 sup {
                     font-size: 6px;
                     vertical-align: top;
@@ -108,15 +107,11 @@
                     to { transform: rotate(360deg); }
                 }
 
-                /* --- DISMISSAL STATES --- */
-                
-                /* 1. Content vanishes INSTANTLY */
                 .content-vanished .loader-content {
                     opacity: 0;
-                    transform: scale(0.95); /* Subtle shrink effect on exit */
+                    transform: scale(0.95); 
                 }
 
-                /* 2. Background fades AFTER content is gone */
                 .loader-hidden {
                     opacity: 0;
                     visibility: hidden;
@@ -146,6 +141,9 @@
             <\/script>
 
             <script>
+                // Pass the True/False variable from outside into this script
+                const shouldHideChat = ${HIDE_CHAT_BUTTON};
+
                 // 1. Shadow DOM Helper
                 function findElementInShadow(selector) {
                     function search(root) {
@@ -163,11 +161,14 @@
                     return search(document.body);
                 }
 
-                // 2. Hide Chat Button Logic
+                // 2. Hide Chat Button Logic (Controlled by the Switch)
                 const hideStyle = document.createElement('style');
                 hideStyle.textContent = '.didagent__chat__toggle { display: none !important; }';
 
                 function pierceShadowAndHide(root) {
+                    // IF FALSE, WE DO NOT HIDE THE BUTTON
+                    if (!shouldHideChat) return; 
+
                     if (!root.querySelector('style[data-hider]')) {
                         const clonedStyle = hideStyle.cloneNode(true);
                         clonedStyle.setAttribute('data-hider', 'true');
@@ -183,7 +184,6 @@
                     });
 
                     const video = findElementInShadow('video');
-                    // Check if video is ready to play
                     if (video && video.readyState >= 1) { 
                         dismissLoader();
                     }
@@ -191,19 +191,12 @@
 
                 function dismissLoader() {
                     const loader = document.getElementById('custom-loader');
-                    
-                    // Only run this logic if we haven't dismissed it yet
                     if (loader && !loader.classList.contains('content-vanished')) {
-                        
-                        // STEP 1: Cut the animation (Instant vanish of text/spinner)
                         loader.classList.add('content-vanished');
-                        
-                        // STEP 2: Fade the white background (Slight delay handled by CSS transition)
                         loader.classList.add('loader-hidden');
                     }
                 }
 
-                // Safety Valve (8 seconds)
                 setTimeout(() => { dismissLoader(); }, 8000);
 
             <\/script>
