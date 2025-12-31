@@ -35,67 +35,42 @@
                     background-color: #ffffff;
                     z-index: 9999;
                     display: flex;
-                    flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    transition: opacity 0.8s ease-in-out, visibility 0.8s;
+                    transition: opacity 0.5s ease-out, visibility 0.5s;
                 }
 
-                /* --- LUXURY MORPHING RING --- */
+                /* --- HIGH SPEED MORPH RING --- */
                 .morph-ring {
-                    width: 80px; /* Slightly larger base for elegance */
-                    height: 80px;
-                    /* MUCH Thinner, luxury line */
+                    width: 60px;
+                    height: 60px;
                     border: 1px solid #E72F3C; 
-                    /* Subtle luxury glow */
-                    box-shadow: 0 0 10px rgba(231, 47, 60, 0.15);
+                    box-shadow: 0 0 15px rgba(231, 47, 60, 0.4); /* Stronger glow for speed */
                     opacity: 0;
-                    /* The new morphing animation */
-                    animation: morphPulse 3s infinite ease-in-out;
-                    /* Starting shape */
-                    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
-                }
-                
-                .loader-text {
-                    margin-top: 24px; /* Little more spacing */
-                    font-family: 'Inter', sans-serif;
-                    font-weight: 600; /* Slightly lighter weight for luxury */
-                    font-size: 13px; /* Slightly smaller */
-                    color: #1F2937;
-                    letter-spacing: 0.2em; /* Wider spacing for expensive feel */
-                    text-transform: uppercase;
-                    animation: fadeText 3s infinite ease-in-out;
+                    /* FAST Animation: 0.8s cycle */
+                    animation: fastMorph 0.8s infinite ease-in-out;
+                    border-radius: 50%;
                 }
 
-                /* NEW ANIMATION: Combines pulsing with organic shape shifting */
-                @keyframes morphPulse {
+                @keyframes fastMorph {
                     0% {
-                        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
-                        transform: scale(0.8) rotate(0deg);
-                        opacity: 0;
-                    }
-                    25% {
-                         border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+                        transform: scale(0.8);
+                        opacity: 0.5;
+                        border-radius: 50%;
                     }
                     50% {
-                        /* At peak opacity, the shape is most complex */
-                        border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
-                        opacity: 0.7; /* Subtle opacity, not full 1 */
-                        transform: scale(1.1) rotate(90deg);
-                    }
-                    75% {
-                         border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+                        transform: scale(1.1);
+                        opacity: 1;
+                        /* Quick morph distortion */
+                        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+                        border-width: 2px; /* Slight pulse in thickness */
                     }
                     100% {
-                        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
-                        transform: scale(1.3) rotate(180deg);
+                        transform: scale(1.4);
                         opacity: 0;
+                        border-radius: 50%;
+                        border-width: 1px;
                     }
-                }
-
-                @keyframes fadeText {
-                    0%, 100% { opacity: 0.2; }
-                    50% { opacity: 0.8; }
                 }
 
                 .loader-hidden {
@@ -109,7 +84,6 @@
             
             <div id="custom-loader">
                 <div class="morph-ring"></div>
-                <div class="loader-text"></div>
             </div>
 
             <div id="agent-inner-container"></div>
@@ -162,11 +136,11 @@
                     });
 
                     const video = findElementInShadow('video');
-                    // NOTE: Lowered readyState requirement slightly to speed up dismissal
+                    // Fast check: Dismiss as soon as ReadyState is 1 (Metadata loaded)
                     if (video && video.readyState >= 1) { 
                         dismissLoader();
                     }
-                }, 100);
+                }, 50); // Check every 50ms for responsiveness
 
                 function dismissLoader() {
                     const loader = document.getElementById('custom-loader');
@@ -175,8 +149,8 @@
                     }
                 }
 
-                // Safety Valve (8 seconds)
-                setTimeout(() => { dismissLoader(); }, 8000);
+                // Safety Valve
+                setTimeout(() => { dismissLoader(); }, 5000);
 
             <\/script>
         </body>
