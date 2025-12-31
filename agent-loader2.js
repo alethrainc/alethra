@@ -40,37 +40,39 @@
                     transition: opacity 0.5s ease-out, visibility 0.5s;
                 }
 
-                /* --- HIGH SPEED MORPH RING --- */
-                .morph-ring {
-                    width: 60px;
-                    height: 60px;
-                    border: 1px solid #E72F3C; 
-                    box-shadow: 0 0 15px rgba(231, 47, 60, 0.4); /* Stronger glow for speed */
-                    opacity: 0;
-                    /* FAST Animation: 0.8s cycle */
-                    animation: fastMorph 0.8s infinite ease-in-out;
+                /* --- THE COMET (DOT WITH TRACE) --- */
+                .comet-spinner {
+                    position: relative;
+                    width: 50px;
+                    height: 50px;
                     border-radius: 50%;
+                    animation: spin 0.7s linear infinite; /* Fast spin */
+                    
+                    /* The Trace: Fades from Red to Transparent */
+                    background: conic-gradient(from 0deg, rgba(231, 47, 60, 0) 0%, rgba(231, 47, 60, 1) 100%);
+                    
+                    /* Mask cuts out the center to make it a 1px ring */
+                    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
+                    mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
                 }
 
-                @keyframes fastMorph {
-                    0% {
-                        transform: scale(0.8);
-                        opacity: 0.5;
-                        border-radius: 50%;
-                    }
-                    50% {
-                        transform: scale(1.1);
-                        opacity: 1;
-                        /* Quick morph distortion */
-                        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-                        border-width: 2px; /* Slight pulse in thickness */
-                    }
-                    100% {
-                        transform: scale(1.4);
-                        opacity: 0;
-                        border-radius: 50%;
-                        border-width: 1px;
-                    }
+                /* The Leading Dot */
+                .comet-spinner::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 4px; /* Slightly larger than line for "Head" effect */
+                    height: 4px;
+                    border-radius: 50%;
+                    background: #E72F3C;
+                    box-shadow: 0 0 4px rgba(231, 47, 60, 0.8); /* Tiny luxury glow */
+                }
+
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
                 }
 
                 .loader-hidden {
@@ -83,7 +85,7 @@
         <body>
             
             <div id="custom-loader">
-                <div class="morph-ring"></div>
+                <div class="comet-spinner"></div>
             </div>
 
             <div id="agent-inner-container"></div>
@@ -140,7 +142,7 @@
                     if (video && video.readyState >= 1) { 
                         dismissLoader();
                     }
-                }, 50); // Check every 50ms for responsiveness
+                }, 50); 
 
                 function dismissLoader() {
                     const loader = document.getElementById('custom-loader');
