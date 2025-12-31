@@ -37,21 +37,35 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    transition: opacity 0.5s ease-out, visibility 0.5s;
+                    /* The background fade is slightly delayed so content disappears first */
+                    transition: opacity 0.6s ease-out 0.1s, visibility 0.6s 0.1s;
                 }
 
-                /* --- THE COMET (DOT WITH TRACE) --- */
-                .comet-spinner {
+                /* Wrapper to hold Spinner + Text together */
+                .loader-content {
                     position: relative;
-                    width: 50px;
-                    height: 50px;
+                    width: 80px;
+                    height: 80px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition: opacity 0.1s ease-out; /* Super fast fade for contents */
+                }
+
+                /* --- THE SLOW COMET --- */
+                .comet-spinner {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
                     border-radius: 50%;
-                    animation: spin 0.7s linear infinite; /* Fast spin */
+                    animation: spin 2s linear infinite; /* Slower, luxury speed */
                     
-                    /* The Trace: Fades from Red to Transparent */
-                    background: conic-gradient(from 0deg, rgba(231, 47, 60, 0) 0%, rgba(231, 47, 60, 1) 100%);
+                    /* Extended trace for slower speed */
+                    background: conic-gradient(from 0deg, rgba(231, 47, 60, 0) 0%, rgba(231, 47, 60, 0.1) 50%, rgba(231, 47, 60, 1) 100%);
                     
-                    /* Mask cuts out the center to make it a 1px ring */
+                    /* 1px Thin Mask */
                     -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
                     mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
                 }
@@ -63,11 +77,30 @@
                     top: 0;
                     left: 50%;
                     transform: translateX(-50%);
-                    width: 4px; /* Slightly larger than line for "Head" effect */
+                    width: 4px; 
                     height: 4px;
                     border-radius: 50%;
                     background: #E72F3C;
-                    box-shadow: 0 0 4px rgba(231, 47, 60, 0.8); /* Tiny luxury glow */
+                    box-shadow: 0 0 6px rgba(231, 47, 60, 0.6);
+                }
+
+                /* --- INNER TEXT --- */
+                .inner-text {
+                    position: absolute;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 10px; /* Small, expensive look */
+                    font-weight: 600;
+                    color: #1F2937;
+                    letter-spacing: 0.1em;
+                    z-index: 2;
+                }
+
+                /* Tiny TM */
+                sup {
+                    font-size: 6px;
+                    vertical-align: top;
+                    position: relative;
+                    top: -2px;
                 }
 
                 @keyframes spin {
@@ -75,6 +108,15 @@
                     to { transform: rotate(360deg); }
                 }
 
+                /* --- DISMISSAL STATES --- */
+                
+                /* 1. Content vanishes INSTANTLY */
+                .content-vanished .loader-content {
+                    opacity: 0;
+                    transform: scale(0.95); /* Subtle shrink effect on exit */
+                }
+
+                /* 2. Background fades AFTER content is gone */
                 .loader-hidden {
                     opacity: 0;
                     visibility: hidden;
@@ -85,7 +127,10 @@
         <body>
             
             <div id="custom-loader">
-                <div class="comet-spinner"></div>
+                <div class="loader-content">
+                    <div class="comet-spinner"></div>
+                    <div class="inner-text">ALETHA<sup>TM</sup></div>
+                </div>
             </div>
 
             <div id="agent-inner-container"></div>
@@ -138,7 +183,7 @@
                     });
 
                     const video = findElementInShadow('video');
-                    // Fast check: Dismiss as soon as ReadyState is 1 (Metadata loaded)
+                    // Check if video is ready to play
                     if (video && video.readyState >= 1) { 
                         dismissLoader();
                     }
@@ -146,13 +191,20 @@
 
                 function dismissLoader() {
                     const loader = document.getElementById('custom-loader');
-                    if (loader && !loader.classList.contains('loader-hidden')) {
+                    
+                    // Only run this logic if we haven't dismissed it yet
+                    if (loader && !loader.classList.contains('content-vanished')) {
+                        
+                        // STEP 1: Cut the animation (Instant vanish of text/spinner)
+                        loader.classList.add('content-vanished');
+                        
+                        // STEP 2: Fade the white background (Slight delay handled by CSS transition)
                         loader.classList.add('loader-hidden');
                     }
                 }
 
-                // Safety Valve
-                setTimeout(() => { dismissLoader(); }, 5000);
+                // Safety Valve (8 seconds)
+                setTimeout(() => { dismissLoader(); }, 8000);
 
             <\/script>
         </body>
