@@ -109,7 +109,7 @@
             
             <div id="custom-loader">
                 <div class="morph-ring"></div>
-                <div class="loader-text">ALETHA</div>
+                <div class="loader-text"></div>
             </div>
 
             <div id="agent-inner-container"></div>
