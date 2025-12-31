@@ -59,7 +59,7 @@
                     transition: opacity 0.1s ease-out; 
                 }
 
-                /* --- 1. THE LONG FADING TAIL SPINNER --- */
+                /* --- 1. THE INFINITE SPINNER --- */
                 .ring-spinner {
                     position: absolute;
                     top: 0;
@@ -71,9 +71,11 @@
                     /* Apple Physics Easing */
                     animation: appleSpin 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite; 
                     
-                    /* THE GRADIENT FIX: 
-                       This creates a long tail that starts transparent and 
-                       slowly becomes red over 80% of the circle. */
+                    /* NEGATIVE DELAY: This is the fix. 
+                       It makes the animation start "in the past" so it's already moving. */
+                    animation-delay: -1s;
+                    
+                    /* LONG GRADIENT TAIL (80% Coverage) */
                     background: conic-gradient(
                         from 0deg, 
                         transparent 0%, 
@@ -82,26 +84,12 @@
                         #E72F3C 100%
                     );
                     
-                    /* THE MASK: Cuts out the center to leave a 1px thin line */
+                    /* MASK: 1px Thin Line */
                     -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
                     mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
                     
-                    /* Subtle Glow */
+                    /* Glow */
                     filter: drop-shadow(0 0 2px rgba(231, 47, 60, 0.4));
-                }
-
-                /* OPTIONAL: A tiny cap to round off the "Head" of the spinner */
-                .ring-spinner::after {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 1px; /* Matches line width */
-                    height: 1px;
-                    background: #E72F3C;
-                    border-radius: 50%;
-                    box-shadow: 0 0 4px #E72F3C;
                 }
 
                 /* --- 2. LUXURY TEXT (Black + Black TM) --- */
@@ -110,7 +98,7 @@
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
                     font-size: 10px; 
                     font-weight: 600;
-                    color: #000000; /* Pure Black */
+                    color: #000000; 
                     letter-spacing: 0.3em; 
                     text-transform: uppercase;
                     margin-left: 0.3em; 
