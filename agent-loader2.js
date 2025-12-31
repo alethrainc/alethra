@@ -11,7 +11,6 @@
     // ==========================================
     // 2. SANDBOX HTML DEFINITION
     // ==========================================
-    // This HTML runs inside the isolated iframe, preventing font issues
     const agentHTML = `
         <!DOCTYPE html>
         <html lang="en">
@@ -72,8 +71,8 @@
                     /* Apple Physics Easing */
                     animation: appleSpin 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite; 
                     
-                    /* NEGATIVE DELAY: Makes it look like it's already moving */
-                    animation-delay: -1s;
+                    /* UPDATED: Only 0.4s head start (Less than a second) */
+                    animation-delay: -0.4s;
                     
                     /* LONG GRADIENT TAIL (80% Coverage) */
                     background: conic-gradient(
@@ -224,31 +223,23 @@
         </html>
     `;
 
-    // ==========================================
     // 3. INJECTION LOGIC
-    // ==========================================
     const initAgent = () => {
         const container = document.getElementById(targetContainerId);
         if (container) {
-            // Create a secure "Blob URL" to treat the HTML string as a file
             const blob = new Blob([agentHTML], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
-
-            // Create and configure the iframe
             const iframe = document.createElement('iframe');
             iframe.src = url;
             iframe.style.width = "100%";
             iframe.style.height = "100%";
             iframe.style.border = "none";
             iframe.allow = "microphone; camera; display-capture; autoplay"; 
-
-            // Insert into the page
             container.innerHTML = ""; 
             container.appendChild(iframe);
         }
     };
 
-    // Run initialization
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initAgent);
     } else {
