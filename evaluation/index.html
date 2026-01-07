@@ -27,6 +27,30 @@
         }
     </script>
     <style>
+        /* Checkbox styling */
+    input[type="checkbox"] {
+        accent-color: #E72F3C;
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-right: 0.5rem;
+        cursor: pointer;
+    }
+
+    /* Textarea styling */
+    textarea {
+        width: 100%;
+        border: 1px solid #9CA3AF;
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 0.15s;
+    }
+    textarea:focus {
+        border-color: #E72F3C;
+        ring: 2px solid #E72F3C;
+    }
     
         /* =================================================================== */
         /* FIX: Ensures cards align horizontally by normalizing description height */
