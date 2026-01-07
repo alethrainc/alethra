@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - EVALUATION</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE
+                        'klyr-dark': '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+    
+        /* =================================================================== */
+        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* =================================================================== */
+        @media (min-width: 768px) {
+            .description-alignment-fix {
+                /* Min-height large enough for 2 lines of text-lg */
+                min-height: 3.5rem; 
+            }
+        }
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+            
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+            This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+<main class="">
+    
+        <!-- 
+            1. HERO SECTION 
+            - Top padding: 6rem (desktop) / 4rem (mobile) -> pt-16 md:pt-24
+            - Bottom padding: 3rem (desktop) / 2rem (mobile) -> pb-8 md:pb-12
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 border-b border-transparent">
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="space-y-6 flex flex-col justify-center text-left">
+                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-klyr-dark uppercase">
+                        WORK WITH<br>
+                        <span class="text-klyr-red">ALETHRA™</span> ,<br>
+                        INTERNAL<br>
+                        EVALUATION<br>
+                        RUBRIC
+                    </h1>
+                </div>
+                 <div id="content-box" class="content-box-border-style rounded-lg flex overflow-hidden w-full relative h-[400px] md:h-[300px]"></div>
+            </div>
+        </section>
+
+        <!-- 
+            2. EVALUATION PHILOSOPHY SECTION
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                EVALUATION PHILOSOPHY
+            </h2>
+            
+            <div class="flex flex-col gap-8 text-gray-700">
+                <!-- Top Section: Not optimizing for -->
+                <div>
+                    <p class="mb-4">We are not optimizing for:</p>
+                    <ul class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
+                        <li>• Speed</li>
+                        <li>• Volume</li>
+                        <li>• Ego</li>
+                        <li>• Titles</li>
+                    </ul>
+                </div>
+                <!-- Bottom Section: Optimizing for (3 Columns) -->
+                <div>
+                    <p class="mb-4">We are optimizing for:</p>
+                    <ul class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-4">
+                        <li>• Responsibility</li>
+                        <li>• Verification discipline</li>
+                        <li>• Systems thinking</li>
+                        <li>• Clarity under uncertainty</li>
+                        <li>• Real-world risk awareness</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            3. SCORING OVERVIEW SECTION
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                SCORING OVERVIEW
+            </h2>
+            
+            <div class="prose max-w-none text-gray-700 space-y-4 text-left">
+                <p class="font-bold">Each candidate is evaluated across 7 dimensions.</p>
+                
+                <ul class="list-none space-y-1 pl-0">
+                    <li>• Score each dimension <strong>0–5</strong></li>
+                    <li>• Add reviewer notes</li>
+                    <li>• Flag risks immediately</li>
+                    <li>• Outcome is <strong>Accept / Advance / Hold / Decline</strong></li>
+                </ul>
+
+                <p>
+                    <span class="font-bold">Maximum Score:</span> 35<br>
+                    <span class="font-bold">Passing Range:</span> Contextual - scores matter less than red flags
+                </p>
+            </div>
+        </section>
+
+        <!-- 
+            DIMENSION 1
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                DIMENSION 1,<br>RESPONSIBILITY MINDSET (0–5)
+            </h2>
+            
+            <div class="space-y-6 text-gray-700">
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Question Signal Sources:</h4>
+                    <ul class="list-none pl-0">
+                        <li>• “Responsibility” definition</li>
+                        <li>• Harm-related questions</li>
+                        <li>• Shipping under uncertainty responses</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Scoring Guide</h4>
+                    <ul class="list-none pl-0 space-y-1">
+                        <li>• <strong>0</strong> Avoids responsibility / deflects blame</li>
+                        <li>• <strong>1</strong> Responsibility only within narrow role</li>
+                        <li>• <strong>2</strong> Acknowledges responsibility but prioritizes speed</li>
+                        <li>• <strong>3</strong> Balances delivery with safety</li>
+                        <li>• <strong>4</strong> Proactively protects users and systems</li>
+                        <li>• <strong>5</strong> Explicitly prioritizes harm prevention over progress</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-red">Red Flags</h4>
+                    <ul class="list-none pl-0">
+                        <li>• “That’s not my problem” language</li>
+                        <li>• Willingness to ship harmful systems</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            DIMENSION 2
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                DIMENSION 2,<br>VERIFICATION DISCIPLINE (0–5)
+            </h2>
+            
+            <div class="space-y-6 text-gray-700">
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Signal Sources:</h4>
+                    <ul class="list-none pl-0">
+                        <li>• Verification methodology answers</li>
+                        <li>• Evidence vs assumption language</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Scoring Guide</h4>
+                    <ul class="list-none pl-0 space-y-1">
+                        <li>• <strong>0</strong> Relies on intuition or authority</li>
+                        <li>• <strong>1</strong> Occasional checks</li>
+                        <li>• <strong>2</strong> Standard checks without limits</li>
+                        <li>• <strong>3</strong> Repeatable verification methods</li>
+                        <li>• <strong>4</strong> Verification + awareness of failure modes</li>
+                        <li>• <strong>5</strong> Verification + escalation rules + stop conditions</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-red">Red Flags</h4>
+                    <ul class="list-none pl-0">
+                        <li>• “I just know”</li>
+                        <li>• Overconfidence without method</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            DIMENSION 3
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                DIMENSION 3,<br>SYSTEMS THINKING (0–5)
+            </h2>
+            
+            <div class="space-y-6 text-gray-700">
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Signal Sources:</h4>
+                    <ul class="list-none pl-0">
+                        <li>• Descriptions of real-world impact</li>
+                        <li>• Awareness of downstream effects</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Scoring Guide</h4>
+                    <ul class="list-none pl-0 space-y-1">
+                        <li>• <strong>0</strong> Isolated task thinking</li>
+                        <li>• <strong>1</strong> Team-level only</li>
+                        <li>• <strong>2</strong> Product-level awareness</li>
+                        <li>• <strong>3</strong> System-level interactions</li>
+                        <li>• <strong>4</strong> Cross-domain consequences</li>
+                        <li>• <strong>5</strong> End-to-end system risk awareness</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-red">Red Flags</h4>
+                    <ul class="list-none pl-0">
+                        <li>• Ignores downstream harm</li>
+                        <li>• Treats failures as isolated</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            DIMENSION 4
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                DIMENSION 4,<br>HUMILITY & LEARNING (0–5)
+            </h2>
+            
+            <div class="space-y-6 text-gray-700">
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Signal Sources:</h4>
+                    <ul class="list-none pl-0">
+                        <li>• “Confident and wrong” response</li>
+                        <li>• Willingness to say “I don’t know”</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Scoring Guide</h4>
+                    <ul class="list-none pl-0 space-y-1">
+                        <li>• <strong>0</strong> Never wrong</li>
+                        <li>• <strong>1</strong> Deflects errors</li>
+                        <li>• <strong>2</strong> Acknowledges errors reluctantly</li>
+                        <li>• <strong>3</strong> Learns after mistakes</li>
+                        <li>• <strong>4</strong> Actively seeks correction</li>
+                        <li>• <strong>5</strong> Builds systems to catch their own errors</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-red">Red Flags</h4>
+                    <ul class="list-none pl-0">
+                        <li>• Defensive tone</li>
+                        <li>• Refusal to revise beliefs</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            DIMENSION 5
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                DIMENSION 5,<br>RISK & HARM AWARENESS (0–5)
+            </h2>
+            
+            <div class="space-y-6 text-gray-700">
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Signal Sources:</h4>
+                    <ul class="list-none pl-0">
+                        <li>• Harm scenarios</li>
+                        <li>• Safety boundaries</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Scoring Guide</h4>
+                    <ul class="list-none pl-0 space-y-1">
+                        <li>• <strong>0</strong> Ignores harm</li>
+                        <li>• <strong>1</strong> Sees harm as unlikely</li>
+                        <li>• <strong>2</strong> Acknowledges harm abstractly</li>
+                        <li>• <strong>3</strong> Identifies realistic risks</li>
+                        <li>• <strong>4</strong> Designs to reduce harm</li>
+                        <li>• <strong>5</strong> Designs to prevent and detect harm early</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-red">Red Flags</h4>
+                    <ul class="list-none pl-0">
+                        <li>• “Edge cases don’t matter”</li>
+                        <li>• Minimizes real-world consequences</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+         <!-- 
+            DIMENSION 6
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                DIMENSION 6,<br>COMMUNICATION CLARITY (0–5)
+            </h2>
+            
+            <div class="space-y-6 text-gray-700">
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Signal Sources:</h4>
+                    <ul class="list-none pl-0">
+                        <li>• Written responses</li>
+                        <li>• Structure and precision</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Scoring Guide</h4>
+                    <ul class="list-none pl-0 space-y-1">
+                        <li>• <strong>0</strong> Confusing / incoherent</li>
+                        <li>• <strong>1</strong> Rambling</li>
+                        <li>• <strong>2</strong> Understandable but unfocused</li>
+                        <li>• <strong>3</strong> Clear and direct</li>
+                        <li>• <strong>4</strong> Clear with examples</li>
+                        <li>• <strong>5</strong> Clear, precise, and scoped</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-red">Red Flags</h4>
+                    <ul class="list-none pl-0">
+                        <li>• Buzzwords without meaning</li>
+                        <li>• Avoids direct answers</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+         <!-- 
+            DIMENSION 7
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                DIMENSION 7,<br>CULTURAL ALIGNMENT (0–5)
+            </h2>
+            
+            <div class="space-y-6 text-gray-700">
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Signal Sources:</h4>
+                    <ul class="list-none pl-0">
+                        <li>• Speed vs verification choice</li>
+                        <li>• Values alignment</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Scoring Guide</h4>
+                    <ul class="list-none pl-0 space-y-1">
+                        <li>• <strong>0</strong> Strongly misaligned</li>
+                        <li>• <strong>1</strong> Weak alignment</li>
+                        <li>• <strong>2</strong> Neutral</li>
+                        <li>• <strong>3</strong> Generally aligned</li>
+                        <li>• <strong>4</strong> Strong alignment</li>
+                        <li>• <strong>5</strong> Naturally embodies <span class="text-klyr-red">ALETHRA™</span> values</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-klyr-red">Red Flags</h4>
+                    <ul class="list-none pl-0">
+                        <li>• “Move fast and fix later” preference</li>
+                        <li>• Dismisses verification culture</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+         <!-- 
+            OUTCOME GUIDANCE
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                OUTCOME GUIDANCE<br>(NOT AUTOMATIC)
+            </h2>
+            
+            <div class="space-y-6 text-gray-700">
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Advance Immediately</h4>
+                    <ul class="list-none pl-0">
+                        <li>• No red flags</li>
+                        <li>• Strong scores in Responsibility, Verification, and Risk</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Advance with Caution</h4>
+                    <ul class="list-none pl-0">
+                        <li>• Strong skills, minor gaps</li>
+                        <li>• Pair with senior oversight</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-klyr-dark">Hold</h4>
+                    <ul class="list-none pl-0">
+                        <li>• Unclear alignment</li>
+                        <li>• Revisit after clarification</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-klyr-red">Decline</h4>
+                    <ul class="list-none pl-0">
+                        <li>• Any major red flag</li>
+                        <li>• Misalignment of responsibility or harm</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            MANDATORY REVIEWER NOTES
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-red uppercase mb-6 md:mb-8 text-left">
+                MANDATORY REVIEWER NOTES
+            </h2>
+            
+            <div class="space-y-6 text-gray-700 font-bold">
+                <div>
+                    <p class="mb-2">Key Strengths:</p>
+                    <textarea rows="4" placeholder="Enter key strengths..."></textarea>
+                </div>
+                <div>
+                    <p class="mb-2">Primary Risks / Concerns:</p>
+                    <textarea rows="4" placeholder="Enter primary risks..."></textarea>
+                </div>
+
+                <div class="pt-4">
+                    <p class="mb-2">Would you trust this person to make a decision affecting real people without supervision?</p>
+                    <div class="flex gap-6 font-normal">
+                         <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" name="trust_decision" value="yes"> Yes
+                         </label>
+                         <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" name="trust_decision" value="no"> No
+                         </label>
+                         <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" name="trust_decision" value="not_yet"> Not Yet
+                         </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            FINAL RECOMMENDATION
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                FINAL RECOMMENDATION
+            </h2>
+            
+            <div class="space-y-2 text-gray-700">
+                <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" name="recommendation" value="advance"> Advance
+                </label>
+                <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" name="recommendation" value="advance_conditions"> Advance with Conditions
+                </label>
+                <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" name="recommendation" value="hold"> Hold
+                </label>
+                <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" name="recommendation" value="decline"> Decline
+                </label>
+            </div>
+            
+            <div class="mt-6">
+                <label class="block text-gray-700 mb-2">Conditions (if any):</label>
+                <textarea class="w-full h-24 border border-gray-400 rounded-lg p-2" placeholder="List any conditions..."></textarea>
+            </div>
+
+            <!-- SEND BUTTON -->
+            <div class="mt-12 text-center md:text-left">
+                <button class="bg-klyr-red text-white font-bold py-4 px-10 rounded shadow-md hover:bg-red-700 hover:shadow-lg transition duration-200 uppercase tracking-wide text-lg w-full md:w-auto">
+                    Send Evaluation
+                </button>
+            </div>
+        </section>
+
+</main>
+
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+    
+    
+<div id="footer-placeholder"></div>
+<script src="/animation.js"></script>
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+<script src="/symbol-formatter.js"></script>
+<script src="/agent-loader.js"></script>
+<script type="text/javascript">
+     // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+
+</body>
+</html>
