@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALETHRA - REWARDS</title>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/animation.css">    
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // PRIMARY COLOR VARIABLE
+                        'klyr-red': '#E72F3C',
+                        // DARK TEXT COLOR VARIABLE
+                        'klyr-dark': '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+    
+        /* =================================================================== */
+        /* FIX: Ensures cards align horizontally by normalizing description height */
+        /* =================================================================== */
+        @media (min-width: 768px) {
+            .description-alignment-fix {
+                /* Min-height large enough for 2 lines of text-lg */
+                min-height: 3.5rem; 
+            }
+        }
+        .skiptranslate {
+            display: none!important;
+        }
+        /* ===================================================================
+        GLOBAL STYLING
+        =================================================================== */
+        
+        /* --- CONFIGURATION VARIABLES FOR INDENTATION & SPACING --- */
+        /* Adjust these values (in pixels) to control the mobile navigation layout */
+        :root { 
+            --mobile-indent-px: 32px; /* Indentation for sub-menu items */
+            --mobile-group-spacing-px: 18px; /* Vertical space *between* main mobile groups */
+            /* Padding for sub-links to make them cleaner (was 48px) */
+            --mobile-sub-item-py: 16px; /* Vertical padding (top/bottom) for mobile sub-links (controls space *between* sub-links) */
+            --site-max-width: 1100px; 
+            --nav-footer-max-width: 2000px; 
+        }
+
+        .nav-item:hover {
+            color: #E72F3C;
+        }
+        /* -------------------------------------------------- */
+
+        /* Ensures Inter font loads smoothly */
+        @import url('https://fonts.fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+        }
+
+        /* Custom class for standard content width */
+        .max-w-site {
+            max-width: var(--site-max-width);
+        }
+
+        /* Custom class for header and footer content width */
+        .max-w-super-wide {
+            max-width: var(--nav-footer-max-width);
+        }
+        
+        /* Applying variables to crisis cards */
+        .crisis-card-style {
+            background-color: #f9f9f9; 
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Applying variables to content box */
+        #content-box.content-box-border-style {
+            border: 4px solid var(--klyr-red) !important;
+        }
+
+        /* CRITICAL: HIDES GOOGLE TRANSLATE UI ELEMENTS */
+        #google_translate_element, 
+        .goog-te-gadget,
+        .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body { top: 0px !important; position: relative !important; }
+
+        /* ===================================================================
+        NAVIGATION & DROPDOWN STYLES
+        =================================================================== */
+        /* Desktop Navigation Item Base Style */
+        /* FIX: Explicitly set base color to klyr-dark for full visibility of hover transition */
+        .nav-item {
+            @apply text-klyr-dark hover:text-klyr-red transition duration-150 whitespace-nowrap;
+        }
+        
+        /* Mobile Accordion Wrapper (Main Navigation Items) */
+        .mobile-dropdown-group {
+            @apply border-b border-gray-100;
+        }
+        /* Add spacing between the main navigation items, but not before the first one */
+        .mobile-dropdown-group:not(:first-child) {
+            margin-top: var(--mobile-group-spacing-px);
+        }
+        
+        /* Consolidated Mobile Item Base Style for Links and Buttons */
+        .mobile-nav-item-base {
+            @apply w-full flex justify-between items-center text-left text-base font-medium text-klyr-dark hover:text-klyr-red py-3 pr-0 transition duration-150;
+        }
+        
+        /* Mobile Collapsible Content Area (CRITICAL HIDING CSS) */
+        .mobile-dropdown-content {
+            /* max-height: 0 is the starting state */
+            max-height: 0; 
+            /* Opacity starts at 0 */
+            opacity: 0; 
+            
+            /* Use the variable defined at the top for indentation */
+            padding-left: var(--mobile-indent-px);
+            /* transition-all includes max-height and opacity/transform */
+            @apply overflow-hidden bg-gray-50 transition-all duration-300; 
+        }
+        
+        /* Class added by JS when the accordion is OPEN */
+        .mobile-dropdown-content.open {
+            opacity: 1;
+            pointer-events: auto; 
+            /* max-height set inline by JS when opening, not here */
+        }
+
+        /* Mobile Sub-Item Links (Dropdown Links) - Base style, no border here */
+        .mobile-sub-item {
+            /* Now uses CSS variable for vertical padding (controlling space between sub-items) */
+            padding-top: var(--mobile-sub-item-py);
+            padding-bottom: var(--mobile-sub-item-py);
+            /* Base styles */
+            @apply block text-sm text-klyr-dark hover:text-klyr-red uppercase; 
+        }
+        
+        /* FIX: Apply border-top ONLY to sub-items that are NOT the first child.
+            This creates a single, clean dividing line BETWEEN items. */
+        .mobile-dropdown-content .mobile-sub-item:not(:first-child) {
+            @apply border-t border-gray-300; 
+        }
+
+    </style>
+</head>
+<body>
+
+    
+<div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div class="bg-white shadow-sm sticky top-0 z-50" id="nav-placeholder"></div>
+  <main class="">
+    
+        <!-- 
+            1. HERO SECTION 
+            - Top padding: 6rem (desktop) / 4rem (mobile) -> pt-16 md:pt-24
+            - Bottom padding: 3rem (desktop) / 2rem (mobile) -> pb-8 md:pb-12
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 border-b border-transparent">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-6 flex flex-col justify-center text-left">
+                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-klyr-dark uppercase">
+                        CONTRIBUTOR<br>RECOGNITION<br>& REWARDS
+                    </h1>
+                </div>
+                <!-- Hero Right Avatar -->
+                <div id="content-box" class="content-box-border-style rounded-lg flex overflow-hidden w-full relative h-[300px] md:h-[350px]"></div>
+            </div>
+        </section>
+
+        <!-- 
+            2. PURPOSE SECTION
+            - Padding logic: Previous section has pb-8/12. This one starts pt-0. 
+            - Ends with pb-8/12 to create spacing for next section.
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                PURPOSE
+            </h2>
+            
+            <div class="prose max-w-none text-gray-700 space-y-6 text-left">
+                <p>
+                    This page explains how <span class="text-klyr-red">ALETHRA™</span> recognizes contributors who help train <span class="text-klyr-red">ALETHRA™</span> and <span class="text-klyr-red">ALETHA™</span> through verified, responsible participation.
+                </p>
+                <p class="font-bold text-klyr-dark">
+                    Recognition is not based on volume, speed, or opinion.
+                </p>
+                <p class="font-bold text-klyr-dark">
+                    It is based on clarity, verification, and real-world impact.
+                </p>
+            </div>
+        </section>
+
+        <!-- 
+            3. HOW RECOGNITION WORKS & TIERS
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                HOW RECOGNITION WORKS
+            </h2>
+            
+            <div class="prose max-w-none text-gray-700 space-y-6 text-left mb-12">
+                <p>
+                    <span class="text-klyr-red">ALETHRA™</span> uses an internal evaluation system called Clarity Credits to assess contributions over time.
+                </p>
+                
+                <div class="space-y-2">
+                    <p class="font-bold text-klyr-dark">Clarity Credits:</p>
+                    <ul class="list-disc pl-5 space-y-1 marker:text-klyr-dark">
+                        <li>Are internal and not visible to the public</li>
+                        <li>Cannot be traded, transferred, or requested</li>
+                        <li>Are earned only after contributions are reviewed or verified</li>
+                        <li>Reflect long-term usefulness rather than activity volume</li>
+                    </ul>
+                </div>
+
+                <p class="font-bold text-klyr-dark">
+                    Clarity Credits determine eligibility for contributor recognition tiers.
+                </p>
+            </div>
+
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                CONTRIBUTOR RECOGNITION TIERS
+            </h2>
+
+            <div class="prose max-w-none text-gray-700 space-y-6 text-left">
+                <p>
+                    This tier recognizes approved participants who have made at least one reviewed contribution.
+                </p>
+                
+                <div class="space-y-2">
+                    <p class="font-bold text-klyr-dark">Recognition includes:</p>
+                    <ul class="list-disc pl-5 space-y-1 marker:text-klyr-dark">
+                        <li>Contributor designation displayed in the application</li>
+                        <li>Early access to selected application features</li>
+                        <li>Advanced explanation mode for supported responses</li>
+                        <li>Ability to flag uncertainty for review</li>
+                        <li><span class="text-klyr-red">ALETHRA™</span> private-label ceramic coffee mug</li>
+                        <li><span class="text-klyr-red">ALETHRA™</span> sticker pack</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            4. VERIFIED TRAINER & SIGNAL LEADER
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            
+            <!-- Verified Trainer -->
+            <div class="mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                    VERIFIED TRAINER
+                </h2>
+                
+                <div class="prose max-w-none text-gray-700 space-y-6 text-left">
+                    <p>
+                        This tier recognizes contributors whose work consistently meets <span class="text-klyr-red">ALETHRA™</span> verification and clarity standards.
+                    </p>
+                    
+                    <div class="space-y-2">
+                        <p class="font-bold text-klyr-dark">Recognition includes:</p>
+                        <ul class="list-disc pl-5 space-y-1 marker:text-klyr-dark">
+                            <li>Verified Trainer designation displayed in the application</li>
+                            <li>Permanent access to advanced reasoning views</li>
+                            <li>Confidence and uncertainty indicators</li>
+                            <li>Priority access to new <span class="text-klyr-red">ALETHRA™</span> capabilities</li>
+                            <li>Invitations to private product and training briefings</li>
+                            <li><span class="text-klyr-red">ALETHRA™</span> private-label premium hoodie</li>
+                            <li><span class="text-klyr-red">ALETHRA™</span> private-label hat or beanie</li>
+                            <li><span class="text-klyr-red">ALETHRA™</span> private-label premium T-shirt</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Signal Leader -->
+            <div>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                    SIGNAL LEADER
+                </h2>
+                
+                <div class="prose max-w-none text-gray-700 space-y-6 text-left">
+                    <p>
+                        This tier recognizes sustained, high-impact contributors whose work continues to provide value over time.
+                    </p>
+                    
+                    <div class="space-y-2">
+                        <p class="font-bold text-klyr-dark">Recognition includes:</p>
+                        <ul class="list-disc pl-5 space-y-1 marker:text-klyr-dark">
+                            <li>Signal Leader designation displayed in the application</li>
+                            <li>Permanent unlocking of all application upgrades</li>
+                            <li>Access to contributor-only analytics</li>
+                            <li>Participation in closed training reviews</li>
+                            <li>Limited-run <span class="text-klyr-red">ALETHRA™</span> private-label premium apparel</li>
+                            <li><span class="text-klyr-red">ALETHRA™</span> branded YETI® Rambler tumbler</li>
+                            <li><span class="text-klyr-red">ALETHRA™</span> branded YETI® travel mug</li>
+                            <li><span class="text-klyr-red">ALETHRA™</span> branded YETI® soft cooler</li>
+                            <li>Numbered <span class="text-klyr-red">ALETHRA™</span> contributor card</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- 
+            5. ENTERPRISE SIGNAL PARTNER
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                ENTERPRISE SIGNAL PARTNER
+            </h2>
+            
+            <div class="prose max-w-none text-gray-700 space-y-6 text-left">
+                <p>
+                    This tier recognizes enterprise-grade contributors and institutional partners.
+                </p>
+                
+                <div class="space-y-2">
+                    <p class="font-bold text-klyr-dark">Recognition includes:</p>
+                    <ul class="list-disc pl-5 space-y-1 marker:text-klyr-dark">
+                        <li>Enterprise Signal Partner designation</li>
+                        <li>Direct feedback and escalation channels with <span class="text-klyr-red">ALETHRA™</span> leadership</li>
+                        <li>Invitations to private roadmap and validation sessions</li>
+                        <li>Priority access to enterprise features and integrations</li>
+                        <li>Custom <span class="text-klyr-red">ALETHRA™</span> private-label premium apparel</li>
+                        <li>Full <span class="text-klyr-red">ALETHRA™</span> branded YETI® enterprise gear set</li>
+                        <li>Optional advisory or paid engagement pathways</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            6. WHAT NOT REWARDED & TRANSPARENCY
+        -->
+        <section class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 md:pb-12">
+            
+            <!-- Not Rewarded -->
+            <div class="mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                    WHAT <span class="text-klyr-red">ALETHRA™</span> DOES NOT REWARD
+                </h2>
+                
+                <div class="prose max-w-none text-gray-700 space-y-6 text-left">
+                    <p>
+                        To protect clarity and trust, <span class="text-klyr-red">ALETHRA™</span> does not reward:
+                    </p>
+                    
+                    <ul class="list-disc pl-5 space-y-1 marker:text-klyr-dark">
+                        <li>Speed or volume of submissions</li>
+                        <li>Opinions without verification</li>
+                        <li>Popularity, voting, or public rankings</li>
+                        <li>Competition between contributors</li>
+                        <li>Guessing or speculative answers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Transparency -->
+            <div>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-klyr-dark uppercase mb-6 md:mb-8 text-left">
+                    TRANSPARENCY AND SAFEGUARDS
+                </h2>
+                
+                <div class="prose max-w-none text-gray-700 space-y-6 text-left">
+                    <p>
+                        Participation in Crowd Training does not guarantee recognition, rewards, or tier advancement.
+                    </p>
+                    
+                    <div class="space-y-2">
+                        <p><span class="text-klyr-red">ALETHRA™</span> reserves the right to:</p>
+                        <ul class="list-disc pl-5 space-y-1 marker:text-klyr-dark">
+                            <li>Review contributions at any time</li>
+                            <li>Adjust recognition tiers</li>
+                            <li>Pause or revoke contributor access</li>
+                            <li>Decline fulfillment if standards are not met</li>
+                        </ul>
+                    </div>
+
+                    <p class="font-bold text-klyr-dark">
+                        All recognition decisions prioritize safety, accuracy, and responsibility.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+         <!-- 
+            7. RED BANNER FOOTER
+        -->
+        <section class="w-full bg-klyr-red py-12">
+            <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+                 <h3 class="text-xl md:text-2xl font-bold text-white mb-6">
+                    ALETHRA™ is building a global standard for verified truth in real-world systems.
+                </h3>
+                <h3 class="text-xl md:text-2xl font-bold text-white">
+                    Contributor recognition reflects trust, responsibility, and meaningful impact.
+                </h3>
+            </div>
+        </section>
+
+</main>
+    
+<div id="country-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden opacity-0 modal-transition">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-4xl p-8 relative transform scale-95 modal-transition">
+            
+<button id="close-modal-btn" class="absolute top-6 left-6 text-gray-500 hover:text-klyr-red transition duration-150">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            
+<div id="country-list-container" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4 max-h-[70vh] overflow-y-auto pt-4 pb-2">
+                
+</div>
+        </div>
+    </div>
+    
+    
+<div id="footer-placeholder"></div>
+<script src="/animation.js"></script>
+<script src="/nav-logic.js"></script>
+<script src="/inject.js"></script>
+<script src="/symbol-formatter.js"></script>
+<script src="/agent-loader.js"></script>
+<script type="text/javascript">
+     // ===================================================================
+    // LUXURY FADE-IN ANIMATION LOGIC (Intersection Observer)
+    // ===================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        // Create the observer
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    // Add the 'is-visible' class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has faded in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Options for the observer
+            root: null, // Use the viewport as the container
+            rootMargin: '0px', // No extra margin
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        // Loop through all elements and observe them
+        fadeSections.forEach((section, index) => {
+            // Apply a staggered delay based on its order in the array
+            // The delay is only applied if the delay style variable is defined on the element
+            const delay = parseFloat(section.style.getPropertyValue('--delay') || '0');
+            section.style.setProperty('--delay', `${delay + 0.05}s`); 
+            
+            observer.observe(section);
+        });
+    });
+</script>
+
+</body>
+</html>
